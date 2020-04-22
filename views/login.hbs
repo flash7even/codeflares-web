@@ -1,0 +1,25 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/signup.css">
+</head>
+
+<div class="signup-form">	
+    <form action="/examples/actions/confirmation.php" method="post">
+        <div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="text" class="form-control" name="username" placeholder="Username" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+				<input type="text" class="form-control" name="password" placeholder="Password" required="required">
+			</div>
+        </div>       
+		<div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Log In</button>
+        </div>
+		<br>
+	<div class="text-center">Not registered yet? <a href="/signup/">Sign Up</a>.</div>
+    </form>
+</div>
