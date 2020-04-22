@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>CODETRAINER</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/layout.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>CodeTrainer</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#profileMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">catfuneral</a>
+                    <ul class="collapse list-unstyled" id="profileMenu">
+                        <li>
+                            <a href="#">Profile</a>
+                        </li>
+                        <li>
+                            <a href="#">Edit Profile</a>
+                        </li>
+                        <li>
+                            <a href="#">Settings</a>
+                        </li>
+                        <li>
+                            <a href="#">Friends</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#trainingMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Training</a>
+                    <ul class="collapse list-unstyled" id="trainingMenu">
+                        <li>
+                            <a href="#">Personal Training</a>
+                        </li>
+                        <li>
+                            <a href="#">Skill Building Contest</a>
+                        </li>
+                        <li>
+                            <a href="#">Team Contest</a>
+                        </li>
+                        <li>
+                            <a href="#">Contestants</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#classRoomMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Classroom</a>
+                    <ul class="collapse list-unstyled" id="classRoomMenu">
+                        <li>
+                            <a href="#">Your Classroom</a>
+                        </li>
+                        <li>
+                            <a href="#">Join Classroom</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#gatewayMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Gateway</a>
+                    <ul class="collapse list-unstyled" id="gatewayMenu">
+                        <li>
+                            <a href="#">Categories</a>
+                        </li>
+                        <li>
+                            <a href="#">Problems</a>
+                        </li>
+                        <li>
+                            <a href="#">Contests</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#adviseMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Advise</a>
+                    <ul class="collapse list-unstyled" id="adviseMenu">
+                        <li>
+                            <a href="#">Add Problem</a>
+                        </li>
+                        <li>
+                            <a href="#">Add Category</a>
+                        </li>
+                        <li>
+                            <a href="#">Update Problems</a>
+                        </li>
+                        <li>
+                            <a href="#">Update Categories</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled components">
+
+                <li>
+                    <a href="#">About US</a>
+                </li>
+                <li>
+                    <a href="#">Contact US</a>
+                </li>
+            </ul>
+
+
+
+            <ul class="list-unstyled CTAs list-unstyled components" style="padding: 20px;">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download Dataset</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+
+                    <button type="button btn-lg" id="sidebarCollapse" class="btn navbar-btn">
+                        <i class="fas fa-align-justify navbar-btn-icon"></i>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                            </li>
+                        </ul>
+                        <div style="padding: 2px;">
+                            <button type="button btn-lg" id="" class="btn navbar-btn">
+                                <i class="fas fa-bell navbar-btn-icon"></i>
+                            </button>
+                        </div>
+                        <div style="padding: 2px;">
+                            <button type="button btn-lg" id="" class="btn navbar-btn">
+                                <i class="fas fa-sign-in-alt navbar-btn-icon"></i>
+                            </button>
+                        </div>
+                        <div style="padding: 2px;">
+                            <button type="button btn-lg" id="" class="btn navbar-btn">
+                                <i class="fas fa-user-plus navbar-btn-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            {{{body}}}
+        </div>
+    </div>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+</body>
+</html>
+
