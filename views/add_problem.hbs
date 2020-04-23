@@ -1,0 +1,111 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/add_problem.css">
+</head>
+
+<div class="add-problem-form">	
+    <form action="/examples/actions/confirmation.php" method="post">
+		<h2>Problem Suggestion</h2>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+					<input type="text" id="problem_name" class="form-control" name="problem_name" placeholder="Problem Name">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<div class="input-group">
+					<input type="text" id="description" class="form-control" name="description" placeholder="Description">
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<div class="input-group">
+					<input type="text" id="oj_name" class="form-control" name="oj_name" placeholder="Online Judge">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<div class="input-group">
+					<input type="text" id="problem_difficulty" class="form-control" name="problem_difficulty" placeholder="Difficulty">
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<div class="input-group">
+					<input type="text" id="problem_significance" class="form-control" name="problem_significance" placeholder="Significance">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+					<input type="text" id="source_link" class="form-control" name="source_link" placeholder="Source Link">
+				</div>
+			</div>
+		</div>
+
+		<div class="form-row after-add-more control-group">
+			<div class="form-group col-md-5">
+				<div class="input-group">
+					<input type="text" id="problem_category" class="form-control" name="problem_category" placeholder="Category">
+				</div>
+			</div>
+			<div class="form-group col-md-4">
+				<div class="input-group">
+					<input type="text" id="connection_factor" class="form-control" name="connection_factor" placeholder="Factor">
+				</div>
+			</div>
+			<div class="form-group col-md-3">
+				<div class="input-group-btn">
+					<button class="btn btn control-btn add-more" type="button"><i class="fas fa-plus"></i></button>
+				</div>
+			</div>
+		</div>
+
+		<div class="copy hide">
+			<div class="form-row control-group">
+				<div class="form-group col-md-5">
+					<div class="input-group">
+						<input type="text" id="problem_category" class="form-control" name="problem_category" placeholder="Category">
+					</div>
+				</div>
+				<div class="form-group col-md-4">
+					<div class="input-group">
+						<input type="text" id="connection_factor" class="form-control" name="connection_factor" placeholder="Factor">
+					</div>
+				</div>
+				<div class="form-group col-md-3">
+					<div class="input-group-btn"> 
+						<button class="btn control-btn remove" type="button"><i class="fas fa-minus"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
+        </div>
+	</form>
+</div>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function() {
+
+
+      $(".add-more").click(function(){
+          var html = $(".copy").html();
+          $(".after-add-more").after(html);
+      });
+
+
+      $("body").on("click",".remove",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+
+
+    });
+
+
+</script>
