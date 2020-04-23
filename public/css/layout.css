@@ -67,7 +67,11 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #0B0C10;
+    padding-left: 30px;
+    padding-top: 30px;
+    border-radius: 20px;
+    border-color: #66FCF1;
+    box-shadow: 1px 1px 3px rgba(102, 252, 241, 5.35);
 }
 
 #sidebar ul.components {
