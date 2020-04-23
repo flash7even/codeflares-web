@@ -62,7 +62,7 @@
 			</div>
 		</div>
 
-		<div class="copy hide">
+		<div class="copy hide" hidden>
 			<div class="form-row control-group">
 				<div class="form-group col-md-5">
 					<div class="input-group">
@@ -90,22 +90,15 @@
 
 <script type="text/javascript">
 
-
     $(document).ready(function() {
-
-
       $(".add-more").click(function(){
           var html = $(".copy").html();
           $(".after-add-more").after(html);
       });
 
-
       $("body").on("click",".remove",function(){ 
           $(this).parents(".control-group").remove();
       });
-
-
     });
-
 
 </script>
