@@ -1,0 +1,70 @@
+body {
+    color: #999;
+    background: #1F2833;
+    font-family: 'Roboto', sans-serif;
+}
+.form-control, .form-control:focus, .input-group-addon {
+    border-color: #e1e1e1;
+    border-radius: 0;
+}
+.show-individual-training h2 {
+    color: #636363;
+    margin: 0 0 15px;
+    text-align: center;
+}
+.show-individual-training .lead {
+    font-size: 14px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.show-individual-training .form-group {
+    margin-bottom: 20px;
+}
+.show-individual-training label {
+    font-weight: normal;
+    font-size: 13px;
+}
+.show-individual-training .form-control {
+    min-height: 38px;
+    box-shadow: none !important;
+    border-width: 0 0 1px 0;
+}	
+.show-individual-training .input-group-addon {
+    max-width: 42px;
+    text-align: center;
+    background: none;
+    border-width: 0 0 1px 0;
+    padding-left: 5px;
+}
+
+.show-individual-training .control-btn {        
+    font-size: 16px;
+    font-weight: bold;
+    background: #ffffff;
+    border-radius: 3px;
+    border: none;
+    min-width: 140px;
+    outline: none !important;
+}
+
+.show-individual-training {
+    background: #ffffff;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px 3px rgba(102, 252, 241, 10.35);
+    padding: 30px;
+}
+
+
+.show-individual-training .submit-btn {        
+    font-size: 16px;
+    font-weight: bold;
+    background: #86C232;
+    border-radius: 3px;
+    border: none;
+    min-width: 140px;
+    outline: none !important;
+}
+.show-individual-training .submit-btn:hover, .show-individual-training .submit-btn:focus {
+    background: rgb(173, 236, 84);
+}

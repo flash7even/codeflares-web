@@ -1,0 +1,161 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/individual_training.css">
+</head>
+
+<div class="show-individual-training">
+    <h3 style="text-align: center;">Problem Suggestions for Skill Building</h3>
+    <form name="form individual-training-search-form" onSubmit="">
+        <div class="form-row">
+            <div class="form-group col-md-10">
+                <div class="input-group">
+                    <input type="text" id="problem_count" class="form-control" name="problem_count" placeholder="Enter the next number of problems to solve.">
+                </div>
+            </div>
+            <div class="form-group col-md-2">
+                <button type="submit" class="btn submit-btn btn-info btn-block btn-lg">Update</button>
+            </div>
+        </div>
+    </form>
+    <table id="problemListTable" class="table table-striped table-bordered problem-list-table">
+        <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Problem Title</th>
+                <th>OJ Name</th>
+                <th>Relevant Score</th>
+                <th>Try Later</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+
+<div class="show-individual-training">
+    <h3 style="text-align: center;">Algorithm Learning Suggestions</h3>
+    <form name="form individual-training-search-form" onSubmit="">
+        <div class="form-row">
+            <div class="form-group col-md-10">
+                <div class="input-group">
+                    <input type="text" id="category_count" class="form-control" name="category_count" placeholder="Enter the number of algorithms you want to focus next.">
+                </div>
+            </div>
+            <div class="form-group col-md-2">
+                <button type="submit" class="btn submit-btn btn-info btn-block btn-lg">Update</button>
+            </div>
+        </div>
+    </form>
+    <table id="categoryListTable" class="table table-striped table-bordered category-list-table">
+        <thead>
+            <tr>
+                <th>Algorithm Name</th>
+                <th>Algorithm Title</th>
+                <th>Relevant Score</th>
+                <th>Try Later</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+
+<div class="show-individual-training">
+    <h3 style="text-align: center;">Your Algorithm Skills</h3>
+    <table id="categorySkillListTable" class="table table-striped table-bordered category-list-table">
+        <thead>
+            <tr>
+                <th>Algorithm Name</th>
+                <th>Algorithm Title</th>
+                <th>Total Score</th>
+                <th>Rank</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+
+    function getProblemList(){
+        var problems = [
+            ['A misc and mice', 'A misc and mice', 'CF', '87.5', 'Click', 'Click'],
+            ['A misc and mice', 'A misc and mice', 'CF', '85.5', 'Click', 'Click'],
+            ['A misc and mice', 'A misc and mice', 'CF', '80.5', 'Click', 'Click'],
+            ['A misc and mice', 'A misc and mice', 'CF', '77.5', 'Click', 'Click'],
+            ['A misc and mice', 'A misc and mice', 'CF', '60.5', 'Click', 'Click']
+        ]
+        return problems;
+    }
+
+    function getCategoryList(){
+        var categories = [
+            ['Data Structure', 'Data Structure', '87.5', 'Click', 'Click'],
+            ['Segment Tree', 'Segment Tree', '85.5', 'Click', 'Click'],
+            ['Segment Tree', 'Segment Tree', '80.5', 'Click', 'Click'],
+            ['DP', 'DP', '77.5', 'Click', 'Click'],
+            ['LCA', 'LCA', '60.5', 'Click', 'Click']
+        ]
+        return categories;
+    }
+
+    function getCategorySkillList(){
+        var categories = [
+            ['Data Structure', 'Data Structure', '87.5', '1374'],
+            ['DP', 'DP', '87.5', '1374'],
+            ['LCA', 'LCA', '85.5', '1677'],
+        ]
+        return categories;
+    }
+
+    function showProblemsDTSearchTable(){
+        var dt_list = getProblemList();
+        
+        $("#problemListTable").dataTable({
+            "aaData": dt_list,
+            paging: true,
+            destroy: true,
+            scrollY: '500px',
+            scrollCollapse: true
+        });
+    }
+
+    function showCategoriesDTSearchTable(){
+        var dt_list = getCategoryList();
+        
+        $("#categoryListTable").dataTable({
+            "aaData": dt_list,
+            paging: true,
+            destroy: true,
+            scrollY: '500px',
+            scrollCollapse: true
+        });
+    }
+
+    function showCategoriesSkillDTSearchTable(){
+        var dt_list = getCategorySkillList();
+        
+        $("#categorySkillListTable").dataTable({
+            "aaData": dt_list,
+            paging: true,
+            destroy: true,
+            scrollY: '500px',
+            scrollCollapse: true
+        });
+    }
+
+    $(document).ready( function () {
+        showProblemsDTSearchTable();
+        showCategoriesDTSearchTable();
+        showCategoriesSkillDTSearchTable();
+    } );
+
+</script>

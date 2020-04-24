@@ -2,6 +2,7 @@
 var homeController = require('./home.js');
 var problemController = require('./problem.js');
 var categoryController = require('./category.js');
+var trainingController = require('./training.js');
 
 module.exports = function(newApp) {
     /* GET home page. */
@@ -15,4 +16,7 @@ module.exports = function(newApp) {
 
     newApp.get('/category/add/', categoryController.addCategoryForm);
     newApp.post('/category/submit/', categoryController.categorySubmit);
+
+    newApp.get('/training/individual/', trainingController.viewIndividualTraining);
+
 }
