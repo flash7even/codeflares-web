@@ -7,23 +7,17 @@ body {
     border-color: #e1e1e1;
     border-radius: 0;
 }
-.add-category-form {
-    width: 80%;
-    margin: 0 auto;
-    padding: 10px 0;
-    border-radius: 20px;
-}
-.add-category-form h2 {
+.problem-search-form h2 {
     color: #636363;
     margin: 0 0 15px;
     text-align: center;
 }
-.add-category-form .lead {
+.problem-search-form .lead {
     font-size: 14px;
     margin-bottom: 30px;
     text-align: center;
 }
-.add-category-form form {		
+.problem-search-form form {		
     border-radius: 20px;
     margin-bottom: 15px;
     background: rgb(255, 255, 255);
@@ -31,26 +25,58 @@ body {
     box-shadow: 1px 1px 3px rgba(102, 252, 241, 10.35);
     padding: 30px;
 }
-.add-category-form .form-group {
+.problem-search-form .form-group {
     margin-bottom: 20px;
 }
-.add-category-form label {
+.problem-search-form label {
     font-weight: normal;
     font-size: 13px;
 }
-.add-category-form .form-control {
+.problem-search-form .form-control {
     min-height: 38px;
     box-shadow: none !important;
     border-width: 0 0 1px 0;
 }	
-.add-category-form .input-group-addon {
+.problem-search-form .input-group-addon {
     max-width: 42px;
     text-align: center;
     background: none;
     border-width: 0 0 1px 0;
     padding-left: 5px;
 }
-.add-category-form .submit-btn {        
+.problem-search-form .submit-btn {        
+    font-size: 16px;
+    font-weight: bold;
+    background: #45A29E;
+    border-radius: 3px;
+    border: none;
+    min-width: 140px;
+    outline: none !important;
+}
+.problem-search-form .submit-btn:hover, .problem-search-form .submit-btn:focus {
+    background: rgb(73, 199, 193);
+}
+
+.problem-search-form .control-btn {        
+    font-size: 16px;
+    font-weight: bold;
+    background: #ffffff;
+    border-radius: 3px;
+    border: none;
+    min-width: 140px;
+    outline: none !important;
+}
+
+.problem-list {
+    background: #ffffff;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px 3px rgba(102, 252, 241, 10.35);
+    padding: 30px;
+}
+
+
+.problem-search-form .submit-btn {        
     font-size: 16px;
     font-weight: bold;
     background: #86C232;
@@ -59,16 +85,6 @@ body {
     min-width: 140px;
     outline: none !important;
 }
-.add-category-form .submit-btn:hover, .add-category-form .submit-btn:focus {
+.problem-search-form .submit-btn:hover, .problem-search-form .submit-btn:focus {
     background: rgb(173, 236, 84);
-}
-
-.add-category-form .control-btn {        
-    font-size: 16px;
-    font-weight: bold;
-    background: #ffffff;
-    border-radius: 3px;
-    border: none;
-    min-width: 140px;
-    outline: none !important;
 }

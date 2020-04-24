@@ -13,6 +13,8 @@
     <!-- Our Custom CSS -->
     <link rel="stylesheet" type="text/css" href="/css/layout.css">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
     <!-- Font Awesome JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
@@ -24,6 +26,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
     <!-- Bootstrap Typeahead Plugin -->
     <script src="/js/bootstrap3-typeahead.js"></script> 
@@ -47,7 +51,6 @@
                         <li> <a href="#">Profile</a> </li>
                         <li> <a href="#">Edit Profile</a> </li>
                         <li> <a href="#">Settings</a> </li>
-                        <li> <a href="#">Friends</a> </li>
                     </ul>
                 </li>
                 <li>
@@ -70,7 +73,7 @@
                     <a href="#gatewayMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Gateway</a>
                     <ul class="collapse list-unstyled" id="gatewayMenu">
                         <li> <a href="#">Categories</a> </li>
-                        <li> <a href="#">Problems</a> </li>
+                        <li> <a href="/problem/list/">Problems</a> </li>
                         <li> <a href="#">Contests</a> </li>
                     </ul>
                 </li>
@@ -79,8 +82,6 @@
                     <ul class="collapse list-unstyled" id="adviseMenu">
                         <li> <a href="/problem/add/">Add Problem</a> </li>
                         <li> <a href="/category/add/">Add Category</a> </li>
-                        <li> <a href="#">Update Problems</a> </li>
-                        <li> <a href="#">Update Categories</a> </li>
                     </ul>
                 </li>
             </ul>
@@ -136,6 +137,11 @@
                 </div>
             </nav>
             {{{body}}}
+            <!-- Page footer -->
+            <br>
+            <h6 class="text-white text-center tm-copyright-text" style="text-align: center;">
+                Copyright &copy; 2020 CodeTrainer.
+            </h6>
         </div>
     </div>
     <!-- jQuery CDN - Slim version (=without AJAX) -->

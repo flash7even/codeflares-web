@@ -53,14 +53,14 @@ body {
 .add-problem-form .submit-btn {        
     font-size: 16px;
     font-weight: bold;
-    background: #45A29E;
+    background: #86C232;
     border-radius: 3px;
     border: none;
     min-width: 140px;
     outline: none !important;
 }
 .add-problem-form .submit-btn:hover, .add-problem-form .submit-btn:focus {
-    background: rgb(73, 199, 193);
+    background: rgb(173, 236, 84);
 }
 
 .add-problem-form .control-btn {        

@@ -1,0 +1,149 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/view_problem_list.css">
+</head>
+
+<div class="show-problem">
+    <div class="problem-search-form">
+      <form name="form problem-search-form" onSubmit="">
+            <h3 style="text-align: center;">Problem Search Parameter</h3>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <div class="input-group">
+                        <input type="text" id="problem_name" class="form-control" name="problem_name" placeholder="Problem Name">
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" id="problem_category" class="form-control autocomplete" name="problem_category" placeholder="Category">
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="input-group">
+                        <input type="text" id="oj_name" class="form-control" name="oj_name" placeholder="Online Judge">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <div class="input-group">
+                        <input type="text" id="problem_difficulty_low" class="form-control" name="problem_difficulty_low" placeholder="Difficulty Lower Value">
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="input-group">
+                        <input type="text" id="problem_difficulty_high" class="form-control" name="problem_difficulty_high" placeholder="Difficulty Upper Value">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn submit-btn btn-info btn-block btn-lg">Submit</button>
+            </div>
+        </form>
+     </div>
+
+     <br>
+
+    <div class="problem-list">
+        <h3 style="text-align: center;">Problem List</h3>
+        <table id="problemListTable" class="table table-striped table-bordered problem-list-table">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Problem Difficulty</th>
+                    <th>OJ Name</th>
+                    <th>Problem Category</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function getProblemList(){
+        var problems = [
+            ['A misc and mice', '5.5', 'CF', 'Segment Tree, DP'],
+            ['Rampage and diya', '7.2', 'Codechef', 'DFS, BFS'],
+            ['Roll Dice', '5.0', 'UVa', 'HLD, Tree'],
+            ['A misc and diya', '8.5', 'CF', 'LCA, Sparse Table']
+        ]
+        return problems;
+    }
+
+    function showProblemsDTSearchTable(){
+        var dt_list = getProblemList();
+        
+        $("#problemListTable").dataTable({
+            "aaData": dt_list,
+            paging: true,
+            destroy: true,
+            scrollY: '500px',
+            scrollCollapse: true
+        });
+    }
+	var cat_item = 1;
+
+	function enableAutoComplete(){
+		$(".autocomplete").typeahead({
+			// data source
+			source: algorithms,
+
+			// how many items to show
+			items: 8,
+
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			
+			itemContentSelector:'a',
+
+			// min length to trigger the suggestion list
+			minLength: 1,
+
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+
+			// auto selects the first item
+			autoSelect: true,
+
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+
+			// adds an item to the end of the list
+			addItem: false,
+
+			// delay between lookups
+			delay: 0,
+		});
+	}
+
+	const algorithms = [
+		{"name": "DFS", "code": "AF"},
+		{"name": "BFS", "code": "AX"},
+		{"name": "Dynamic Programming", "code": "AL"},
+		{"name": "Graph Coloring", "code": "DZ"},
+		{"name": "Diskstra", "code": "AS"},
+		{"name": "Max Flow", "code": "AD"},
+		{"name": "Matching", "code": "AO"},
+		{"name": "Segment Tree", "code": "AO"},
+		{"name": "Heavy Light Decomposition", "code": "AO"},
+		{"name": "Centroid Decomposition", "code": "AO"},
+		{"name": "Coin Change", "code": "BD"},
+		{"name": "Knapsack", "code": "BD"},
+		{"name": "SQRT Decomposition", "code": "BD"},
+		// more data here
+	]
+
+    $(document).ready( function () {
+        enableAutoComplete();
+        showProblemsDTSearchTable();
+    } );
+
+</script>

@@ -11,6 +11,7 @@ module.exports = function(newApp) {
 
     newApp.get('/problem/add/', problemController.addProblemForm);
     newApp.post('/problem/submit/', problemController.problemSubmit);
+    newApp.get('/problem/list/', problemController.viewProblemList);
 
     newApp.get('/category/add/', categoryController.addCategoryForm);
     newApp.post('/category/submit/', categoryController.categorySubmit);
