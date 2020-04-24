@@ -1,38 +1,52 @@
 <head>
-	<link rel="stylesheet" type="text/css" href="/css/add_problem.css">
+	<link rel="stylesheet" type="text/css" href="/css/add_category.css">
 </head>
 
-<div class="add-problem-form">	
-    <form action="/problem/submit/" method="post">
-		<h2>Problem Suggestion</h2>
+<div class="add-category-form">	
+    <form action="/category/submit/" method="post">
+		<h2>Category Suggestion</h2>
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
-					<input type="text" id="problem_name" class="form-control" name="problem_name" placeholder="Problem Name">
+					<input type="text" autocomplete="off" id="category_root" class="form-control autocomplete-root" name="category_root" placeholder="Category Root">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+					<input type="text" id="category_name" class="form-control" name="category_name" placeholder="Category Name">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+					<input type="text" id="category_title" class="form-control" name="category_title" placeholder="Category Title">
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<div class="input-group">
-					<input type="text" id="description" class="form-control" name="description" placeholder="Description">
+					<input type="text" id="category_description" class="form-control" name="category_description" placeholder="Description">
 				</div>
 			</div>
 			<div class="form-group col-md-6">
 				<div class="input-group">
-					<input type="text" id="oj_name" class="form-control" name="oj_name" placeholder="Online Judge">
+					<input type="text" id="category_difficulty" class="form-control" name="category_difficulty" placeholder="Difficulty">
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<div class="input-group">
-					<input type="text" id="problem_difficulty" class="form-control" name="problem_difficulty" placeholder="Difficulty">
+					<input type="text" id="category_importance" class="form-control" name="category_importance" placeholder="Importance">
 				</div>
 			</div>
 			<div class="form-group col-md-6">
 				<div class="input-group">
-					<input type="text" id="problem_significance" class="form-control" name="problem_significance" placeholder="Significance">
+					<input type="text" id="category_rareness" class="form-control" name="category_rareness" placeholder="Rareness">
 				</div>
 			</div>
 		</div>
@@ -47,12 +61,12 @@
 			<div class="form-row control-group">
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="problem_category_1" class="form-control autocomplete" name="problem_category" placeholder="Category">
+						<input type="text" autocomplete="off" id="dependency_category_1" class="form-control autocomplete" name="dependency_category" placeholder="Dependent On Category">
 					</div>
 				</div>
 				<div class="form-group col-md-4">
 					<div class="input-group">
-						<input type="text" id="connection_factor_1" class="form-control" name="connection_factor" placeholder="Factor">
+						<input type="text" id="dependency_factor_1" class="form-control" name="dependency_factor" placeholder="Factor">
 					</div>
 				</div>
 				<div class="form-group col-md-3">
@@ -68,12 +82,12 @@
 			<div class="form-row control-group">
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="problem_category" class="form-control autocomplete" name="problem_category" placeholder="Category">
+						<input type="text" autocomplete="off" id="dependency_category" class="form-control autocomplete" name="dependency_category" placeholder="Dependent On Category">
 					</div>
 				</div>
 				<div class="form-group col-md-4">
 					<div class="input-group">
-						<input type="text" id="connection_factor" class="form-control" name="connection_factor" placeholder="Factor">
+						<input type="text" id="dependency_factor" class="form-control" name="dependency_factor" placeholder="Factor">
 					</div>
 				</div>
 				<div class="form-group col-md-3">
@@ -92,6 +106,43 @@
 
 <script type="text/javascript">
 	var cat_item = 1;
+
+	function enableAutoCompleteRoot(){
+		$(".autocomplete-root").typeahead({
+			// data source
+			source: rootAlgorithms,
+
+			// how many items to show
+			items: 8,
+
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			
+			itemContentSelector:'a',
+
+			// min length to trigger the suggestion list
+			minLength: 1,
+
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+
+			// auto selects the first item
+			autoSelect: true,
+
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+
+			// adds an item to the end of the list
+			addItem: false,
+
+			// delay between lookups
+			delay: 0,
+		});
+	}
 
 	function enableAutoComplete(){
 		$(".autocomplete").typeahead({
@@ -134,12 +185,13 @@
 		$(".add-more").click(function(){
 			cat_item++;
 			var html = $(".copy").html()
-			var problem_category_id = 'problem_category_' + cat_item.toString();
-			html = html.replace('problem_category', problem_category_id)
-			var connection_factor_id = 'connection_factor_' + cat_item.toString();
-			html = html.replace('connection_factor', connection_factor_id)
+			var dependency_category_id = 'dependency_category_' + cat_item.toString();
+			html = html.replace('dependency_category', dependency_category_id)
+			var dependency_factor_id = 'dependency_factor_' + cat_item.toString();
+			html = html.replace('dependency_factor', dependency_factor_id)
 			$(".category-group").append(html);
 			enableAutoComplete();
+			enableAutoCompleteRoot();
 		});
 
 		$("body").on("click",".remove",function(){ 
@@ -163,6 +215,19 @@
 		{"name": "SQRT Decomposition", "code": "BD"},
 		// more data here
 	]
+
+	const rootAlgorithms = [
+		{"name": "Data Structure", "code": "AF"},
+		{"name": "Dynamic Programming", "code": "AX"},
+		{"name": "Graph", "code": "AL"},
+		{"name": "Geometry", "code": "DZ"},
+		{"name": "Mathemetics", "code": "AS"},
+		{"name": "String Matching", "code": "AD"},
+		{"name": "STL", "code": "AO"},
+		{"name": "Greedy", "code": "AO"},
+		// more data here
+	]
 	enableAutoComplete();
+	enableAutoCompleteRoot();
 
 </script>
