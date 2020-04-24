@@ -43,30 +43,32 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="form-row after-add-more control-group">
-			<div class="form-group col-md-5">
-				<div class="input-group">
-					<input type="text" id="problem_category" class="form-control" name="problem_category" placeholder="Category">
+		<div class="category-group">
+			<div class="form-row control-group">
+				<div class="form-group col-md-5">
+					<div class="input-group">
+						<input type="text" autocomplete="off" id="problem_category_1" class="form-control autocomplete" name="problem_category" placeholder="Category">
+					</div>
 				</div>
-			</div>
-			<div class="form-group col-md-4">
-				<div class="input-group">
-					<input type="text" id="connection_factor" class="form-control" name="connection_factor" placeholder="Factor">
+				<div class="form-group col-md-4">
+					<div class="input-group">
+						<input type="text" id="connection_factor_1" class="form-control" name="connection_factor" placeholder="Factor">
+					</div>
 				</div>
-			</div>
-			<div class="form-group col-md-3">
-				<div class="input-group-btn">
-					<button class="btn btn control-btn add-more" type="button"><i class="fas fa-plus"></i></button>
+				<div class="form-group col-md-3">
+					<div class="input-group-btn">
+						<button class="btn btn control-btn add-more" type="button"><i class="fas fa-plus"></i></button>
+					</div>
 				</div>
 			</div>
 		</div>
+
 
 		<div class="copy hide" hidden>
 			<div class="form-row control-group">
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" id="problem_category" class="form-control" name="problem_category" placeholder="Category">
+						<input type="text" autocomplete="off" id="problem_category" class="form-control autocomplete" name="problem_category" placeholder="Category">
 					</div>
 				</div>
 				<div class="form-group col-md-4">
@@ -89,16 +91,76 @@
 </div>
 
 <script type="text/javascript">
+	var cat_item = 1;
+
+	function enableAutoComplete(){
+		$(".autocomplete").typeahead({
+			// data source
+			source: country,
+
+			// how many items to show
+			items: 8,
+
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			
+			itemContentSelector:'a',
+
+			// min length to trigger the suggestion list
+			minLength: 1,
+
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+
+			// auto selects the first item
+			autoSelect: true,
+
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+
+			// adds an item to the end of the list
+			addItem: false,
+
+			// delay between lookups
+			delay: 0,
+		});
+	}
 
     $(document).ready(function() {
-      $(".add-more").click(function(){
-          var html = $(".copy").html();
-          $(".after-add-more").after(html);
-      });
+		$(".add-more").click(function(){
+			cat_item++;
+			var html = $(".copy").html()
+			var problem_category_id = 'problem_category_' + cat_item.toString();
+			html = html.replace('problem_category', problem_category_id)
+			var connection_factor_id = 'connection_factor_' + cat_item.toString();
+			html = html.replace('connection_factor', connection_factor_id)
+			$(".category-group").append(html);
+			enableAutoComplete();
+		});
 
-      $("body").on("click",".remove",function(){ 
-          $(this).parents(".control-group").remove();
-      });
+		$("body").on("click",".remove",function(){ 
+			$(this).parents(".control-group").remove();
+		});
     });
+
+	const country = [
+		{"name": "Afghanistan", "code": "AF"},
+		{"name": "land Islands", "code": "AX"},
+		{"name": "Albania", "code": "AL"},
+		{"name": "Algeria", "code": "DZ"},
+		{"name": "American Samoa", "code": "AS"},
+		{"name": "AndorrA", "code": "AD"},
+		{"name": "Canada", "code": "AO"},
+		{"name": "Thailand", "code": "AO"},
+		{"name": "Singapore", "code": "AO"},
+		{"name": "Malayshia", "code": "AO"},
+		{"name": "Bangladesh", "code": "BD"},
+		// more data here
+	]
+	enableAutoComplete();
 
 </script>
