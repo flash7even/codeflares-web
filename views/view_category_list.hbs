@@ -1,0 +1,136 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="show-category">
+    <div class="form-type-1" style="width: 100%;">
+      <form name="form form-type-1" onSubmit="">
+            <h3 style="text-align: center;">Category Search Parameter</h3>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" id="root_category_name" class="form-control autocomplete-root" name="root_category_name" placeholder="Root Category">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <div class="input-group">
+                        <input type="text" id="category_difficulty_low" class="form-control" name="category_difficulty_low" placeholder="Difficulty Lower Value">
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="input-group">
+                        <input type="text" id="category_difficulty_high" class="form-control" name="category_difficulty_high" placeholder="Difficulty Upper Value">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn submit-btn btn-info btn-block btn-lg">Submit</button>
+            </div>
+        </form>
+     </div>
+
+     <br>
+
+    <div class="table-type-1">
+        <h3 style="text-align: center;">Category List</h3>
+        <table id="categoryListTable" class="table table-striped table-bordered table-type-1-table">
+            <thead>
+                <tr>
+                    <th>Root Category</th>
+                    <th>Category Name</th>
+                    <th>Category Difficulty</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function getCategoryList(){
+        var categorys = [
+            ['Data Structure', 'Data Structure', '5', 'Click', 'Click'],
+            ['Data Structure', 'Segment Tree', '8.5', 'Click', 'Click'],
+            ['Data Structure', 'Segment Tree', '8.5', 'Click', 'Click'],
+            ['DP', 'Bit Mask', '7.5', 'Click', 'Click'],
+            ['DP', 'LCA', '6.5', 'Click', 'Click']
+        ]
+        return categorys;
+    }
+
+    function showCategorysDTSearchTable(){
+        var dt_list = getCategoryList();
+        
+        $("#categoryListTable").dataTable({
+            "aaData": dt_list,
+            paging: true,
+            destroy: true,
+            scrollY: '500px',
+            scrollCollapse: true
+        });
+    }
+	var cat_item = 1;
+
+	function enableAutoCompleteRoot(){
+		$(".autocomplete-root").typeahead({
+			// data source
+			source: rootAlgorithms,
+
+			// how many items to show
+			items: 8,
+
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			
+			itemContentSelector:'a',
+
+			// min length to trigger the suggestion list
+			minLength: 1,
+
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+
+			// auto selects the first item
+			autoSelect: true,
+
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+
+			// adds an item to the end of the list
+			addItem: false,
+
+			// delay between lookups
+			delay: 0,
+		});
+	}
+
+	const rootAlgorithms = [
+		{"name": "Data Structure", "code": "AF"},
+		{"name": "Dynamic Programming", "code": "AX"},
+		{"name": "Graph", "code": "AL"},
+		{"name": "Geometry", "code": "DZ"},
+		{"name": "Mathemetics", "code": "AS"},
+		{"name": "String Matching", "code": "AD"},
+		{"name": "STL", "code": "AO"},
+		{"name": "Greedy", "code": "AO"},
+		// more data here
+	]
+
+    $(document).ready( function () {
+	    enableAutoCompleteRoot();
+        showCategorysDTSearchTable();
+    } );
+
+</script>

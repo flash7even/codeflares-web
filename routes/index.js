@@ -16,6 +16,7 @@ module.exports = function(newApp) {
 
     newApp.get('/category/add/', categoryController.addCategoryForm);
     newApp.post('/category/submit/', categoryController.categorySubmit);
+    newApp.get('/category/list/', categoryController.viewCategoryList);
 
     newApp.get('/training/individual/', trainingController.viewIndividualTraining);
 

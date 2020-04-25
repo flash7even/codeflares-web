@@ -26,8 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 require('./routes/index')(app); // getting access of index.js
 
-app.listen(5000, function () {
-	console.log('Example app listening on port 5000!')
+app.listen(5055, function () {
+	console.log('Example app listening on port 5055!')
 })
 
 module.exports = app;
