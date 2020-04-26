@@ -5,46 +5,41 @@
 <div class="show-problem">
     <div class="form-type-1" style="width: 100%;">
       <form name="form form-type-1" onSubmit="">
-            <h3 style="text-align: center;">Problem Search Parameter</h3>
+            <h2 style="text-align: center;">Problem Search Parameter</h2>
             <div class="form-row">
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-2">
                     <div class="input-group">
                         <input type="text" id="problem_name" class="form-control" name="problem_name" placeholder="Problem Name">
                     </div>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-2">
                     <div class="input-group">
                         <input type="text" autocomplete="off" id="problem_category" class="form-control autocomplete" name="problem_category" placeholder="Category">
                     </div>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <div class="input-group">
                         <input type="text" id="oj_name" class="form-control" name="oj_name" placeholder="Online Judge">
                     </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-2">
                     <div class="input-group">
-                        <input type="text" id="problem_difficulty_low" class="form-control" name="problem_difficulty_low" placeholder="Difficulty Lower Value">
+                        <input type="text" id="minimum_difficulty" class="form-control" name="minimum_difficulty" placeholder="Minimum Difficulty">
                     </div>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-2">
                     <div class="input-group">
-                        <input type="text" id="problem_difficulty_high" class="form-control" name="problem_difficulty_high" placeholder="Difficulty Upper Value">
+                        <input type="text" id="maximum_difficulty" class="form-control" name="maximum_difficulty" placeholder="Maximum Difficulty">
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn submit-btn btn-info btn-block btn-lg">Submit</button>
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn submit-btn btn-info btn-block btn-lg">Update</button>
+                </div>
             </div>
         </form>
      </div>
 
-     <br>
-
     <div class="table-type-1">
-        <h3 style="text-align: center;">Problem List</h3>
         <table id="problemListTable" class="table table-striped table-bordered table-type-1-table">
             <thead>
                 <tr>

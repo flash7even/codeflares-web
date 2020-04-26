@@ -12,6 +12,7 @@ body {
     margin: 0 auto;
     padding: 10px 0;
     border-radius: 20px;
+    color: #0B0C10;
 }
 .form-type-1 h2 {
     color: #636363;
@@ -79,4 +80,5 @@ body {
     margin-bottom: 15px;
     box-shadow: 1px 1px 3px rgba(102, 252, 241, 10.35);
     padding: 30px;
+    color: #0B0C10;
 }

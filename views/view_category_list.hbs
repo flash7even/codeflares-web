@@ -5,36 +5,31 @@
 <div class="show-category">
     <div class="form-type-1" style="width: 100%;">
       <form name="form form-type-1" onSubmit="">
-            <h3 style="text-align: center;">Category Search Parameter</h3>
+            <h2 style="text-align: center;">Category Search Parameter</h2>
             <div class="form-row">
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-4">
                     <div class="input-group">
                         <input type="text" id="root_category_name" class="form-control autocomplete-root" name="root_category_name" placeholder="Root Category">
                     </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                     <div class="input-group">
-                        <input type="text" id="category_difficulty_low" class="form-control" name="category_difficulty_low" placeholder="Difficulty Lower Value">
+                        <input type="text" id="minimum_difficulty" class="form-control" name="minimum_difficulty" placeholder="Minimum Difficulty">
                     </div>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                     <div class="input-group">
-                        <input type="text" id="category_difficulty_high" class="form-control" name="category_difficulty_high" placeholder="Difficulty Upper Value">
+                        <input type="text" id="maximum_difficulty" class="form-control" name="maximum_difficulty" placeholder="Maximum Difficulty">
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn submit-btn btn-info btn-block btn-lg">Submit</button>
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn submit-btn btn-info btn-block btn-lg">Submit</button>
+                </div>
             </div>
         </form>
      </div>
 
-     <br>
-
     <div class="table-type-1">
-        <h3 style="text-align: center;">Category List</h3>
         <table id="categoryListTable" class="table table-striped table-bordered table-type-1-table">
             <thead>
                 <tr>

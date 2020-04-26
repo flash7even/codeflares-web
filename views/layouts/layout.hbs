@@ -57,9 +57,15 @@
                     <a href="#trainingMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-school"></i> Training</a>
                     <ul class="collapse list-unstyled" id="trainingMenu">
                         <li> <a href="/training/individual/">Personal Training</a> </li>
-                        <li> <a href="#">Skill Building Contest</a> </li>
-                        <li> <a href="#">Team Contest</a> </li>
-                        <li> <a href="#">Contestants</a> </li>
+                        <li> <a href="/training/team/">Team Training</a> </li>
+                        <li> <a href="/training/team/add/">Your Teams</a> </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#contestMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-school"></i> Contest</a>
+                    <ul class="collapse list-unstyled" id="contestMenu">
+                        <li> <a href="/contest/individual/">Individual Contest</a> </li>
+                        <li> <a href="/contest/team/">Team Contest</a> </li>
                     </ul>
                 </li>
                 <li>
@@ -67,6 +73,7 @@
                     <ul class="collapse list-unstyled" id="classRoomMenu">
                         <li> <a href="#">Your Classroom</a> </li>
                         <li> <a href="#">Join Classroom</a> </li>
+                        <li> <a href="#">Create Classroom</a> </li>
                     </ul>
                 </li>
                 <li>
@@ -74,7 +81,7 @@
                     <ul class="collapse list-unstyled" id="gatewayMenu">
                         <li> <a href="/category/list/">Categories</a> </li>
                         <li> <a href="/problem/list/">Problems</a> </li>
-                        <li> <a href="#">Contests</a> </li>
+                        <li> <a href="#">Leaderboard</a> </li>
                     </ul>
                 </li>
                 <li>
@@ -82,6 +89,7 @@
                     <ul class="collapse list-unstyled" id="adviseMenu">
                         <li> <a href="/problem/add/">Add Problem</a> </li>
                         <li> <a href="/category/add/">Add Category</a> </li>
+                        <li> <a href="/resource/add/">Add Resource</a> </li>
                     </ul>
                 </li>
             </ul>
@@ -114,19 +122,40 @@
                             <li class="nav-item active">
                             </li>
                         </ul>
-                        <div style="padding: 2px;">
+                        <div style="padding: 3px;">
+                            <a href="#">
+                            <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
+                                <i class="fa fa-tasks navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
+                        <div style="padding: 3px;">
+                            <a href="#">
+                            <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
+                                <i class="fa fa-inbox navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
+                        <div style="padding: 3px;">
                             <button type="button btn-lg" id="" class="btn navbar-btn">
                                 <i class="fas fa-bell navbar-btn-icon"></i>
                             </button>
                         </div>
-                        <div style="padding: 2px;">
+                        <div style="padding: 3px;">
                             <a href="/login/">
                             <button type="button btn-lg" onclick="/login/" id="" class="btn navbar-btn">
                                 <i class="fas fa-sign-in-alt navbar-btn-icon"></i>
                             </button>
                             </a>
                         </div>
-                        <div style="padding: 2px;">
+                        <div style="padding: 3px;">
+                            <a href="/login/">
+                            <button type="button btn-lg" onclick="/logout/" id="" class="btn navbar-btn">
+                                <i class="fas fa-sign-out-alt navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
+                        <div style="padding: 3px;">
                             <a href="/signup/">
                             <button type="button btn-lg" id="" class="btn navbar-btn">
                                 <i class="fas fa-user-plus navbar-btn-icon"></i>
