@@ -3,7 +3,7 @@
 </head>
 
 <div class="form-type-1">	
-    <form action="/problem/submit/" method="post">
+    <form action="/problem/add/" method="post">
 		<h2>Problem Suggestion</h2>
 		<div class="form-row">
 			<div class="form-group col-md-12">
@@ -15,7 +15,7 @@
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<div class="input-group">
-					<input type="text" id="description" class="form-control" name="description" placeholder="Description">
+					<input type="text" id="problem_description" class="form-control" name="problem_description" placeholder="Description">
 				</div>
 			</div>
 			<div class="form-group col-md-6">
@@ -47,12 +47,12 @@
 			<div class="form-row control-group">
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="problem_category_1" class="form-control autocomplete" name="problem_category" placeholder="Category">
+						<input type="text" autocomplete="off" id="problem_category@1" class="form-control autocomplete" name="problem_category@1" placeholder="Category">
 					</div>
 				</div>
 				<div class="form-group col-md-4">
 					<div class="input-group">
-						<input type="text" id="connection_factor_1" class="form-control" name="connection_factor" placeholder="Factor">
+						<input type="text" id="dependency_factor@1" class="form-control" name="dependency_factor@1" placeholder="Factor">
 					</div>
 				</div>
 				<div class="form-group col-md-3">
@@ -68,12 +68,12 @@
 			<div class="form-row control-group">
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="problem_category" class="form-control autocomplete" name="problem_category" placeholder="Category">
+						<input type="text" autocomplete="off" id="problem_category_tmp" class="form-control autocomplete" name="problem_category_tmp" placeholder="Category">
 					</div>
 				</div>
 				<div class="form-group col-md-4">
 					<div class="input-group">
-						<input type="text" id="connection_factor" class="form-control" name="connection_factor" placeholder="Factor">
+						<input type="text" id="dependency_factor_tmp" class="form-control" name="dependency_factor_tmp" placeholder="Factor">
 					</div>
 				</div>
 				<div class="form-group col-md-3">
@@ -134,10 +134,12 @@
 		$(".add-more").click(function(){
 			cat_item++;
 			var html = $(".copy").html()
-			var problem_category_id = 'problem_category_' + cat_item.toString();
-			html = html.replace('problem_category', problem_category_id)
-			var connection_factor_id = 'connection_factor_' + cat_item.toString();
-			html = html.replace('connection_factor', connection_factor_id)
+			var problem_category_id = 'problem_category@' + cat_item.toString();
+			html = html.replace('problem_category_tmp', problem_category_id)
+			html = html.replace('problem_category_tmp', problem_category_id)
+			var dependency_factor_id = 'dependency_factor@' + cat_item.toString();
+			html = html.replace('dependency_factor_tmp', dependency_factor_id)
+			html = html.replace('dependency_factor_tmp', dependency_factor_id)
 			$(".category-group").append(html);
 			enableAutoComplete();
 		});

@@ -12,7 +12,7 @@ module.exports = function(newApp) {
     newApp.get('/signup/', homeController.showSignUp);
 
     newApp.get('/problem/add/', problemController.addProblemForm);
-    newApp.post('/problem/submit/', problemController.problemSubmit);
+    newApp.post('/problem/add/', problemController.addProblemFormSubmit);
     newApp.get('/problem/list/', problemController.viewProblemList);
     newApp.post('/problem/list/', problemController.viewProblemListAfterFormSubmit);
 
