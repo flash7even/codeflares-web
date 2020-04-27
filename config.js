@@ -1,3 +1,3 @@
 module.exports = {
-    'server_host': 'http://localhost:5056/training/'
+    'server_host': 'http://192.168.0.30:5056/training/'
 };

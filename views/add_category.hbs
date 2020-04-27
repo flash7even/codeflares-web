@@ -13,47 +13,36 @@
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-4">
 				<div class="input-group">
 					<input type="text" id="category_name" class="form-control" name="category_name" placeholder="Category Name">
 				</div>
 			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-4">
 				<div class="input-group">
 					<input type="text" id="category_title" class="form-control" name="category_title" placeholder="Category Title">
 				</div>
 			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<div class="input-group">
 					<input type="text" id="category_description" class="form-control" name="category_description" placeholder="Description">
 				</div>
 			</div>
-			<div class="form-group col-md-6">
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-4">
 				<div class="input-group">
 					<input type="text" id="category_difficulty" class="form-control" name="category_difficulty" placeholder="Difficulty">
 				</div>
 			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<div class="input-group">
 					<input type="text" id="category_importance" class="form-control" name="category_importance" placeholder="Importance">
 				</div>
 			</div>
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<div class="input-group">
 					<input type="text" id="category_rareness" class="form-control" name="category_rareness" placeholder="Rareness">
-				</div>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-12">
-				<div class="input-group">
-					<input type="text" id="source_link" class="form-control" name="source_link" placeholder="Source Link">
 				</div>
 			</div>
 		</div>
@@ -61,12 +50,12 @@
 			<div class="form-row control-group">
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="dependency_category_1" class="form-control autocomplete" name="dependency_category" placeholder="Dependent On Category">
+						<input type="text" autocomplete="off" id="dependency_category@1" class="form-control autocomplete" name="dependency_category@1" placeholder="Dependent On Category">
 					</div>
 				</div>
 				<div class="form-group col-md-4">
 					<div class="input-group">
-						<input type="text" id="dependency_factor_1" class="form-control" name="dependency_factor" placeholder="Factor">
+						<input type="text" id="dependency_factor@1" class="form-control" name="dependency_factor@1" placeholder="Factor">
 					</div>
 				</div>
 				<div class="form-group col-md-3">
@@ -82,12 +71,12 @@
 			<div class="form-row control-group">
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="dependency_category" class="form-control autocomplete" name="dependency_category" placeholder="Dependent On Category">
+						<input type="text" autocomplete="off" id="dependency_category_tmp" class="form-control autocomplete" name="dependency_category_tmp" placeholder="Dependent On Category">
 					</div>
 				</div>
 				<div class="form-group col-md-4">
 					<div class="input-group">
-						<input type="text" id="dependency_factor" class="form-control" name="dependency_factor" placeholder="Factor">
+						<input type="text" id="dependency_factor_tmp" class="form-control" name="dependency_factor_tmp" placeholder="Factor">
 					</div>
 				</div>
 				<div class="form-group col-md-3">
@@ -185,10 +174,10 @@
 		$(".add-more").click(function(){
 			cat_item++;
 			var html = $(".copy").html()
-			var dependency_category_id = 'dependency_category_' + cat_item.toString();
-			html = html.replace('dependency_category', dependency_category_id)
-			var dependency_factor_id = 'dependency_factor_' + cat_item.toString();
-			html = html.replace('dependency_factor', dependency_factor_id)
+			var dependency_category_id = 'dependency_category@' + cat_item.toString();
+			html = html.replace('dependency_category_tmp', dependency_category_id)
+			var dependency_factor_id = 'dependency_factor@' + cat_item.toString();
+			html = html.replace('dependency_factor_tmp', dependency_factor_id)
 			$(".category-group").append(html);
 			enableAutoComplete();
 			enableAutoCompleteRoot();
