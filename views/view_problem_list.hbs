@@ -4,8 +4,9 @@
 
 <div class="show-problem">
     <div class="form-type-1" style="width: 100%;">
-      <form name="form form-type-1" onSubmit="">
-            <h2 style="text-align: center;">Problem Search Parameter</h2>
+      <form name="form form-type-1" action="/problem/list/" method="POST">
+            <h4 style="text-align: center;">Problem Search Parameter</h4>
+            <br>
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <div class="input-group">
@@ -40,14 +41,13 @@
      </div>
 
     <div class="table-type-1">
-        <table id="problemListTable" class="table table-striped table-bordered table-type-1-table display compact">
+        <table id="problemListTable" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>Project Name</th>
                     <th>Problem Difficulty</th>
                     <th>OJ Name</th>
                     <th>Problem Category</th>
-                    <th>Source Link</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,7 +72,8 @@
 
         {{#each problem_list}}
             console.log("{{problem_name}}")
-            var problem_data = ["{{problem_name}}", "{{problem_difficulty}}", "{{oj_name}}", "{{category_list_light}}", "<a href = {{source_link}}>Link</a>"];
+            var problem_name = "{{problem_name}}";
+            var problem_data = ["<a href = {{source_link}}>"+problem_name+"</a>", "{{problem_difficulty}}", "{{oj_name}}", "{{category_list_light}}"];
             db_problem_list.push(problem_data)
         {{/each}}
 

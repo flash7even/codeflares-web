@@ -14,10 +14,12 @@ module.exports = function(newApp) {
     newApp.get('/problem/add/', problemController.addProblemForm);
     newApp.post('/problem/submit/', problemController.problemSubmit);
     newApp.get('/problem/list/', problemController.viewProblemList);
+    newApp.post('/problem/list/', problemController.viewProblemListAfterFormSubmit);
 
     newApp.get('/category/add/', categoryController.addCategoryForm);
     newApp.post('/category/submit/', categoryController.categorySubmit);
     newApp.get('/category/list/', categoryController.viewCategoryList);
+    newApp.post('/category/list/', categoryController.viewCategoryListAfterFormSubmit);
 
     newApp.get('/training/individual/', trainingController.viewIndividualTraining);
 

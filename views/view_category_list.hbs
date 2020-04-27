@@ -4,12 +4,13 @@
 
 <div class="show-category">
     <div class="form-type-1" style="width: 100%;">
-       <form name="form form-type-1" onSubmit="">
-            <h2 style="text-align: center;">Category Search Parameter</h2>
+       <form name="form form-type-1" action="/category/list/" method="POST">
+            <h4 style="text-align: center;">Category Search Parameter</h4>
+            <br>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <div class="input-group">
-                        <input type="text" id="root_category_name" class="form-control autocomplete-root" name="root_category_name" placeholder="Root Category">
+                        <input type="text" id="category_root" class="form-control autocomplete-root" name="category_root" placeholder="Root Category">
                     </div>
                 </div>
                 <div class="form-group col-md-3">
@@ -36,8 +37,7 @@
                     <th>Root Category</th>
                     <th>Category Name</th>
                     <th>Category Difficulty</th>
-                    <th>Update</th>
-                    <th>Delete</th>
+                    <th>Problem Count</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,13 +52,24 @@
 
     function getCategoryList(){
         var categorys = [
-            ['Data Structure', 'Data Structure', '5', 'Click', 'Click'],
-            ['Data Structure', 'Segment Tree', '8.5', 'Click', 'Click'],
-            ['Data Structure', 'Segment Tree', '8.5', 'Click', 'Click'],
-            ['DP', 'Bit Mask', '7.5', 'Click', 'Click'],
-            ['DP', 'LCA', '6.5', 'Click', 'Click']
+            ['Data Structure', 'Data Structure', '5'],
+            ['Data Structure', 'Segment Tree', '8.5'],
+            ['Data Structure', 'Segment Tree', '8.5'],
+            ['DP', 'Bit Mask', '7.5'],
+            ['DP', 'LCA', '6.5']
         ]
-        return categorys;
+
+        var db_category_list = [];
+
+        {{#each category_list}}
+            console.log("{{category_name}}")
+            var category_root = "{{category_root}}";
+            var category_name = "{{category_name}}";
+            var category_data = ["<a href = >"+category_root+"</a>", "<a href = >"+category_name+"</a>", "{{category_difficulty}}", "{{problem_count}}"];
+            db_category_list.push(category_data)
+        {{/each}}
+
+        return db_category_list;
     }
 
     function showCategorysDTSearchTable(){

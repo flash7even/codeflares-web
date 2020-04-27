@@ -3,20 +3,18 @@
 var express = require('express');
 var config = require('../config');
 var router = express.Router();
-const request = require('request');
 const axios = require('axios');
-var Handlebars  = require('express-handlebars');
 var problem_search_url = config.server_host + 'problem/search/'
 
-async function getProblemList() {
+async function getProblemList(search_param) {
   console.log('getProblemList called');
   var page = 0
   var problem_list = []
   while(1){
     var post_url = problem_search_url + page.toString()
     console.log("post_url: " + post_url)
-    let res = await axios.post(post_url, {});
-    var problem_list = res.data
+    let res = await axios.post(post_url, search_param);
+    problem_list = res.data
     page++
     break;
   }
@@ -29,10 +27,12 @@ router.addProblemForm = function(req, res, next) {
 }
 
 router.viewProblemList = async function(req, res, next) {
-  let problem_list = await getProblemList();
-  console.log('problem_list: ');
-  console.log(problem_list);
-  console.log('problem_list end');
+  let problem_list = await getProblemList({});
+  res.render('view_problem_list', problem_list);
+}
+
+router.viewProblemListAfterFormSubmit = async function(req, res, next) {
+  let problem_list = await getProblemList(req.body);
   res.render('view_problem_list', problem_list);
 }
 
