@@ -1,3 +1,4 @@
+'use strict'
 
 var homeController = require('./home.js');
 var problemController = require('./problem.js');

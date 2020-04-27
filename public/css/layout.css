@@ -160,3 +160,7 @@ a.article:hover {
         display: none;
     }
 }
+
+.dataTables_scrollHeadInner, .table{
+    width:100%!important
+};
