@@ -126,6 +126,7 @@
                             <li class="nav-item active">
                             </li>
                         </ul>
+                        {{#if session.email}}
                         <div style="padding: 3px;">
                             <a href="#">
                             <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
@@ -133,6 +134,7 @@
                             </button>
                             </a>
                         </div>
+
                         <div style="padding: 3px;">
                             <a href="#">
                             <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
@@ -145,6 +147,9 @@
                                 <i class="fas fa-bell navbar-btn-icon"></i>
                             </button>
                         </div>
+                        {{/if}}
+
+                        {{#unless session.email}}
                         <div style="padding: 3px;">
                             <a href="/login/">
                             <button type="button btn-lg" onclick="/login/" id="" class="btn navbar-btn">
@@ -152,13 +157,19 @@
                             </button>
                             </a>
                         </div>
+                        {{/unless}}
+
+                        {{#if session.email}}
                         <div style="padding: 3px;">
-                            <a href="/login/">
+                            <a href="/logout/">
                             <button type="button btn-lg" onclick="/logout/" id="" class="btn navbar-btn">
                                 <i class="fas fa-sign-out-alt navbar-btn-icon"></i>
                             </button>
                             </a>
                         </div>
+                        {{/if}}
+
+                        {{#unless session.email}}
                         <div style="padding: 3px;">
                             <a href="/signup/">
                             <button type="button btn-lg" id="" class="btn navbar-btn">
@@ -166,6 +177,18 @@
                             </button>
                             </a>
                         </div>
+                        {{/unless}}
+
+                        {{#if session.email}}
+                        <div style="padding: 3px;">
+                            <a href="/profile/">
+                            <button type="button btn-lg" id="" class="btn navbar-btn">
+                                <i class="fas fa-user navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
+                        {{/if}}
+
                     </div>
                 </div>
             </nav>

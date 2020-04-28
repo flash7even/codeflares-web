@@ -1,10 +1,28 @@
 'use strict'
 
 var express = require('express');
+var config = require('../config');
 var router = express.Router();
+const axios = require('axios');
+var user_search_url = config.server_host + 'user/search/'
+var user_submit_url = config.server_host + 'user/'
+var login_url = config.server_host + 'auth/login'
+var logout_url = config.server_host + 'auth/logout/at'
 
 
-/* GET home page. */
+async function logIn(data) {
+    console.log('logIn called');
+    let res = await axios.post(login_url, data);
+    console.log('logIn done');
+    return res
+}
+
+async function postUser(user_data) {
+    var post_url = user_submit_url
+    console.log("post_url: " + post_url)
+    let res = await axios.post(post_url, user_data);
+}
+
 router.showHome = function(req, res, next) {
     res.render('index', { title: 'This Is The Homepage' , pageTitle: 'Home'});
 }
@@ -13,8 +31,52 @@ router.showLogIn = function(req, res, next) {
     res.render('login', {});
 }
 
+router.logInSubmit = async function(req, res, next) {
+    var user_data = req.body
+    var login_resp = await logIn(user_data)
+    if(login_resp.status == 200 || login_resp.status == 201){
+        var login_data = login_resp.data
+        console.log(login_data)
+
+        var sess = req.session;
+        sess.username = login_data.username
+        sess.email = login_data.email
+        sess.full_name = login_data.full_name
+        sess.user_role = login_data.user_role
+        sess.user_id = login_data.id
+        sess.access_token = login_data.access_token
+        sess.refresh_token = login_data.refresh_token
+        res.redirect('/');
+    }else{
+        console.log('Log In Failed')
+    }
+}
+
 router.showSignUp = function(req, res, next) {
     res.render('signup', {});
+}
+
+router.logOutSubmit = async function(req, res, next) {
+    console.log('log out called')
+    var sess = req.session;
+    var access_token = sess.access_token
+    console.log(access_token);
+    const config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    console.log(config)
+    await axios.post(logout_url, {}, config);
+    req.session.destroy();
+    console.log('log out done');
+    res.redirect('/');
+}
+
+router.signUpSubmit = async function(req, res, next) {
+    var user_data = req.body
+    user_data['user_role'] = 'contestant'
+    delete user_data['confirm_password']
+    await postUser(user_data)
+    res.render('login', {});
 }
 
 module.exports = router;

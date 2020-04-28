@@ -23,6 +23,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret: 'a@b@ab@123',saveUninitialized: true,resave: true}));
+
+app.use(function (req, res, next) {
+	res.locals.session = req.session;
+	next();
+});
 
 require('./routes/index')(app); // getting access of index.js
 

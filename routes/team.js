@@ -77,8 +77,9 @@ router.viewTeamList = async function(req, res, next) {
   res.render('view_team_list', team_list);
 }
 
-router.viewTeamListAfterFormSubmit = async function(req, res, next) {
-  let team_list = await getTeamList(req.body);
+router.viewTeam = async function(req, res, next) {
+  let team_list = await getTeamList({});
+  console.log(req.url)
   res.render('view_team_list', team_list);
 }
 

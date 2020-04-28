@@ -2,15 +2,22 @@
 	<link rel="stylesheet" type="text/css" href="/css/signup.css">
 </head>
 
+
 <div class="signup-form">	
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form action="/signup/" method="post">
 		<h2>Create Account</h2>
-        <div class="form-group">
-			<div class="input-group">
-				<span class="input-group-addon"><i class="fa fa-user"></i></span>
-				<input type="text" class="form-control" name="username" placeholder="Username" required="required">
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user"></i></span>
+					<input type="text" class="form-control" name="username" placeholder="Username" required="required">
+				</div>
 			</div>
-        </div>
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fas fa-user-tag"></i></span>
+					<input type="text" id="full_name" class="form-control" name="full_name" placeholder="Full Name" required="required">
+				</div>
+			</div>
         <div class="form-group">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>

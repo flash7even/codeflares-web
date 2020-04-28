@@ -10,7 +10,10 @@ module.exports = function(newApp) {
     /* GET home page. */
     newApp.get('/', homeController.showHome);
     newApp.get('/login/', homeController.showLogIn);
+    newApp.post('/login/', homeController.logInSubmit);
+    newApp.get('/logout/', homeController.logOutSubmit);
     newApp.get('/signup/', homeController.showSignUp);
+    newApp.post('/signup/', homeController.signUpSubmit);
 
     newApp.get('/problem/add/', problemController.addProblemForm);
     newApp.post('/problem/add/', problemController.addProblemFormSubmit);
@@ -28,4 +31,5 @@ module.exports = function(newApp) {
     newApp.get('/team/add/', teamController.addTeamForm);
     newApp.post('/team/add/', teamController.addTeamFormSubmit);
     newApp.get('/team/list/', teamController.viewTeamList);
+    newApp.get('/team/view/*', teamController.viewTeam);
 }
