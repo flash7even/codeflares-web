@@ -11,7 +11,6 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/layout.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
@@ -31,9 +30,10 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     
+    <script src="/js/bootstrap3-typeahead.js"></script> 
+    <link rel="stylesheet" type="text/css" href="/css/layout.css">
 
     <!-- Bootstrap Typeahead Plugin -->
-    <script src="/js/bootstrap3-typeahead.js"></script> 
 </head>
 
 <body>
@@ -46,12 +46,12 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+                    <a href="/"><i style="width: 30px;" class="fa fa-fw fa-home"></i> Home</a>
                 </li>
 
                 {{#if session.email}}
                 <li>
-                    <a href="#profileMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user"></i> {{session.username}}</a>
+                    <a href="#profileMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-user bell-icons"></i> {{session.username}}</a>
                     <ul class="collapse list-unstyled" id="profileMenu">
                         <li> <a href="#">Profile</a> </li>
                         <li> <a href="#">Edit Profile</a> </li>
@@ -59,7 +59,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#trainingMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-school"></i> Training</a>
+                    <a href="#trainingMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-school"></i> Training</a>
                     <ul class="collapse list-unstyled" id="trainingMenu">
                         <li> <a href="/training/individual/">Personal Training</a> </li>
                         <li> <a href="/team/">Team Training</a> </li>
@@ -70,7 +70,7 @@
                 {{/if}}
 
                 <li>
-                    <a href="#contestMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-school"></i> Contest</a>
+                    <a href="#contestMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-school"></i> Contest</a>
                     <ul class="collapse list-unstyled" id="contestMenu">
                         <li> <a href="/contest/individual/">Individual Contest</a> </li>
                         <li> <a href="/contest/team/">Team Contest</a> </li>
@@ -79,7 +79,7 @@
 
                 {{#if session.email}}
                 <li>
-                    <a href="#classRoomMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-chalkboard-teacher"></i> Classroom</a>
+                    <a href="#classRoomMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-chalkboard-teacher"></i> Classroom</a>
                     <ul class="collapse list-unstyled" id="classRoomMenu">
                         <li> <a href="#">Your Classroom</a> </li>
                         <li> <a href="#">Join Classroom</a> </li>
@@ -89,7 +89,7 @@
                 {{/if}}
 
                 <li>
-                    <a href="#gatewayMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Gateway</a>
+                    <a href="#gatewayMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-archive"></i> Gateway</a>
                     <ul class="collapse list-unstyled" id="gatewayMenu">
                         <li> <a href="/category/list/">Categories</a> </li>
                         <li> <a href="/problem/list/">Problems</a> </li>
@@ -99,7 +99,7 @@
 
                 {{#if session.email}}
                 <li>
-                    <a href="#adviseMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-database"></i> Advise</a>
+                    <a href="#adviseMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-database"></i> Advise</a>
                     <ul class="collapse list-unstyled" id="adviseMenu">
                         <li> <a href="/problem/add/">Add Problem</a> </li>
                         <li> <a href="/category/add/">Add Category</a> </li>
@@ -209,9 +209,12 @@
             {{{body}}}
             <!-- Page footer -->
             <br>
-            <h6 class="text-white text-center tm-copyright-text" style="text-align: center;">
-                Copyright &copy; 2020 CodeTrainer.
-            </h6>
+            <div class="footer">
+                <h6 class="text-white text-center tm-copyright-text" style="bottom: 0; text-align: center;">
+                    Copyright &copy; 2020 CodeTrainer.
+                </h6>
+            </div>
+
         </div>
     </div>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -222,6 +225,7 @@
             });
         });
     </script>
+
 </body>
 </html>
 

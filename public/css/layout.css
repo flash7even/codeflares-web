@@ -54,15 +54,18 @@ a:focus {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 200px;
+    max-width: 200px;
     background: #0B0C10;
     color: #fff;
     transition: all 0.3s;
+    border-radius: 20px;
+    border-color: #66FCF1;
+    box-shadow: 1px 1px 3px rgba(102, 252, 241, 5.35);
 }
 
 #sidebar.active {
-    margin-left: -250px;
+    margin-left: -200px;
 }
 
 #sidebar .sidebar-header {
@@ -164,3 +167,8 @@ a.article:hover {
 .dataTables_scrollHeadInner, .table{
     width:100%!important
 };
+
+
+#sidebar .bell-icons {
+    width: 30px;
+}
