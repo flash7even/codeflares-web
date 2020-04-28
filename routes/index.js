@@ -4,6 +4,7 @@ var homeController = require('./home.js');
 var problemController = require('./problem.js');
 var categoryController = require('./category.js');
 var trainingController = require('./training.js');
+var teamController = require('./team.js');
 
 module.exports = function(newApp) {
     /* GET home page. */
@@ -23,4 +24,8 @@ module.exports = function(newApp) {
 
     newApp.get('/training/individual/', trainingController.viewIndividualTraining);
 
+
+    newApp.get('/team/add/', teamController.addTeamForm);
+    newApp.post('/team/add/', teamController.addTeamFormSubmit);
+    newApp.get('/team/list/', teamController.viewTeamList);
 }

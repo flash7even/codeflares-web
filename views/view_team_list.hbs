@@ -1,0 +1,64 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="show-team">
+    <div class="table-type-1">
+        <table id="teamListTable" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Team Name</th>
+                    <th>Purpose</th>
+                    <th>Institution</th>
+                    <th>Members</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function getTeamList(){
+        var db_team_list = [];
+
+        {{#each team_list}}
+            console.log("{{team_name}}")
+            var team_name = "{{team_name}}"
+            var member_list_items = "";
+            var mem_count = 0;
+            {{#each member_list}}
+                if(mem_count>0) member_list_items += " ";
+                member_list_items += "<a href = >"+"{{user_handle}}"+"</a>"
+                mem_count += 1
+            {{/each}}
+            var team_link = "<a href = /team/view/" + "{{id}}" +" >"+team_name+"</a>"
+            var team_data = [team_link, "{{team_purpose}}", "{{institution_name}}", member_list_items];
+            db_team_list.push(team_data)
+        {{/each}}
+
+        return db_team_list;
+    }
+
+    function showTeamsDTSearchTable(){
+        var dt_list = getTeamList();
+        
+        $("#teamListTable").dataTable({
+            "aaData": dt_list,
+            paging: true,
+            destroy: true,
+            scrollY: '500px',
+            scrollCollapse: true,
+            responsive: true
+        });
+    }
+
+    $(document).ready( function () {
+        showTeamsDTSearchTable();
+    } );
+
+</script>
