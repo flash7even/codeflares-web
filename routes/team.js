@@ -30,6 +30,20 @@ async function postTeam(team_data) {
   let res = await axios.post(post_url, team_data);
 }
 
+async function teamDetails(team_id, req) {
+  console.log('teamDetails called')
+  var sess = req.session;
+  var access_token = sess.access_token
+  const config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  var url = team_submit_url + team_id
+  console.log("url: " + url)
+  let res = await axios.get(url, {}, config);
+  console.log('teamDetails done')
+  return res.data
+}
+
 router.addTeamForm = function(req, res, next) {
   res.render('add_team', {});
 }
@@ -78,9 +92,17 @@ router.viewTeamList = async function(req, res, next) {
 }
 
 router.viewTeam = async function(req, res, next) {
-  let team_list = await getTeamList({});
+  var url = req.url
   console.log(req.url)
-  res.render('view_team_list', team_list);
+  console.log(url)
+  var words = url.split("/");
+  var team_id = words[words.length-1]
+  console.log(team_id)
+
+  var team_details = await teamDetails(team_id, req)
+  console.log(team_details)
+  res.render('team_profile', team_details);
 }
 
 module.exports = router;
+
