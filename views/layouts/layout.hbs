@@ -48,8 +48,10 @@
                 <li>
                     <a href="/"><i class="fa fa-fw fa-home"></i> Home</a>
                 </li>
+
+                {{#if session.email}}
                 <li>
-                    <a href="#profileMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user"></i> cat_funeral</a>
+                    <a href="#profileMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user"></i> {{session.username}}</a>
                     <ul class="collapse list-unstyled" id="profileMenu">
                         <li> <a href="#">Profile</a> </li>
                         <li> <a href="#">Edit Profile</a> </li>
@@ -65,6 +67,8 @@
                         <li> <a href="/team/add/">Create Team</a> </li>
                     </ul>
                 </li>
+                {{/if}}
+
                 <li>
                     <a href="#contestMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-school"></i> Contest</a>
                     <ul class="collapse list-unstyled" id="contestMenu">
@@ -72,6 +76,8 @@
                         <li> <a href="/contest/team/">Team Contest</a> </li>
                     </ul>
                 </li>
+
+                {{#if session.email}}
                 <li>
                     <a href="#classRoomMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-chalkboard-teacher"></i> Classroom</a>
                     <ul class="collapse list-unstyled" id="classRoomMenu">
@@ -80,6 +86,8 @@
                         <li> <a href="#">Create Classroom</a> </li>
                     </ul>
                 </li>
+                {{/if}}
+
                 <li>
                     <a href="#gatewayMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-archive"></i> Gateway</a>
                     <ul class="collapse list-unstyled" id="gatewayMenu">
@@ -88,6 +96,8 @@
                         <li> <a href="#">Leaderboard</a> </li>
                     </ul>
                 </li>
+
+                {{#if session.email}}
                 <li>
                     <a href="#adviseMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-database"></i> Advise</a>
                     <ul class="collapse list-unstyled" id="adviseMenu">
@@ -96,10 +106,14 @@
                         <li> <a href="/resource/add/">Add Resource</a> </li>
                     </ul>
                 </li>
+                {{/if}}
+
             </ul>
             <ul class="list-unstyled components">
                 <li> <a href="#">About US</a> </li>
+                {{#if session.email}}
                 <li> <a href="#">Contact US</a> </li>
+                {{/if}}
             </ul>
             <ul class="list-unstyled CTAs list-unstyled components" style="padding: 20px;">
                 <li>
