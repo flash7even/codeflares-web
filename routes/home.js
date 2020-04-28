@@ -4,11 +4,24 @@ var express = require('express');
 var config = require('../config');
 var router = express.Router();
 const axios = require('axios');
-var user_search_url = config.server_host + 'user/search/'
+var user_search_url = config.server_host + 'user/search'
 var user_submit_url = config.server_host + 'user/'
 var login_url = config.server_host + 'auth/login'
 var logout_url = config.server_host + 'auth/logout/at'
 
+
+async function searchUser(user_data, req) {
+    console.log('searchUser called')
+    var sess = req.session;
+    var access_token = sess.access_token
+    const config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    console.log("post_url: " + user_search_url)
+    let res = await axios.post(user_search_url, user_data, config);
+    console.log('searchUser completed')
+    return res.data
+}
 
 async function logIn(data) {
     console.log('logIn called');
@@ -77,6 +90,26 @@ router.signUpSubmit = async function(req, res, next) {
     delete user_data['confirm_password']
     await postUser(user_data)
     res.render('login', {});
+}
+
+router.showUserProfile = async function(req, res, next) {
+    var url = req.url
+    console.log(url)
+    var words = url.split("/");
+    var user_name = words[words.length-1]
+    console.log(user_name)
+
+    var param = {
+        'username': user_name
+    }
+
+    var resp = await searchUser(param, req)
+    console.log(resp)
+
+    var user_details = resp[0];
+
+
+    res.render('user_profile', user_details);
 }
 
 module.exports = router;
