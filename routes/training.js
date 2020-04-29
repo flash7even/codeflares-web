@@ -17,7 +17,25 @@ async function getIndividualTrainingModel() {
 
 router.viewIndividualTraining = async function(req, res, next) {
     var training_data = await getIndividualTrainingModel()
-    console.log(training_data)
+
+    var len, idx;
+
+    len = training_data['problem_stat'].length
+    for(idx = 1;idx<=len;idx++){
+        training_data['problem_stat'][idx-1]['idx'] = idx;
+        console.log(training_data['problem_stat'][idx-1])
+    }
+
+    len = training_data['category_stat'].length
+    for(idx = 1;idx<=len;idx++){
+        training_data['category_stat'][idx-1]['idx'] = idx;
+    }
+
+    len = training_data['category_skill_list'].length
+    for(idx = 1;idx<=len;idx++){
+        training_data['category_skill_list'][idx-1]['idx'] = idx;
+    }
+
     res.render('individual_training', training_data);
 }
 

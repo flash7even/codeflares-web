@@ -70,11 +70,10 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    padding-left: 30px;
     padding-top: 30px;
     border-radius: 20px;
     border-color: #66FCF1;
-    box-shadow: 1px 1px 3px rgba(102, 252, 241, 5.35);
+    box-shadow: 1px 1px 3px rgba(102, 252, 241, 0.35);
 }
 
 #sidebar ul.components {
@@ -171,4 +170,11 @@ a.article:hover {
 
 #sidebar .bell-icons {
     width: 30px;
+}
+
+.search-box{
+    background: rgb(34, 9, 9);
+    color: #000000;
+    border-radius: 5px;
+    padding: 5px;
 }
