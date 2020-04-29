@@ -69,12 +69,17 @@
         ]
 
         var db_problem_list = [];
+        var idx = 0;
+        var limit = 5;
 
         {{#each problem_stat}}
             console.log("{{problem_name}}")
-            var problem_name = "{{problem_name}}";
-            var problem_data = ["<a href = {{source_link}}>"+problem_name+"</a>", "{{oj_name}}", "{{relevant_score}}"];
-            db_problem_list.push(problem_data)
+            if(idx<limit){
+                var problem_name = "{{problem_name}}";
+                var problem_data = ["<a href = {{source_link}}>"+problem_name+"</a>", "{{oj_name}}", "{{relevant_score}}"];
+                db_problem_list.push(problem_data)
+            }
+            idx++;
         {{/each}}
 
         return db_problem_list;
@@ -90,13 +95,18 @@
         ]
 
         var db_category_list = [];
+        var idx = 0;
+        var limit = 5;
 
         {{#each category_stat}}
             console.log("{{category_name}}")
-            var category_root = "{{category_root}}";
-            var category_name = "{{category_name}}";
-            var category_data = ["<a href = >"+category_root+"</a>", "<a href = >"+category_name+"</a>", "{{category_difficulty}}", "{{relevant_score}}"];
-            db_category_list.push(category_data)
+            if(idx<limit){
+                var category_root = "{{category_root}}";
+                var category_name = "{{category_name}}";
+                var category_data = ["<a href = >"+category_root+"</a>", "<a href = >"+category_name+"</a>", "{{category_difficulty}}", "{{relevant_score}}"];
+                db_category_list.push(category_data)
+            }
+            idx++;
         {{/each}}
 
         return db_category_list;
