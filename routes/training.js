@@ -6,6 +6,16 @@ var router = express.Router();
 const axios = require('axios');
 var individual_training_url = config.server_host + 'training/individual'
 var team_training_url = config.server_host + 'training/team/'
+var user_details_url = config.server_host + 'user/'
+
+async function getUserDetails(user_id) {
+  console.log('getUserDetails called');
+  var url = user_details_url + user_id
+  console.log("url: " + url)
+  let res = await axios.get(url);
+  console.log('getUserDetails done');
+  return res.data
+}
 
 async function getIndividualTrainingModel() {
     console.log('getIndividualTrainingModel called');
@@ -48,7 +58,10 @@ router.viewIndividualTraining = async function(req, res, next) {
 
 
 router.viewTeamTraining = async function(req, res, next) {
-    var team_id = "wXpMy3EB9a9eFZiLLpHW"
+    var sess = req.session;
+    var user_details = await getUserDetails(sess.user_id)
+    var team_id = user_details.settings.current_team_id
+
     var training_data = await getTeamTrainingModel(team_id)
 
     console.log(training_data)

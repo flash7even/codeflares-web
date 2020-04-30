@@ -8,7 +8,6 @@ var team_search_url = config.server_host + 'team/search/'
 var user_search_url = config.server_host + 'user/search/'
 var team_submit_url = config.server_host + 'team/'
 
-
 async function getTeamList(search_param) {
   console.log('getTeamList called');
   var page = 0

@@ -53,9 +53,9 @@
                 <li>
                     <a href="#profileMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-user bell-icons"></i> {{session.username}}</a>
                     <ul class="collapse list-unstyled" id="profileMenu">
-                        <li> <a href="#">Profile</a> </li>
-                        <li> <a href="#">Edit Profile</a> </li>
-                        <li> <a href="#">Settings</a> </li>
+                        <li> <a href="/profile/{{session.username}}">Profile</a> </li>
+                        <li> <a href="/profile/{{session.username}}">Edit Profile</a> </li>
+                        <li> <a href="/settings/update/">Settings</a> </li>
                     </ul>
                 </li>
                 <li>

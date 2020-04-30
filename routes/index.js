@@ -15,6 +15,8 @@ module.exports = function(newApp) {
     newApp.get('/signup/', homeController.showSignUp);
     newApp.post('/signup/', homeController.signUpSubmit);
     newApp.get('/profile/*', homeController.showUserProfile);
+    newApp.get('/settings/update/', homeController.updateUserSettings);
+    newApp.post('/settings/update/', homeController.updateUserSettingsSubmit);
 
     newApp.get('/problem/add/', problemController.addProblemForm);
     newApp.post('/problem/add/', problemController.addProblemFormSubmit);

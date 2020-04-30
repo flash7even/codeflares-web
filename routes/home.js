@@ -8,6 +8,23 @@ var user_search_url = config.server_host + 'user/search'
 var user_submit_url = config.server_host + 'user/'
 var login_url = config.server_host + 'auth/login'
 var logout_url = config.server_host + 'auth/logout/at'
+var team_search_url = config.server_host + 'team/search/'
+
+async function getTeamList(search_param) {
+  console.log('getTeamList called');
+  var page = 0
+  var team_list = []
+  while(1){
+    var post_url = team_search_url + page.toString()
+    console.log("post_url: " + post_url)
+    let res = await axios.post(post_url, search_param);
+    team_list = res.data
+    page++
+    break;
+  }
+  console.log('getTeamList done');
+  return team_list
+}
 
 
 async function searchUser(user_data, req) {
@@ -28,6 +45,13 @@ async function logIn(data) {
     let res = await axios.post(login_url, data);
     console.log('logIn done');
     return res
+}
+
+async function updateUser(user_data, user_id) {
+    console.log('updateUser called')
+    var url = user_submit_url + user_id
+    console.log("url: " + url)
+    let res = await axios.put(url, user_data);
 }
 
 async function postUser(user_data) {
@@ -110,6 +134,23 @@ router.showUserProfile = async function(req, res, next) {
 
 
     res.render('user_profile', user_details);
+}
+
+
+router.updateUserSettings = async function(req, res, next) {
+    let team_list = await getTeamList({});
+    res.render('update_user_settings', team_list);
+}
+
+router.updateUserSettingsSubmit = async function(req, res, next) {
+    var settings_data = {
+        'settings': req.body
+    }
+    console.log(settings_data)
+    var sess = req.session;
+    var user_id = sess.user_id
+    await updateUser(settings_data, user_id);
+    res.redirect('/');
 }
 
 module.exports = router;

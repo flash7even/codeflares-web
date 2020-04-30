@@ -1,0 +1,76 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="form-type-1" style="width: 600px;">	
+    <form action="/settings/update/" method="post">
+		<h2>Profile Settings</h2>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="text">Select your current team:</label>
+				<select class="form-control" id="current_team_id" name="current_team_id">
+				</select>
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="text">Get notifications after any changes:</label>
+				<select class="form-control" id="get_notification" name="get_notification">
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="text">Get email after any changes:</label>
+				<select class="form-control" id="get_email_updates" name="get_email_updates">
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="text">Hide problem tags:</label>
+				<select class="form-control" id="hide_problem_tags" name="hide_problem_tags">
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="text">Show contact info to others:</label>
+				<select class="form-control" id="show_contact_info" name="show_contact_info">
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
+        </div>
+
+	</form>
+</div>
+
+<script type="text/javascript">
+
+	function viewTeamsInForm() {
+		var html = ''
+        {{#each team_list}}
+			html += "<option value=" + "{{id}}" + ">" + "{{team_name}}" + "</option>"
+        {{/each}}
+
+		var current_team_id = document.getElementById('current_team_id')
+		current_team_id.innerHTML = html
+	}
+	viewTeamsInForm();
+
+</script>
