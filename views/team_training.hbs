@@ -162,10 +162,6 @@
     function get_data_list(){
         var data_list = [];
 
-        var cat_data = findRootCategoriesSkill();
-        data_list.push(cat_data)
-
-
         var idx = 0;
         {{#each skill_info}}
             var cur_list = []
@@ -181,6 +177,7 @@
             console.log(cur_list)
         {{/each}}
 
+        data_list.push(findRootCategoriesSkill())
         return data_list;
     }
 
@@ -188,14 +185,20 @@
     window.onload = function () {
         console.log('Insode window onload')
         var data_list = get_data_list();
+
+        console.log('Fnal dt_list')
         console.log(data_list)
         var member_list = get_member_list();
 
         var len = data_list.length
+        console.log('Length:')
+        console.log(len)
         var idx = 0;
         var colors = ["rgb(47,79,79, 0.7)", "rgb(16,37,66, 0.7)", "rgb(152,169,220, 0.7)", "rgb(52,99,151, 0.7)"]
 
         var plot_data_list = []
+        member_list.push("overall");
+        console.log('member list: ' + member_list)
 
         for(idx = 0;idx<len;idx++){
             var data = {
@@ -208,6 +211,8 @@
             }
             plot_data_list.push(data)
         }
+        console.log('Fnal plot_data_list')
+        console.log(plot_data_list)
 
         var chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,

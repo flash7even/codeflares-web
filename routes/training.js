@@ -48,7 +48,7 @@ router.viewIndividualTraining = async function(req, res, next) {
 
 
 router.viewTeamTraining = async function(req, res, next) {
-    var team_id = "pxfAynEBDdZ5mbgHtL56"
+    var team_id = "wXpMy3EB9a9eFZiLLpHW"
     var training_data = await getTeamTrainingModel(team_id)
 
     console.log(training_data)
