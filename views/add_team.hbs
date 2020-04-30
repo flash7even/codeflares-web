@@ -8,14 +8,14 @@
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
-					<input type="text" id="team_name" class="form-control" name="team_name" placeholder="Team Name">
+					<input type="text" id="team_name" class="form-control" name="team_name" placeholder="Team Name" required>
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-4">
 				<div class="input-group">
-					<input type="text" id="institution_name" class="form-control" name="institution_name" placeholder="Institution">
+					<input type="text" id="institution_name" class="form-control" name="institution_name" placeholder="Institution" required>
 				</div>
 			</div>
 			<div class="form-group col-md-4">
@@ -135,22 +135,19 @@
 		});
     });
 
-	const users = [
-		{"name": "tarango_khan", "code": "AF"},
-		{"name": "diya", "code": "AX"},
-		{"name": "shahed_shahriar", "code": "AL"},
-		{"name": "koushik_roy", "code": "DZ"},
-		{"name": "nur_islam", "code": "AS"},
-		{"name": "sadia_zahin", "code": "AD"},
-		{"name": "aqua_method", "code": "AO"},
-		{"name": "type_reacer", "code": "AO"},
-		{"name": "mythical_decom", "code": "AO"},
-		{"name": "subscript_same", "code": "AO"},
-		{"name": "coin_change", "code": "BD"},
-		{"name": "knapsack", "code": "BD"},
-		{"name": "sqrt_method", "code": "BD"},
-		// more data here
-	]
+	function get_user_list(){
+		var users = []
+
+        {{#each user_list}}
+            var data = {"name": "{{username}}", "code": "AF"}
+            console.log(data)
+            users.push(data)
+        {{/each}}
+
+		return users
+	}
+
+	const users = get_user_list();
 	enableAutoComplete();
 
 </script>

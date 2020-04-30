@@ -5,6 +5,7 @@ var config = require('../config');
 var router = express.Router();
 const axios = require('axios');
 var team_search_url = config.server_host + 'team/search/'
+var user_search_url = config.server_host + 'user/search/'
 var team_submit_url = config.server_host + 'team/'
 
 
@@ -22,6 +23,23 @@ async function getTeamList(search_param) {
   }
   console.log('getTeamList done');
   return team_list
+}
+
+
+async function getUserList(search_param) {
+  console.log('getUserList called');
+  var page = 0
+  var user_list = []
+  while(1){
+    var post_url = user_search_url + page.toString()
+    console.log("post_url: " + post_url)
+    let res = await axios.post(post_url, search_param);
+    user_list = res.data
+    page++
+    break;
+  }
+  console.log('getUserList done');
+  return user_list
 }
 
 async function postTeam(team_data) {
@@ -44,8 +62,10 @@ async function teamDetails(team_id, req) {
   return res.data
 }
 
-router.addTeamForm = function(req, res, next) {
-  res.render('add_team', {});
+router.addTeamForm = async function(req, res, next) {
+  let user_list = await getUserList({});
+  console.log(user_list)
+  res.render('add_team', user_list);
 }
 
 function update_team_data(team){
@@ -77,8 +97,10 @@ function update_team_data(team){
 }
 
 router.addTeamFormSubmit = async function(req, res, next) {
+  console.log('addTeamFormSubmit called')
   var team = req.body
   team['team_type'] = 'team';
+  console.log(team)
   team = update_team_data(team)
   await postTeam(team)
   let team_list = await getTeamList({});
