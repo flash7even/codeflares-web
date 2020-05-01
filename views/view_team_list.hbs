@@ -45,8 +45,10 @@
             if(my_status != "confirmed"){
                 action_link += '<a href="/team/confirm/{{id}}/" title="Confirm" data-toggle="tooltip"><i class="fas fa-check-circle"></i></a>'
                 action_link += "  "
+                action_link += '<a href="/team/reject/{{id}}/" title="Reject" data-toggle="tooltip"><i class="fas fa-times-circle"></i></a>'
+            }else{
+                action_link += '<a href="/team/reject/{{id}}/" title="Remove" data-toggle="tooltip"><i class="fas fa-minus-circle"></i></a>'
             }
-            action_link += '<a href="/team/reject/{{id}}/" title="Reject" data-toggle="tooltip"><i class="fas fa-times-circle"></i></a>'
             var team_data = [team_link, "{{team_purpose}}", "{{institution_name}}", member_list_items, action_link];
             db_team_list.push(team_data)
         {{/each}}

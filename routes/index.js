@@ -37,4 +37,6 @@ module.exports = function(newApp) {
     newApp.get('/team/list/', teamController.viewTeamList);
     newApp.get('/team/view/*', teamController.viewTeam);
     newApp.get('/team/confirm/*', teamController.confirmTeam);
+    newApp.get('/team/reject/*', teamController.rejectTeam);
+    newApp.get('/team/delete/*', teamController.deleteTeam);
 }

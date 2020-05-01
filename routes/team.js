@@ -125,25 +125,42 @@ router.viewTeam = async function(req, res, next) {
 
 router.confirmTeam = async function(req, res, next) {
   var url = req.url
-  console.log(url)
-  console.log(req.url)
-  console.log(url)
   var words = url.split("/");
-  console.log(words)
   var team_id = words[words.length-2]
-  console.log(team_id)
-
   var sess = req.session;
-
   var data = {
     "team_id": team_id,
     "user_handle": sess.username,
     "status": "confirmed"
   }
+  await updtateTeam(data)
+  res.redirect('/team/list/');
+}
 
-  console.log('Provide with data')
-  console.log(data)
+router.rejectTeam = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var team_id = words[words.length-2]
+  var sess = req.session;
+  var data = {
+    "team_id": team_id,
+    "user_handle": sess.username,
+    "status": "rejected"
+  }
+  await updtateTeam(data)
+  res.redirect('/team/list/');
+}
 
+router.deleteTeam = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var team_id = words[words.length-2]
+  var sess = req.session;
+  var data = {
+    "team_id": team_id,
+    "user_handle": sess.username,
+    "status": "deleted"
+  }
   await updtateTeam(data)
   res.redirect('/team/list/');
 }
