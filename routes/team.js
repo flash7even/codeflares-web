@@ -115,7 +115,7 @@ router.viewTeam = async function(req, res, next) {
   console.log(req.url)
   console.log(url)
   var words = url.split("/");
-  var team_id = words[words.length-1]
+  var team_id = words[words.length-2]
   console.log(team_id)
 
   var team_details = await teamDetails(team_id, req)
