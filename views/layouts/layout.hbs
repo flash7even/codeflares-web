@@ -154,7 +154,7 @@
                         </div>
 
                         <div style="padding: 3px;">
-                            <a href="#">
+                            <a href="#"  title="Taskbar">
                             <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
                                 <i class="fa fa-tasks navbar-btn-icon"></i>
                             </button>
@@ -162,22 +162,24 @@
                         </div>
 
                         <div style="padding: 3px;">
-                            <a href="#">
+                            <a href="#"  title="Inbox">
                             <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
                                 <i class="fa fa-inbox navbar-btn-icon"></i>
                             </button>
                             </a>
                         </div>
                         <div style="padding: 3px;">
+                            <a href="#"  title="Notification">
                             <button type="button btn-lg" id="" class="btn navbar-btn">
                                 <i class="fas fa-bell navbar-btn-icon"></i>
                             </button>
+                            </a>
                         </div>
                         {{/if}}
 
                         {{#unless session.email}}
                         <div style="padding: 3px;">
-                            <a href="/login/">
+                            <a href="/login/" title="Log In">
                             <button type="button btn-lg" onclick="/login/" id="" class="btn navbar-btn">
                                 <i class="fas fa-sign-in-alt navbar-btn-icon"></i>
                             </button>
@@ -187,7 +189,7 @@
 
                         {{#if session.email}}
                         <div style="padding: 3px;">
-                            <a href="/logout/">
+                            <a href="/logout/" title="Log Out">
                             <button type="button btn-lg" onclick="/logout/" id="" class="btn navbar-btn">
                                 <i class="fas fa-sign-out-alt navbar-btn-icon"></i>
                             </button>
@@ -197,7 +199,7 @@
 
                         {{#unless session.email}}
                         <div style="padding: 3px;">
-                            <a href="/signup/">
+                            <a href="/signup/" title="Sign Up">
                             <button type="button btn-lg" id="" class="btn navbar-btn">
                                 <i class="fas fa-user-plus navbar-btn-icon"></i>
                             </button>
@@ -207,7 +209,7 @@
 
                         {{#if session.email}}
                         <div style="padding: 3px;">
-                            <a href="/profile/{{session.username}}">
+                            <a href="/profile/{{session.username}}" title="Profile">
                             <button type="button btn-lg" id="" class="btn navbar-btn">
                                 <i class="fas fa-user navbar-btn-icon"></i>
                             </button>
