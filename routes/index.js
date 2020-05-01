@@ -36,4 +36,5 @@ module.exports = function(newApp) {
     newApp.post('/team/add/', teamController.addTeamFormSubmit);
     newApp.get('/team/list/', teamController.viewTeamList);
     newApp.get('/team/view/*', teamController.viewTeam);
+    newApp.get('/team/confirm/*', teamController.confirmTeam);
 }

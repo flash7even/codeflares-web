@@ -4,26 +4,18 @@ var express = require('express');
 var config = require('../config');
 var router = express.Router();
 const axios = require('axios');
-var team_search_url = config.server_host + 'team/search/'
+var team_search_url = config.server_host + 'team/search/user/'
 var user_search_url = config.server_host + 'user/search/'
 var team_submit_url = config.server_host + 'team/'
 
-async function getTeamList(search_param) {
+async function getTeamList(username, search_param) {
   console.log('getTeamList called');
-  var page = 0
-  var team_list = []
-  while(1){
-    var post_url = team_search_url + page.toString()
-    console.log("post_url: " + post_url)
-    let res = await axios.post(post_url, search_param);
-    team_list = res.data
-    page++
-    break;
-  }
+  var post_url = team_search_url + username
+  console.log("post_url: " + post_url)
+  let res = await axios.post(post_url, search_param);
   console.log('getTeamList done');
-  return team_list
+  return res.data
 }
-
 
 async function getUserList(search_param) {
   console.log('getUserList called');
@@ -45,6 +37,12 @@ async function postTeam(team_data) {
   var post_url = team_submit_url
   console.log("post_url: " + post_url)
   let res = await axios.post(post_url, team_data);
+}
+
+async function updtateTeam(team_data) {
+  var url = team_submit_url + 'member' + '/'
+  console.log("post_url: " + url)
+  let res = await axios.put(url, team_data);
 }
 
 async function teamDetails(team_id, req) {
@@ -102,12 +100,12 @@ router.addTeamFormSubmit = async function(req, res, next) {
   console.log(team)
   team = update_team_data(team)
   await postTeam(team)
-  let team_list = await getTeamList({});
-  res.render('view_team_list', team_list);
+  res.redirect('/team/list/');
 }
 
 router.viewTeamList = async function(req, res, next) {
-  let team_list = await getTeamList({});
+  var sess = req.session;
+  let team_list = await getTeamList(sess.username, {});
   console.log(team_list)
   res.render('view_team_list', team_list);
 }
@@ -123,6 +121,31 @@ router.viewTeam = async function(req, res, next) {
   var team_details = await teamDetails(team_id, req)
   console.log(team_details)
   res.render('team_profile', team_details);
+}
+
+router.confirmTeam = async function(req, res, next) {
+  var url = req.url
+  console.log(url)
+  console.log(req.url)
+  console.log(url)
+  var words = url.split("/");
+  console.log(words)
+  var team_id = words[words.length-2]
+  console.log(team_id)
+
+  var sess = req.session;
+
+  var data = {
+    "team_id": team_id,
+    "user_handle": sess.username,
+    "status": "confirmed"
+  }
+
+  console.log('Provide with data')
+  console.log(data)
+
+  await updtateTeam(data)
+  res.redirect('/team/list/');
 }
 
 module.exports = router;
