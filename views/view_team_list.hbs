@@ -35,10 +35,10 @@
             var my_status = "{{status}}"
             {{#each member_list}}
                 if(mem_count>0) member_list_items += ",  ";
-                member_list_items += "<a href = >"+"{{user_handle}} ({{status}})"+"</a>"
+                member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: #3b6e99; font-weight:700">{{user_handle}} ({{status}})</a>'
                 mem_count += 1
             {{/each}}
-            var team_link = "<a href = /team/view/" + "{{id}}/" +" >"+team_name+"</a>"
+            var team_link = '<a href = "/team/view/{{id}}/" style="color: #86c232; font-weight:700">{{team_name}}</a>'
 
             var action_link = ""
 
