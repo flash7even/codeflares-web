@@ -8,33 +8,87 @@ var individual_training_url = config.server_host + 'training/individual'
 var team_training_url = config.server_host + 'training/team/'
 var user_details_url = config.server_host + 'user/'
 
-async function getUserDetails(user_id) {
+
+
+
+
+//----------------- Call to the server -------------------//
+
+async function getUserDetails(res, req, user_id) {
   console.log('getUserDetails called');
   var url = user_details_url + user_id
   console.log("url: " + url)
-  let res = await axios.get(url);
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  let response = await axios.get(url, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
   console.log('getUserDetails done');
-  return res.data
+  return response.data
 }
 
-async function getIndividualTrainingModel() {
+async function getIndividualTrainingModel(res, req) {
     console.log('getIndividualTrainingModel called');
     console.log("post_url: " + individual_training_url)
-    let res = await axios.get(individual_training_url);
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    let response = await axios.get(individual_training_url, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
     console.log('getIndividualTrainingModel done');
-    return res.data
+    return response.data
 }
 
-async function getTeamTrainingModel(team_id) {
+async function getTeamTrainingModel(res, req, team_id) {
     var url = team_training_url + team_id
-    let res = await axios.get(url);
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    let response = await axios.get(url, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
     console.log('getTeamTrainingModel done');
-    return res.data
+    return response.data
 }
+
+
+
+
+
+
+
+
+
+
+
+//----------------- Routes -------------------//
 
 
 router.viewIndividualTraining = async function(req, res, next) {
-    var training_data = await getIndividualTrainingModel()
+    var training_data = await getIndividualTrainingModel(res, req)
 
     var len, idx;
 
@@ -59,10 +113,10 @@ router.viewIndividualTraining = async function(req, res, next) {
 
 router.viewTeamTraining = async function(req, res, next) {
     var sess = req.session;
-    var user_details = await getUserDetails(sess.user_id)
+    var user_details = await getUserDetails(res, req, sess.user_id)
     var team_id = user_details.settings.current_team_id
 
-    var training_data = await getTeamTrainingModel(team_id)
+    var training_data = await getTeamTrainingModel(res, req, team_id)
 
     console.log(training_data)
 

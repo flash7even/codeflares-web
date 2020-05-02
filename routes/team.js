@@ -8,24 +8,54 @@ var team_search_url = config.server_host + 'team/search/user/'
 var user_search_url = config.server_host + 'user/search/'
 var team_submit_url = config.server_host + 'team/'
 
-async function getTeamList(username, search_param) {
+
+
+
+
+//----------------- Call to the server -------------------//
+
+async function getTeamList(res, req, username, search_param) {
   console.log('getTeamList called');
   var post_url = team_search_url + username
   console.log("post_url: " + post_url)
-  let res = await axios.post(post_url, search_param);
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  let response = await axios.post(post_url, search_param, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
   console.log('getTeamList done');
-  return res.data
+  return response.data
 }
 
-async function getUserList(search_param) {
+async function getUserList(res, req, search_param) {
   console.log('getUserList called');
   var page = 0
   var user_list = []
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
   while(1){
     var post_url = user_search_url + page.toString()
     console.log("post_url: " + post_url)
-    let res = await axios.post(post_url, search_param);
-    user_list = res.data
+    let response = await axios.post(post_url, search_param, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    user_list = response.data
     page++
     break;
   }
@@ -33,34 +63,80 @@ async function getUserList(search_param) {
   return user_list
 }
 
-async function postTeam(team_data) {
+async function postTeam(res, req, team_data) {
   var post_url = team_submit_url
   console.log("post_url: " + post_url)
-  let res = await axios.post(post_url, team_data);
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  let response = await axios.post(post_url, team_data, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
+  return response.data
 }
 
-async function updtateTeam(team_data) {
+async function updtateTeam(res, req, team_data) {
   var url = team_submit_url + 'member' + '/'
   console.log("post_url: " + url)
-  let res = await axios.put(url, team_data);
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  let response = await axios.put(url, team_data, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
+  return response.data
 }
 
-async function teamDetails(team_id, req) {
+async function teamDetails(res, req, team_id) {
   console.log('teamDetails called')
   var sess = req.session;
   var access_token = sess.access_token
-  const config = {
+  const auth_config = {
       headers: { Authorization: `Bearer ${access_token}` }
   };
   var url = team_submit_url + team_id
   console.log("url: " + url)
-  let res = await axios.get(url, {}, config);
+  let response = await axios.get(url, {}, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
   console.log('teamDetails done')
-  return res.data
+  return response.data
 }
 
+
+
+
+
+
+
+
+
+
+
+//----------------- Routes -------------------//
+
+
 router.addTeamForm = async function(req, res, next) {
-  let user_list = await getUserList({});
+  let user_list = await getUserList(res, req, {});
   console.log(user_list)
   res.render('add_team', user_list);
 }
@@ -99,13 +175,13 @@ router.addTeamFormSubmit = async function(req, res, next) {
   team['team_type'] = 'team';
   console.log(team)
   team = update_team_data(team)
-  await postTeam(team)
+  await postTeam(res, req, team)
   res.redirect('/team/list/');
 }
 
 router.viewTeamList = async function(req, res, next) {
   var sess = req.session;
-  let team_list = await getTeamList(sess.username, {});
+  let team_list = await getTeamList(res, req, sess.username, {});
   console.log(team_list)
   res.render('view_team_list', team_list);
 }
@@ -118,7 +194,7 @@ router.viewTeam = async function(req, res, next) {
   var team_id = words[words.length-2]
   console.log(team_id)
 
-  var team_details = await teamDetails(team_id, req)
+  var team_details = await teamDetails(res, req, team_id)
   console.log(team_details)
   res.render('team_profile', team_details);
 }
@@ -133,7 +209,7 @@ router.confirmTeam = async function(req, res, next) {
     "user_handle": sess.username,
     "status": "confirmed"
   }
-  await updtateTeam(data)
+  await updtateTeam(res, req, data)
   res.redirect('/team/list/');
 }
 
@@ -147,7 +223,7 @@ router.rejectTeam = async function(req, res, next) {
     "user_handle": sess.username,
     "status": "rejected"
   }
-  await updtateTeam(data)
+  await updtateTeam(res, req, data)
   res.redirect('/team/list/');
 }
 
@@ -161,9 +237,8 @@ router.deleteTeam = async function(req, res, next) {
     "user_handle": sess.username,
     "status": "deleted"
   }
-  await updtateTeam(data)
+  await updtateTeam(res, req, data)
   res.redirect('/team/list/');
 }
 
 module.exports = router;
-

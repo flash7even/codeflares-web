@@ -10,47 +10,119 @@ var login_url = config.server_host + 'auth/login'
 var logout_url = config.server_host + 'auth/logout/at'
 var team_search_url = config.server_host + 'team/search/user/'
 
-async function getTeamList(username, search_param) {
+
+
+
+
+//----------------- Call to the server -------------------//
+
+async function getTeamList(res, req, username, search_param) {
     console.log('getTeamList called');
     var post_url = team_search_url + username
     console.log("post_url: " + post_url)
-    let res = await axios.post(post_url, search_param);
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    let response = await axios.post(post_url, search_param, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+
     console.log('getTeamList done');
-    return res.data
+    return response.data
 }
 
-async function searchUser(user_data, req) {
+async function searchUser(res, req, user_data) {
     console.log('searchUser called')
     var sess = req.session;
     var access_token = sess.access_token
-    const config = {
+    const auth_config = {
         headers: { Authorization: `Bearer ${access_token}` }
     };
     console.log("post_url: " + user_search_url)
-    let res = await axios.post(user_search_url, user_data, config);
+    let response = await axios.post(user_search_url, user_data, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+
     console.log('searchUser completed')
-    return res.data
+    return response.data
 }
 
-async function logIn(data) {
+async function logIn(res, req, data) {
     console.log('logIn called');
-    let res = await axios.post(login_url, data);
+    console.log('Log in call to server')
+    let response = await axios.post(login_url, data)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+
     console.log('logIn done');
-    return res
+    return response.data
 }
 
-async function updateUser(user_data, user_id) {
+async function updateUser(res, req, user_data, user_id) {
     console.log('updateUser called')
     var url = user_submit_url + user_id
     console.log("url: " + url)
-    let res = await axios.put(url, user_data);
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    let response = await axios.put(url, user_data, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
 }
 
-async function postUser(user_data) {
+async function postUser(res, req, user_data) {
     var post_url = user_submit_url
     console.log("post_url: " + post_url)
-    let res = await axios.post(post_url, user_data);
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    let response = await axios.post(post_url, user_data, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+//----------------- Routes -------------------//
 
 router.showHome = function(req, res, next) {
     res.render('index', { title: 'This Is The Homepage' , pageTitle: 'Home'});
@@ -62,23 +134,18 @@ router.showLogIn = function(req, res, next) {
 
 router.logInSubmit = async function(req, res, next) {
     var user_data = req.body
-    var login_resp = await logIn(user_data)
-    if(login_resp.status == 200 || login_resp.status == 201){
-        var login_data = login_resp.data
-        console.log(login_data)
+    var login_data = await logIn(res, req, user_data)
+    console.log(login_data)
 
-        var sess = req.session;
-        sess.username = login_data.username
-        sess.email = login_data.email
-        sess.full_name = login_data.full_name
-        sess.user_role = login_data.user_role
-        sess.user_id = login_data.id
-        sess.access_token = login_data.access_token
-        sess.refresh_token = login_data.refresh_token
-        res.redirect('/');
-    }else{
-        console.log('Log In Failed')
-    }
+    var sess = req.session;
+    sess.username = login_data.username
+    sess.email = login_data.email
+    sess.full_name = login_data.full_name
+    sess.user_role = login_data.user_role
+    sess.user_id = login_data.id
+    sess.access_token = login_data.access_token
+    sess.refresh_token = login_data.refresh_token
+    res.redirect('/');
 }
 
 router.showSignUp = function(req, res, next) {
@@ -94,7 +161,12 @@ router.logOutSubmit = async function(req, res, next) {
         headers: { Authorization: `Bearer ${access_token}` }
     };
     console.log(config)
-    await axios.post(logout_url, {}, config);
+    console.log("logout_url")
+    console.log(logout_url)
+    var response = await axios.post(logout_url, {}, config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
     req.session.destroy();
     console.log('log out done');
     res.redirect('/');
@@ -104,7 +176,7 @@ router.signUpSubmit = async function(req, res, next) {
     var user_data = req.body
     user_data['user_role'] = 'contestant'
     delete user_data['confirm_password']
-    await postUser(user_data)
+    await postUser(res, req, user_data)
     res.render('login', {});
 }
 
@@ -119,7 +191,7 @@ router.showUserProfile = async function(req, res, next) {
         'username': user_name
     }
 
-    var resp = await searchUser(param, req)
+    var resp = await searchUser(res, req, param)
     console.log(resp)
 
     var user_details = resp[0];
@@ -131,7 +203,7 @@ router.showUserProfile = async function(req, res, next) {
 
 router.updateUserSettings = async function(req, res, next) {
     var sess = req.session;
-    let team_list = await getTeamList(sess.username, {"status": "confirmed"});
+    let team_list = await getTeamList(res, req, sess.username, {"status": "confirmed"});
     res.render('update_user_settings', team_list);
 }
 
@@ -142,7 +214,7 @@ router.updateUserSettingsSubmit = async function(req, res, next) {
     console.log(settings_data)
     var sess = req.session;
     var user_id = sess.user_id
-    await updateUser(settings_data, user_id);
+    await updateUser(res, req, settings_data, user_id);
     res.redirect('/');
 }
 

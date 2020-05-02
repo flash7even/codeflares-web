@@ -8,15 +8,33 @@ var problem_search_url = config.server_host + 'problem/search/'
 var problem_submit_url = config.server_host + 'problem/'
 
 
-async function getProblemList(search_param) {
+
+
+
+//----------------- Call to the server -------------------//
+
+
+async function getProblemList(res, req, search_param) {
   console.log('getProblemList called');
   var page = 0
   var problem_list = []
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
   while(1){
     var post_url = problem_search_url + page.toString()
     console.log("post_url: " + post_url)
-    let res = await axios.post(post_url, search_param);
-    problem_list = res.data
+    let response = await axios.post(post_url, search_param, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    problem_list = response.data
     page++
     break;
   }
@@ -24,11 +42,35 @@ async function getProblemList(search_param) {
   return problem_list
 }
 
-async function postProblem(problem_data) {
+async function postProblem(res, req, problem_data) {
   var post_url = problem_submit_url
   console.log("post_url: " + post_url)
-  let res = await axios.post(post_url, problem_data);
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  let response = await axios.post(post_url, problem_data, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
+  return response.data
 }
+
+
+
+
+
+
+
+
+
+
+//----------------- Routes -------------------//
 
 router.addProblemForm = function(req, res, next) {
   res.render('add_problem', {});
@@ -65,19 +107,19 @@ function update_problem_data(problem){
 router.addProblemFormSubmit = async function(req, res, next) {
   var problem = req.body
   problem = update_problem_data(problem)
-  await postProblem(problem)
-  let problem_list = await getProblemList({});
-  res.render('view_problem_list', problem_list);
+  await postProblem(res, req, problem)
+  res.redirect('/problem/list/')
 }
 
 router.viewProblemList = async function(req, res, next) {
-  let problem_list = await getProblemList({});
+  let problem_list = await getProblemList(res, req, {});
   res.render('view_problem_list', problem_list);
 }
 
 router.viewProblemListAfterFormSubmit = async function(req, res, next) {
-  let problem_list = await getProblemList(req.body);
+  let problem_list = await getProblemList(res, req, req.body);
   res.render('view_problem_list', problem_list);
 }
 
 module.exports = router;
+
