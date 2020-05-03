@@ -20,7 +20,16 @@
                 </div>
                 <div class="form-group col-md-2">
                     <div class="input-group">
-                        <input type="text" id="oj_name" class="form-control" name="oj_name" placeholder="Online Judge">
+                        <select class="form-control" id="oj_name">
+                            <option value="ALL">Online Judge (All)</option>
+                            <option value="codeforces">Codeforces</option>
+                            <option value="codechef">Codechef</option>
+                            <option value="codechef">Codechef</option>
+                            <option value="lightoj">Light OJ</option>
+                            <option value="spoj">SPOJ</option>
+                            <option value="uva">UVA</option>
+                            <option value="hackerrank">Hackerrank</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group col-md-2">
@@ -70,9 +79,8 @@
         var db_problem_list = [];
 
         {{#each problem_list}}
-            console.log("{{problem_name}}")
-            var problem_name = "{{problem_name}}";
-            var problem_data = ["<a href = {{source_link}}>"+problem_name+"</a>", "{{problem_difficulty}}", "{{oj_name}}", "{{category_list_light}}"];
+            var prbolem_link = '<a href = {{source_link}} style="color: #1d1dd1; font-weight:500; text-decoration: underline;">{{problem_name}}</a>'
+            var problem_data = [prbolem_link, "{{problem_difficulty}}", "{{oj_name}}", "{{category_list_light}}"];
             db_problem_list.push(problem_data)
         {{/each}}
 
@@ -86,7 +94,6 @@
             "aaData": dt_list,
             paging: true,
             destroy: true,
-            scrollY: '500px',
             scrollCollapse: true,
             responsive: true
         });

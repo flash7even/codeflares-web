@@ -25,7 +25,7 @@
                 {{#each problem_stat}}
                 <tr>
                     <td>{{idx}}</td>
-                    <td><a href = {{source_link}}>{{problem_name}}</a></td>
+                    <td><a href = {{source_link}} style="color: #1d1dd1; font-weight:500; text-decoration: underline;">{{problem_name}}</a></td>
                     <td>{{oj_name}}</td>
                     <td>{{relevant_score}}</td>
                     <td>
@@ -75,6 +75,10 @@
 </div>
 
 <div class="canvas-table">
+    <div class="table-title-2">
+        <h3 style="text-align: center;"><b>Topic Wise Skills</b></h3>
+    </div>
+    <br>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 </div>
 
@@ -82,7 +86,7 @@
 
 <div class="table-type-1">
     <div class="table-title-2">
-        <h4 style="text-align: center;"><b>Overall Algorithm Skills</b></h4>
+        <h3 style="text-align: center;"><b>Overall Algorithm Skills</b></h3>
     </div>
     <table id="categorySkillListTable" class="table table-striped table-bordered category-list-table">
         <thead>
@@ -157,7 +161,7 @@
             animationEnabled: true,
             
             title:{
-                text:"Topic Wise Skills"
+                text:""
             },
             axisX:{
                 interval: 1

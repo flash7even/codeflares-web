@@ -113,6 +113,7 @@ router.addProblemFormSubmit = async function(req, res, next) {
 
 router.viewProblemList = async function(req, res, next) {
   let problem_list = await getProblemList(res, req, {});
+  console.log(problem_list)
   res.render('view_problem_list', problem_list);
 }
 

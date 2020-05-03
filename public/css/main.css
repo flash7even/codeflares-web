@@ -83,5 +83,9 @@ body {
     box-shadow: 1px 1px 3px rgba(102, 252, 241, 10.35);
     padding: 30px;
     color: #0B0C10;
+}
 
+.table-title-2 {
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(25, 46, 71);
 }

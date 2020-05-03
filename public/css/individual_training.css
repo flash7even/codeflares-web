@@ -106,11 +106,3 @@ table.table td i {
     box-shadow: 1 1px 1px rgba(209, 168, 168, 0.05);
     font-size: small;
 }
-
-
-.table-title-2 {
-    border-radius: 20px;
-    background: #92cecd;		
-    padding: 16px 25px;
-    margin: -20px -25px 10px;
-}
