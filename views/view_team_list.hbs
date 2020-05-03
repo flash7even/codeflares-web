@@ -25,6 +25,10 @@
 <script type="text/javascript">
 
     function getTeamList(){
+        var current_user = "{{logged_in_user_id}}"
+        console.log("current_user")
+        console.log(current_user)
+
         var db_team_list = [];
 
         {{#each team_list}}
@@ -35,19 +39,27 @@
             var my_status = "{{status}}"
             {{#each member_list}}
                 if(mem_count>0) member_list_items += ",  ";
-                member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: #3b6e99; font-weight:700">{{user_handle}} ({{status}})</a>'
+                member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: #3b6e99; font-weight:700;">{{user_handle}} ({{status}})</a>'
                 mem_count += 1
             {{/each}}
-            var team_link = '<a href = "/team/view/{{id}}/" style="color: #86c232; font-weight:700">{{team_name}}</a>'
+            var team_link = '<a href = "/team/view/{{id}}/" style="color: #86c232; font-weight:700;">{{team_name}}</a>'
 
             var action_link = ""
 
             if(my_status != "confirmed"){
-                action_link += '<a href="/team/confirm/{{id}}/" title="Confirm" data-toggle="tooltip"><i class="fas fa-check-circle"></i></a>'
+                action_link += '<a href="/team/confirm/{{id}}/" title="Confirm" data-toggle="tooltip" style="color: #5bc0de;"><i class="fas fa-check-circle"></i></a>'
                 action_link += "  "
-                action_link += '<a href="/team/reject/{{id}}/" title="Reject" data-toggle="tooltip"><i class="fas fa-times-circle"></i></a>'
+                action_link += '<a href="/team/reject/{{id}}/" title="Reject" data-toggle="tooltip" style="color: #f8b317;"><i class="fas fa-times-circle"></i></a>'
             }else{
-                action_link += '<a href="/team/reject/{{id}}/" title="Remove" data-toggle="tooltip"><i class="fas fa-minus-circle"></i></a>'
+                var team_lead = "{{team_leader_id}}"
+                console.log("team_lead")
+                console.log(team_lead)
+                if(current_user == team_lead){
+                    action_link += '<a href="/team/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>'
+                }else{
+                    action_link += '<a href="/team/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: #f8b317;"><i class="fas fa-minus-circle"></i></a>'
+                }
+                
             }
             var team_data = [team_link, "{{team_purpose}}", "{{institution_name}}", member_list_items, action_link];
             db_team_list.push(team_data)

@@ -82,6 +82,25 @@ async function postTeam(res, req, team_data) {
   return response.data
 }
 
+async function deleteTeam(res, req, team_id) {
+  var url = team_submit_url + team_id
+  console.log("url: " + url)
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  let response = await axios.delete(url, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
+  return response.data
+}
+
 async function updtateTeam(res, req, team_data) {
   var url = team_submit_url + 'member' + '/'
   console.log("post_url: " + url)
@@ -182,6 +201,7 @@ router.addTeamFormSubmit = async function(req, res, next) {
 router.viewTeamList = async function(req, res, next) {
   var sess = req.session;
   let team_list = await getTeamList(res, req, sess.username, {});
+  team_list['logged_in_user_id'] = sess.user_id
   console.log(team_list)
   res.render('view_team_list', team_list);
 }
@@ -231,13 +251,7 @@ router.deleteTeam = async function(req, res, next) {
   var url = req.url
   var words = url.split("/");
   var team_id = words[words.length-2]
-  var sess = req.session;
-  var data = {
-    "team_id": team_id,
-    "user_handle": sess.username,
-    "status": "deleted"
-  }
-  await updtateTeam(res, req, data)
+  await deleteTeam(res, req, team_id)
   res.redirect('/team/list/');
 }
 
