@@ -6,12 +6,11 @@ body {
 
 
 .error-page {
-    width: 100%;
+    margin: 15px;
+    padding:30px;
     border-radius: 20px;
-    margin-bottom: 15px;
     background: rgb(255, 255, 255);
     border: 1px solid #f3f3f3;
     box-shadow: 1px 1px 3px rgba(102, 252, 241, 10.35);
-    padding: 30px;
-    padding-top: 5px;
+    min-height: 750px;
 }
