@@ -7,7 +7,7 @@ const axios = require('axios');
 var team_search_url = config.server_host + 'team/search/user/'
 var user_search_url = config.server_host + 'user/search/'
 var team_submit_url = config.server_host + 'team/'
-
+var team_cf_history_url = config.server_host + 'team/rating-history/'
 
 
 
@@ -141,6 +141,27 @@ async function teamDetails(res, req, team_id) {
   return response.data
 }
 
+async function teamCodeforcesHistory(res, req, team_id) {
+  console.log('teamDetails called')
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  var url = team_cf_history_url + team_id + '/codeforces'
+  console.log("url: " + url)
+  let response = await axios.get(url, {}, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
+  console.log('teamDetails done')
+  return response.data
+}
+
 
 
 
@@ -216,6 +237,12 @@ router.viewTeam = async function(req, res, next) {
 
   var team_details = await teamDetails(res, req, team_id)
   console.log(team_details)
+
+  var team_cf_history = await teamCodeforcesHistory(res, req, team_id)
+  console.log(team_cf_history)
+
+  team_details['codeforces_history'] = team_cf_history
+
   res.render('team_profile', team_details);
 }
 

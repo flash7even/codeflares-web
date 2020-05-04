@@ -1,28 +1,25 @@
 <head>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/css/user_profile.css">
 </head>
 
-<div class="container">
+<div class="team-top">
 	<div class="row">
-
 		<div class="col-md-7">
-
 			<div class="row">
 				<div class="col-md-7">
 					<h3 style="color:coral;">{{title}}</h3>
-					<h2>{{team_name}}</h2>
+					<h2 style="color:rgb(99, 204, 218);">{{team_name}}</h2>
 					<h5 style="color:darkgreen">Team Rating: {{rating}} (max rating {{max_rating}})</h5>
 					<h5>Institution Name: {{institution_name}}</h5>
 					<h5>Team Purpose: {{team_purpose}}</h5>
 					<h5 id="team_members"> Member List: </h5>
 				</div>
 			</div>
-
 			<br>
-
 			<div class="row">
 				<div class="col-md-2 emphasis">
 					<h3><strong> {{follower}} </strong></h3>                    
@@ -37,9 +34,7 @@
 					<h6><small>Problem Solved</small></h6>
 				</div>
 			</div>
-
 			<br>
-
 			<div class="row">
 				<div class="col-md-3 emphasis">
 					<button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>
@@ -49,13 +44,11 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="col-md-5">
 			<div class="image-wrapper">
 				<img src="/img/profile.png" alt="image" height="380" width="380">
 			</div>
 		</div>
-
 	</div>
 
 	<br>
@@ -63,244 +56,153 @@
 	<br>
 	<br>
 
-	<div id="chartContainer1" style="height: 350px; width: 100%;"></div>
-
-	<br>
-	<br>
-	<br>
-
-	<div id="chartContainer2" style="height: 330px; width: 100%;"></div>
-
-	<div id="chart-container"></div>
-
-
+	<div class="team-view">
+        <div class="table-title-2">
+            <h4 style="text-align: center;"><b>CodeTrainer Team Rating History</b></h4>
+        </div>
+		<div id="team_rating_chart" style="width: 100%; height: 500px"></div>
+		<br>
+		<br>
+        <div class="table-title-2">
+            <h4 style="text-align: center;"><b>CodeTrainer Rating History Comparison</b></h4>
+        </div>
+		<div id="codetrainer_rating_comparison_chart" style="width: 100%; height: 500px"></div>
+		<br>
+		<br>
+        <div class="table-title-2">
+            <h4 style="text-align: center;"><b>CodeForces Rating History Comparison</b></h4>
+        </div>
+		<div id="codeforces_rating_comparison_chart" style="width: 100%; height: 500px"></div>
+	</div>
 </div>
-
 <script>
 
 window.onload = function () {
-
-
 	var member_list_items = "";
 	var mem_count = 0;
 	{{#each member_list}}
 		if(mem_count>0) member_list_items += " ";
-		member_list_items += "<a href = >"+"{{user_handle}}"+"</a>"
+    member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700;">{{user_handle}}</a>'
 		mem_count += 1
 	{{/each}}
 
 	var team_members = document.getElementById('team_members');
 	team_members.innerHTML = "Member List: " + member_list_items
-
-	var chart = new CanvasJS.Chart("chartContainer2", {
-		theme: "light",
-		exportFileName: "Doughnut Chart",
-		exportEnabled: true,
-		animationEnabled: true,
-		backgroundColor: "#e5e6e7",
-		title:{
-			text: "Algorithm Statistics"
-		},
-		legend:{
-			cursor: "pointer",
-			itemclick: explodePie
-		},
-		data: [{
-			type: "doughnut",
-			innerRadius: 80,
-			showInLegend: true,
-			toolTipContent: "<b>{name}</b>: {y} (#percent%)",
-			indexLabel: "{name} - #percent%",
-			dataPoints: [
-				{ y: 80, name: "Data Structure" },
-				{ y: 65, name: "Dynamic Programming" },
-				{ y: 40, name: "Geometry" },
-				{ y: 35, name: "String Matching" },
-				{ y: 89, name: "Graph" },
-				{ y: 77, name: "Number Theory"},
-				{ y: 25, name: "Combinatorics" },
-				{ y: 45, name: "Ad Hoc" }
-			]
-		}]
-	});
-	chart.render();
-
-	function explodePie (e) {
-		if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
-			e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
-		} else {
-			e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
-		}
-		e.chart.render();
-	}
-
-
-	var chart = new CanvasJS.Chart("chartContainer1", {
-		animationEnabled: true,
-		backgroundColor: "#e5e6e7",
-		title:{
-			text: "Rating History"
-		},
-		axisX:{
-			valueFormatString: "DD MMM YYYY",
-			crosshair: {
-				enabled: true,
-				snapToDataPoint: true
-			}
-		},
-		axisY: {
-			title: "Rating Value",
-			includeZero: false,
-			valueFormatString: "##0.00",
-			crosshair: {
-				enabled: true,
-				snapToDataPoint: true,
-				labelFormatter: function(e) {
-					return CanvasJS.formatNumber(e.value, "##0.00");
-				}
-			}
-		},
-		data: [{
-			type: "area",
-			xValueFormatString: "DD MMM YYYY",
-			yValueFormatString: "##0.00",
-			dataPoints: [
-				{ x: new Date(2016, 07, 01), y: 966.727997 },
-				{ x: new Date(2016, 07, 08), y: 1060.459999 },
-				{ x: new Date(2016, 07, 15), y: 1120.011002 },
-				{ x: new Date(2016, 07, 22), y: 1145.751999 },
-				{ x: new Date(2016, 07, 29), y: 1203.500000 },
-				{ x: new Date(2016, 08, 05), y: 1388.436996 },
-				{ x: new Date(2016, 08, 09), y: 1590.650002 },
-				{ x: new Date(2016, 08, 16), y: 1605.750999 },
-				{ x: new Date(2016, 08, 23), y: 1611.169998 },
-				{ x: new Date(2016, 08, 30), y: 1690.570000 },
-				{ x: new Date(2016, 09, 08), y: 1760.699997 },
-				{ x: new Date(2016, 09, 15), y: 1860.686996 },
-				{ x: new Date(2016, 09, 22), y: 2200.996002 },
-				{ x: new Date(2016, 09, 29), y: 2345.899002 },
-				{ x: new Date(2016, 10, 06), y: 2390.127998 },
-				{ x: new Date(2016, 10, 13), y: 2440.759003 },
-				{ x: new Date(2016, 10, 20), y: 2500.480003 },
-				{ x: new Date(2016, 10, 27), y: 2590.623001 },
-				{ x: new Date(2016, 11, 04), y: 2681.408997 },
-				{ x: new Date(2016, 11, 11), y: 2735.041000 },
-				{ x: new Date(2016, 11, 18), y: 2800.778999 },
-				{ x: new Date(2017, 01, 25), y: 2850.654999 },
-				{ x: new Date(2017, 02, 05), y: 3106.667000 }
-			]
-		}]
-	});
-	chart.render();
 }
 
-const dataSource = {
-  chart: {
-    caption: "App Publishing Trend",
-    subcaption: "2012-2016",
-    xaxisname: "Years",
-    yaxisname: "Total number of apps in store",
-    formatnumberscale: "1",
-    plottooltext:
-      "<b>$dataValue</b> apps were available on <b>$seriesName</b> in $label",
-    theme: "fusion",
-    drawcrossline: "1"
-  },
-  categories: [
-    {
-      category: [
-        {
-          label: "2012"
-        },
-        {
-          label: "2013"
-        },
-        {
-          label: "2014"
-        },
-        {
-          label: "2015"
-        },
-        {
-          label: "2016"
-        }
-      ]
-    }
-  ],
-  dataset: [
-    {
-      seriesname: "iOS App Store",
-      data: [
-        {
-          value: "125000"
-        },
-        {
-          value: "300000"
-        },
-        {
-          value: "480000"
-        },
-        {
-          value: "800000"
-        },
-        {
-          value: "1100000"
-        }
-      ]
-    },
-    {
-      seriesname: "Google Play Store",
-      data: [
-        {
-          value: "70000"
-        },
-        {
-          value: "150000"
-        },
-        {
-          value: "350000"
-        },
-        {
-          value: "600000"
-        },
-        {
-          value: "1400000"
-        }
-      ]
-    },
-    {
-      seriesname: "Amazon AppStore",
-      data: [
-        {
-          value: "10000"
-        },
-        {
-          value: "100000"
-        },
-        {
-          value: "300000"
-        },
-        {
-          value: "600000"
-        },
-        {
-          value: "900000"
-        }
-      ]
-    }
-  ]
-};
 
-FusionCharts.ready(function() {
-  var myChart = new FusionCharts({
-    type: "mscolumn2d",
-    renderAt: "chart-container",
-    width: "100%",
-    height: "100%",
-    dataFormat: "json",
-    dataSource
-  }).render();
-});
+  //------ CodeTrainer TEAM RATING HISTORY CHART -------//
+  function show_codetrainer_team_rating(){
+    google.charts.load('current', {'packages':['line']});
+    google.charts.setOnLoadCallback(drawChart);
 
+    function drawChart() {
+		var data = new google.visualization.DataTable();
+
+		data.addColumn('date', 'Year');
+		data.addColumn('number', "Rating");
+
+		var rating_data_list = []
+		{{#each rating_history}}
+			var rating_data = []
+			rating_data.push(new Date({{date.year}}, {{date.month}}, {{date.day}}));
+			rating_data.push({{rating}})
+			rating_data_list.push(rating_data)
+		{{/each}}
+
+		data.addRows(rating_data_list);
+
+		var options = {
+			chart: {
+				title: ''
+			},
+		};
+
+      var chart = new google.charts.Line(document.getElementById('team_rating_chart'));
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+  }
+  //------ CodeTrainer TEAM RATING HISTORY ENDS -------//
+
+	//------ CodeTrainer RATING HISTORY COMPARISON CHART -------//
+	function show_codetrainer_rating(){
+		google.charts.load('current', {'packages':['line']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('date', 'Year');
+
+			{{#each codeforces_history.handle_list}}
+				var user_handle = "{{user_handle}}"
+				data.addColumn('number', user_handle);
+			{{/each}}
+
+			var rating_data_list = []
+			{{#each codeforces_history.history}}
+				var rating = []
+				rating.push(new Date({{date.year}}, {{date.month}}, {{date.day}}));
+				{{#each rating_list}}
+					rating.push({{rating}})
+				{{/each}}
+				rating_data_list.push(rating)
+			{{/each}}
+
+			data.addRows(rating_data_list);
+
+			var options = {
+				chart: {
+				title: ''
+				},
+			};
+
+			var chart = new google.charts.Line(document.getElementById('codetrainer_rating_comparison_chart'));
+			chart.draw(data, google.charts.Line.convertOptions(options));
+		}
+	}
+	//------ CodeTrainer RATING HISTORY COMPARISON CHART ENDS -------//
+
+
+	//------ CODEFORCES RATING HISTORY COMPARISON CHART -------//
+	function show_codeforces_rating(){
+		google.charts.load('current', {'packages':['line']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('date', 'Year');
+
+			{{#each codeforces_history.handle_list}}
+				var user_handle = "{{user_handle}}"
+				data.addColumn('number', user_handle);
+			{{/each}}
+
+			var rating_data_list = []
+			{{#each codeforces_history.history}}
+				var rating = []
+				rating.push(new Date({{date.year}}, {{date.month}}, {{date.day}}));
+				{{#each rating_list}}
+					rating.push({{rating}})
+				{{/each}}
+				rating_data_list.push(rating)
+			{{/each}}
+
+			data.addRows(rating_data_list);
+
+			var options = {
+				chart: {
+				title: ''
+				},
+			};
+
+			var chart = new google.charts.Line(document.getElementById('codeforces_rating_comparison_chart'));
+			chart.draw(data, google.charts.Line.convertOptions(options));
+		}
+	}
+	//------ CODEFORCES RATING HISTORY COMPARISON CHART ENDS -------//
+
+	show_codeforces_rating();
+	show_codetrainer_rating();
+	show_codetrainer_team_rating();
 
 </script>

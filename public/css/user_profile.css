@@ -1,7 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
 body
 {
     font-family: 'Lato', 'sans-serif';
+    color: black;
 }
 .profile
 {
@@ -64,4 +66,15 @@ span.tags
     left: 50%;
     margin-left: -10px;
     z-index: 10;
+}
+
+
+.team-top {
+    margin: 20px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    background: rgb(255, 255, 255);
+    border: 1px solid #f3f3f3;
+    box-shadow: 1px 1px 3px rgba(102, 252, 241, 10.35);
+    padding: 30px;
 }
