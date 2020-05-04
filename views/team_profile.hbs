@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/user_profile.css">
 </head>
 
-<div class="team-top">
+<div class="profile-top">
 	<div class="row">
 		<div class="col-md-7">
 			<div class="row">
@@ -91,38 +91,38 @@ window.onload = function () {
 }
 
 
-  //------ CodeTrainer TEAM RATING HISTORY CHART -------//
-  function show_codetrainer_team_rating(){
-    google.charts.load('current', {'packages':['line']});
-    google.charts.setOnLoadCallback(drawChart);
+	//------ CodeTrainer TEAM RATING HISTORY CHART -------//
+	function show_codetrainer_team_rating(){
+		google.charts.load('current', {'packages':['line']});
+		google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-		var data = new google.visualization.DataTable();
+		function drawChart() {
+			var data = new google.visualization.DataTable();
 
-		data.addColumn('date', 'Year');
-		data.addColumn('number', "Rating");
+			data.addColumn('date', 'Year');
+			data.addColumn('number', "Rating");
 
-		var rating_data_list = []
-		{{#each rating_history}}
-			var rating_data = []
-			rating_data.push(new Date({{date.year}}, {{date.month}}, {{date.day}}));
-			rating_data.push({{rating}})
-			rating_data_list.push(rating_data)
-		{{/each}}
+			var rating_data_list = []
+			{{#each rating_history}}
+				var rating_data = []
+				rating_data.push(new Date({{date.year}}, {{date.month}}, {{date.day}}));
+				rating_data.push({{rating}})
+				rating_data_list.push(rating_data)
+			{{/each}}
 
-		data.addRows(rating_data_list);
+			data.addRows(rating_data_list);
 
-		var options = {
-			chart: {
-				title: ''
-			},
-		};
+			var options = {
+				chart: {
+					title: ''
+				},
+			};
 
-      var chart = new google.charts.Line(document.getElementById('team_rating_chart'));
-      chart.draw(data, google.charts.Line.convertOptions(options));
-    }
-  }
-  //------ CodeTrainer TEAM RATING HISTORY ENDS -------//
+		var chart = new google.charts.Line(document.getElementById('team_rating_chart'));
+		chart.draw(data, google.charts.Line.convertOptions(options));
+		}
+	}
+	//------ CodeTrainer TEAM RATING HISTORY ENDS -------//
 
 	//------ CodeTrainer RATING HISTORY COMPARISON CHART -------//
 	function show_codetrainer_rating(){

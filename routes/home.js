@@ -194,7 +194,8 @@ router.showUserProfile = async function(req, res, next) {
     var resp = await searchUser(res, req, param)
     console.log(resp)
 
-    var user_details = resp[0];
+    var user_details = resp.user_list[0];
+    console.log(user_details)
 
 
     res.render('user_profile', user_details);
