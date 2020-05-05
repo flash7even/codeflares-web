@@ -80,7 +80,7 @@
         var db_problem_list = [];
 
         {{#each problem_list}}
-            var prbolem_link = '<a href = {{source_link}} style="color: #1d1dd1; font-weight:500; text-decoration: underline;">{{problem_name}}</a>'
+            var prbolem_link = '<a href = {{source_link}} style="color: #007bff; font-weight:500; text-decoration: underline;">{{problem_name}}</a>'
             var problem_data = [prbolem_link, "{{problem_difficulty}}", "{{oj_name}}", "{{category_list_light}}"];
             db_problem_list.push(problem_data)
         {{/each}}
