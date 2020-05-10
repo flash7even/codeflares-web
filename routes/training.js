@@ -35,15 +35,15 @@ async function getUserDetails(res, req, user_id) {
   return response.data
 }
 
-async function getIndividualTrainingModel(res, req) {
+async function getIndividualTrainingModel(res, req, user_id) {
     console.log('getIndividualTrainingModel called');
-    console.log("post_url: " + individual_training_url)
+    var url = individual_training_url + '/' + user_id
     var sess = req.session;
     var access_token = sess.access_token
     const auth_config = {
         headers: { Authorization: `Bearer ${access_token}` }
     };
-    let response = await axios.get(individual_training_url, auth_config)
+    let response = await axios.get(url, auth_config)
     .catch(error => {
         res.render('error_page', {});
     })
@@ -87,8 +87,10 @@ async function getTeamTrainingModel(res, req, team_id) {
 //----------------- Routes -------------------//
 
 
+
 router.viewIndividualTraining = async function(req, res, next) {
-    var training_data = await getIndividualTrainingModel(res, req)
+    var sess = req.session;
+    var training_data = await getIndividualTrainingModel(res, req, sess.user_id)
 
     var len, idx;
 

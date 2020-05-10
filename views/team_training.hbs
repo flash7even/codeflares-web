@@ -25,8 +25,8 @@
                 {{#each problem_stat}}
                 <tr>
                     <td>{{idx}}</td>
-                    <td><a href = {{source_link}} style="color: #1d1dd1; font-weight:500; text-decoration: underline;">{{problem_name}}</a></td>
-                    <td>{{oj_name}}</td>
+                    <td><a href = {{problem_info.source_link}} style="color: #1d1dd1; font-weight:500; text-decoration: underline;">{{problem_info.problem_name}}</a></td>
+                    <td>{{problem_info.oj_name}}</td>
                     <td>{{relevant_score}}</td>
                     <td>
                         <a href="#" class="edit" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-tasks"></i></a>
@@ -59,8 +59,8 @@
                 {{#each category_stat}}
                 <tr>
                     <td>{{idx}}</td>
-                    <td><a href = "">{{category_title}}</a></td>
-                    <td>{{category_difficulty}}</td>
+                    <td><a href = "">{{category_info.category_title}}</a></td>
+                    <td>{{category_info.category_difficulty}}</td>
                     <td>{{relevant_score}}</td>
                     <td>
                         <a href="#" class="edit" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-tasks"></i></a>
@@ -109,19 +109,12 @@
 <script type="text/javascript">
 
     function getCategorySkillList(){
-        var categories = [
-            ['Data Structure', 'Data Structure', '87.5', '1374'],
-            ['DP', 'DP', '87.5', '1374'],
-            ['LCA', 'LCA', '85.5', '1677'],
-        ]
-
         var db_category_list = [];
-
         {{#each category_skill_list}}
             //console.log("{{category_root_title}}")
-            var category_root_title = "{{category_root_title}}";
-            var category_title = "{{category_title}}";
-            var category_data = ["<a href = >"+category_root_title+"</a>", "<a href = >"+category_title+"</a>", "{{category_difficulty}}", "{{skill_value}}", "{{skill_title}}", "{{solve_count}}"];
+            var category_root_title = "{{category_info.category_root_title}}";
+            var category_title = "{{category_info.category_title}}";
+            var category_data = ["<a href = >"+category_root_title+"</a>", "<a href = >"+category_title+"</a>", "{{category_info.category_difficulty}}", "{{skill_value}}", "{{skill_title}}", "{{solve_count}}"];
             db_category_list.push(category_data)
         {{/each}}
 
