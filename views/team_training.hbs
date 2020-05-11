@@ -138,7 +138,7 @@
 
         {{#each root_category_skill_list}}
             var data = {
-                'label': "{{category_title}}",
+                'label': "{{category_info.category_title}}",
                 'y': {{skill_value}}
             }
             //console.log(data)
@@ -164,7 +164,7 @@
             var cur_list = []
             {{#each skill_list}}
                 var data = {
-                    'label': "{{algo_name}}",
+                    'label': "{{category_info.category_title}}",
                     'y': {{skill_value}}
                 }
                 cur_list.push(data)
