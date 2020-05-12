@@ -6,13 +6,15 @@ body {
     color: black;
     padding: 20px 25px;
     margin: 30px auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
     border-radius: 20px;
     box-shadow: 1 1px 1px rgba(209, 168, 168, 0.05);
     font-size: small;
 }
 .table-title {
     border-radius: 20px;
-    background: #45A29E;		
+    background: rgb(96, 184, 179);		
     padding: 16px 25px;
     margin: -20px -25px 10px;
 }
