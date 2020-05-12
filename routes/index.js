@@ -5,6 +5,7 @@ var problemController = require('./problem.js');
 var categoryController = require('./category.js');
 var trainingController = require('./training.js');
 var teamController = require('./team.js');
+var classroomController = require('./classroom.js');
 
 module.exports = function(newApp) {
     /* GET home page. */
@@ -39,4 +40,13 @@ module.exports = function(newApp) {
     newApp.get('/team/confirm/*', teamController.confirmTeam);
     newApp.get('/team/reject/*', teamController.rejectTeam);
     newApp.get('/team/delete/*', teamController.deleteTeam);
+
+    newApp.get('/classroom/add/', classroomController.addClassroomForm);
+    newApp.post('/classroom/add/', classroomController.addClassroomFormSubmit);
+    newApp.get('/classroom/list/', classroomController.viewClassroomList);
+    newApp.get('/classroom/training/*', classroomController.trainingClassroom);
+    newApp.get('/classroom/confirm/*', classroomController.confirmClassroom);
+    newApp.get('/classroom/reject/*', classroomController.rejectClassroom);
+    newApp.get('/classroom/delete/*', classroomController.deleteClassroom);
 }
+
