@@ -2,6 +2,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/css/individual_training.css">
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <div class="row">
@@ -79,7 +80,15 @@
         <h3 style="text-align: center;"><b>Topic Wise Skill Comparison</b></h3>
     </div>
     <br>
-<div id="chartContainer" style="height: 500px; width: 100%;"></div>
+<div id="chartContainer" style="height: 700px; width: 100%;"></div>
+</div>
+
+<div class="canvas-table">
+    <div class="table-title-2">
+        <h3 style="text-align: center;"><b>Topic Wise Skill Comparison</b></h3>
+    </div>
+    <br>
+<div id="chartContainer2" style="height: 700px; width: 100%;"></div>
 </div>
 
 <br>
@@ -104,6 +113,8 @@
         </tbody>
     </table>
 </div>
+
+<div id="chart_div"></div>
 
 
 <script type="text/javascript">
@@ -191,7 +202,7 @@
         console.log('Length:')
         console.log(len)
         var idx = 0;
-        var colors = ["rgb(47,79,79, 0.7)", "rgb(16,37,66, 0.7)", "rgb(152,169,220, 0.7)", "rgb(52,99,151, 0.7)"]
+        var colors = ["rgb(253,207,179, 0.7)", "rgb(206,200,228, 0.7)", "rgb(85,133,181, 0.7)", "rgb(157,215,164, 0.7)"]
 
         var plot_data_list = []
         member_list.push("overall");
@@ -211,7 +222,7 @@
         console.log('Fnal plot_data_list')
         console.log(plot_data_list)
 
-        var chart = new CanvasJS.Chart("chartContainer", {
+        var chart = new CanvasJS.Chart("chartContainer2", {
             animationEnabled: true,
             
             title:{
@@ -265,5 +276,65 @@
 
         showCategoriesSkillDTSearchTable();
     }
+
+    function generate_skill_table(){
+        var data_list = []
+        var member_list = get_member_list();
+        console.log('member list: ' + member_list)
+        var len = member_list.length
+
+        var header_list = []
+        header_list.push('Topics')
+        header_list.push('overall')
+
+        for(idx = 0;idx<len;idx++){
+            header_list.push(member_list[idx])
+        }
+        data_list.push(header_list)
+
+        {{#each root_category_skill_list}}
+            var skill_value_str = "{{skill_value}}"
+            var skill_value = parseFloat(skill_value_str)
+            data_list.push(["{{category_info.category_title}}", skill_value])
+        {{/each}}
+
+        {{#each skill_info}}
+            var topic_idx = 1;
+            {{#each skill_list}}
+                var skill_value_str = "{{skill_value}}"
+                var skill_value = parseFloat(skill_value_str)
+                data_list[topic_idx].push(skill_value)
+                topic_idx++;
+            {{/each}}
+        {{/each}}
+        return data_list;
+    }
+
+    function show_topic_wise_comparison(){
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawChart);
+        var data_list = generate_skill_table();
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(data_list);
+            var options = {
+                bars: 'horizontal', // Required for Material Bar Charts.
+                hAxis: {format: 'decimal'},
+                colors: ['#7fa4c6', '#fdddc9', '#dcd8ec', '#bae3bf']
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('chartContainer'));
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+            var btns = document.getElementById('btn-group');
+            btns.onclick = function (e) {
+                if (e.target.tagName === 'BUTTON') {
+                    options.hAxis.format = e.target.id === 'none' ? '' : e.target.id;
+                    chart.draw(data, google.charts.Bar.convertOptions(options));
+                }
+            }
+        }
+    }
+
+    show_topic_wise_comparison()
 
 </script>
