@@ -7,6 +7,7 @@ const axios = require('axios');
 var classroom_search_url = config.server_host + 'team/search/user/'
 var user_search_url = config.server_host + 'user/search/'
 var classroom_submit_url = config.server_host + 'team/'
+var classroom_member_delete_url = config.server_host + 'team/member/'
 var classroom_training_url = config.server_host + 'training/classroom/'
 
 
@@ -94,7 +95,24 @@ async function deleteClassroom(res, req, classroom_id) {
   .catch(error => {
       res.render('error_page', {});
   })
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
+  return response.data
+}
 
+async function deleteClassroomMember(res, req, classroom_id, user_handle) {
+  var url = classroom_member_delete_url + classroom_id + '/' + user_handle
+  console.log("delete member url: " + url)
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  let response = await axios.delete(url, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
   if(response.status != 200 && response.status != 201){
       res.render('error_page', {});
   }
@@ -256,6 +274,17 @@ router.deleteClassroom = async function(req, res, next) {
   var classroom_id = words[words.length-2]
   await deleteClassroom(res, req, classroom_id)
   res.redirect('/classroom/list/');
+}
+
+router.deleteClassroomMember = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var user_handle = words[words.length-2]
+  var classroom_id = words[words.length-3]
+  console.log('user_handle: ' + user_handle)
+  console.log('classroom_id: ' + classroom_id)
+  await deleteClassroomMember(res, req, classroom_id, user_handle)
+  res.redirect('back');
 }
 
 module.exports = router;

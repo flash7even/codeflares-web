@@ -31,9 +31,11 @@
     function getMemberTableList(){
         var data_list = [];
 
+        var classroom_id = "{{id}}"
+
         {{#each member_list}}
             var user_name = '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700;">{{user_handle}} ({{status}})</a>'
-            var action_delete = '<a href="/classroom/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>'
+            var action_delete = '<a href="/classroom/member/delete/'+classroom_id+'/{{user_handle}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>'
             data = [user_name, "{{full_name}}", "{{skill_value}}", "{{skill_title}}", "{{solve_count}}", action_delete]
             data_list.push(data)
         {{/each}}

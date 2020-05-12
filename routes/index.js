@@ -48,5 +48,6 @@ module.exports = function(newApp) {
     newApp.get('/classroom/confirm/*', classroomController.confirmClassroom);
     newApp.get('/classroom/reject/*', classroomController.rejectClassroom);
     newApp.get('/classroom/delete/*', classroomController.deleteClassroom);
+    newApp.get('/classroom/member/delete/*', classroomController.deleteClassroomMember);
 }
 
