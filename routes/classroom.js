@@ -7,7 +7,7 @@ const axios = require('axios');
 var classroom_search_url = config.server_host + 'team/search/user/'
 var user_search_url = config.server_host + 'user/search/'
 var classroom_submit_url = config.server_host + 'team/'
-var classroom_training_url = config.server_host + 'team/'
+var classroom_training_url = config.server_host + 'training/classroom/'
 
 
 
@@ -129,8 +129,11 @@ async function classroomDetails(res, req, classroom_id) {
   };
   var url = classroom_training_url + classroom_id
   console.log("url: " + url)
-  let response = await axios.get(url, {}, auth_config)
+  console.log("auth_config: ")
+  console.log(auth_config)
+  let response = await axios.get(url, auth_config)
   .catch(error => {
+      console.log(error)
       res.render('error_page', {});
   })
 
@@ -206,6 +209,7 @@ router.viewClassroomList = async function(req, res, next) {
 }
 
 router.trainingClassroom = async function(req, res, next) {
+  console.log('trainingClassroom called')
   var url = req.url
   console.log(req.url)
   console.log(url)
