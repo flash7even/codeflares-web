@@ -2,6 +2,8 @@ body {
     color: #999;
     background: #1F2833;
     font-family: 'Roboto', sans-serif;
+    font-size: small;
+    line-height: inherit;
 }
 .form-control, .form-control:focus, .input-group-addon {
     border-color: #e1e1e1;
