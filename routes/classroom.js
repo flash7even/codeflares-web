@@ -9,7 +9,7 @@ var user_search_url = config.server_host + 'user/search/'
 var classroom_submit_url = config.server_host + 'team/'
 var classroom_member_delete_url = config.server_host + 'team/member/'
 var classroom_training_url = config.server_host + 'training/classroom/'
-
+var classroom_add_task_submit_url = config.server_host + 'classroom/task/'
 
 
 
@@ -73,6 +73,25 @@ async function postClassroom(res, req, classroom_data) {
       headers: { Authorization: `Bearer ${access_token}` }
   };
   let response = await axios.post(post_url, classroom_data, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
+  return response.data
+}
+
+async function postClassroomTask(res, req, classroom_task_data) {
+  var post_url = classroom_add_task_submit_url
+  console.log("post_url: " + post_url)
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  let response = await axios.post(post_url, classroom_task_data, auth_config)
   .catch(error => {
       res.render('error_page', {});
   })
@@ -284,6 +303,29 @@ router.deleteClassroomMember = async function(req, res, next) {
   console.log('user_handle: ' + user_handle)
   console.log('classroom_id: ' + classroom_id)
   await deleteClassroomMember(res, req, classroom_id, user_handle)
+  res.redirect('back');
+}
+
+
+router.addClassroomTaskForm = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var classroom_id = words[words.length-2]
+  var classroom_details = await classroomDetails(res, req, classroom_id)
+  console.log(classroom_details)
+  res.render('add_classroom_task', classroom_details);
+}
+
+router.addClassroomTaskFormSubmit = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var classroom_id = words[words.length-2]
+  var classroom_task_data = req.body
+  var sess = req.session;
+  classroom_task_data["task_added_by"] = sess.user_id
+  classroom_task_data["classroom_id"] = classroom_id
+  console.log(classroom_task_data)
+  await postClassroomTask(res, req, classroom_task_data)
   res.redirect('back');
 }
 

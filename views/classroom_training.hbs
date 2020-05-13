@@ -4,6 +4,56 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
+
+
+<div class="row">
+
+    <div class="table-wrapper" style="width: 45%;  margin-right:1px auto">
+        <div class="table-title">
+            <h4 style="text-align: center;"><b>Classroom Tasklist</b></h4>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Task Details</th>
+                    <th>Task Added By</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each task_list}}
+                <tr>
+                    <td>{{task_title}}</td>
+                    <td>{{task_description}}</td>
+                    <td>{{task_added_by}}</td>
+                    <td>{{deadline}}</td>
+                    <td>{{status}}</td>
+                    <td>
+                        <a href="/classroom/task/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3;"><i class="fas fa-edit"></i></a>
+                        <a href="/classroom/task/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                 {{/each}}
+
+            </tbody>
+        </table>
+        <div class="add-task">
+            <a class='btn btn-info' href="/classroom/task/add/{{id}}/">Add New Task</a>
+        </div>
+    </div>
+
+
+    <div class="table-wrapper" style="width: 45%;  margin-left:1px auto">
+        <div class="table-title">
+            <h4 style="text-align: center;"><b>Class List</b></h4>
+        </div>
+    </div>
+</div>
+
+
 <div class="table-type-1">
     <div class="table-title-2">
         <h3 style="text-align: center;"><b>Classroom Members</b></h3>
@@ -93,6 +143,46 @@
         return data_list
     }
 
+
+    function getTaskList(){
+        var current_user = "{{logged_in_user_id}}"
+        var team_lead = "{{team_leader_id}}"
+        console.log("current_user")
+        console.log(current_user)
+
+        var db_task_list = [];
+
+        {{#each task_list}}
+            var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
+            if(current_user == team_lead){
+                action_link += '<a href="/classroom/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>'
+                action_link += '<a href="/classroom/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: #f8b317;"><i class="fas fa-minus-circle"></i></a>'
+            }else{
+                action_link += '<a href="/classroom/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: #f8b317;"><i class="fas fa-minus-circle"></i></a>'
+            }
+            action_link += "</div>"
+
+            var task_data = ["{{task_title}}", "{{task_description}}", "{{task_added_by}}", "{{deadline}}", "{{status}}", action_link];
+            db_task_list.push(task_data)
+        {{/each}}
+
+        return db_task_list;
+    }
+
+    function showTaskListDTSearchTable(){
+        var dt_list = getTaskList();
+        
+        $("#taskListTable").dataTable({
+            "aaData": dt_list,
+            paging: true,
+            destroy: true,
+            scrollCollapse: true,
+            responsive: true,
+            pageLength: 10,
+            lengthMenu: [[3, 5, 10, -1], [3, 5, 10, 20]]
+        });
+    }
+
     function showMemberTable(){
         var dt_list = getMemberTableList();
         
@@ -119,5 +209,6 @@
     
     showMemberTable()
     showCategoryWiseSkillTable()
+    showTaskListDTSearchTable()
 
 </script>

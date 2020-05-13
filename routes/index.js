@@ -43,6 +43,8 @@ module.exports = function(newApp) {
 
     newApp.get('/classroom/add/', classroomController.addClassroomForm);
     newApp.post('/classroom/add/', classroomController.addClassroomFormSubmit);
+    newApp.get('/classroom/task/add/*', classroomController.addClassroomTaskForm);
+    newApp.post('/classroom/task/add/*', classroomController.addClassroomTaskFormSubmit);
     newApp.get('/classroom/list/', classroomController.viewClassroomList);
     newApp.get('/classroom/training/*', classroomController.trainingClassroom);
     newApp.get('/classroom/confirm/*', classroomController.confirmClassroom);
@@ -50,4 +52,3 @@ module.exports = function(newApp) {
     newApp.get('/classroom/delete/*', classroomController.deleteClassroom);
     newApp.get('/classroom/member/delete/*', classroomController.deleteClassroomMember);
 }
-
