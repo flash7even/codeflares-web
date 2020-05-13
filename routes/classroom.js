@@ -10,6 +10,9 @@ var classroom_submit_url = config.server_host + 'team/'
 var classroom_member_delete_url = config.server_host + 'team/member/'
 var classroom_training_url = config.server_host + 'training/classroom/'
 var classroom_add_task_submit_url = config.server_host + 'classroom/task/'
+var classroom_task_list_view_all = config.server_host + 'classroom/task/search'
+var classroom_add_class_submit_url = config.server_host + 'classroom/class/'
+var classroom_class_list_view_all = config.server_host + 'classroom/class/search'
 
 
 
@@ -102,6 +105,25 @@ async function postClassroomTask(res, req, classroom_task_data) {
   return response.data
 }
 
+async function postClassroomClass(res, req, classroom_class_data) {
+  var post_url = classroom_add_class_submit_url
+  console.log("post_url: " + post_url)
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  let response = await axios.post(post_url, classroom_class_data, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
+  return response.data
+}
+
 async function deleteClassroom(res, req, classroom_id) {
   var url = classroom_submit_url + classroom_id
   console.log("url: " + url)
@@ -180,6 +202,7 @@ async function classroomDetails(res, req, classroom_id) {
   console.log('classroomDetails done')
   return response.data
 }
+
 
 
 
@@ -307,6 +330,10 @@ router.deleteClassroomMember = async function(req, res, next) {
 }
 
 
+
+
+
+//---------- Classroom Task Controllers -----------//
 router.addClassroomTaskForm = async function(req, res, next) {
   var url = req.url
   var words = url.split("/");
@@ -326,7 +353,102 @@ router.addClassroomTaskFormSubmit = async function(req, res, next) {
   classroom_task_data["classroom_id"] = classroom_id
   console.log(classroom_task_data)
   await postClassroomTask(res, req, classroom_task_data)
+  res.redirect('/classroom/training/' + classroom_id + '/');
+}
+
+router.deleteClassroomTask = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var classroom_task_id = words[words.length-2]
+  var sess = req.session;
+  var delete_url = classroom_add_task_submit_url + classroom_task_id
+  console.log('delete url: ' + delete_url)
+  const auth_config = { headers: { Authorization: `Bearer ${sess.access_token}` }};
+  let response = await axios.delete(delete_url, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
   res.redirect('back');
+}
+
+router.viewClassroomTaskList = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var classroom_id = words[words.length-2]
+  var classroom_details = await classroomDetails(res, req, classroom_id)
+  var sess = req.session;
+  const auth_config = { headers: { Authorization: `Bearer ${sess.access_token}` } };
+  var tasklist_url = classroom_task_list_view_all
+  let response = await axios.post(tasklist_url, { 'classroom_id': classroom_id }, auth_config)
+  .catch(error => {
+      console.log(error)
+      res.render('error_page', {});
+  })
+  var response_data = response.data
+  classroom_details['task_list'] = response_data['task_list']
+  console.log(classroom_details)
+  res.render('view_classroom_task_list', classroom_details);
+}
+
+
+
+
+
+//---------- Classroom Class Controllers -----------//
+router.addClassroomClassForm = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var classroom_id = words[words.length-2]
+  var classroom_details = await classroomDetails(res, req, classroom_id)
+  console.log(classroom_details)
+  res.render('add_classroom_class', classroom_details);
+}
+
+router.addClassroomClassFormSubmit = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var classroom_id = words[words.length-2]
+  var classroom_class_data = req.body
+  var sess = req.session;
+  classroom_class_data["class_moderator_id"] = sess.user_id
+  classroom_class_data["classroom_id"] = classroom_id
+  console.log(classroom_class_data)
+  await postClassroomClass(res, req, classroom_class_data)
+  res.redirect('/classroom/training/' + classroom_id + '/');
+}
+
+router.deleteClassroomClass = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var classroom_class_id = words[words.length-2]
+  var sess = req.session;
+  var delete_url = classroom_add_class_submit_url + classroom_class_id
+  console.log('delete url: ' + delete_url)
+  const auth_config = { headers: { Authorization: `Bearer ${sess.access_token}` }};
+  let response = await axios.delete(delete_url, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+  res.redirect('back');
+}
+
+router.viewClassroomClassList = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var classroom_id = words[words.length-2]
+  var classroom_details = await classroomDetails(res, req, classroom_id)
+  var sess = req.session;
+  const auth_config = { headers: { Authorization: `Bearer ${sess.access_token}` } };
+  var classlist_url = classroom_class_list_view_all
+  let response = await axios.post(classlist_url, { 'classroom_id': classroom_id }, auth_config)
+  .catch(error => {
+      console.log(error)
+      res.render('error_page', {});
+  })
+  var response_data = response.data
+  classroom_details['class_list'] = response_data['class_list']
+  console.log(classroom_details)
+  res.render('view_classroom_class_list', classroom_details);
 }
 
 module.exports = router;

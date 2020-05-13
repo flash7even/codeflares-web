@@ -1,6 +1,6 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/css/individual_training.css">
+	<link rel="stylesheet" type="text/css" href="/css/classroom_training.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
@@ -10,16 +10,14 @@
 
     <div class="table-wrapper" style="width: 45%;  margin-right:1px auto">
         <div class="table-title">
-            <h4 style="text-align: center;"><b>Classroom Tasklist</b></h4>
+            <h4 style="text-align: center;"><b>Task List</b></h4>
         </div>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Task Name</th>
-                    <th>Task Details</th>
-                    <th>Task Added By</th>
+                    <th style="width: 30%;">Task Name</th>
+                    <th>Added by</th>
                     <th>Deadline</th>
-                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -27,10 +25,8 @@
                 {{#each task_list}}
                 <tr>
                     <td>{{task_title}}</td>
-                    <td>{{task_description}}</td>
-                    <td>{{task_added_by}}</td>
+                    <td><a href = "/profile/{{task_added_by_user_handle}}/" style="color: #5bc0de; font-weight:700;">{{task_added_by_user_handle}}</a></td>
                     <td>{{deadline}}</td>
-                    <td>{{status}}</td>
                     <td>
                         <a href="/classroom/task/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3;"><i class="fas fa-edit"></i></a>
                         <a href="/classroom/task/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>
@@ -42,6 +38,7 @@
         </table>
         <div class="add-task">
             <a class='btn btn-info' href="/classroom/task/add/{{id}}/">Add New Task</a>
+            <a class='btn btn-info' href="/classroom/task/view/{{id}}/">View All Task</a>
         </div>
     </div>
 
@@ -49,6 +46,34 @@
     <div class="table-wrapper" style="width: 45%;  margin-left:1px auto">
         <div class="table-title">
             <h4 style="text-align: center;"><b>Class List</b></h4>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Class Title</th>
+                    <th>Moderator</th>
+                    <th>Class Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each class_list}}
+                <tr>
+                    <td>{{class_title}}</td>
+                    <td><a href = "/profile/{{class_moderator_id_user_handle}}/" style="color: #5bc0de; font-weight:700;">{{class_moderator_id_user_handle}}</a></td>
+                    <td>{{class_time}}</td>
+                    <td>
+                        <a href="/classroom/class/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3;"><i class="fas fa-edit"></i></a>
+                        <a href="/classroom/class/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                 {{/each}}
+
+            </tbody>
+        </table>
+        <div class="add-task">
+            <a class='btn btn-info' href="/classroom/class/add/{{id}}/">Add New Class</a>
+            <a class='btn btn-info' href="/classroom/class/view/{{id}}/">View All Classes</a>
         </div>
     </div>
 </div>
@@ -162,7 +187,7 @@
             }
             action_link += "</div>"
 
-            var task_data = ["{{task_title}}", "{{task_description}}", "{{task_added_by}}", "{{deadline}}", "{{status}}", action_link];
+            var task_data = ["{{task_title}}", "{{task_description}}", "{{task_added_by_user_handle}}", "{{deadline}}", "{{status}}", action_link];
             db_task_list.push(task_data)
         {{/each}}
 

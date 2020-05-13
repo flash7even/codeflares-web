@@ -43,12 +43,20 @@ module.exports = function(newApp) {
 
     newApp.get('/classroom/add/', classroomController.addClassroomForm);
     newApp.post('/classroom/add/', classroomController.addClassroomFormSubmit);
-    newApp.get('/classroom/task/add/*', classroomController.addClassroomTaskForm);
-    newApp.post('/classroom/task/add/*', classroomController.addClassroomTaskFormSubmit);
     newApp.get('/classroom/list/', classroomController.viewClassroomList);
     newApp.get('/classroom/training/*', classroomController.trainingClassroom);
     newApp.get('/classroom/confirm/*', classroomController.confirmClassroom);
     newApp.get('/classroom/reject/*', classroomController.rejectClassroom);
     newApp.get('/classroom/delete/*', classroomController.deleteClassroom);
     newApp.get('/classroom/member/delete/*', classroomController.deleteClassroomMember);
+
+    newApp.get('/classroom/task/add/*', classroomController.addClassroomTaskForm);
+    newApp.post('/classroom/task/add/*', classroomController.addClassroomTaskFormSubmit);
+    newApp.get('/classroom/task/delete/*', classroomController.deleteClassroomTask);
+    newApp.get('/classroom/task/view/*', classroomController.viewClassroomTaskList);
+
+    newApp.get('/classroom/class/add/*', classroomController.addClassroomClassForm);
+    newApp.post('/classroom/class/add/*', classroomController.addClassroomClassFormSubmit);
+    newApp.get('/classroom/class/delete/*', classroomController.deleteClassroomClass);
+    newApp.get('/classroom/class/view/*', classroomController.viewClassroomClassList);
 }

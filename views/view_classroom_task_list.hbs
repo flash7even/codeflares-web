@@ -1,95 +1,41 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/classroom_training.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
-<div class="show-team">
-    <div class="table-type-1">
-        <div class="table-title-2">
-            <h2 style="text-align: center;"><b>Classroom Tasklist</b></h2>
-        </div>
-        <table id="taskListTable" class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Task Name</th>
-                    <th>Task Details</th>
-                    <th>Task Added By</th>
-                    <th>Deadline</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
 
-            </tbody>
-        </table>
+<div class="table-wrapper" style="width: 100%%;  margin-right:1px auto">
+    <div class="table-title">
+        <h4 style="text-align: center;"><b>All Task List [Classroom: <a href = "/classroom/training/{{id}}/" style="color: #3348a7; font-weight:700;">{{team_name}}</a>]</b></h4>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width: 15%;">Task Name</th>
+                <th style="width: 30%;">Details</th>
+                <th>Added by</th>
+                <th>Deadline</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each task_list}}
+            <tr>
+                <td>{{task_title}}</td>
+                <td>{{task_description}}</td>
+                <td><a href = "/profile/{{task_added_by_user_handle}}/" style="color: #5bc0de; font-weight:700;">{{task_added_by_user_handle}}</a></td>
+                <td>{{deadline}}</td>
+                <td>
+                    <a href="/classroom/task/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3;"><i class="fas fa-edit"></i></a>
+                    <a href="/classroom/task/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+                {{/each}}
+
+        </tbody>
+    </table>
+    <div class="add-task">
+        <a class='btn btn-info' href="/classroom/task/add/{{id}}/">Add New Task</a>
     </div>
 </div>
-
-
-<script type="text/javascript">
-
-    function getTaskList(){
-        var current_user = "{{logged_in_user_id}}"
-        console.log("current_user")
-        console.log(current_user)
-
-        var db_task_list = [];
-
-        {{#each task_list}}
-            console.log("{{task_title}}")
-            var task_title = "{{task_title}}"
-            var member_list_items = "";
-            var mem_count = 0;
-            var my_status = "{{status}}"
-            {{#each member_list}}
-                if(mem_count>0) member_list_items += ",  ";
-                member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700;">{{user_handle}} ({{status}})</a>'
-                mem_count += 1
-            {{/each}}
-            var team_link = '<a href = "/classroom/training/{{id}}/" style="color: #86c232; font-weight:700;">{{team_name}}</a>'
-
-            var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
-
-            if(my_status != "confirmed"){
-                action_link += '<a href="/classroom/confirm/{{id}}/" title="Confirm" data-toggle="tooltip" style="color: #5bc0de;"><i class="fas fa-check-circle"></i></a>'
-                action_link += "  "
-                action_link += '<a href="/classroom/reject/{{id}}/" title="Reject" data-toggle="tooltip" style="color: #f8b317;"><i class="fas fa-times-circle"></i></a>'
-            }else{
-                var team_lead = "{{team_leader_id}}"
-                console.log("team_lead")
-                console.log(team_lead)
-            }
-            if(current_user == team_lead){
-                action_link += '<a href="/classroom/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>'
-            }else{
-                action_link += '<a href="/classroom/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: #f8b317;"><i class="fas fa-minus-circle"></i></a>'
-            }
-            
-            action_link += "</div>"
-
-            var team_data = ["{{task_title}}", "{{task_description}}", "{{task_added_by}}", "{{deadline}}", "{{status}}", action_link];
-            db_team_list.push(team_data)
-        {{/each}}
-
-        return db_team_list;
-    }
-
-    function showTaskListDTSearchTable(){
-        var dt_list = getTaskList();
-        
-        $("#taskListTable").dataTable({
-            "aaData": dt_list,
-            paging: true,
-            destroy: true,
-            scrollCollapse: true,
-            responsive: true,
-            pageLength: 10,
-            lengthMenu: [[3, 5, 10, -1], [3, 5, 10, 20]]
-        });
-    }
-
-    $(document).ready( function () {
-        showTaskListDTSearchTable();
-    } );
-
-</script>
