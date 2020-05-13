@@ -204,7 +204,11 @@ router.showUserProfile = async function(req, res, next) {
 
 router.updateUserSettings = async function(req, res, next) {
     var sess = req.session;
-    let team_list = await getTeamList(res, req, sess.username, {"status": "confirmed"});
+    var param = {
+        "status": "confirmed",
+        "team_type": "team"
+    }
+    let team_list = await getTeamList(res, req, sess.username, param);
     res.render('update_user_settings', team_list);
 }
 

@@ -25,6 +25,25 @@
     </table>
 </div>
 
+<div class="table-type-1">
+    <div class="table-title-2">
+        <h3 style="text-align: center;"><b>Category Wise Skills</b></h3>
+    </div>
+    <table id="categoryWiseSkillTable" class="table table-striped table-bordered category-list-table">
+        <thead>
+            <tr>
+                <th style="width: 13%;">User Handle</th>
+                {{#each category_list}}
+                    <th>{{category_title}}</th>
+                {{/each}}
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
 
 <script type="text/javascript">
 
@@ -32,15 +51,46 @@
         var data_list = [];
 
         var classroom_id = "{{id}}"
+        var team_lead_id = "{{team_leader_id}}"
+        var logger_in_user = "{{session.user_id}}"
+
+        console.log('team_lead_id: ' + team_lead_id)
+        console.log('logger_in_user: ' + logger_in_user)
 
         {{#each member_list}}
+            var member_id = "{{id}}"
+            console.log('member_id: ' + member_id)
             var user_name = '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700;">{{user_handle}} ({{status}})</a>'
-            var action_delete = '<a href="/classroom/member/delete/'+classroom_id+'/{{user_handle}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>'
+            var action_delete = ''
+            
+            if(logger_in_user == team_lead_id){
+                if(logger_in_user != member_id){
+                    action_delete = '<a href="/classroom/member/delete/'+classroom_id+'/{{user_handle}}/" title="Delete member" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>'
+                }
+            }else if(logger_in_user == member_id){
+                action_delete = '<a href="/classroom/member/delete/'+classroom_id+'/{{user_handle}}/" title="Leave team" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>'
+            }
+            
             data = [user_name, "{{full_name}}", "{{skill_value}}", "{{skill_title}}", "{{solve_count}}", action_delete]
             data_list.push(data)
         {{/each}}
 
         return data_list;
+    }
+
+    function getCategoryWiseSkillList(){
+        var data_list = [];
+        {{#each member_stat}}
+            var cur_member_data = ["{{user_handle}}"]
+            {{#each skill_list}}
+                var skill_value = parseFloat("{{skill_value}}")
+                var skill_value_final = skill_value.toFixed(2);
+                cur_member_data.push(skill_value_final)
+            {{/each}}
+            console.log(cur_member_data)
+            data_list.push(cur_member_data)
+        {{/each}}
+        return data_list
     }
 
     function showMemberTable(){
@@ -54,7 +104,20 @@
             scrollCollapse: true
         });
     }
+
+    function showCategoryWiseSkillTable(){
+        var dt_list = getCategoryWiseSkillList();
+        
+        $("#categoryWiseSkillTable").dataTable({
+            "aaData": dt_list,
+            paging: true,
+            destroy: true,
+            scrollY: '500px',
+            scrollCollapse: true
+        });
+    }
     
     showMemberTable()
+    showCategoryWiseSkillTable()
 
 </script>

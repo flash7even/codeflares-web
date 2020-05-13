@@ -221,7 +221,7 @@ router.addTeamFormSubmit = async function(req, res, next) {
 
 router.viewTeamList = async function(req, res, next) {
   var sess = req.session;
-  let team_list = await getTeamList(res, req, sess.username, {});
+  let team_list = await getTeamList(res, req, sess.username, {"team_type": "team"});
   team_list['logged_in_user_id'] = sess.user_id
   console.log(team_list)
   res.render('view_team_list', team_list);
