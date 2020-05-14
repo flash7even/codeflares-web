@@ -1,0 +1,37 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/individual_training.css">
+</head>
+
+
+<div class="table-wrapper" style="width: 100%%;  margin-right:1px auto">		
+        <div class="table-title">
+            <h4 style="text-align: center;"><b>Flagged Problems</b></h4>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Problem Name</th>
+                    <th>OJ Name</th>
+                    <th>Status</th>
+                    <th>Marked As</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {{#each problem_list}}
+                <tr>
+                    <td>{{idx}}</td>
+                    <td><a href = {{source_link}} style="color: #1d1dd1; font-weight:500; text-decoration: underline;">{{problem_name}}</a></td>
+                    <td>{{oj_name}}</td>
+                    <td>{{user_status}}</td>
+                    <td>
+                        <a href="/problem/user/status/clear/{{problem_id}}/" class="update" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-cut"></i></a>
+                    </td>
+                </tr>
+                 {{/each}}
+
+            </tbody>
+        </table>
+</div>

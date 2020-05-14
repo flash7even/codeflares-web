@@ -25,6 +25,10 @@ module.exports = function(newApp) {
     newApp.post('/problem/add/', problemController.addProblemFormSubmit);
     newApp.get('/problem/list/', problemController.viewProblemList);
     newApp.post('/problem/list/', problemController.viewProblemListAfterFormSubmit);
+    newApp.get('/problem/user/status/flag/*', problemController.setProblemStatusFlag);
+    newApp.get('/problem/user/status/remove/*', problemController.setProblemStatusRemove);
+    newApp.get('/problem/user/status/clear/*', problemController.setProblemStatusClear);
+    newApp.get('/flagged/problem/list/', problemController.showFlaggedProblemList);
 
     newApp.get('/category/add/', categoryController.addCategoryForm);
     newApp.post('/category/add/', categoryController.addCategoryFormSubmit);

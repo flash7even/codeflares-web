@@ -15,7 +15,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Project Name</th>
+                    <th>Problem Name</th>
                     <th>OJ Name</th>
                     <th>Relevant Score</th>
                     <th>Action</th>
@@ -30,8 +30,8 @@
                     <td>{{problem_info.oj_name}}</td>
                     <td>{{relevant_score}}</td>
                     <td>
-                        <a href="#" class="edit" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-tasks"></i></a>
-                        <a href="#" class="delete" title="Delete from my list" data-toggle="tooltip"><i class="fas fa-trash"></i></a>
+                        <a href="/problem/user/status/flag/{{problem_id}}/" class="edit" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-tasks"></i></a>
+                        <a href="/problem/user/status/remove/{{problem_id}}/" class="delete" title="Remove from my list" data-toggle="tooltip"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                  {{/each}}
