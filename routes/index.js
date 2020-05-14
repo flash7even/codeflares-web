@@ -54,11 +54,15 @@ module.exports = function(newApp) {
 
     newApp.get('/classroom/task/add/*', classroomController.addClassroomTaskForm);
     newApp.post('/classroom/task/add/*', classroomController.addClassroomTaskFormSubmit);
+    newApp.get('/classroom/task/update/*', classroomController.updateClassroomTask);
+    newApp.post('/classroom/task/update/*', classroomController.updateClassroomTaskSubmit);
     newApp.get('/classroom/task/delete/*', classroomController.deleteClassroomTask);
     newApp.get('/classroom/task/view/*', classroomController.viewClassroomTaskList);
 
     newApp.get('/classroom/class/add/*', classroomController.addClassroomClassForm);
     newApp.post('/classroom/class/add/*', classroomController.addClassroomClassFormSubmit);
+    newApp.get('/classroom/class/update/*', classroomController.updateClassroomClass);
+    newApp.post('/classroom/class/update/*', classroomController.updateClassroomClassSubmit);
     newApp.get('/classroom/class/delete/*', classroomController.deleteClassroomClass);
     newApp.get('/classroom/class/view/*', classroomController.viewClassroomClassList);
 }

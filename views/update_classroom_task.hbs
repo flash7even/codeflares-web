@@ -1,0 +1,36 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="form-type-1">	
+    <form action="/classroom/task/update/{{id}}/" method="post">
+		<h2>Add New Task</h2>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Task Name</b> </label>
+				<div class="input-group">
+					<input type="text" id="task_title" class="form-control" name="task_title" value="{{task_title}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Task Details</b> </label>
+				<div class="input-group">
+					<input type="text" id="task_description" class="form-control" name="task_description" value="{{task_description}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Deadline</b> </label>
+				<div class="input-group">
+					<input type="date" title="Deadline" id="deadline" class="form-control" name="deadline" value="{{deadline}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
+        </div>
+	</form>
+</div>

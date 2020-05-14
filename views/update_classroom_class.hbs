@@ -1,0 +1,52 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="form-type-1">	
+    <form action="/classroom/class/update/{{id}}/" method="post">
+		<h2>Add New Task</h2>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Class Name</b> </label>
+				<div class="input-group">
+					<input type="text" id="class_title" class="form-control" name="class_title" value="{{class_title}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Class Details</b> </label>
+				<div class="input-group">
+					<input type="text" id="class_description" class="form-control" name="class_description" value="{{class_description}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Class Time</b> </label>
+				<div class="input-group">
+					<input type="date" title="Class Time" id="class_time" class="form-control" name="class_time" value="{{class_time}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Class Duration</b> </label>
+				<div class="input-group">
+					<input type="text" title="Duration" id="class_duration" class="form-control" name="class_duration" value="{{class_duration}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Resources</b> </label>
+				<div class="input-group">
+					<input type="text" id="resource_link" class="form-control" name="resource_link" value="{{resource_link}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
+        </div>
+	</form>
+</div>

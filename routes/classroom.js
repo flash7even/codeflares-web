@@ -105,6 +105,34 @@ async function postClassroomTask(res, req, classroom_task_data) {
   return response.data
 }
 
+async function getClassroomTaskDetails(res, req, task_id) {
+  var url = classroom_add_task_submit_url + task_id
+  console.log("url: " + url)
+  var sess = req.session;
+  const auth_config = {
+      headers: { Authorization: `Bearer ${sess.access_token}` }
+  };
+  let response = await axios.get(url, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+  return response.data
+}
+
+async function getClassroomClassDetails(res, req, class_id) {
+  var url = classroom_add_class_submit_url + class_id
+  console.log("url: " + url)
+  var sess = req.session;
+  const auth_config = {
+      headers: { Authorization: `Bearer ${sess.access_token}` }
+  };
+  let response = await axios.get(url, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+  return response.data
+}
+
 async function postClassroomClass(res, req, classroom_class_data) {
   var post_url = classroom_add_class_submit_url
   console.log("post_url: " + post_url)
@@ -203,7 +231,37 @@ async function classroomDetails(res, req, classroom_id) {
   return response.data
 }
 
+async function updtateClassroomTask(res, req, task_data, task_id) {
+  var url = classroom_add_task_submit_url + task_id
+  console.log("url: " + url)
+  var sess = req.session;
+  const auth_config = { headers: { Authorization: `Bearer ${sess.access_token}` }};
+  let response = await axios.put(url, task_data, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
 
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
+  return response.data
+}
+
+async function updtateClassroomClass(res, req, class_data, class_id) {
+  var url = classroom_add_class_submit_url + class_id
+  console.log("url: " + url)
+  var sess = req.session;
+  const auth_config = { headers: { Authorization: `Bearer ${sess.access_token}` }};
+  let response = await axios.put(url, class_data, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
+  return response.data
+}
 
 
 
@@ -371,6 +429,24 @@ router.deleteClassroomTask = async function(req, res, next) {
   res.redirect('back');
 }
 
+router.updateClassroomTask = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var task_id = words[words.length-2]
+  var task_details = await getClassroomTaskDetails(res, req, task_id)
+  console.log('task_details found')
+  console.log(task_details)
+  res.render('update_classroom_task', task_details);
+}
+
+router.updateClassroomTaskSubmit = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var task_id = words[words.length-2]
+  updtateClassroomTask(res, req, req.body, task_id)
+  res.redirect('/');
+}
+
 router.viewClassroomTaskList = async function(req, res, next) {
   var url = req.url
   var words = url.split("/");
@@ -449,6 +525,24 @@ router.viewClassroomClassList = async function(req, res, next) {
   classroom_details['class_list'] = response_data['class_list']
   console.log(classroom_details)
   res.render('view_classroom_class_list', classroom_details);
+}
+
+router.updateClassroomClass = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var class_id = words[words.length-2]
+  var class_details = await getClassroomClassDetails(res, req, class_id)
+  console.log('class_details found')
+  console.log(class_details)
+  res.render('update_classroom_class', class_details);
+}
+
+router.updateClassroomClassSubmit = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var class_id = words[words.length-2]
+  updtateClassroomClass(res, req, req.body, class_id)
+  res.redirect('/');
 }
 
 module.exports = router;
