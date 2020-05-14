@@ -118,6 +118,25 @@
     </table>
 </div>
 
+<div class="table-type-1">
+    <div class="table-title-2">
+        <h3 style="text-align: center;"><b>Category Solve Count</b></h3>
+    </div>
+    <table id="categoryWiseSolveCountTable" class="table table-striped table-bordered category-list-table">
+        <thead>
+            <tr>
+                <th style="width: 13%;">User Handle</th>
+                {{#each category_list}}
+                    <th>{{category_title}}</th>
+                {{/each}}
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
 
 <script type="text/javascript">
 
@@ -160,6 +179,20 @@
                 var skill_value = parseFloat("{{skill_value}}")
                 var skill_value_final = skill_value.toFixed(2);
                 cur_member_data.push(skill_value_final)
+            {{/each}}
+            console.log(cur_member_data)
+            data_list.push(cur_member_data)
+        {{/each}}
+        return data_list
+    }
+
+    function getCategoryWiseSolveCountList(){
+        var data_list = [];
+        {{#each member_stat}}
+            var cur_member_data = ["{{user_handle}}"]
+            {{#each skill_list}}
+                var solve_count = parseFloat("{{solve_count}}")
+                cur_member_data.push(solve_count)
             {{/each}}
             console.log(cur_member_data)
             data_list.push(cur_member_data)
@@ -230,9 +263,22 @@
             scrollCollapse: true
         });
     }
+
+    function showCategoryWiseSolveCountTable(){
+        var dt_list = getCategoryWiseSolveCountList();
+        
+        $("#categoryWiseSolveCountTable").dataTable({
+            "aaData": dt_list,
+            paging: true,
+            destroy: true,
+            scrollY: '500px',
+            scrollCollapse: true
+        });
+    }
     
     showMemberTable()
     showCategoryWiseSkillTable()
     showTaskListDTSearchTable()
+    showCategoryWiseSolveCountTable()
 
 </script>
