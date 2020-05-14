@@ -59,6 +59,19 @@ async function searchUser(res, req, user_data) {
     return response.data
 }
 
+async function getUserDetails(res, req, user_id) {
+    console.log('getUserDetails called')
+    var sess = req.session;
+    const auth_config = { headers: { Authorization: `Bearer ${sess.access_token}` } };
+    var url = user_submit_url + user_id
+    let response = await axios.get(url, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+    console.log('getUserDetails completed')
+    return response.data
+}
+
 async function logIn(res, req, data) {
     console.log('logIn called');
     console.log('Log in call to server')
@@ -220,6 +233,20 @@ router.updateUserSettingsSubmit = async function(req, res, next) {
     var sess = req.session;
     var user_id = sess.user_id
     await updateUser(res, req, settings_data, user_id);
+    res.redirect('/');
+}
+
+router.updateUserProfile = async function(req, res, next) {
+    var sess = req.session;
+    console.log('updateUserProfile controller')
+    var user_details = await getUserDetails(res, req, sess.user_id)
+    console.log(user_details)
+    res.render('update_user_profile', user_details);
+}
+
+router.updateUserProfileSubmit = async function(req, res, next) {
+    var sess = req.session;
+    await updateUser(res, req, req.body, sess.user_id);
     res.redirect('/');
 }
 
