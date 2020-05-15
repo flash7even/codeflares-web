@@ -1,0 +1,58 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/notification.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+
+<div class="table-wrapper" style="width: 100%; padding: 3px; font-size:16px">
+    <div class="" style="margin:10px;  margin-top:30px">
+        <div class="col-lg-12">
+            <span><b>Your Notifications ({{unread_length}})</b></span>
+            <a href="/notification/read/all/" class="float-right text"><b>Mark all as read</b></a>
+        </div>
+    </div>
+    <div class="" style="margin:20px; margin-left:-20px">
+        <ul class="" style="width: 100%;">
+            {{#each notification_list}}
+
+            {{#if UNREAD}}
+                <li class="notification-box" style="background-color: rgba(212, 229, 248, 0.658);">
+                    <div class="row">
+                    <div class="col-md-11">
+                        <a href="{{redirect_url}}">
+                            <div>
+                                <strong class="text" style="color: #86C232">{{notification_type}}</strong>
+                                <div style="color: black;">
+                                    {{notification_text}}
+                                </div>
+                                <small class="text" style="color: rgb(17, 104, 158);">{{created_at}}</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="/notification/read/single/{{id}}/" title="Mark as read" data-toggle="tooltip" style="color: #122f30;"><i class="fas fa-bullseye"></i></a>
+                    </div>
+                    </div>
+                </li>
+            {{else}}
+                <li class="notification-box" style="background-color: #fff;">
+                    <div class="row">
+                    <div class="col-md-11">
+                        <a href="{{redirect_url}}">
+                            <div>
+                                <strong class="text" style="color: #86C232">{{notification_type}}</strong>
+                                <div style="color: black;">
+                                    {{notification_text}}
+                                </div>
+                                <small class="text" style="color: rgb(17, 104, 158);">{{created_at}}</small>
+                            </div>
+                        </a>
+                    </div>
+                    </div>
+                </li>
+            {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+</div>

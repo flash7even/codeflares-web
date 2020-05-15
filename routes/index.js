@@ -6,6 +6,7 @@ var categoryController = require('./category.js');
 var trainingController = require('./training.js');
 var teamController = require('./team.js');
 var classroomController = require('./classroom.js');
+var notificationController = require('./notification.js');
 
 module.exports = function(newApp) {
     /* GET home page. */
@@ -69,4 +70,8 @@ module.exports = function(newApp) {
     newApp.post('/classroom/class/update/*', classroomController.updateClassroomClassSubmit);
     newApp.get('/classroom/class/delete/*', classroomController.deleteClassroomClass);
     newApp.get('/classroom/class/view/*', classroomController.viewClassroomClassList);
+
+    newApp.get('/notification/list/', notificationController.viewNotificationPage);
+    newApp.get('/notification/read/all/', notificationController.readAllNotification);
+    newApp.get('/notification/read/single/*', notificationController.readSingleNotification);
 }

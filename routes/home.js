@@ -9,12 +9,33 @@ var user_submit_url = config.server_host + 'user/'
 var login_url = config.server_host + 'auth/login'
 var logout_url = config.server_host + 'auth/logout/at'
 var team_search_url = config.server_host + 'team/search/user/'
+var serach_all_notification = config.server_host + 'notification/search/'
 
 
 
 
 
 //----------------- Call to the server -------------------//
+
+async function getAllNotification(res, req, param, user_id) {
+    console.log('getAllNotification called');
+    var url = serach_all_notification + user_id
+    console.log("url: " + url)
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.post(url, param, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+  
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    console.log('getAllNotification done');
+    return response.data
+  }
 
 async function getTeamList(res, req, username, search_param) {
     console.log('getTeamList called');
@@ -137,8 +158,17 @@ async function postUser(res, req, user_data) {
 
 //----------------- Routes -------------------//
 
-router.showHome = function(req, res, next) {
-    res.render('index', { title: 'This Is The Homepage' , pageTitle: 'Home'});
+router.showHome = async function(req, res, next) {
+    var notification_data = {}
+
+    var sess = req.session;
+    var user_id = sess.user_id
+    if(user_id){
+        notification_data = await getAllNotification(res, req, {"size": 5}, sess.user_id)
+    }
+    console.log('notification_data: ')
+    console.log(notification_data)
+    res.render('index', notification_data);
 }
 
 router.showLogIn = function(req, res, next) {
@@ -209,8 +239,6 @@ router.showUserProfile = async function(req, res, next) {
 
     var user_details = resp.user_list[0];
     console.log(user_details)
-
-
     res.render('user_profile', user_details);
 }
 

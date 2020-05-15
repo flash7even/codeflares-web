@@ -180,40 +180,44 @@ a.article:hover {
 }
 
 
-
+ul {
+    list-style-type: none;
+}
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
     background-color: #17A2B8;
-  }
+}
   .dropdown-menu{
     top: 100%;
-    right: 7.4%;
+    right: 128px;
     left: unset;
-    width: 460px;
+    width: 450px;
     box-shadow: 0px 0px 0.3px 0px #66FCF1;
     padding-bottom: 0px;
-    padding: 0px;
+    padding: 5px;
   }
   .dropdown-menu:before{
     content: "";
     position: absolute;
     top: -20px;
-    right: 12px;
-    border:10px solid #66FCF1;
+    right: 15px;
+    border:5px solid #66FCF1;
     border-color: transparent transparent #343A40 transparent;
   }
   .head{
-    padding:5px 15px;
+    padding:15px;
     border-radius: 3px 3px 0px 0px;
   }
   .footer{
-    padding:5px 15px;
+    padding:5px 5px;
     border-radius: 0px 0px 3px 3px; 
   }
   .notification-box{
-    padding: 10px 0px; 
+    padding: 10px;
+    padding-left: 10px;
+    border-top: 1px solid rgb(4, 39, 37);
   }
   .bg-gray{
-    background-color: #eee;
+    background-color: rgb(255, 255, 255);
   }
 
   @media (max-width: 640px) {
@@ -229,6 +233,14 @@ a.article:hover {
         padding-left: 0px;
       }
       .message{
-        font-size: 13px;
+        font-size: 10px;
       }
   }
+
+hr.thin {
+    height: 0px;
+    border: 0;
+    color: #333;
+    background-color: #333;
+    width: 95%;
+}

@@ -114,11 +114,6 @@
                 <li> <a href="#">Contact US</a> </li>
                 {{/if}}
             </ul>
-            <ul class="list-unstyled CTAs list-unstyled components" style="padding: 20px;">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download Dataset</a>
-                </li>
-            </ul>
         </nav>
 
         <!-- Page Content  -->
@@ -168,48 +163,68 @@
                             </a>
                         </div>
                         <div style="padding: 3px;">
+
+                            {{#if UNREAD}}
+                            <a class="nav-link text-light btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i style="color:rgb(209, 255, 4)" class="fas fa-bell navbar-btn-icon"></i>
+                                <span style="font-size:larger" class="notifi-num">({{unread_length}})</span>
+                            </a>
+                            {{else}}
                             <a class="nav-link text-light btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell navbar-btn-icon"></i>
                             </a>
+                            {{/if}}
                             <ul class="dropdown-menu">
-                                <li class="head text-light bg-dark">
+                                <li class="head text" style="background-color: #fff;">
                                     <div class="row">
-                                    <div class="col-lg-12 col-sm-12 col-12" style="color: rgb(139, 216, 216);">
-                                        <span>Notifications (3)</span>
-                                        <a href="" class="float-right text-light">Mark all as read</a>
+                                    <div class="col-lg-12 col-sm-12 col-12">
+                                        <span><b>Notifications ({{unread_length}})</b></span>
+                                        <a href="/notification/read/all/" class="float-right text"><b>Mark all as read</b></a>
                                     </div>
                                 </li>
-                                <li class="notification-box">
-                                    <a href="">
-                                    <div class="col-lg-8 col-sm-8 col-8">
-                                        <strong class="text-info">David John</strong>
-                                        <div>
-                                            Lorem ipsum dolor sit amet, consectetur
+                                <hr class="thin">
+
+                                {{#each notification_list}}
+
+                                {{#if UNREAD}}
+                                    <li class="notification-box" style="background-color: rgba(212, 229, 248, 0.658);">
+                                        <div class="row">
+                                        <div class="col-md-11">
+                                            <a href="{{redirect_url}}">
+                                                <div>
+                                                    <strong class="text" style="color: #86C232">{{notification_type}}</strong>
+                                                    <div style="color: black;">
+                                                        {{notification_text}}
+                                                    </div>
+                                                    <small class="text" style="color: rgb(17, 104, 158);">{{created_at}}</small>
+                                                </div>
+                                            </a>
                                         </div>
-                                        <small class="text-warning">27.11.2015, 15:00</small>
-                                    </div>
-                                    </a>
-                                </li>
-                                <li class="notification-box bg-gray">
-                                    <div class="col-lg-8 col-sm-8 col-8">
-                                        <strong class="text-info">David John</strong>
-                                        <div>
-                                            Lorem ipsum dolor sit amet, consectetur
+                                        <div class="col-md-1">
+                                            <a href="/notification/read/single/{{id}}/" title="Mark as read" data-toggle="tooltip" style="color: #122f30;"><i class="fas fa-bullseye"></i></a>
                                         </div>
-                                        <small class="text-warning">27.11.2015, 15:00</small>
-                                    </div>
-                                </li>
-                                <li class="notification-box">
-                                    <div class="col-lg-8 col-sm-8 col-8">
-                                        <strong class="text-info">David John</strong>
-                                        <div>
-                                            Lorem ipsum dolor sit amet, consectetur
                                         </div>
-                                        <small class="text-warning">27.11.2015, 15:00</small>
-                                    </div>
-                                </li>
-                                <li class="footer bg-dark text-center" style="color: rgb(139, 216, 216);">
-                                    <a href="" class="text-light">View All</a>
+                                    </li>
+                                {{else}}
+                                    <li class="notification-box" style="background-color: #fff;">
+                                        <div class="row">
+                                        <div class="col-md-11">
+                                            <a href="{{redirect_url}}">
+                                                <div>
+                                                    <strong class="text" style="color: #86C232">{{notification_type}}</strong>
+                                                    <div style="color: black;">
+                                                        {{notification_text}}
+                                                    </div>
+                                                    <small class="text" style="color: rgb(17, 104, 158);">{{created_at}}</small>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        </div>
+                                    </li>
+                                {{/if}}
+                                {{/each}}
+                                <li class="footer text-center" style="background-color: #fff; border-top: 1px solid rgb(4, 39, 37);">
+                                    <a href="/notification/list/" class="text"><b>View All</b></a>
                                 </li>
                             </ul>
                         </div>
