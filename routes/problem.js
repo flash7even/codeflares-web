@@ -44,6 +44,7 @@ router.addProblemFormSubmit = async function(req, res, next) {
   var problem = req.body
   problem = update_problem_data(problem)
   await problem_server.postProblem(res, req, problem)
+  jshelper.sleep(1000);
   res.redirect('/problem/list/')
 }
 
@@ -55,6 +56,7 @@ router.viewProblemList = async function(req, res, next) {
 
 router.viewProblemListAfterFormSubmit = async function(req, res, next) {
   let problem_list = await problem_server.getProblemList(res, req, req.body);
+  jshelper.sleep(1000);
   res.render('view_problem_list', problem_list);
 }
 
@@ -71,6 +73,7 @@ router.setProblemStatusFlag = async function(req, res, next) {
 
   }
   await problem_server.addUserProblemStatus(res, req, post_data)
+  jshelper.sleep(1000);
   res.redirect('back')
 }
 
@@ -87,6 +90,7 @@ router.setProblemStatusRemove = async function(req, res, next) {
 
   }
   await problem_server.addUserProblemStatus(res, req, post_data)
+  jshelper.sleep(1000);
   res.redirect('back')
 }
 
@@ -105,6 +109,7 @@ router.setProblemStatusClear = async function(req, res, next) {
   console.log('update post data with: ')
   console.log(post_data)
   await problem_server.addUserProblemStatus(res, req, post_data)
+  jshelper.sleep(1000);
   res.redirect('back')
 }
 

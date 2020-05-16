@@ -50,6 +50,7 @@ router.addTeamFormSubmit = async function(req, res, next) {
   console.log(team)
   team = update_team_data(team)
   await team_server.postTeam(res, req, team)
+  jshelper.sleep(1000);
   res.redirect('/team/list/');
 }
 
@@ -87,6 +88,7 @@ router.confirmTeam = async function(req, res, next) {
     "status": "confirmed"
   }
   await team_server.updtateTeam(res, req, data)
+  jshelper.sleep(1000);
   res.redirect('/team/list/');
 }
 
@@ -101,6 +103,7 @@ router.rejectTeam = async function(req, res, next) {
     "status": "rejected"
   }
   await team_server.updtateTeam(res, req, data)
+  jshelper.sleep(1000);
   res.redirect('/team/list/');
 }
 
@@ -109,6 +112,7 @@ router.deleteTeam = async function(req, res, next) {
   var words = url.split("/");
   var team_id = words[words.length-2]
   await team_server.deleteTeam(res, req, team_id)
+  jshelper.sleep(1000);
   res.redirect('/team/list/');
 }
 

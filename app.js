@@ -30,6 +30,22 @@ app.use(function (req, res, next) {
 	next();
 });
 
+// Notification middleware
+var notificationSetter = async function (req, res, next) {
+	var user_server = require('./routes/servers/user_services.js');
+	var sess = req.session;
+	var notification_data = {}
+	if (sess.user_id){
+		notification_data = await user_server.getAllNotification(res, req, {"size": 5}, sess.user_id)
+	}
+    console.log('notification_data: ')
+	console.log(notification_data)
+	sess.notification_data = notification_data
+	next()
+}
+
+app.use(notificationSetter)
+
 require('./routes/index')(app); // getting access of index.js
 
 app.listen(5055, function () {

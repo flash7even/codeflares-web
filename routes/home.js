@@ -11,17 +11,9 @@ var user_server = require('./servers/user_services.js');
 var jshelper = require('./servers/jshelper.js');
 
 
-router.showHome = async function(req, res, next) {
-    var notification_data = {}
 
-    var sess = req.session;
-    var user_id = sess.user_id
-    if(user_id){
-        notification_data = await user_server.getAllNotification(res, req, {"size": 5}, sess.user_id)
-    }
-    console.log('notification_data: ')
-    console.log(notification_data)
-    res.render('index', notification_data);
+router.showHome = async function(req, res, next) {
+    res.render('index');
 }
 
 router.showLogIn = function(req, res, next) {

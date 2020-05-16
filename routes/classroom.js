@@ -52,6 +52,7 @@ router.addClassroomFormSubmit = async function(req, res, next) {
   console.log(classroom)
   classroom = update_classroom_data(classroom)
   await classroom_server.postClassroom(res, req, classroom)
+  jshelper.sleep(1000);
   res.redirect('/classroom/list/');
 }
 
@@ -88,6 +89,7 @@ router.confirmClassroom = async function(req, res, next) {
     "status": "confirmed"
   }
   await classroom_server.updtateClassroom(res, req, data)
+  jshelper.sleep(1000);
   res.redirect('/classroom/list/');
 }
 
@@ -102,6 +104,7 @@ router.rejectClassroom = async function(req, res, next) {
     "status": "rejected"
   }
   await classroom_server.updtateClassroom(res, req, data)
+  jshelper.sleep(1000);
   res.redirect('/classroom/list/');
 }
 
@@ -110,6 +113,7 @@ router.deleteClassroom = async function(req, res, next) {
   var words = url.split("/");
   var classroom_id = words[words.length-2]
   await classroom_server.deleteClassroom(res, req, classroom_id)
+  jshelper.sleep(1000);
   res.redirect('/classroom/list/');
 }
 
@@ -121,6 +125,7 @@ router.deleteClassroomMember = async function(req, res, next) {
   console.log('user_handle: ' + user_handle)
   console.log('classroom_id: ' + classroom_id)
   await classroom_server.deleteClassroomMember(res, req, classroom_id, user_handle)
+  jshelper.sleep(1000);
   res.redirect('back');
 }
 
@@ -148,6 +153,7 @@ router.addClassroomTaskFormSubmit = async function(req, res, next) {
   classroom_task_data["classroom_id"] = classroom_id
   console.log(classroom_task_data)
   await classroom_server.postClassroomTask(res, req, classroom_task_data)
+  jshelper.sleep(1000);
   res.redirect('/classroom/training/' + classroom_id + '/');
 }
 
@@ -163,6 +169,7 @@ router.deleteClassroomTask = async function(req, res, next) {
   .catch(error => {
       res.render('error_page', {});
   })
+  jshelper.sleep(1000);
   res.redirect('back');
 }
 
@@ -181,6 +188,7 @@ router.updateClassroomTaskSubmit = async function(req, res, next) {
   var words = url.split("/");
   var task_id = words[words.length-2]
   updtateClassroomTask(res, req, req.body, task_id)
+  jshelper.sleep(1000);
   res.redirect('/');
 }
 
@@ -227,6 +235,7 @@ router.addClassroomClassFormSubmit = async function(req, res, next) {
   classroom_class_data["classroom_id"] = classroom_id
   console.log(classroom_class_data)
   await classroom_server.postClassroomClass(res, req, classroom_class_data)
+  jshelper.sleep(1000);
   res.redirect('/classroom/training/' + classroom_id + '/');
 }
 
@@ -242,6 +251,7 @@ router.deleteClassroomClass = async function(req, res, next) {
   .catch(error => {
       res.render('error_page', {});
   })
+  jshelper.sleep(1000);
   res.redirect('back');
 }
 
@@ -271,6 +281,7 @@ router.updateClassroomClass = async function(req, res, next) {
   var class_details = await classroom_server.getClassroomClassDetails(res, req, class_id)
   console.log('class_details found')
   console.log(class_details)
+  jshelper.sleep(1000);
   res.render('update_classroom_class', class_details);
 }
 
@@ -278,7 +289,7 @@ router.updateClassroomClassSubmit = async function(req, res, next) {
   var url = req.url
   var words = url.split("/");
   var class_id = words[words.length-2]
-  updtateClassroomClass(res, req, req.body, class_id)
+  classroom_server.updtateClassroomClass(res, req, req.body, class_id)
   res.redirect('/');
 }
 
