@@ -14,7 +14,6 @@ var serach_all_notification = config.server_host + 'notification/search/'
 
 
 
-
 //----------------- Call to the server -------------------//
 
 async function getAllNotification(res, req, param, user_id) {
