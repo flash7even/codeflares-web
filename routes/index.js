@@ -7,6 +7,7 @@ var trainingController = require('./training.js');
 var teamController = require('./team.js');
 var classroomController = require('./classroom.js');
 var notificationController = require('./notification.js');
+var contestController = require('./contest.js');
 
 module.exports = function(newApp) {
     /* GET home page. */
@@ -74,4 +75,7 @@ module.exports = function(newApp) {
     newApp.get('/notification/list/', notificationController.viewNotificationPage);
     newApp.get('/notification/read/all/', notificationController.readAllNotification);
     newApp.get('/notification/read/single/*', notificationController.readSingleNotification);
+
+
+    newApp.get('/contest/add/', contestController.addContestForm);
 }

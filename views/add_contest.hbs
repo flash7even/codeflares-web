@@ -1,0 +1,245 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="form-type-1" style="width: 100%;">	
+    <form action="/contest/add/" method="post">
+		<h2>Add Contest</h2>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+					<input type="text" id="contest_name" class="form-control" name="contest_name" placeholder="Contest Name">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+					<input type="text" id="description" class="form-control" name="description" placeholder="Description">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<div class="input-group">
+					<select class="form-control" title="Target Audience" id="contest_type">
+						<option value="level_3">Personal</option>
+						<option value="level_1">Team</option>
+						<option value="level_2">Classroom</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<div class="input-group">
+					<select class="form-control" title="Target Audience" id="target_ref">
+						<option value="level_3">Team 1</option>
+						<option value="level_1">Team 2</option>
+						<option value="level_2">Team 3</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<div class="input-group">
+					<input type="text" id="problem_count" class="form-control" name="problem_count" placeholder="Problem Count">
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<div class="input-group">
+                        <select class="form-control" id="contest_level">
+                            <option value="level_1">Level 1</option>
+                            <option value="level_2">Level 2</option>
+                            <option value="level_3">Level 3</option>
+                            <option value="level_4">Level 4</option>
+                            <option value="level_5">Level 5</option>
+                            <option value="level_6">Level 6</option>
+                            <option value="level_7">Level 7</option>
+                            <option value="level_8">Level 8</option>
+                            <option value="level_9">Level 9</option>
+                            <option value="level_10">Level 10</option>
+                        </select>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<div class="input-group">
+					<input type="date" id="start_date" class="form-control" name="start_date" placeholder="Start Date">
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<div class="input-group">
+					<input type="date" id="end_date" class="form-control" name="end_date" placeholder="End Date">
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div style="text-align: center;">
+			<p style="color: black;">Add the paramters to set a customized contest</p>
+		</div>
+		<br>
+		
+
+		<div class="category-group">
+			<div class="form-row control-group">
+				<div class="form-group col-md-2">
+					<div class="input-group">
+						<input type="text" autocomplete="off" id="problem_category@1" class="form-control autocomplete" name="problem_category@1" placeholder="Category">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div class="input-group">
+						<input type="text" id="minimum_difficulty@1" class="form-control" name="minimum_difficulty@1" placeholder="Minimum Difficulty">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div class="input-group">
+						<input type="text" id="maximum_difficulty@1" class="form-control" name="maximum_difficulty@1" placeholder="Maximum Difficulty">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div class="input-group">
+						<input type="text" id="minimum_problem@1" class="form-control" name="minimum_problem@1" placeholder="Minimum Problem">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div class="input-group">
+						<input type="text" id="maximum_problem@1" class="form-control" name="maximum_problem@1" placeholder="Maximum Problem">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div class="input-group-btn">
+						<button class="btn btn control-btn add-more" type="button"><i class="fas fa-plus"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="copy hide" hidden>
+			<div class="form-row control-group">
+				<div class="form-group col-md-2">
+					<div class="input-group">
+						<input type="text" autocomplete="off" id="problem_category_tmp" class="form-control autocomplete" name="problem_category_tmp" placeholder="Category">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div class="input-group">
+						<input type="text" id="minimum_difficulty_tmp" class="form-control" name="minimum_difficulty_tmp" placeholder="Minimum Difficulty">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div class="input-group">
+						<input type="text" id="maximum_difficulty_tmp" class="form-control" name="maximum_difficulty_tmp" placeholder="Maximum Difficulty">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div class="input-group">
+						<input type="text" id="minimum_problem_tmp" class="form-control" name="minimum_problem_tmp" placeholder="Minimum Problem">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div class="input-group">
+						<input type="text" id="maximum_problem_tmp" class="form-control" name="maximum_problem_tmp" placeholder="Maximum Problem">
+					</div>
+				</div>
+				<div class="form-group col-md-2">
+					<div class="input-group-btn"> 
+						<button class="btn control-btn remove" type="button"><i class="fas fa-minus"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br>
+		<div class="form-group">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
+        </div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var cat_item = 1;
+
+	function enableAutoComplete(){
+		$(".autocomplete").typeahead({
+			// data source
+			source: algorithms,
+
+			// how many items to show
+			items: 8,
+
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			
+			itemContentSelector:'a',
+
+			// min length to trigger the suggestion list
+			minLength: 1,
+
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+
+			// auto selects the first item
+			autoSelect: true,
+
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+
+			// adds an item to the end of the list
+			addItem: false,
+
+			// delay between lookups
+			delay: 0,
+		});
+	}
+
+    $(document).ready(function() {
+		$(".add-more").click(function(){
+			cat_item++;
+			var html = $(".copy").html()
+
+			var id_list = ['problem_category', 'minimum_difficulty', 'maximum_difficulty', 'minimum_problem', 'maximum_problem']
+
+			var idx = 0;
+			for(idx = 0;idx<id_list.length;idx++){
+				var item_id = id_list[idx] + '@' + cat_item.toString();
+				var old_id = id_list[idx] + '_tmp';
+				html = html.replace(old_id, item_id)
+				html = html.replace(old_id, item_id)
+			}
+
+			$(".category-group").append(html);
+			enableAutoComplete();
+		});
+
+		$("body").on("click",".remove",function(){ 
+			$(this).parents(".control-group").remove();
+		});
+    });
+
+	const algorithms = [
+		{"name": "DFS", "code": "AF"},
+		{"name": "BFS", "code": "AX"},
+		{"name": "Dynamic Programming", "code": "AL"},
+		{"name": "Graph Coloring", "code": "DZ"},
+		{"name": "Diskstra", "code": "AS"},
+		{"name": "Max Flow", "code": "AD"},
+		{"name": "Matching", "code": "AO"},
+		{"name": "Segment Tree", "code": "AO"},
+		{"name": "Heavy Light Decomposition", "code": "AO"},
+		{"name": "Centroid Decomposition", "code": "AO"},
+		{"name": "Coin Change", "code": "BD"},
+		{"name": "Knapsack", "code": "BD"},
+		{"name": "SQRT Decomposition", "code": "BD"},
+		// more data here
+	]
+	enableAutoComplete();
+
+</script>
