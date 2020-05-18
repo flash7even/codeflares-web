@@ -4,89 +4,85 @@
 
 <div class="form-type-1" style="width: 100%;">	
     <form action="/contest/add/" method="post">
-		<h2>Add Contest</h2>
+		<h2>Add Training Contest</h2>
+		<hr style="height:10px">
+		<br>
+
+		<h6 style="text-align: center; color: #144611;"><b>Basic Informations</b></h6>
+		<hr style="width: 40%; height:10px">
+
 		<div class="form-row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-3">
 				<div class="input-group">
 					<input type="text" id="contest_name" class="form-control" name="contest_name" placeholder="Contest Name">
 				</div>
 			</div>
+			<div class="form-group col-md-3">
+				<div class="input-group">
+                        <select class="form-control" id="contest_level" name="contest_level">
+                            <option value="1">Level 01</option>
+                            <option value="2">Level 02</option>
+                            <option value="3">Level 03</option>
+                            <option value="4">Level 04</option>
+                            <option value="5">Level 05</option>
+                            <option value="6">Level 06</option>
+                            <option value="7">Level 07</option>
+                            <option value="8">Level 08</option>
+                            <option value="9">Level 09</option>
+                            <option value="10">Level 10</option>
+                        </select>
+				</div>
+			</div>
+			<div class="form-group col-md-3">
+				<div class="input-group">
+					<select class="form-control" title="Target Audience" id="contest_type" name="contest_type" onchange="JavaScript:updateTargetAudience(event)">
+						<option value="personal">Personal</option>
+						<option value="team">Team</option>
+						<option value="classroom">Classroom</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-md-3">
+				<div class="input-group">
+					<select class="form-control" title="Select Audience" id="contest_ref_id" name="contest_ref_id">
+						<option value="{{session.user_id}}">{{session.username}}</option>
+					</select>
+				</div>
+			</div>
 		</div>
 		<div class="form-row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-3">
 				<div class="input-group">
 					<input type="text" id="description" class="form-control" name="description" placeholder="Description">
 				</div>
 			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-3">
 				<div class="input-group">
-					<select class="form-control" title="Target Audience" id="contest_type">
-						<option value="level_3">Personal</option>
-						<option value="level_1">Team</option>
-						<option value="level_2">Classroom</option>
-					</select>
+					<input type="number" id="problem_count" class="form-control" name="problem_count"  min="5" max="30" placeholder="Problem Count">
 				</div>
 			</div>
-			<div class="form-group col-md-6">
-				<div class="input-group">
-					<select class="form-control" title="Target Audience" id="target_ref">
-						<option value="level_3">Team 1</option>
-						<option value="level_1">Team 2</option>
-						<option value="level_2">Team 3</option>
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<div class="input-group">
-					<input type="text" id="problem_count" class="form-control" name="problem_count" placeholder="Problem Count">
-				</div>
-			</div>
-			<div class="form-group col-md-6">
-				<div class="input-group">
-                        <select class="form-control" id="contest_level">
-                            <option value="level_1">Level 1</option>
-                            <option value="level_2">Level 2</option>
-                            <option value="level_3">Level 3</option>
-                            <option value="level_4">Level 4</option>
-                            <option value="level_5">Level 5</option>
-                            <option value="level_6">Level 6</option>
-                            <option value="level_7">Level 7</option>
-                            <option value="level_8">Level 8</option>
-                            <option value="level_9">Level 9</option>
-                            <option value="level_10">Level 10</option>
-                        </select>
-				</div>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-3">
 				<div class="input-group">
 					<input type="date" id="start_date" class="form-control" name="start_date" placeholder="Start Date">
 				</div>
 			</div>
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-3">
 				<div class="input-group">
 					<input type="date" id="end_date" class="form-control" name="end_date" placeholder="End Date">
 				</div>
 			</div>
 		</div>
+
 		<br>
-		<br>
-		<div style="text-align: center;">
-			<p style="color: black;">Add the paramters to set a customized contest</p>
-		</div>
-		<br>
+		<h6 style="text-align: center; color: #144611;"><b>Query Parameters</b></h6>
+		<hr style="width: 40%; height:10px">
 		
 
 		<div class="category-group">
 			<div class="form-row control-group">
-				<div class="form-group col-md-2">
+				<div class="form-group col-md-3">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="problem_category@1" class="form-control autocomplete" name="problem_category@1" placeholder="Category">
+						<input type="text" autocomplete="off" id="category_name@1" class="form-control autocomplete" name="category_name@1" placeholder="Category">
 					</div>
 				</div>
 				<div class="form-group col-md-2">
@@ -109,10 +105,8 @@
 						<input type="text" id="maximum_problem@1" class="form-control" name="maximum_problem@1" placeholder="Maximum Problem">
 					</div>
 				</div>
-				<div class="form-group col-md-2">
-					<div class="input-group-btn">
-						<button class="btn btn control-btn add-more" type="button"><i class="fas fa-plus"></i></button>
-					</div>
+				<div class="form-group col-sm-1" style="width: 10px !important;">
+					<button class="btn add-more btn-block" type="button"><i class="fas fa-plus"></i></button>
 				</div>
 			</div>
 		</div>
@@ -120,9 +114,9 @@
 
 		<div class="copy hide" hidden>
 			<div class="form-row control-group">
-				<div class="form-group col-md-2">
+				<div class="form-group col-md-3">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="problem_category_tmp" class="form-control autocomplete" name="problem_category_tmp" placeholder="Category">
+						<input type="text" autocomplete="off" id="category_name_tmp" class="form-control autocomplete" name="category_name_tmp" placeholder="Category">
 					</div>
 				</div>
 				<div class="form-group col-md-2">
@@ -145,10 +139,8 @@
 						<input type="text" id="maximum_problem_tmp" class="form-control" name="maximum_problem_tmp" placeholder="Maximum Problem">
 					</div>
 				</div>
-				<div class="form-group col-md-2">
-					<div class="input-group-btn"> 
-						<button class="btn control-btn remove" type="button"><i class="fas fa-minus"></i></button>
-					</div>
+				<div class="form-group col-sm-1" style="width: 10px !important;">
+					<button class="btn remove btn-block" type="button"><i class="fas fa-minus"></i></button>
 				</div>
 			</div>
 		</div>
@@ -204,9 +196,7 @@
 		$(".add-more").click(function(){
 			cat_item++;
 			var html = $(".copy").html()
-
-			var id_list = ['problem_category', 'minimum_difficulty', 'maximum_difficulty', 'minimum_problem', 'maximum_problem']
-
+			var id_list = ['category_name', 'minimum_difficulty', 'maximum_difficulty', 'minimum_problem', 'maximum_problem']
 			var idx = 0;
 			for(idx = 0;idx<id_list.length;idx++){
 				var item_id = id_list[idx] + '@' + cat_item.toString();
@@ -214,7 +204,6 @@
 				html = html.replace(old_id, item_id)
 				html = html.replace(old_id, item_id)
 			}
-
 			$(".category-group").append(html);
 			enableAutoComplete();
 		});
@@ -225,21 +214,35 @@
     });
 
 	const algorithms = [
-		{"name": "DFS", "code": "AF"},
-		{"name": "BFS", "code": "AX"},
-		{"name": "Dynamic Programming", "code": "AL"},
-		{"name": "Graph Coloring", "code": "DZ"},
-		{"name": "Diskstra", "code": "AS"},
-		{"name": "Max Flow", "code": "AD"},
-		{"name": "Matching", "code": "AO"},
-		{"name": "Segment Tree", "code": "AO"},
-		{"name": "Heavy Light Decomposition", "code": "AO"},
-		{"name": "Centroid Decomposition", "code": "AO"},
-		{"name": "Coin Change", "code": "BD"},
-		{"name": "Knapsack", "code": "BD"},
-		{"name": "SQRT Decomposition", "code": "BD"},
+		{"name": "number_theory", "code": "AF"},
+		{"name": "base", "code": "AX"},
+		{"name": "greedy", "code": "AL"},
+		{"name": "dynamic_programming", "code": "DZ"},
+		{"name": "data_structure", "code": "AS"},
+		{"name": "graph", "code": "AD"},
+		{"name": "combinatorics", "code": "AO"}
 		// more data here
 	]
 	enableAutoComplete();
+
+
+	function updateTargetAudience(event) {
+		event.preventDefault()
+		var contest_type = document.getElementById("contest_type").value
+		var html = ''
+		if(contest_type == 'team'){
+        	{{#each team_list}}
+				html += '<option value="{{id}}">{{team_name}}</option>'
+			{{/each}}
+		}else if(contest_type == 'classroom'){
+        	{{#each classroom_list}}
+				html += '<option value="{{id}}">{{team_name}}</option>'
+			{{/each}}
+		}else{
+			html += '<option value="{{session.username}}">{{session.username}}</option>'
+		}
+		var contest_ref_id = document.getElementById('contest_ref_id')
+		contest_ref_id.innerHTML = html
+	}
 
 </script>
