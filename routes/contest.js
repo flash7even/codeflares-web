@@ -111,7 +111,7 @@ router.confirmContestFormSubmit = async function(req, res, next) {
   contest_data = update_confirmed_problem_set(contest_data)
   contest_data['status'] = 'confirmed'
   await contest_server.updateContest(res, req, contest_id, contest_data)
-  res.redirect('/contest/view/' + contest_id)
+  res.redirect('/contest/view/' + contest_id + '/')
 }
 
 router.viewContest = async function(req, res, next) {
