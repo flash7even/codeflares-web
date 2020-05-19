@@ -31,7 +31,7 @@
     function getContestList(){
         var data_list = [];
         {{#each contest_list}}
-            var contest_link = '<a href = "/contest/view/{{id}}/" style="color: #86c232; font-weight:700;">{{contest_name}}</a>'
+            var contest_link = '<a href = "/contest/view/{{id}}/" style="color: #A3AD00; font-weight:700;">{{contest_name}}</a>'
             var setter_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
             setter_link += '<a href = "/profile/{{setter_handle}}/" style="color: #5bc0de; font-weight:700;">{{setter_handle}}</a>'
             setter_link += "</div>"
@@ -46,12 +46,11 @@
         
         $("#contestListTable").dataTable({
             "aaData": dt_list,
-            paging: true,
+            paging: false,
             destroy: true,
             scrollCollapse: true,
             responsive: true,
-            pageLength: 10,
-            lengthMenu: [[3, 5, 10, -1], [3, 5, 10, 20]]
+            pageLength: 100
         });
     }
 

@@ -29,7 +29,7 @@
     function getProblemList(){
         var data_list = [];
         {{#each problem_set}}
-            var problem_name = '<a href = "{{source_link}}" style="color: #86c232; font-weight:700;">{{problem_name}}</a>'
+            var problem_name = '<a href = "{{source_link}}" style="color: #408C9F; font-weight:700;">{{problem_name}}</a>'
             var data = [problem_name, "{{problem_id}}", "{{oj_name}}"];
             data_list.push(data)
         {{/each}}
@@ -41,7 +41,9 @@
         
         $("#problemListTable").dataTable({
             "aaData": dt_list,
-            paging: true,
+            paging: false,
+            searching: false,
+            ordering: false,
             destroy: true,
             scrollCollapse: true,
             responsive: true,

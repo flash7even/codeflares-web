@@ -3,7 +3,7 @@
 </head>
 
 
-<div class="form-type-1" style="width: 40%;">	
+<div class="form-type-1" style="width: 60%;">	
     <form action="/update/profile/" method="post">
 		<h2>Update Your Profile</h2>
 			<div class="form-group">
@@ -12,18 +12,21 @@
 					<input type="text" class="form-control" name="username" value="{{username}}" readonly>
 				</div>
 			</div>
+			<br>
 			<div class="form-group">
 				<label for="email"> <b>Full Name</b> </label>
 				<div class="input-group">
 					<input type="text" id="full_name" class="form-control" name="full_name" value="{{full_name}}">
 				</div>
 			</div>
+			<br>
         <div class="form-group">
 			<label for="email"> <b>Email</b> </label>
 			<div class="input-group">
 				<input type="email" class="form-control" name="email" value="{{email}}" readonly>
 			</div>
         </div>
+		<br>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="email"> <b>Codeforces Handle</b> </label>
@@ -38,6 +41,7 @@
 				</div>
 			</div>
 		</div>
+		<br>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="email"> <b>SPOJ Handle</b> </label>
@@ -52,6 +56,7 @@
 				</div>
 			</div>
 		</div>
+		<br>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="email"> <b>Atcoder Handle</b> </label>
@@ -67,7 +72,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-            <button type="submit" class="btn btn-info btn-block btn-lg">Update</button>
+            <button type="submit" class="btn submit-btn btn-block btn-lg">Update</button>
         </div>
 	</form>
 </div>

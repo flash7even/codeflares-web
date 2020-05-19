@@ -95,7 +95,7 @@
 
     <div class="table-wrapper">
         <div class="table-title-2">
-            <h5 style="text-align: center fixed;"><b>Overall Algorithm Skills</b></h5>
+            <h5 style="text-align: center;"><b>Overall Algorithm Skills</b></h5>
         </div>
         <table id="categorySkillListTable" class="table table-striped table-bordered category-list-table">
             <thead>
@@ -123,7 +123,12 @@
         {{#each category_skill_list}}
             var category_root_title = "{{category_info.category_root_title}}";
             var category_title = "{{category_info.category_title}}";
-            var category_data = ['<a href = "" style="color: #4b1196; font-weight:500; text-decoration: underline;">'+category_root_title+'</a>', '<a href = >'+category_title+'</a>', "{{category_info.category_difficulty}}", "{{skill_value}}", "{{skill_title}}", "{{solve_count}}"];
+            var skill_value = parseFloat("{{skill_value}}")
+            console.log('skill_value: ')
+            console.log(skill_value)
+            skill_value = skill_value.toFixed(2)
+            console.log(skill_value)
+            var category_data = ['<a href = "" style="color: #4b1196; font-weight:500; text-decoration: underline;">'+category_root_title+'</a>', '<a href = >'+category_title+'</a>', "{{category_info.category_difficulty}}", skill_value, "{{skill_title}}", "{{solve_count}}"];
             db_category_list.push(category_data)
         {{/each}}
 
@@ -138,6 +143,7 @@
             paging: true,
             destroy: true,
             scrollY: '500px',
+            pageLength: 20,
             scrollCollapse: true
         });
     }

@@ -154,12 +154,12 @@
                         <div style="padding: 3px;">
 
                             {{#if session.notification_data.UNREAD}}
-                            <a class="nav-link text-light btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i style="color:rgb(209, 255, 4)" class="fas fa-bell navbar-btn-icon"></i>
+                            <a type="button btn-lg" class="btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i style="color:rgb(168, 157, 2)" class="fas fa-bell navbar-btn-icon"></i>
                                 <span style="font-size:larger" class="notifi-num">({{session.notification_data.unread_length}})</span>
                             </a>
                             {{else}}
-                            <a class="nav-link text-light btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a type="button btn-lg" class="btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell navbar-btn-icon"></i>
                             </a>
                             {{/if}}
