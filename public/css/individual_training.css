@@ -2,20 +2,23 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 .table-wrapper {
-    background: #fff;
     color: black;
     padding: 20px 25px;
     margin: 30px auto;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    border-radius: 20px;
-    box-shadow: 1 1px 1px rgba(209, 168, 168, 0.05);
+    margin-bottom: 10px;
+    margin-top: 0px;
+    background: rgb(255, 255, 255);
+    border: 1px solid #f3f3f3;
+    box-shadow: 1px 1px 3px #7180AC;
     font-size: small;
+    text-align: center;
 }
 .table-title {
-    border-radius: 20px;
-    background: rgb(96, 184, 179);		
-    padding: 16px 25px;
+    border-radius: 1px;
+    background: #ACCBE1;		
+    padding: 8px;
+    padding-top: 15px;
+    font-size: smaller;
     margin: -20px -25px 10px;
 }
 .table-title h2 {
@@ -97,7 +100,6 @@ table.table td a.delete {
 table.table td i {
     font-size: 19px;
 }
-
 
 .canvas-table {
     background: #fff;

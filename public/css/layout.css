@@ -1,7 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     font-family: 'Poppins', sans-serif;
-    background: #1F2833;
+    background: #E1EFF6;
 }
 
 p {
@@ -22,22 +22,19 @@ a:focus {
 
 .navbar {
     padding: 10px;
-    background: #0B0C10;
     border-radius: 40px;
-    margin-bottom: 40px;
-    border-color: #66FCF1;
-    box-shadow: 1px 1px 3px rgba(102, 252, 241, 5.35);
+    margin-bottom: 10px;
 }
 
 .navbar-btn {
-    background: #0B0C10;
+    background: #E1EFF6;
     box-shadow: none;
     border: none;
 }
 
 .navbar-btn-icon{
     font-size: 20px;
-    color: #66FCF1;
+    color: #4B4E6D;
 }
 
 .line {
@@ -56,12 +53,9 @@ a:focus {
 #sidebar {
     min-width: 200px;
     max-width: 200px;
-    background: #0B0C10;
+    background: #4B4E6D;
     color: #fff;
     transition: all 0.3s;
-    border-radius: 20px;
-    border-color: #66FCF1;
-    box-shadow: 1px 1px 3px rgba(102, 252, 241, 5.35);
 }
 
 #sidebar.active {
@@ -71,14 +65,14 @@ a:focus {
 #sidebar .sidebar-header {
     padding: 20px;
     padding-top: 30px;
-    border-radius: 20px;
-    border-color: #66FCF1;
-    box-shadow: 1px 1px 3px rgba(102, 252, 241, 0.35);
+    border-radius: 0px;
+    border-color: #7180AC;
+    box-shadow: 1px 1px 3px #7180AC;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #66FCF1;
+    border-bottom: 1px solid #7180AC;
 }
 
 #sidebar ul p {
@@ -100,7 +94,7 @@ a:focus {
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
-    background: #45A29E;
+    background: #7180AC;
 }
 
 a[data-toggle="collapse"] {
@@ -116,9 +110,8 @@ a[data-toggle="collapse"] {
 }
 
 ul ul a {
-    font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #1F2833;
+    background: rgb(122, 150, 170)
 }
 
 ul.CTAs {
@@ -172,14 +165,6 @@ a.article:hover {
     width: 30px;
 }
 
-.search-box{
-    background: rgb(34, 9, 9);
-    color: #000000;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-
 ul {
     list-style-type: none;
 }
@@ -191,7 +176,7 @@ ul {
     right: 128px;
     left: unset;
     width: 450px;
-    box-shadow: 0px 0px 0.3px 0px #66FCF1;
+    box-shadow: 0px 0px 0.3px 0px #7180AC;
     padding-bottom: 0px;
     padding: 5px;
   }
@@ -200,7 +185,7 @@ ul {
     position: absolute;
     top: -20px;
     right: 15px;
-    border:5px solid #66FCF1;
+    border:5px solid #7180AC;
     border-color: transparent transparent #343A40 transparent;
   }
   .head{

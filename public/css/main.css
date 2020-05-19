@@ -1,6 +1,5 @@
 body {
-    color: #999;
-    background: #1F2833;
+    color: #0B0C01;
     font-family: 'Roboto', sans-serif;
     font-size: small;
     line-height: inherit;
@@ -27,11 +26,11 @@ body {
     text-align: center;
 }
 .form-type-1 form {		
-    border-radius: 20px;
+    border-radius: 5px;
     margin-bottom: 15px;
     background: rgb(255, 255, 255);
     border: 1px solid #f3f3f3;
-    box-shadow: 1px 1px 3px rgba(102, 252, 241, 10.35);
+    box-shadow: 1px 1px 3px #7180AC;
     padding: 30px;
 }
 .form-type-1 .form-group {
@@ -56,7 +55,7 @@ body {
 .form-type-1 .submit-btn {        
     font-size: 16px;
     font-weight: bold;
-    background: #86C232;
+    background: rgb(128, 162, 185);
     border-radius: 3px;
     border: none;
     min-width: 140px;
@@ -66,7 +65,7 @@ body {
     justify-content: center;
 }
 .form-type-1 .submit-btn:hover, .form-type-1 .submit-btn:focus {
-    background: rgb(173, 236, 84);
+    background: #ACCBE1;
 }
 
 .form-type-1 .control-btn {        
@@ -81,11 +80,11 @@ body {
 
 .table-type-1 {
     background: #ffffff;
-    border-radius: 20px;
+    border-radius: 5px;
     padding: 5px;
     margin: 20px;
     margin-bottom: 15px;
-    box-shadow: 1px 1px 3px rgba(102, 252, 241, 10.35);
+    box-shadow: 1px 1px 3px #7180AC;
     padding: 30px;
     color: #0B0C10;
 }

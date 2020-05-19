@@ -31,7 +31,7 @@ body {
 .view-form-table-1 .submit-btn {        
     font-size: 16px;
     font-weight: bold;
-    background: #86C232;
+    background: #7180AC;
     border-radius: 3px;
     border: none;
     min-width: 140px;
@@ -41,7 +41,7 @@ body {
     justify-content: center;
 }
 .view-form-table-1 .submit-btn:hover, .view-form-table-1 .submit-btn:focus {
-    background: rgb(173, 236, 84);
+    background: #7180AC;
 }
 
 .view-form-table-1 .control-btn {        

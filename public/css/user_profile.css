@@ -3,7 +3,6 @@
 body
 {
     font-family: 'Lato', 'sans-serif';
-    color: black;
 }
 .profile
 {
@@ -20,7 +19,7 @@ body
 }
 .emphasis:hover 
 {
-    border-top: 4px solid #1abc9c;
+    border-top: 4px solid #ACCBE1;
 }
 .emphasis h2
 {
@@ -28,7 +27,7 @@ body
 }
 span.tags 
 {
-    background: #1abc9c;
+    background: #ACCBE1;
     border-radius: 2px;
     color: #f5f5f5;
     font-weight: bold;
@@ -37,24 +36,23 @@ span.tags
 
 .profile-top {
     margin: 20px;
-    border-radius: 20px;
     margin-bottom: 15px;
-    background: rgb(255, 255, 255);
-    border: 1px solid #f3f3f3;
-    box-shadow: 1px 1px 3px rgba(102, 252, 241, 10.35);
-    padding: 30px;
 }
 
 .profile-section {
-    border: 2px solid #f3f3f3;
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px rgba(242, 242, 242, 10.35);
-    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background: rgb(255, 255, 255);
+    border: 1px solid #f3f3f3;
+    box-shadow: 1px 1px 3px #7180AC;
+    padding: 30px;
 }
 
 .below-section {
-    border: 2px solid #f3f3f3;
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px rgba(242, 242, 242, 10.35);
-    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background: rgb(255, 255, 255);
+    border: 1px solid #f3f3f3;
+    box-shadow: 1px 1px 3px #7180AC;
+    padding: 30px;
 }
