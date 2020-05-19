@@ -33,6 +33,24 @@ module.exports.getContestList = async function(res, req, search_param) {
   return contest_list
 };
 
+module.exports.getContestDetails = async function(res, req, contest_id) {
+    console.log('getContestDetails called');
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    var url = contest_submit_url + contest_id
+    let response = await axios.get(url, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    console.log('getContestDetails done');
+    return response.data
+};
+
 module.exports.postContest = async function(res, req, contest_data) {
   var post_url = contest_submit_url
   console.log("post_url: " + post_url)
@@ -51,3 +69,22 @@ module.exports.postContest = async function(res, req, contest_data) {
   }
   return response.data
 };
+
+module.exports.updateContest = async function(res, req, contest_id, contest_data) {
+    var post_url = contest_submit_url + contest_id
+    console.log("post_url: " + post_url)
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    let response = await axios.put(post_url, contest_data, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+  
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+  };

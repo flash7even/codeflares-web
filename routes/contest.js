@@ -58,6 +58,30 @@ function update_contest_data(contest){
   return data
 }
 
+function update_confirmed_problem_set(contest_data){
+  var problem_name = "problem_name"
+  var problem_list = []
+  for (var key in contest_data) {
+    if(key.startsWith(problem_name)){
+        var res = key.split('@')
+        if (res.length == 2){
+          var id = res[1];
+          var pdata = {
+            "problem_name": contest_data[key],
+            "oj_name": contest_data['oj_name' + "@" + id],
+            "problem_id": contest_data['problem_id' + "@" + id]
+          }
+          problem_list.push(pdata);
+      }
+    }
+  }
+  var data = {
+    "problem_list": problem_list
+  }
+  console.log('Updated problem set data')
+  console.log(data)
+  return data
+}
 
 router.addContestFormSubmit = async function(req, res, next) {
   console.log('addContestFormSubmit in route')
@@ -67,8 +91,46 @@ router.addContestFormSubmit = async function(req, res, next) {
   console.log(contest_data)
   contest_data['setter_id'] = sess.user_id
   contest_data = update_contest_data(contest_data)
-  await contest_server.postContest(res, req, contest_data)
-  res.render('add_contest', contest_data);
+  var contest_id = await contest_server.postContest(res, req, contest_data)
+  jshelper.sleep(2000)
+  var contest_details = await contest_server.getContestDetails(res, req, contest_id);
+  console.log('contest_details: ')
+  console.log(contest_details)
+  res.render('view_contest_confirmation', contest_details);
+}
+
+router.confirmContestFormSubmit = async function(req, res, next) {
+  console.log('confirmContestFormSubmit in route')
+  var url = req.url
+  var words = url.split("/");
+  var contest_id = words[words.length-2]
+  var sess = req.session;
+  var contest_data = req.body;
+  console.log('Confirmed Contest Data: ')
+  console.log(contest_data)
+  contest_data = update_confirmed_problem_set(contest_data)
+  contest_data['status'] = 'confirmed'
+  await contest_server.updateContest(res, req, contest_id, contest_data)
+  res.redirect('/contest/view/' + contest_id)
+}
+
+router.viewContest = async function(req, res, next) {
+  console.log('viewContest in route')
+  var url = req.url
+  var words = url.split("/");
+  var contest_id = words[words.length-2]
+  var contest_details = await contest_server.getContestDetails(res, req, contest_id);
+  console.log('contest_details: ')
+  console.log(contest_details)
+  res.render('view_single_contest', contest_details);
+}
+
+router.viewAllContest = async function(req, res, next) {
+  console.log('viewContest in route')
+  var contest_list = await contest_server.getContestList(res, req, {});
+  console.log('contest_list: ')
+  console.log(contest_list)
+  res.render('view_contest_list', contest_list);
 }
 
 module.exports = router;

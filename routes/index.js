@@ -78,5 +78,8 @@ module.exports = function(newApp) {
 
 
     newApp.get('/contest/add/', contestController.addContestForm);
-    newApp.post('/contest/add/', contestController.addContestFormSubmit);
+    newApp.get('/contest/add/', contestController.addContestForm);
+    newApp.get('/contest/view/*', contestController.viewContest);
+    newApp.get('/contest/list/', contestController.viewAllContest);
+    newApp.post('/contest/confirm/*', contestController.confirmContestFormSubmit);
 }
