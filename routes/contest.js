@@ -28,10 +28,6 @@ router.addContestForm = async function(req, res, next) {
 function update_contest_data(contest){
   var data = {}
   var category_name = "category_name"
-  var minimum_difficulty = "minimum_difficulty"
-  var maximum_difficulty = "maximum_difficulty"
-  var minimum_problem = "minimum_problem"
-  var maximum_problem = "maximum_problem"
   var param_list = []
   for (var key in contest) {
     if(key.startsWith(category_name)){
@@ -40,22 +36,25 @@ function update_contest_data(contest){
           var id = res[1];
           var cat_param = {
             "category_name": contest[key],
-            "minimum_difficulty": contest['minimum_difficulty' + "@" + id],
-            "maximum_difficulty": contest['maximum_difficulty' + "@" + id],
-            "minimum_problem": contest['minimum_problem' + "@" + id],
-            "maximum_problem": contest['maximum_problem' + "@" + id]
+            "minimum_difficulty": parseFloat(contest['minimum_difficulty' + "@" + id]),
+            "maximum_difficulty": parseFloat(contest['maximum_difficulty' + "@" + id]),
+            "minimum_problem": parseInt(contest['minimum_problem' + "@" + id]),
+            "maximum_problem": parseInt(contest['maximum_problem' + "@" + id])
           }
           param_list.push(cat_param);
       }
-    }else if(key.startsWith(minimum_difficulty)||key.startsWith(maximum_difficulty)||key.startsWith(minimum_problem)||key.startsWith(maximum_problem)){
-      continue;
-    }else{
-      data[key] = contest[key]
     }
   }
+  data['contest_name'] = contest['contest_name']
+  data['contest_type'] = contest['contest_type']
+  data['start_date'] = contest['start_date']
+  data['end_date'] = contest['end_date']
+  data['contest_ref_id'] = contest['contest_ref_id']
+  data['description'] = contest['description']
+  data['setter_id'] = contest['setter_id']
+  data['contest_level'] = parseInt(contest['contest_level'])
+  data['problem_count'] = parseInt(contest['problem_count'])
   data['param_list'] = param_list
-  console.log('UPDATED DATA: ')
-  console.log(data)
   return data
 }
 
