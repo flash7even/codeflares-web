@@ -1,6 +1,6 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/css/classroom_training.css">
+	<link rel="stylesheet" type="text/css" href="/css/individual_training.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
@@ -28,7 +28,7 @@
                 <td>{{deadline}}</td>
                 <td>
                     <a href="/classroom/task/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3;"><i class="fas fa-edit"></i></a>
-                    <a href="/classroom/task/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>
+                    <a href="/classroom/task/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
                 {{/each}}
@@ -36,6 +36,8 @@
         </tbody>
     </table>
     <div class="add-task">
-        <a class='btn btn-info' href="/classroom/task/add/{{id}}/">Add New Task</a>
+        <div>
+            <a style="background-color: #8FC1e3;" title="Add new task" class='btn' href="/classroom/task/add/{{id}}/"><i class="fas fa-plus"></i></a>
+        </div>
     </div>
 </div>

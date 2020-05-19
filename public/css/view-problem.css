@@ -1,6 +1,4 @@
 body {
-    color: #999;
-    background: #1F2833;
     font-family: 'Roboto', sans-serif;
 }
 .form-control, .form-control:focus, .input-group-addon {
@@ -16,7 +14,7 @@ body {
     margin: 20px;
     margin-top: 5px;
     margin-bottom: 15px;
-    box-shadow: 1px 1px 3px rgba(102, 252, 241, 10.35);
+    box-shadow: 1px 1px 3px #7180AC;
     padding: 30px;
     font-size: small;
     color: #0B0C10;

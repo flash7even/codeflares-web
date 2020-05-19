@@ -105,6 +105,6 @@ table.table td i {
     padding: 20px;
     margin: 20px;
     border-radius: 20px;
-    box-shadow: 1 1px 1px rgba(209, 168, 168, 0.05);
+    box-shadow: 1px 1px 3px #7180AC;
     font-size: small;
 }
