@@ -52,9 +52,36 @@ router.addCategoryFormSubmit = async function(req, res, next) {
 }
 
 router.viewCategoryList = async function(req, res, next) {
-    let category_list = await category_server.getCategoryList(res, req, {});
+  console.log('viewCategoryList called')
+    var sess = req.session;
+    var param = {
+      "category_root": "root"
+    }
+    if (sess.user_id){
+      param["user_id"] = sess.user_id
+    }
+    let category_list = await category_server.getCategoryList(res, req, param);
     console.log(category_list)
     res.render('view_category_list', category_list);
+}
+
+router.viewCategoryListByRoot = async function(req, res, next) {
+  console.log('viewCategoryListByRoot called')
+  var url = req.url
+  var words = url.split("/");
+  var category_root = words[words.length-2]
+  var sess = req.session;
+  var param = {
+    "category_root": category_root
+  }
+  if (sess.user_id){
+    param["user_id"] = sess.user_id
+  }
+  console.log('param: ')
+  console.log(param)
+  let category_list = await category_server.getCategoryList(res, req, param);
+  console.log(category_list)
+  res.render('view_category_list', category_list);
 }
 
 router.viewCategoryListAfterFormSubmit = async function(req, res, next) {

@@ -9,36 +9,14 @@
         <h2 style="text-align: center;"><b>Category Database</b></h2>
         <hr class="thin">
     </div>
-    <br>
-       <form name="form form-type-1" action="/category/list/" method="POST">
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <div class="input-group">
-                        <input type="text" id="category_root" class="form-control autocomplete-root" name="category_root" placeholder="Root Category">
-                    </div>
-                </div>
-                <div class="form-group col-md-3">
-                    <div class="input-group">
-                        <input type="text" id="minimum_difficulty" class="form-control" name="minimum_difficulty" placeholder="Minimum Difficulty">
-                    </div>
-                </div>
-                <div class="form-group col-md-3">
-                    <div class="input-group">
-                        <input type="text" id="maximum_difficulty" class="form-control" name="maximum_difficulty" placeholder="Maximum Difficulty">
-                    </div>
-                </div>
-                <div class="form-group col-md-2">
-                    <button type="submit" class="btn submit-btn btn-info btn-block btn-lg">Submit</button>
-                </div>
-            </div>
-        </form>
         <table id="categoryListTable" class="table table-striped table-bordered table-type-1-table">
             <thead>
                 <tr>
                     <th>Root Category</th>
                     <th>Category Name</th>
+                    <th>Statistics</th>
                     <th>Category Difficulty</th>
-                    <th>Problem Count</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,10 +41,14 @@
         var db_category_list = [];
 
         {{#each category_list}}
-            console.log("{{category_title}}")
-            var category_root = "{{category_root_title}}";
-            var category_title = "{{category_title}}";
-            var category_data = ["<a href = >"+category_root+"</a>", "<a href = >"+category_title+"</a>", "{{category_difficulty}}", "{{problem_count}}"];
+            var category_root = "{{category_root}}"
+            var category_url = '<i class="fas fa-folder-open" style="color:#679AA4;"></i>  <a style="color: #368AA3; font-weight:700;" href = "/category/list/root/{{category_name}}/">{{category_title}}</a>'
+            if (category_root != "root"){
+                category_url = '<i class="fas fa-folder-open" style="color:#679AA4;"></i>  <a style="color: #368AA3; font-weight:700;" href = "/problem/list/{{category_name}}/">{{category_title}}</a>'
+            }
+            var stat_data = '<div> <i class="fas fa-check-circle" style="color:#55B232;"></i> {{solve_count}} / {{problem_count}} </div>'
+            var category_page_link = '<a style="color: #368AA3;" href = "/category/view/{{category_name}}/"><i class="fas fa-info-circle"></i></a>'
+            var category_data = ["{{category_root_title}}", category_url, stat_data, "{{category_difficulty}}", category_page_link];
             db_category_list.push(category_data)
         {{/each}}
 
@@ -78,11 +60,10 @@
         
         $("#categoryListTable").dataTable({
             "aaData": dt_list,
-            paging: true,
+            paging: false,
             destroy: true,
             scrollCollapse: true,
-            pageLength: 50,
-            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, 100]]
+            pageLength: 50
         });
     }
 	var cat_item = 1;

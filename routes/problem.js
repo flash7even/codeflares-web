@@ -49,7 +49,19 @@ router.addProblemFormSubmit = async function(req, res, next) {
 }
 
 router.viewProblemList = async function(req, res, next) {
-  let problem_list = await problem_server.getProblemList(res, req, {});
+  var url = req.url
+  var words = url.split("/");
+  var category_name = words[words.length-2]
+  var sess = req.session;
+  var param = {}
+  if(category_name != 'all'){
+    param['category_name'] = category_name
+  }
+  if (sess.user_id){
+    param["user_id"] = sess.user_id
+  }
+
+  let problem_list = await problem_server.getProblemList(res, req, param);
   console.log(problem_list)
   res.render('view_problem_list', problem_list);
 }
