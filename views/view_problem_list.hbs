@@ -58,6 +58,7 @@
                     <th>Problem Difficulty</th>
                     <th>OJ Name</th>
                     <th>Status</th>
+                    <th>User Solved</th>
                     <th>Problem Category</th>
                 </tr>
             </thead>
@@ -81,6 +82,16 @@
 
         var db_problem_list = [];
 
+
+            var member_list_items = "";
+            var mem_count = 0;
+            var my_status = "{{status}}"
+            {{#each member_list}}
+                if(mem_count>0) member_list_items += ",  ";
+                member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700;">{{user_handle}} ({{status}})</a>'
+                mem_count += 1
+            {{/each}}
+
         {{#each problem_list}}
             var prbolem_link = '<a href = {{source_link}} style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_name}}</a>'
             var solve_status = "{{solved}}"
@@ -89,10 +100,13 @@
                 user_status = '<i class="fas fa-check" style="color:#55B232;"></i>'
             }
             var category_list = ''
-            {{#each problem_list}}
-
+            var count = 0
+            {{#each category_dependency_list}}
+                if(count>0) category_list += ",  ";
+                category_list += '<a href = "/category/view/{{category_name}}/" style="color: #5bc0de; font-weight:700;">{{category_info.category_title}}</a>'
+                count++
             {{/each}}
-            var problem_data = [prbolem_link, "{{problem_difficulty}}", "{{oj_name}}", user_status, "{{category_list_light}}"];
+            var problem_data = [prbolem_link, "{{problem_difficulty}}", "{{oj_name}}", user_status, "{{solve_count}}", category_list];
             db_problem_list.push(problem_data)
         {{/each}}
 
