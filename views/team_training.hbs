@@ -112,8 +112,26 @@
     </table>
 </div>
 
-<div id="chart_div"></div>
-
+<div class="table-type-1">
+    <div class="table-title-2">
+        <h5 style="text-align: center;"><b>Training Contest List</b></h5>
+    </div>
+    <table id="contestListTable" class="table table-striped table-bordered">
+        <thead style="background-color: #ACCBE1;">
+            <tr>
+                <th>Contest Name</th>
+                <th>Setter</th>
+                <th>Contest Type</th>
+                <th>Contest Level</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
 
 <script type="text/javascript">
 
@@ -304,8 +322,35 @@
         }
     }
 
+    function getContestList(){
+        var data_list = [];
+        {{#each contest_list}}
+            var contest_link = '<a href = "/contest/view/{{id}}/" style="color: #818101; font-weight:700;">{{contest_name}}</a>'
+            var setter_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
+            setter_link += '<a href = "/profile/{{setter_handle}}/" style="color: #5bc0de; font-weight:700;">{{setter_handle}}</a>'
+            setter_link += "</div>"
+            var data = [contest_link, setter_link, "{{contest_type}}", "{{contest_level}}", "{{description}}", "{{start_date}}", "{{end_date}}"];
+            data_list.push(data)
+        {{/each}}
+        return data_list;
+    }
+
+    function showContestsDTSearchTable(){
+        var dt_list = getContestList();
+        
+        $("#contestListTable").dataTable({
+            "aaData": dt_list,
+            paging: false,
+            destroy: true,
+            scrollCollapse: true,
+            responsive: true,
+            pageLength: 100
+        });
+    }
+
     show_topic_wise_comparison()
     showCategoriesSkillDTSearchTable();
     show_topic_wise_solve_count_comparison();
+    showContestsDTSearchTable();
 
 </script>

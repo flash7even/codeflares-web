@@ -75,7 +75,7 @@
                 <li>
                     <a href="#contestMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-cube"></i> Contest</a>
                     <ul class="collapse list-unstyled" id="contestMenu">
-                        <li> <a href="/contest/add/">Add Contest</a> </li>
+                        <li> <a href="/contest/add/">Create Contest</a> </li>
                         <li> <a href="/contest/list/">View Contest</a> </li>
                     </ul>
                 </li>
@@ -138,14 +138,6 @@
                             </li>
                         </ul>
                         {{#if session.email}}
-
-                        <div style="padding: 3px;">
-                            <a href="/flagged/problem/list/"  title="Personal Training">
-                            <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
-                                <i class="fas fa-bolt navbar-btn-icon"></i>
-                            </button>
-                            </a>
-                        </div>
 
                         <div style="padding: 3px;">
                             <a href="/flagged/problem/list/"  title="Taskbar">
@@ -227,6 +219,16 @@
                                     <a href="/notification/list/" class="text"><b>View All</b></a>
                                 </li>
                             </ul>
+                        </div>
+                        {{/if}}
+
+                        {{#if session.email}}
+                        <div style="padding: 3px;">
+                            <a href="/training/individual/"  title="Personal Training">
+                            <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
+                                <i class="fas fa-bolt navbar-btn-icon"></i>
+                            </button>
+                            </a>
                         </div>
                         {{/if}}
 

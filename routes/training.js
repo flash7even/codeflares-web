@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 
 var training_server = require('./servers/training_services.js');
+var contest_server = require('./servers/contest_services.js');
 var jshelper = require('./servers/jshelper.js');
 
 
@@ -57,6 +58,9 @@ router.viewTeamTraining = async function(req, res, next) {
     for(idx = 1;idx<=len;idx++){
         training_data['category_skill_list'][idx-1]['idx'] = idx;
     }
+
+    var contest_list = await contest_server.getContestList(res, req, {"contest_ref_id": team_id});
+    training_data['contest_list'] = contest_list['contest_list']
 
     res.render('team_training', training_data);
 }

@@ -74,7 +74,13 @@ router.viewProblemList = async function(req, res, next) {
 }
 
 router.viewProblemListAfterFormSubmit = async function(req, res, next) {
-  let problem_list = await problem_server.getProblemList(res, req, req.body);
+  var search_body = req.body
+  var sess = req.session;
+  if (sess.user_id){
+    search_body["user_id"] = sess.user_id
+  }
+
+  let problem_list = await problem_server.getProblemList(res, req, search_body);
   let category_list = await category_server.getCategoryList(res, req, {});
   problem_list['category_list'] = category_list['category_list']
   let root_category_list = await category_server.getCategoryList(res, req, {"category_root": "root"});

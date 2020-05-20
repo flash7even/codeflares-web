@@ -7,6 +7,7 @@ var contest_submit_url = config.server_host + 'contest/'
 
 module.exports.getContestList = async function(res, req, search_param) {
   console.log('getContestList called');
+  console.log(search_param)
   var page = 0
   var contest_list = []
   var sess = req.session;
@@ -30,6 +31,7 @@ module.exports.getContestList = async function(res, req, search_param) {
     break;
   }
   console.log('getContestList done');
+  console.log(contest_list)
   return contest_list
 };
 
