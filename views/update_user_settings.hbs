@@ -15,7 +15,7 @@
 
 		<div class="form-row">
 			<div class="form-group col-md-12">
-				<label for="text">Get notifications after any changes:</label>
+				<label for="text">Get system notifications:</label>
 				<select class="form-control" id="get_notification" name="get_notification">
 					<option value="Yes">Yes</option>
 					<option value="No">No</option>
@@ -25,7 +25,7 @@
 
 		<div class="form-row">
 			<div class="form-group col-md-12">
-				<label for="text">Get email after any changes:</label>
+				<label for="text">Get email updates from us:</label>
 				<select class="form-control" id="get_email_updates" name="get_email_updates">
 					<option value="Yes">Yes</option>
 					<option value="No">No</option>
@@ -64,13 +64,76 @@
 
 	function viewTeamsInForm() {
 		var html = ''
+		var selected_team_id = "{{session.user_settings.current_team_id}}"
         {{#each team_list}}
-			html += "<option value=" + "{{id}}" + ">" + "{{team_name}}" + "</option>"
+			var team_id = "{{id}}";
+			if(team_id == selected_team_id){
+				html += '<option value="{{id}}" selected>{{team_name}}</option>'
+			}else{
+				html += '<option value="{{id}}">{{team_name}}</option>'
+			}
         {{/each}}
 
 		var current_team_id = document.getElementById('current_team_id')
 		current_team_id.innerHTML = html
 	}
+	function viewNotificationFieldsInForm() {
+		var flag = "{{session.user_settings.get_notification}}"
+		var html = ''
+		if(flag == 'No'){
+			html += '<option value="No" selected>No</option>'
+			html += '<option value="Yes">Yes</option>'
+		}else{
+			html += '<option value="Yes" selected>Yes</option>'
+			html += '<option value="No">No</option>'
+		}
+		var get_notification = document.getElementById('get_notification')
+		get_notification.innerHTML = html
+	}
+	function getEmailUpdatesInForm() {
+		var flag = "{{session.user_settings.get_email_updates}}"
+		var html = ''
+		if(flag == 'No'){
+			html += '<option value="No" selected>No</option>'
+			html += '<option value="Yes">Yes</option>'
+		}else{
+			html += '<option value="Yes" selected>Yes</option>'
+			html += '<option value="No">No</option>'
+		}
+		var get_email_updates = document.getElementById('get_email_updates')
+		get_email_updates.innerHTML = html
+	}
+	function hideProblemTagsInForm() {
+		var flag = "{{session.user_settings.hide_problem_tags}}"
+		var html = ''
+		if(flag == 'No'){
+			html += '<option value="No" selected>No</option>'
+			html += '<option value="Yes">Yes</option>'
+		}else{
+			html += '<option value="Yes" selected>Yes</option>'
+			html += '<option value="No">No</option>'
+		}
+		var hide_problem_tags = document.getElementById('hide_problem_tags')
+		hide_problem_tags.innerHTML = html
+	}
+	function showContactInfoInForm() {
+		var flag = "{{session.user_settings.show_contact_info}}"
+		var html = ''
+		if(flag == 'No'){
+			html += '<option value="No" selected>No</option>'
+			html += '<option value="Yes">Yes</option>'
+		}else{
+			html += '<option value="Yes" selected>Yes</option>'
+			html += '<option value="No">No</option>'
+		}
+		var show_contact_info = document.getElementById('show_contact_info')
+		show_contact_info.innerHTML = html
+	}
 	viewTeamsInForm();
+	viewNotificationFieldsInForm();
+	showContactInfoInForm()
+	hideProblemTagsInForm()
+	getEmailUpdatesInForm()
 
 </script>
+

@@ -46,6 +46,25 @@ var notificationSetter = async function (req, res, next) {
 
 app.use(notificationSetter)
 
+// User Settings middleware
+var userSettingsSetter = async function (req, res, next) {
+	var user_server = require('./routes/servers/user_services.js');
+	var sess = req.session;
+	var user_details = {
+		"settings": {}
+	}
+	if (sess.user_id){
+		user_details = await user_server.getUserDetails(res, req, sess.user_id)
+	}
+    console.log('user_details: ')
+	console.log(user_details)
+	sess.user_settings = user_details.settings
+	next()
+}
+
+app.use(notificationSetter)
+app.use(userSettingsSetter)
+
 require('./routes/index')(app); // getting access of index.js
 
 app.listen(5055, function () {

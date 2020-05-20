@@ -33,6 +33,7 @@ router.logInSubmit = async function(req, res, next) {
     sess.user_id = login_data.id
     sess.access_token = login_data.access_token
     sess.refresh_token = login_data.refresh_token
+    sess.user_settings = login_data.settings
     res.redirect('/');
 }
 

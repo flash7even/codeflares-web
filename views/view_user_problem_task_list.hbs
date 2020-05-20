@@ -11,8 +11,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Problem Name</th>
+                    <th style="width: 30%;">Problem Name</th>
                     <th>OJ Name</th>
                     <th>Marked As</th>
                     <th>Action</th>
@@ -22,12 +21,11 @@
 
                 {{#each problem_list}}
                 <tr>
-                    <td>{{idx}}</td>
-                    <td><a href = {{source_link}} style="color: #1d1dd1; font-weight:500; text-decoration: underline;">{{problem_name}}</a></td>
+                    <td><a href = {{source_link}} style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_name}}</a></td>
                     <td>{{oj_name}}</td>
-                    <td>{{user_status}}</td>
+                    <td>{{user_status_title}}</td>
                     <td>
-                        <a href="/problem/user/status/clear/{{id}}/" class="update" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-cut"></i></a>
+                        <a style="color: rgb(52, 180, 212);" href="/problem/user/status/clear/{{id}}/" class="update" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                  {{/each}}
