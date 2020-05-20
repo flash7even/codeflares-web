@@ -82,7 +82,7 @@
 
                 {{#if session.email}}
                 <li>
-                    <a href="#classRoomMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-chalkboard-teacher"></i> Classroom</a>
+                    <a href="#classRoomMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-box"></i> Classroom</a>
                     <ul class="collapse list-unstyled" id="classRoomMenu">
                         <li> <a href="/classroom/list/">Your Classrooms</a> </li>
                         <li> <a href="/classroom/add/">Create Classroom</a> </li>
@@ -91,7 +91,7 @@
                 {{/if}}
 
                 <li>
-                    <a href="#gatewayMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-archive"></i> Gateway</a>
+                    <a href="#gatewayMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-database"></i> Gateway</a>
                     <ul class="collapse list-unstyled" id="gatewayMenu">
                         <li> <a href="/category/list/">Categories</a> </li>
                         <li> <a href="/problem/list/all/">Problems</a> </li>
@@ -101,7 +101,7 @@
 
                 {{#if session.email}}
                 <li>
-                    <a href="#adviseMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-database"></i> Advise</a>
+                    <a href="#adviseMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-archive"></i> Advise</a>
                     <ul class="collapse list-unstyled" id="adviseMenu">
                         <li> <a href="/problem/add/">Add Problem</a> </li>
                         <li> <a href="/category/add/">Add Category</a> </li>
@@ -138,6 +138,14 @@
                             </li>
                         </ul>
                         {{#if session.email}}
+
+                        <div style="padding: 3px;">
+                            <a href="/flagged/problem/list/"  title="Personal Training">
+                            <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
+                                <i class="fas fa-bolt navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
 
                         <div style="padding: 3px;">
                             <a href="/flagged/problem/list/"  title="Taskbar">
