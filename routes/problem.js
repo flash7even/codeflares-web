@@ -5,6 +5,7 @@ var config = require('../config');
 var router = express.Router();
 
 var problem_server = require('./servers/problem_services.js');
+var category_server = require('./servers/category_services.js');
 var jshelper = require('./servers/jshelper.js');
 
 
@@ -62,12 +63,23 @@ router.viewProblemList = async function(req, res, next) {
   }
 
   let problem_list = await problem_server.getProblemList(res, req, param);
-  console.log(problem_list)
+  if(category_name != 'all'){
+    problem_list['params'] = {'category_name': category_name}
+  }
+  let category_list = await category_server.getCategoryList(res, req, {});
+  problem_list['category_list'] = category_list['category_list']
+  let root_category_list = await category_server.getCategoryList(res, req, {"category_root": "root"});
+  problem_list['root_category_list'] = root_category_list['category_list']
   res.render('view_problem_list', problem_list);
 }
 
 router.viewProblemListAfterFormSubmit = async function(req, res, next) {
   let problem_list = await problem_server.getProblemList(res, req, req.body);
+  let category_list = await category_server.getCategoryList(res, req, {});
+  problem_list['category_list'] = category_list['category_list']
+  let root_category_list = await category_server.getCategoryList(res, req, {"category_root": "root"});
+  problem_list['root_category_list'] = root_category_list['category_list']
+  problem_list['params'] = req.body
   jshelper.sleep(1000);
   res.render('view_problem_list', problem_list);
 }

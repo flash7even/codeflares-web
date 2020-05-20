@@ -9,48 +9,37 @@
         <h2 style="text-align: center;"><b>Problemset Database</b></h2>
         <hr class="thin">
     </div>
-    <br>
+    <div style="text-align:center; font-size: smaller; margin-bottom:0px">
       <form name="" action="/problem/list/" method="POST">
             <div class="form-row">
-                <div class="form-group col-sm-2">
-                    <div class="input-group">
-                        <input type="text" id="problem_name" class="form-control" name="problem_name" placeholder="Problem Name">
-                    </div>
+                <div class="form-group col-sm-3">
+                    <label>Problem Name</label>
+                    <input type="text" id="problem_name" class="form-control form-control-sm" name="problem_name" value="{{params.problem_name}}">
                 </div>
                 <div class="form-group col-sm-2">
-                    <div class="input-group">
-                        <input type="text" autocomplete="off" id="problem_category" class="form-control autocomplete" name="problem_category" placeholder="Category">
-                    </div>
+                    <label>Root Category</label>
+                    <input type="text" autocomplete="off" id="category_root" class="form-control form-control-sm autocomplete_root_category" name="category_root" value="{{params.category_root}}">
                 </div>
                 <div class="form-group col-sm-2">
-                    <div class="input-group">
-                        <select class="form-control" id="oj_name">
-                            <option value="ALL">Online Judge (All)</option>
-                            <option value="codeforces">Codeforces</option>
-                            <option value="codechef">Codechef</option>
-                            <option value="codechef">Codechef</option>
-                            <option value="lightoj">Light OJ</option>
-                            <option value="spoj">SPOJ</option>
-                            <option value="uva">UVA</option>
-                            <option value="hackerrank">Hackerrank</option>
-                        </select>
-                    </div>
+                    <label>Category Name</label>
+                    <input type="text" autocomplete="off" id="category_name" class="form-control form-control-sm autocomplete_category" name="category_name" value="{{params.category_name}}">
                 </div>
                 <div class="form-group col-sm-2">
-                    <div class="input-group">
-                        <input type="text" id="minimum_difficulty" class="form-control" name="minimum_difficulty" placeholder="Minimum Difficulty">
-                    </div>
+                    <label>Minimum Difficulty</label>
+                    <input type="text" id="minimum_difficulty" class="form-control form-control-sm" name="minimum_difficulty" value="{{params.minimum_difficulty}}">
                 </div>
                 <div class="form-group col-sm-2">
-                    <div class="input-group">
-                        <input type="text" id="maximum_difficulty" class="form-control" name="maximum_difficulty" placeholder="Maximum Difficulty">
-                    </div>
+                    <label>Maximum Difficulty</label>
+                    <input type="text" id="maximum_difficulty" class="form-control form-control-sm" name="maximum_difficulty" value="{{params.maximum_difficulty}}">
                 </div>
-                <div class="form-group col-sm-2">
-                    <button type="submit" class="btn submit-btn btn-info btn-block btn-lg">Update</button>
+				<div class="form-group col-sm-1" style="width: 10px !important;">
+                    <label for="pwd">Action</label>
+                    <button class="btn  form-control-sm update btn-block btn-sm" type="submit"><i class="fas fa-clipboard-check"></i></button>
                 </div>
             </div>
         </form>
+    </div>
+    <hr style="width: 100%;">
         <table id="problemListTable" class="table table-striped table-bordered">
             <thead>
                 <tr>
@@ -128,63 +117,95 @@
     }
 	var cat_item = 1;
 
-	function enableAutoComplete(){
-		$(".autocomplete").typeahead({
+	function enableAutoCompleteCategory(){
+		$(".autocomplete_category").typeahead({
 			// data source
-			source: algorithms,
-
+			source: getAlgorithmList(),
 			// how many items to show
 			items: 8,
-
 			// default template
 			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
 			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
 			headerHtml: '<li class="dropdown-header"></li>',
 			headerDivider: '<li class="divider" role="separator"></li>',
-			
 			itemContentSelector:'a',
-
 			// min length to trigger the suggestion list
 			minLength: 1,
-
 			// number of pixels the scrollable parent container scrolled down
 			scrollHeight: 0,
-
 			// auto selects the first item
 			autoSelect: true,
-
 			// callbacks
 			afterSelect: $.noop,
 			afterEmptySelect: $.noop,
-
 			// adds an item to the end of the list
 			addItem: false,
-
 			// delay between lookups
 			delay: 0,
 		});
 	}
 
-	const algorithms = [
-		{"name": "DFS", "code": "AF"},
-		{"name": "BFS", "code": "AX"},
-		{"name": "Dynamic Programming", "code": "AL"},
-		{"name": "Graph Coloring", "code": "DZ"},
-		{"name": "Diskstra", "code": "AS"},
-		{"name": "Max Flow", "code": "AD"},
-		{"name": "Matching", "code": "AO"},
-		{"name": "Segment Tree", "code": "AO"},
-		{"name": "Heavy Light Decomposition", "code": "AO"},
-		{"name": "Centroid Decomposition", "code": "AO"},
-		{"name": "Coin Change", "code": "BD"},
-		{"name": "Knapsack", "code": "BD"},
-		{"name": "SQRT Decomposition", "code": "BD"},
-		// more data here
-	]
+	function enableAutoCompleteRootCategory(){
+		$(".autocomplete_root_category").typeahead({
+			// data source
+			source: getRootAlgorithmList(),
+			// how many items to show
+			items: 8,
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			itemContentSelector:'a',
+			// min length to trigger the suggestion list
+			minLength: 1,
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+			// auto selects the first item
+			autoSelect: true,
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+			// adds an item to the end of the list
+			addItem: false,
+			// delay between lookups
+			delay: 0,
+		});
+	}
+
+    function getAlgorithmList(){
+        var data_list = []
+        {{#each category_list}}
+            var data = {
+                "name": "{{category_name}}",
+                "code": "{{category_name}}"
+            }
+            data_list.push(data)
+        {{/each}}
+        console.log('data_list: ')
+        console.log(data_list)
+        return data_list
+    }
+
+    function getRootAlgorithmList(){
+        var data_list = []
+        {{#each root_category_list}}
+            var data = {
+                "name": "{{category_name}}",
+                "code": "{{category_name}}"
+            }
+            data_list.push(data)
+        {{/each}}
+        console.log('data_list: ')
+        console.log(data_list)
+        return data_list
+    }
 
     $(document).ready( function () {
-        enableAutoComplete();
+        enableAutoCompleteCategory();
+        enableAutoCompleteRootCategory();
         showProblemsDTSearchTable();
     } );
 
 </script>
+
