@@ -8,12 +8,12 @@
         <div class="table-title">
             <h4 style="text-align: center;"><b>Flagged Problems</b></h4>
         </div>
-        <table class="table table-striped">
-            <thead>
+        <table class="table table-striped" style="text-align: center;">
+            <thead style="background-color: rgba(55, 180, 184, 0.322);">
                 <tr>
                     <th style="width: 30%;">Problem Name</th>
                     <th>OJ Name</th>
-                    <th>Marked As</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -23,7 +23,7 @@
                 <tr>
                     <td><a href = {{source_link}} style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_name}}</a></td>
                     <td>{{oj_name}}</td>
-                    <td>{{user_status_title}}</td>
+                    <td style="color: #fc4700;">{{user_status_title}}</td>
                     <td>
                         <a style="color: rgb(52, 180, 212);" href="/problem/user/status/clear/{{id}}/" class="update" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-trash"></i></a>
                     </td>
