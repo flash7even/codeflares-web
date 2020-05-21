@@ -3,8 +3,191 @@
 </head>
 
 
-<div>
-    <h1 style="text-align: center;">{{title}}</h1>
-    <h1 style="text-align: center;">{{session.email}}</h1>
-    <h1 style="text-align: center;">{{session.username}}</h1>
+<div class="blog-post-1">
+    <div class="post-header">
+        <h2 class="media-heading">Segment Tree Tricks and Applications</h2>
+    </div>
+    <div class="post-sub-header">
+        <p class="text-left">By <span style="color: rgb(238, 150, 42);">Tarango Khan</span>, 19-05-2020 8:35 PM</p>
+    </div>
+    <div class="post-body">
+          <p>
+            In writing, the words point and purpose are almost synonymous. Your point is your purpose,
+            and how you decide to make your point clear to your reader is also your purpose. Writers have a 
+            point and a purpose for every paragraph that they create.
+            Writers write descriptive paragraphs because their purpose is to describe something. Their point 
+            is that something is beautiful or disgusting or strangely intriguing. Writers write persuasive and 
+            argument paragraphs because their purpose is to persuade or convince someone. Their point is that 
+            their reader should see things a particular way and possibly take action on that new way of seeing 
+            things. Writers write paragraphs of comparison because the comparison will make their point clear 
+            to their readers. </p>
+            <p>
+            The purpose of Pattern Based Writing: Quick & Easy Essay is to quickly and easily teach students how 
+            to organize information and make points clear. Then in the Writing with Purpose section of the writing 
+            program, students learn to apply their new writing strategies to different types, kinds, genres, and 
+            modes of writing. The truth is that it’s quick and easy to get students to write many different types 
+            of paragraphs when they have the right foundation. </p>
+            <p>
+            Put simply, all of the different types and kinds of paragraphs simply involve layering on a different 
+            purpose or intent. When students have the right foundation, it’s just that simple. What are you trying 
+            to achieve in this paragraph and in your whole composition? What is your purpose right here? Do you wish 
+            to describe? Do you want to evaluate? Is your goal to narrate? Is your intent to persuade?
+          </p>
+    </div>
+    <div class="row post-foter">
+        <div class="col-md-10">
+            <span style="padding-right: 20px;"><i class="fas fa-thumbs-up"></i> 55</span>
+            <span><i class="fas fa-thumbs-down"></i> 12</span>
+        </div>
+        <div class="col-md-2">
+            <span><i class="fas fa-comment"></i> 113 Comments</span>
+        </div>
+    </div>
 </div>
+
+<div class="comment-post-1">	
+    <form action="/classroom/task/add/{{id}}/" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <div class="input-group">
+                    <textarea type="text" class="form-control" name="task_title" placeholder="Write your comment here"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-2" style="left: 85%; height:15px;">
+            <button style="background-color: rgb(88, 125, 177);" type="submit" class="btn submit-btn btn-primary btn-block">Comment</button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="comments">
+
+
+        <div class="comment-box">
+          <span class="commenter-pic">
+          </span>
+          <span class="commenter-name">
+            <a href="#">Happy uiuxStream</a> <span class="comment-time">2 hours ago</span>
+          </span>       
+          <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
+          <div class="comment-meta">
+                <button class="comment-like"><i class="fas fa-thumbs-up"></i> 8</button>
+                <button class="comment-dislike"><i class="fas fa-thumbs-down"></i> 11</button>
+                <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
+          </div>
+
+            <form class="comment_reply" action="" method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="input-group">
+                            <textarea type="text" class="form-control" name="task_title" placeholder="Write your comment here"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-2">
+                    <button style="background-color: rgb(88, 125, 177);" type="submit" class="btn submit-btn btn-primary btn-block">Comment</button>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="comment-box">
+          <span class="commenter-pic">
+          </span>
+          <span class="commenter-name">
+            <a href="#">Happy uiuxStream</a> <span class="comment-time">2 hours ago</span>
+          </span>       
+          <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
+          <div class="comment-meta">
+                <button class="comment-like"><i class="fas fa-thumbs-up"></i> 8</button>
+                <button class="comment-dislike"><i class="fas fa-thumbs-down"></i> 11</button> 
+                <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
+          </div>
+            <form class="comment_reply" action="" method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="input-group">
+                            <textarea type="text" class="form-control" name="task_title" placeholder="Write your comment here"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-2">
+                    <button style="background-color: rgb(88, 125, 177);" type="submit" class="btn submit-btn btn-primary btn-block">Comment</button>
+                </div>
+            </form>
+
+            <div class="comment-box replied">
+              <span class="commenter-pic">
+              </span>
+              <span class="commenter-name">
+                <a href="#">Happy uiuxStream</a> <span class="comment-time">2 hours ago</span>
+              </span>       
+              <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
+              <div class="comment-meta">
+                <button class="comment-like"><i class="fas fa-thumbs-up"></i> 8</button>
+                <button class="comment-dislike"><i class="fas fa-thumbs-down"></i> 11</button> 
+                <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>      
+              </div>
+                <form class="comment_reply" action="" method="post">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <div class="input-group">
+                                <textarea type="text" class="form-control" name="task_title" placeholder="Write your comment here"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <button style="background-color: rgb(88, 125, 177);" type="submit" class="btn submit-btn btn-primary btn-block">Comment</button>
+                    </div>
+                </form>
+
+                <div class="comment-box replied">
+                    <span class="commenter-pic">
+                    </span>
+                    <span class="commenter-name">
+                        <a href="#">Happy uiuxStream</a> <span class="comment-time">2 hours ago</span>
+                    </span>       
+                    <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
+                    <div class="comment-meta">
+                        <button class="comment-like"><i class="fas fa-thumbs-up"></i> 8</button>
+                        <button class="comment-dislike"><i class="fas fa-thumbs-down"></i> 11</button> 
+                        <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
+                    </div>
+                    <form class="comment_reply" action="" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="input-group">
+                                    <textarea type="text" class="form-control" name="task_title" placeholder="Write your comment here"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <button style="background-color: rgb(88, 125, 177);" type="submit" class="btn submit-btn btn-primary btn-block">Comment</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        $(document).on('click' , 'button.comment-reply' , function(){
+            var closestDiv = $(this).closest('div'); // also you can use $(this).parent()
+            //closestDiv.fadeOut();
+            $('.comment_reply').not(closestDiv.next('.comment_reply')).hide();
+            //$('.rep').closest('div').not(closestDiv).show()
+            closestDiv.next('form.comment_reply').slideToggle(100);
+        });
+    });
+</script>
