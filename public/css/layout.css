@@ -236,8 +236,7 @@ hr.thin {
     background: #ffffff;
     border-radius: 5px;
     padding: 5px;
-    margin: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 2px;
     box-shadow: 1px 1px 3px #7180AC;
     padding: 30px;
     color: #0B0C10;
@@ -248,14 +247,15 @@ hr.thin {
     background: #ffffff;
     border-radius: 5px;
     padding: 5px;
-    margin: 20px;
     margin-bottom: 15px;
     box-shadow: 1px 1px 3px #7180AC;
     padding: 30px;
     color: #0B0C10;
 }
 
-
+.comment_reply{
+    display: none;
+}
 
 
 
@@ -390,7 +390,3 @@ hr.thin {
   margin-left: 0px;
 }
 }
-
-form.comment_reply{
-    display: none;
-  }
