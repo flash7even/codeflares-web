@@ -32,6 +32,22 @@ router.addCommentForBlogPost = async function(req, res, next) {
   res.redirect('back')
 }
 
+router.addCommentForProblem = async function(req, res, next) {
+  console.log('addCommentForProblem called')
+  var url = req.url
+  var words = url.split("/");
+  var problem_id = words[words.length-2]
+  var sess = req.session;
+  var comment = req.body
+  comment['comment_writer'] = sess.user_id
+  comment['comment_ref_id'] = problem_id
+  comment['comment_parent_id'] = problem_id
+  comment['comment_type'] = 'problem_comment'
+  await comment_server.postComment(res, req, comment)
+  jshelper.sleep(1000);
+  res.redirect('back')
+}
+
 router.addReplyForBlogPost = async function(req, res, next) {
   console.log('addReplyForBlogPost called')
   var url = req.url
@@ -45,6 +61,26 @@ router.addReplyForBlogPost = async function(req, res, next) {
   comment['comment_ref_id'] = blog_id
   comment['comment_parent_id'] = parent_id
   comment['comment_type'] = 'blog_post_reply'
+  console.log('comment to post: ')
+  console.log(comment)
+  await comment_server.postComment(res, req, comment)
+  jshelper.sleep(1000);
+  res.redirect('back')
+}
+
+router.addReplyForComment = async function(req, res, next) {
+  console.log('addReplyForComment called')
+  var url = req.url
+  console.log('URL: ' + url)
+  var words = url.split("/");
+  var problem_id = words[words.length-3]
+  var parent_id = words[words.length-2]
+  var sess = req.session;
+  var comment = req.body
+  comment['comment_writer'] = sess.user_id
+  comment['comment_ref_id'] = problem_id
+  comment['comment_parent_id'] = parent_id
+  comment['comment_type'] = 'problem_comment'
   console.log('comment to post: ')
   console.log(comment)
   await comment_server.postComment(res, req, comment)

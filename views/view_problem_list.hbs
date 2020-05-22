@@ -44,6 +44,7 @@
             <thead>
                 <tr>
                     <th>Project Name</th>
+                    <th>Source</th>
                     <th>Problem Difficulty</th>
                     <th>OJ Name</th>
                     <th>Status</th>
@@ -82,7 +83,8 @@
             {{/each}}
 
         {{#each problem_list}}
-            var prbolem_link = '<a href = {{source_link}} style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_name}}</a>'
+            var prbolem_link = '<a href = "/problem/view/{{id}}/" style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_name}}</a>'
+            var source_link = '<a href = {{source_link}} style="color: #058876; font-weight:500; text-decoration: underline;"><i class="fas fa-link"></i></a>'
             var solve_status = "{{solved}}"
             var user_status = '<i class="fas fa-dove" style="color:#C4C400;"></i>'
             if (solve_status == 'yes'){
@@ -95,7 +97,7 @@
                 category_list += '<a href = "/category/view/{{category_name}}/" style="color: #5bc0de; font-weight:700;">{{category_info.category_title}}</a>'
                 count++
             {{/each}}
-            var problem_data = [prbolem_link, "{{problem_difficulty}}", "{{oj_name}}", user_status, "{{solve_count}}", category_list];
+            var problem_data = [prbolem_link, source_link, "{{problem_difficulty}}", "{{oj_name}}", user_status, "{{solve_count}}", category_list];
             db_problem_list.push(problem_data)
         {{/each}}
 

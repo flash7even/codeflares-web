@@ -35,12 +35,15 @@ module.exports = function(newApp) {
 
     newApp.post('/blog/post/comment/*', commentController.addCommentForBlogPost);
     newApp.post('/blog/post/reply/*', commentController.addReplyForBlogPost);
+    newApp.post('/problem/comment/*', commentController.addCommentForProblem);
+    newApp.post('/problem/reply/*', commentController.addReplyForComment);
 
 
     newApp.get('/vote/*', voteController.addVote);
 
 
     newApp.get('/problem/add/', problemController.addProblemForm);
+    newApp.get('/problem/view/*', problemController.viewSingleProblem);
     newApp.post('/problem/add/', problemController.addProblemFormSubmit);
     newApp.get('/problem/list/*', problemController.viewProblemList);
     newApp.post('/problem/list/', problemController.viewProblemListAfterFormSubmit);
@@ -48,6 +51,10 @@ module.exports = function(newApp) {
     newApp.get('/problem/user/status/remove/*', problemController.setProblemStatusRemove);
     newApp.get('/problem/user/status/clear/*', problemController.setProblemStatusClear);
     newApp.get('/flagged/problem/list/', problemController.showFlaggedProblemList);
+
+
+    newApp.get('/problem/resource/add/*', problemController.addProblemResourceForm);
+    newApp.post('/problem/resource/add/*', problemController.addProblemResourceFormSubmit);
 
     newApp.get('/category/add/', categoryController.addCategoryForm);
     newApp.post('/category/add/', categoryController.addCategoryFormSubmit);

@@ -13,6 +13,27 @@ router.addProblemForm = function(req, res, next) {
   res.render('add_problem', {});
 }
 
+router.addProblemResourceForm = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var problem_id = words[words.length-2]
+  var problem_details = await problem_server.getProblemDetails(res, req, problem_id)
+  res.render('add_problem_resource', problem_details);
+}
+
+router.addProblemResourceFormSubmit = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var problem_id = words[words.length-2]
+
+  var sess = req.session;
+  var res_body = req.body
+  res_body['resource_writer'] = sess.user_id
+  res_body['resource_ref_id'] = problem_id
+  await problem_server.postProblemResource(res, req, res_body)
+  res.redirect('/problem/view/' + problem_id + '/');
+}
+
 function update_problem_data(problem){
   var data = {}
   var problem_category = "problem_category"
@@ -71,6 +92,15 @@ router.viewProblemList = async function(req, res, next) {
   let root_category_list = await category_server.getCategoryList(res, req, {"category_root": "root"});
   problem_list['root_category_list'] = root_category_list['category_list']
   res.render('view_problem_list', problem_list);
+}
+
+router.viewSingleProblem = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var problem_id = words[words.length-2]
+  let problem_data = await problem_server.getProblemDetails(res, req, problem_id);
+  console.log(problem_data)
+  res.render('view_single_problem', problem_data);
 }
 
 router.viewProblemListAfterFormSubmit = async function(req, res, next) {
