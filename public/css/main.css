@@ -93,3 +93,9 @@ body {
     font-family: 'Courier New', Courier, monospace;
     color: rgb(25, 46, 71);
 }
+
+.post-header{
+    padding: 10px;
+    font-weight: 400;
+    font-family: 'Times New Roman', Times, serif;
+}

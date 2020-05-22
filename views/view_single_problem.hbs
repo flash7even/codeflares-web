@@ -1,15 +1,18 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <div class="blog-post-1">
     <div class="row">
         <div class="col-md-11">
             <div class="post-header">
-                <h4 style="color: rgb(23, 81, 104);" class="media-heading">Problem Name: <b>{{problem_name}}</b></h4>
-                <h6 style="color: rgb(13, 58, 59);" class="media-heading">Problem Difficulty: <b>{{problem_difficulty}}</b></h6>
-                <h6 style="color: rgb(58, 144, 179);" class="media-heading">Source Link: <b>{{source_link}}</b></h6>
-                <h6 style="color: rgb(13, 58, 59);" class="media-heading">User Solved: <b>{{problem_difficulty}}</b></h6>
+                <h3 style="color: rgb(23, 81, 104);" class="media-heading">Problem: <b>{{problem_name}} <a style="color: #accbe1;" href="{{source_link}}"><i class="fas fa-external-link-alt"></i></a> </b></h3>
+                <br>
+                <h5>Problem Difficulty: <b>{{problem_difficulty}}</b></h5>
+                <h5>Online Judge: <b>{{oj_name}}</b></h5>
+                <h5>Problem ID: <b>{{problem_id}}</b></h5>
+                <h5>User Solved: <span style="color: rgb(207, 161, 7);"> <b>{{problem_difficulty}}</b> </span></h5>
             </div>
         </div>
         <div class="col-md-1">
@@ -18,26 +21,13 @@
             <h6 style="color: rgb(110, 224, 228); font-size:50px;" class="media-heading"><i class="fas fa-check-circle"></i></h6>
         </div>
     </div>
-    <hr>
-
-    <div class="row post-foter">
-        <div class="col-md-10">
-            <a href="/vote/like/{{id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
-            <a href="/vote/dislike/{{id}}/"><span style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
-        </div>
-        <div class="col-md-2">
-            <a href="#comments"><span style="color: rgb(19, 87, 104);"><i class="fas fa-comment"></i> {{comment_count}} Comments</span></a>
-        </div>
-    </div>
-    <hr>
-    <br>
     <br>
     <br>
     <div class="table-title-2">
-        <h5 style="text-align: center;"><b>Problem Resources  </b> <a title="Add new resource" style="color: rgb(170, 194, 83);" href="/problem/resource/add/{{id}}/"> <i class="fas fa-plus"></i> </a> </h5>
+        <h5 style="text-align: center;"><b>Problem Resources  </b> <a title="Add new resource" style="color: #accbe1;" href="/problem/resource/add/{{id}}/"> <i class="fas fa-plus"></i> </a> </h5>
     </div>
     <table id="resourceListTable" class="table table-bordered" style="font-size: smaller;">
-        <thead style="background-color: rgb(168, 207, 233);">
+        <thead style="background-color: #accbe1;">
             <tr>
                 <th>Resource Title</th>
                 <th>Description</th>
@@ -49,6 +39,21 @@
         <tbody>
         </tbody>
     </table>
+
+    <hr>
+    <br>
+    <br>
+
+    <div class="row post-foter">
+        <div class="col-md-10">
+            <a href="/vote/like/{{id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
+            <a href="/vote/dislike/{{id}}/"><span style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
+        </div>
+        <div class="col-md-2">
+            <a href="#comments"><span style="color: rgb(19, 87, 104);"><i class="fas fa-comment"></i> {{comment_count}} Comments</span></a>
+        </div>
+    </div>
+    <hr>
 
 </div>
 
@@ -62,7 +67,7 @@
             </div>
         </div>
         <div class="form-group col-sm-2" style="left: 84%; height:15px;">
-            <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+            <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
         </div>
     </form>
 </div>
@@ -120,7 +125,7 @@
                             </div>
                         </div>
                         <div class="form-group col-sm-2">
-                            <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                            <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
                         </div>
                     </form>
                 `
@@ -156,7 +161,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-2">
-                                    <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                    <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
                                 </div>
                             </form>
                         `
@@ -191,7 +196,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-2">
-                                            <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                            <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
                                         </div>
                                     </form>
                                 `
@@ -225,7 +230,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-2">
-                                                <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                                <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
                                             </div>
                                         </form>
                                     `
