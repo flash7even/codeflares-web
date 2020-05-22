@@ -13,27 +13,31 @@
     <div class="post-body">
           <p> {{blog_text}} </p>
     </div>
+    <div class="post-footer">
+        <p class="text-left"> Blog Topic : <b><span style="color: rgb(123, 137, 150); padding-right:3px;">{{blog_topic}}</span></b></p>
+    </div>
+    <hr>
     <div class="row post-foter">
         <div class="col-md-10">
-            <span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> 55</span>
-            <span style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> 12</span>
+            <a href="/vote/like/{{blog_id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
+            <a href="/vote/dislike/{{blog_id}}/"><span style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
         </div>
         <div class="col-md-2">
-            <span><i class="fas fa-comment"></i> 113 Comments</span>
+            <a href="/blog/post/view/{{blog_id}}/"><span style="color: rgb(19, 87, 104);"><i class="fas fa-comment"></i> {{comment_count}} Comments</span></a>
         </div>
     </div>
 </div>
 
-<div class="comment-post-1">	
+<div class="comment-post-1" style="background-color: #FAFAFA;">	
     <form action="/blog/post/comment/{{blog_id}}/" method="post">
         <div class="form-row">
             <div class="form-group col-md-12">
                 <div class="input-group">
-                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write your comment here"></textarea>
+                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
                 </div>
             </div>
         </div>
-        <div class="form-group col-sm-2" style="left: 85%; height:15px;">
+        <div class="form-group col-sm-1" style="left: 92%; height:15px;">
             <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
         </div>
     </form>
@@ -68,27 +72,29 @@
                 var comment_text = "{{comment_text}}"
                 var comment_id = "{{comment_id}}"
                 var reply_link = `/blog/post/reply/${blog_id}/${comment_id}/`
+                var like_count = "{{vote_count.like_count}}"
+                var dislike_count = "{{vote_count.dislike_count}}"
                 var own_data = `
                     <span class="commenter-pic">
                     </span>
                     <span class="commenter-name">
                         <a href="#">${comment_writer_handle}</a> <span style="color: #95989B;" class="comment-time">${updated_at}</span>
                     </span>       
-                    <p> ${comment_text} </p>
+                    <p> ${comment_text}</p>
                     <div class="comment-meta">
-                            <button class="comment-like" style="color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> 8</button>
-                            <button class="comment-dislike" style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> 11</button>
+                            <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count}</span></a>
+                            <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count}</span></a>
                             <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
                     </div>
                     <form class="comment_reply" action="${reply_link}" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <div class="input-group">
-                                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write your comment here"></textarea>
+                                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-sm-2">
+                        <div class="form-group col-sm-1">
                             <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
                         </div>
                     </form>
@@ -102,27 +108,29 @@
                         var comment_text2 = "{{comment_text}}"
                         var comment_id2 = "{{comment_id}}"
                         var reply_link2 = `/blog/post/reply/${blog_id}/${comment_id2}/`
+                        var like_count2 = "{{vote_count.like_count}}"
+                        var dislike_count2 = "{{vote_count.dislike_count}}"
                         var own_data2 = `
                             <span class="commenter-pic">
                             </span>
                             <span class="commenter-name">
                                 <a href="#">${comment_writer_handle2}</a> <span style="color: #95989B;" class="comment-time">${updated_at2}</span>
                             </span>       
-                            <p> ${comment_text2} </p>
+                            <p> ${comment_text2} ABCDE + ${comment_id2}</p>
                             <div class="comment-meta">
-                                    <button class="comment-like" style="color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> 8</button>
-                                    <button class="comment-dislike" style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> 11</button>
+                                    <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count2}</span></a>
+                                    <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count2}</span></a>
                                     <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
                             </div>
                             <form class="comment_reply" action="${reply_link2}" method="post">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <div class="input-group">
-                                            <textarea type="text" class="form-control" name="comment_text" placeholder="Write your comment here"></textarea>
+                                            <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-2">
+                                <div class="form-group col-sm-1">
                                     <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
                                 </div>
                             </form>
@@ -135,7 +143,8 @@
                                 var comment_text3 = "{{comment_text}}"
                                 var comment_id3 = "{{comment_id}}"
                                 var reply_link3 = `/blog/post/reply/${blog_id}/${comment_id3}/`
-                                console.log('reply_link3: ' + reply_link3)
+                                var like_count3 = "{{vote_count.like_count}}"
+                                var dislike_count3 = "{{vote_count.dislike_count}}"
                                 var own_data3 = `
                                     <span class="commenter-pic">
                                     </span>
@@ -144,19 +153,19 @@
                                     </span>       
                                     <p> ${comment_text3} </p>
                                     <div class="comment-meta">
-                                            <button class="comment-like" style="color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> 8</button>
-                                            <button class="comment-dislike" style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> 11</button>
+                                            <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count3}</span></a>
+                                            <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count3}</span></a>
                                             <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
                                     </div>
                                     <form class="comment_reply" action="${reply_link3}" method="post">
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
                                                 <div class="input-group">
-                                                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write your comment here"></textarea>
+                                                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-2">
+                                        <div class="form-group col-sm-1">
                                             <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
                                         </div>
                                     </form>
@@ -169,7 +178,8 @@
                                     var comment_text4 = "{{comment_text}}"
                                     var comment_id4 = "{{comment_id}}"
                                     var reply_link4 = `/blog/post/reply/${blog_id}/${comment_id4}/`
-                                    console.log('reply_link4: ' + reply_link4)
+                                    var like_count4 = "{{vote_count.like_count}}"
+                                    var dislike_count4 = "{{vote_count.dislike_count}}"
                                     var own_data4 = `
                                         <span class="commenter-pic">
                                         </span>
@@ -178,18 +188,18 @@
                                         </span>       
                                         <p> ${comment_text4} </p>
                                         <div class="comment-meta">
-                                                <button class="comment-like" style="color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> 8</button>
-                                                <button class="comment-dislike" style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> 11</button>
+                                            <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count4}</span></a>
+                                            <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count4}</span></a>
                                         </div>
                                         <form class="comment_reply" action="${reply_link4}" method="post">
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     <div class="input-group">
-                                                        <textarea type="text" class="form-control" name="comment_text" placeholder="Write your comment here"></textarea>
+                                                        <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group col-sm-2">
+                                            <div class="form-group col-sm-1">
                                                 <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
                                             </div>
                                         </form>

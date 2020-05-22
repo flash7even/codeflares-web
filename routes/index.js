@@ -10,6 +10,7 @@ var notificationController = require('./notification.js');
 var contestController = require('./contest.js');
 var blogController = require('./blog.js');
 var commentController = require('./comment.js');
+var voteController = require('./vote.js');
 
 module.exports = function(newApp) {
     /* GET home page. */
@@ -34,6 +35,9 @@ module.exports = function(newApp) {
 
     newApp.post('/blog/post/comment/*', commentController.addCommentForBlogPost);
     newApp.post('/blog/post/reply/*', commentController.addReplyForBlogPost);
+
+
+    newApp.get('/vote/*', voteController.addVote);
 
 
     newApp.get('/problem/add/', problemController.addProblemForm);
