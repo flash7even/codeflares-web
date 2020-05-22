@@ -9,6 +9,7 @@ var classroomController = require('./classroom.js');
 var notificationController = require('./notification.js');
 var contestController = require('./contest.js');
 var blogController = require('./blog.js');
+var commentController = require('./comment.js');
 
 module.exports = function(newApp) {
     /* GET home page. */
@@ -26,6 +27,13 @@ module.exports = function(newApp) {
 
 
     newApp.get('/blog/post/add/', blogController.addBlogForm);
+    newApp.post('/blog/post/add/', blogController.addBlogFormSubmit);
+    newApp.get('/blog/list/', blogController.viewBlogList);
+    newApp.get('/blog/post/view/*', blogController.viewBlogPost);
+
+
+    newApp.post('/blog/post/comment/*', commentController.addCommentForBlogPost);
+    newApp.post('/blog/post/reply/*', commentController.addReplyForBlogPost);
 
 
     newApp.get('/problem/add/', problemController.addProblemForm);

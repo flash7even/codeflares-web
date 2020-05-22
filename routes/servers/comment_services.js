@@ -1,21 +1,21 @@
 var config = require('../../config.js');
 const axios = require('axios');
 
-var blog_search_url = config.server_host + 'blog/search/'
-var blog_submit_url = config.server_host + 'blog/'
+var comment_search_url = config.server_host + 'comment/search/'
+var comment_submit_url = config.server_host + 'comment/'
 
 
-module.exports.getBlogList = async function(res, req, search_param) {
-  console.log('getBlogList called');
+module.exports.getCommentList = async function(res, req, search_param) {
+  console.log('getCommentList called');
   var page = 0
-  var blog_list = []
+  var comment_list = []
   var sess = req.session;
   var access_token = sess.access_token
   const auth_config = {
       headers: { Authorization: `Bearer ${access_token}` }
   };
   while(1){
-    var post_url = blog_search_url + page.toString()
+    var post_url = comment_search_url + page.toString()
     console.log("post_url: " + post_url)
     let response = await axios.post(post_url, search_param, auth_config)
     .catch(error => {
@@ -25,24 +25,24 @@ module.exports.getBlogList = async function(res, req, search_param) {
     if(response.status != 200 && response.status != 201){
         res.render('error_page', {});
     }
-    blog_list = response.data
+    comment_list = response.data
     page++
     break;
   }
-  console.log('getBlogList done');
-  return blog_list
+  console.log('getCommentList done');
+  return comment_list
 };
 
-module.exports.postBlog = async function(res, req, blog_data) {
-  console.log('postBlog called')
-  var post_url = blog_submit_url
+module.exports.postComment = async function(res, req, comment_data) {
+  console.log('postComment called')
+  var post_url = comment_submit_url
   console.log("post_url: " + post_url)
   var sess = req.session;
   var access_token = sess.access_token
   const auth_config = {
       headers: { Authorization: `Bearer ${access_token}` }
   };
-  let response = await axios.post(post_url, blog_data, auth_config)
+  let response = await axios.post(post_url, comment_data, auth_config)
   .catch(error => {
       res.render('error_page', {});
   })
@@ -50,20 +50,20 @@ module.exports.postBlog = async function(res, req, blog_data) {
   if(response.status != 200 && response.status != 201){
       res.render('error_page', {});
   }
-  console.log('postBlog done')
+  console.log('postComment done')
   console.log('response.data: ')
   console.log(response.data)
   return response.data
 };
 
 
-module.exports.blogDetails = async function(res, req, blog_id) {
-  console.log('blogDetails called')
+module.exports.commentDetails = async function(res, req, comment_id) {
+  console.log('commentDetails called')
   var sess = req.session;
   const auth_config = {
       headers: { Authorization: `Bearer ${sess.access_token}` }
   };
-  var url = blog_submit_url + blog_id
+  var url = comment_submit_url + comment_id
   console.log("url: " + url)
   let response = await axios.get(url, {}, auth_config)
   .catch(error => {
@@ -72,6 +72,6 @@ module.exports.blogDetails = async function(res, req, blog_id) {
   if(response.status != 200 && response.status != 201){
       res.render('error_page', {});
   }
-  console.log('blogDetails done')
+  console.log('commentDetails done')
   return response.data
 };

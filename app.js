@@ -38,8 +38,8 @@ var notificationSetter = async function (req, res, next) {
 	if (sess.user_id){
 		notification_data = await user_server.getAllNotification(res, req, {"size": 5}, sess.user_id)
 	}
-    console.log('notification_data: ')
-	console.log(notification_data)
+    //console.log('notification_data: ')
+	//console.log(notification_data)
 	sess.notification_data = notification_data
 	next()
 }
@@ -56,8 +56,8 @@ var userSettingsSetter = async function (req, res, next) {
 	if (sess.user_id){
 		user_details = await user_server.getUserDetails(res, req, sess.user_id)
 	}
-    console.log('user_details: ')
-	console.log(user_details)
+    //console.log('user_details: ')
+	//console.log(user_details)
 	sess.user_settings = user_details.settings
 	next()
 }

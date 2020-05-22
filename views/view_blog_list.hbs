@@ -1,0 +1,58 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="show-team">
+    <div class="table-type-1">
+        <div class="table-title-2">
+            <h2 style="text-align: center;"><b>Blog List</b></h2>
+        </div>
+        <table id="blogListTable" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Blog Title</th>
+                    <th>Blog Topic</th>
+                    <th>Writer</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function getBlogList(){
+        var db_list = [];
+        {{#each blog_list}}
+            var blog_link = '<a href = "/blog/post/view/{{id}}/" style="color: #5bc0de; font-weight:700;">{{blog_title}}</a>'
+            var user_link = '<a href = "/profile/{{blog_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{blog_writer_handle}}</a>'
+            var data = [blog_link, "{{blog_topic}}", user_link, "{{updated_at}}"];
+            db_list.push(data)
+        {{/each}}
+        return db_list;
+    }
+
+    function showBlogsDTSearchTable(){
+        var dt_list = getBlogList();
+        
+        $("#blogListTable").dataTable({
+            "aaData": dt_list,
+            paging: true,
+            destroy: true,
+            scrollCollapse: true,
+            responsive: true,
+            pageLength: 10,
+            lengthMenu: [[3, 5, 10, -1], [3, 5, 10, 20]]
+        });
+    }
+
+    $(document).ready( function () {
+        showBlogsDTSearchTable();
+    } );
+
+</script>

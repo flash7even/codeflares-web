@@ -1,0 +1,222 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+
+<div class="blog-post-1">
+    <div class="post-header">
+        <h2 class="media-heading">{{blog_title}}</h2>
+    </div>
+    <div class="post-sub-header">
+        <p class="text-left"> <b><span style="color: rgb(214, 193, 7); padding-right:3px;">{{blog_writer_handle}}</span>, <span style="color: #95989B; padding-left:7px;"> {{updated_at}}</span></b></p>
+    </div>
+    <div class="post-body">
+          <p> {{blog_text}} </p>
+    </div>
+    <div class="row post-foter">
+        <div class="col-md-10">
+            <span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> 55</span>
+            <span style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> 12</span>
+        </div>
+        <div class="col-md-2">
+            <span><i class="fas fa-comment"></i> 113 Comments</span>
+        </div>
+    </div>
+</div>
+
+<div class="comment-post-1">	
+    <form action="/blog/post/comment/{{blog_id}}/" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <div class="input-group">
+                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write your comment here"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-2" style="left: 85%; height:15px;">
+            <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+        </div>
+    </form>
+</div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="comments">
+      </div>
+    </div>
+  </div>
+
+<script>
+
+    $(document).ready(function(){
+        $(document).on('click' , 'button.comment-reply' , function(){
+            var closestDiv = $(this).closest('div'); // also you can use $(this).parent()
+            //closestDiv.fadeOut();
+            $('.comment_reply').not(closestDiv.next('.comment_reply')).hide();
+            //$('.rep').closest('div').not(closestDiv).show()
+            closestDiv.next('form.comment_reply').slideToggle(100);
+        });
+
+        function generate_comment_data(){
+            console.log('generate_comment_data called')
+            var blog_id = "{{blog_id}}"
+            var html = ``
+            {{#each comment_list}}
+                var top = `<div class="comment-box">`
+                var comment_writer_handle = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                var updated_at = "{{updated_at}}"
+                var comment_text = "{{comment_text}}"
+                var comment_id = "{{comment_id}}"
+                var reply_link = `/blog/post/reply/${blog_id}/${comment_id}/`
+                var own_data = `
+                    <span class="commenter-pic">
+                    </span>
+                    <span class="commenter-name">
+                        <a href="#">${comment_writer_handle}</a> <span style="color: #95989B;" class="comment-time">${updated_at}</span>
+                    </span>       
+                    <p> ${comment_text} </p>
+                    <div class="comment-meta">
+                            <button class="comment-like" style="color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> 8</button>
+                            <button class="comment-dislike" style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> 11</button>
+                            <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
+                    </div>
+                    <form class="comment_reply" action="${reply_link}" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="input-group">
+                                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write your comment here"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                        </div>
+                    </form>
+                `
+
+                    var inside_html_2 = ``
+                    {{#each comment_list}}
+                        var top2 = `<div class="comment-box replied">`
+                        var comment_writer_handle2 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                        var updated_at2 = "{{updated_at}}"
+                        var comment_text2 = "{{comment_text}}"
+                        var comment_id2 = "{{comment_id}}"
+                        var reply_link2 = `/blog/post/reply/${blog_id}/${comment_id2}/`
+                        var own_data2 = `
+                            <span class="commenter-pic">
+                            </span>
+                            <span class="commenter-name">
+                                <a href="#">${comment_writer_handle2}</a> <span style="color: #95989B;" class="comment-time">${updated_at2}</span>
+                            </span>       
+                            <p> ${comment_text2} </p>
+                            <div class="comment-meta">
+                                    <button class="comment-like" style="color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> 8</button>
+                                    <button class="comment-dislike" style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> 11</button>
+                                    <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
+                            </div>
+                            <form class="comment_reply" action="${reply_link2}" method="post">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div class="input-group">
+                                            <textarea type="text" class="form-control" name="comment_text" placeholder="Write your comment here"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                </div>
+                            </form>
+                        `
+                            var inside_html_3 = ``
+                            {{#each comment_list}}
+                                var top3 = `<div class="comment-box replied">`
+                                var comment_writer_handle3 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                                var updated_at3 = "{{updated_at}}"
+                                var comment_text3 = "{{comment_text}}"
+                                var comment_id3 = "{{comment_id}}"
+                                var reply_link3 = `/blog/post/reply/${blog_id}/${comment_id3}/`
+                                console.log('reply_link3: ' + reply_link3)
+                                var own_data3 = `
+                                    <span class="commenter-pic">
+                                    </span>
+                                    <span class="commenter-name">
+                                        <a href="#">${comment_writer_handle3}</a> <span style="color: #95989B;" class="comment-time">${updated_at3}</span>
+                                    </span>       
+                                    <p> ${comment_text3} </p>
+                                    <div class="comment-meta">
+                                            <button class="comment-like" style="color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> 8</button>
+                                            <button class="comment-dislike" style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> 11</button>
+                                            <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
+                                    </div>
+                                    <form class="comment_reply" action="${reply_link3}" method="post">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <div class="input-group">
+                                                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write your comment here"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-sm-2">
+                                            <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                        </div>
+                                    </form>
+                                `
+                                var inside_html_4 = ``
+                                {{#each comment_list}}
+                                    var top4 = `<div class="comment-box replied">`
+                                    var comment_writer_handle4 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                                    var updated_at4 = "{{updated_at}}"
+                                    var comment_text4 = "{{comment_text}}"
+                                    var comment_id4 = "{{comment_id}}"
+                                    var reply_link4 = `/blog/post/reply/${blog_id}/${comment_id4}/`
+                                    console.log('reply_link4: ' + reply_link4)
+                                    var own_data4 = `
+                                        <span class="commenter-pic">
+                                        </span>
+                                        <span class="commenter-name">
+                                            <a href="#">${comment_writer_handle4}</a> <span style="color: #95989B;" class="comment-time">${updated_at4}</span>
+                                        </span>       
+                                        <p> ${comment_text4} </p>
+                                        <div class="comment-meta">
+                                                <button class="comment-like" style="color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> 8</button>
+                                                <button class="comment-dislike" style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> 11</button>
+                                        </div>
+                                        <form class="comment_reply" action="${reply_link4}" method="post">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                        <textarea type="text" class="form-control" name="comment_text" placeholder="Write your comment here"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-2">
+                                                <button style="background-color: rgb(144, 197, 228);" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                            </div>
+                                        </form>
+                                    `
+                                    inside_html_4 += top4;
+                                    inside_html_4 += own_data4;
+                                    inside_html_4 += `</div>`;
+                                {{/each}}
+
+                                inside_html_3 += top3;
+                                inside_html_3 += own_data3;
+                                inside_html_3 += inside_html_4;
+                                inside_html_3 += `</div>`;
+                            {{/each}}
+                        inside_html_2 += top2;
+                        inside_html_2 += own_data2;
+                        inside_html_2 += inside_html_3
+                        inside_html_2 += `</div>`;
+                    {{/each}}
+                html += top
+                html += own_data
+                html += inside_html_2
+                html += `</div>`
+            {{/each}}
+            return html;
+        }
+        var html = generate_comment_data();
+        $(".comments").append(html);
+    });
+</script>
