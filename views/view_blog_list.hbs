@@ -2,15 +2,13 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
-<div class="show-team">
-    <div class="table-type-1">
-        <div class="table-title-2">
-            <h2 style="text-align: center;"><b>Your Blogs</b></h2>
-        </div>
-        <br>
-        <div class="blogs">
+<div class="table-type-1">
+    <div class="table-title-2">
+        <h2 style="text-align: center;"><b>Your Blogs</b></h2>
+    </div>
+    <br>
+    <div class="blogs">
 
-        </div>
     </div>
 </div>
 
@@ -19,7 +17,6 @@
 
     function viewBlogInBlogs(){
         var blog_para_max_length = 1000
-        var db_list = [];
         {{#each blog_list}}
             var blog_text = `{{blog_text}}`
             if(blog_text.length > blog_para_max_length){
@@ -58,7 +55,6 @@
             `
             $(".blogs").append(html);
         {{/each}}
-        return db_list;
     }
 
     $(document).ready( function () {

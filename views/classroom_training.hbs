@@ -169,6 +169,17 @@
 </div>
 
 
+<div class="table-type-1">
+    <div class="table-title-2">
+        <h2 style="text-align: center;"><b>Your Blogs</b></h2>
+    </div>
+    <br>
+    <div class="blogs">
+
+    </div>
+</div>
+
+
 <script type="text/javascript">
 
     function getMemberTableList(){
@@ -334,11 +345,54 @@
             pageLength: 100
         });
     }
+
+    function viewBlogInBlogs(){
+        var blog_para_max_length = 1000
+        {{#each blog_list}}
+            var blog_text = `{{blog_text}}`
+            if(blog_text.length > blog_para_max_length){
+                blog_text = blog_text.substring(0, blog_para_max_length)
+                blog_text += ' . . .'
+            }
+
+            var html = `
+                <div class="blog-post-1">
+                <div class="post-header">
+                    <a href="/blog/post/view/{{blog_id}}/"><h2 style="color: rgb(23, 81, 104);" class="media-heading"><b>{{blog_title}}</b></h2></a>
+                </div>
+                <div class="post-sub-header">
+                    <p class="text-left"> <b><span style="color: rgb(214, 193, 7); padding-right:3px;">{{blog_writer_handle}}</span>, <span style="color: #95989B; padding-left:7px;"> {{updated_at}}</span></b></p>
+                </div>
+                <div class="post-body">
+                    <p> ${blog_text} </p>
+                </div>
+                <div class="post-read-more">
+                    <a href="/blog/post/view/{{blog_id}}/"><p style="color: rgb(23, 81, 104);" class="media-heading"><b>READ MORE <i style="height: 11px;" class="fas fa-angle-double-right"></i></b></p></a>
+                </div>
+                <div class="post-footer">
+                    <p class="text-left"> Blog Topic : <b><span style="color: rgb(123, 137, 150); padding-right:3px;">{{blog_topic}}</span></b></p>
+                </div>
+                <hr>
+                <div class="row post-foter">
+                    <div class="col-md-10">
+                        <a href="/vote/like/{{blog_id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
+                        <a href="/vote/dislike/{{blog_id}}/"><span style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="/blog/post/view/{{blog_id}}/"><span style="color: rgb(19, 87, 104);"><i class="fas fa-comment"></i> {{comment_count}} Comments</span></a>
+                    </div>
+                </div>
+            </div>
+            `
+            $(".blogs").append(html);
+        {{/each}}
+    }
     
     showMemberTable()
     showCategoryWiseSkillTable()
     showTaskListDTSearchTable()
     showCategoryWiseSolveCountTable()
     showContestsDTSearchTable();
+    viewBlogInBlogs();
 
 </script>

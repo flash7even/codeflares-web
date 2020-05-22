@@ -7,6 +7,7 @@ const axios = require('axios');
 var classroom_task_list_view_all = config.server_host + 'classroom/task/search'
 var classroom_class_list_view_all = config.server_host + 'classroom/class/search'
 
+var blog_server = require('./servers/blog_services.js');
 var classroom_server = require('./servers/classroom_services.js');
 var contest_server = require('./servers/contest_services.js');
 var jshelper = require('./servers/jshelper.js');
@@ -77,6 +78,8 @@ router.trainingClassroom = async function(req, res, next) {
   var classroom_details = await classroom_server.classroomDetails(res, req, classroom_id)
   var contest_list = await contest_server.getContestList(res, req, {"contest_ref_id": classroom_id});
   classroom_details['contest_list'] = contest_list['contest_list']
+  let blog_data = await blog_server.getBlogList(res, req, {});
+  classroom_details['blog_list'] = blog_data['blog_list']
   console.log(classroom_details)
   res.render('classroom_training', classroom_details);
 }
