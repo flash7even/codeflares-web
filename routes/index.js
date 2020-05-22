@@ -36,7 +36,9 @@ module.exports = function(newApp) {
     newApp.post('/blog/post/comment/*', commentController.addCommentForBlogPost);
     newApp.post('/blog/post/reply/*', commentController.addReplyForBlogPost);
     newApp.post('/problem/comment/*', commentController.addCommentForProblem);
-    newApp.post('/problem/reply/*', commentController.addReplyForComment);
+    newApp.post('/problem/reply/*', commentController.addReplyForProblem);
+    newApp.post('/category/comment/*', commentController.addCommentForCategory);
+    newApp.post('/category/reply/*', commentController.addReplyForCategory);
 
 
     newApp.get('/vote/*', voteController.addVote);
@@ -55,8 +57,11 @@ module.exports = function(newApp) {
 
     newApp.get('/problem/resource/add/*', problemController.addProblemResourceForm);
     newApp.post('/problem/resource/add/*', problemController.addProblemResourceFormSubmit);
+    newApp.get('/category/resource/add/*', categoryController.addCategoryResourceForm);
+    newApp.post('/category/resource/add/*', categoryController.addCategoryResourceFormSubmit);
 
     newApp.get('/category/add/', categoryController.addCategoryForm);
+    newApp.get('/category/view/*', categoryController.viewSingleCategory);
     newApp.post('/category/add/', categoryController.addCategoryFormSubmit);
     newApp.get('/category/list/', categoryController.viewCategoryList);
     newApp.get('/category/list/root/*', categoryController.viewCategoryListByRoot);

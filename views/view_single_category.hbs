@@ -1,0 +1,288 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<div class="blog-post-1">
+    <div class="row">
+        <div class="col-md-11">
+            <div class="post-header">
+                <h3 style="color: rgb(23, 81, 104);" class="media-heading">Category: <b>{{category_title}} </b></h3>
+                <br>
+                <h5>Category Difficulty: <b>{{category_difficulty}}</b></h5>
+                <h5>Category Root: <b>{{category_root_title}}</b></h5>
+                <h5>Problem Count: <span style="color: rgb(207, 161, 7);"> <b>{{problem_count}}</b> </span></h5>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="table-title-2">
+        <h5 style="text-align: center;"><b>Category Resources  </b> <a title="Add new resource" style="color: #accbe1;" href="/category/resource/add/{{category_id}}/"> <i class="fas fa-plus"></i> </a> </h5>
+    </div>
+    <table id="resourceListTable" class="table table-bordered" style="font-size: smaller;">
+        <thead style="background-color: #accbe1;">
+            <tr>
+                <th>Resource Title</th>
+                <th>Description</th>
+                <th>Resource Writer</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br>
+    <br>
+    <hr>
+    <div class="row post-foter">
+        <div class="col-md-10">
+            <a href="/vote/like/{{category_id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
+            <a href="/vote/dislike/{{category_id}}/"><span style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
+        </div>
+        <div class="col-md-2">
+            <a href="#comments"><span style="color: rgb(19, 87, 104);"><i class="fas fa-comment"></i> {{comment_count}} Comments</span></a>
+        </div>
+    </div>
+    <hr>
+
+</div>
+
+<div class="comment-post-1" style="background-color: #FAFAFA; margin-top:15px;">	
+    <form action="/category/comment/{{category_id}}/" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <div class="input-group">
+                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-2" style="left: 84%; height:15px;">
+            <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+        </div>
+    </form>
+</div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="comments" id = "comments">
+      </div>
+    </div>
+  </div>
+
+<script>
+
+    $(document).ready(function(){
+        $(document).on('click' , 'button.comment-reply' , function(){
+            var closestDiv = $(this).closest('div'); // also you can use $(this).parent()
+            //closestDiv.fadeOut();
+            $('.comment_reply').not(closestDiv.next('.comment_reply')).hide();
+            //$('.rep').closest('div').not(closestDiv).show()
+            closestDiv.next('form.comment_reply').slideToggle(100);
+        });
+
+        function generate_comment_data(){
+            console.log('generate_comment_data called')
+            var category_es_id = "{{category_id}}"
+            console.log('category_es_id: ' + category_es_id)
+            var html = ``
+            {{#each comment_list}}
+                var top = `<div class="comment-box">`
+                var comment_writer_handle = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                var updated_at = "{{updated_at}}"
+                var comment_text = "{{comment_text}}"
+                var comment_id = "{{comment_id}}"
+                var reply_link = `/category/reply/${category_es_id}/${comment_id}/`
+                var like_count = "{{vote_count.like_count}}"
+                var dislike_count = "{{vote_count.dislike_count}}"
+                var own_data = `
+                    <span class="commenter-pic">
+                    </span>
+                    <span class="commenter-name">
+                        <a href="#">${comment_writer_handle}</a> <span style="color: #95989B;" class="comment-time">${updated_at}</span>
+                    </span>       
+                    <p> ${comment_text}</p>
+                    <div class="comment-meta">
+                            <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count}</span></a>
+                            <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count}</span></a>
+                            <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
+                    </div>
+                    <form class="comment_reply" action="${reply_link}" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="input-group">
+                                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                        </div>
+                    </form>
+                `
+
+                    var inside_html_2 = ``
+                    {{#each comment_list}}
+                        var top2 = `<div class="comment-box replied">`
+                        var comment_writer_handle2 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                        var updated_at2 = "{{updated_at}}"
+                        var comment_text2 = "{{comment_text}}"
+                        var comment_id2 = "{{comment_id}}"
+                        var reply_link2 = `/category/reply/${category_es_id}/${comment_id2}/`
+                        var like_count2 = "{{vote_count.like_count}}"
+                        var dislike_count2 = "{{vote_count.dislike_count}}"
+                        var own_data2 = `
+                            <span class="commenter-pic">
+                            </span>
+                            <span class="commenter-name">
+                                <a href="#">${comment_writer_handle2}</a> <span style="color: #95989B;" class="comment-time">${updated_at2}</span>
+                            </span>       
+                            <p> ${comment_text2}</p>
+                            <div class="comment-meta">
+                                    <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count2}</span></a>
+                                    <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count2}</span></a>
+                                    <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
+                            </div>
+                            <form class="comment_reply" action="${reply_link2}" method="post">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <div class="input-group">
+                                            <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                </div>
+                            </form>
+                        `
+                            var inside_html_3 = ``
+                            {{#each comment_list}}
+                                var top3 = `<div class="comment-box replied">`
+                                var comment_writer_handle3 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                                var updated_at3 = "{{updated_at}}"
+                                var comment_text3 = "{{comment_text}}"
+                                var comment_id3 = "{{comment_id}}"
+                                var reply_link3 = `/category/reply/${category_es_id}/${comment_id3}/`
+                                var like_count3 = "{{vote_count.like_count}}"
+                                var dislike_count3 = "{{vote_count.dislike_count}}"
+                                var own_data3 = `
+                                    <span class="commenter-pic">
+                                    </span>
+                                    <span class="commenter-name">
+                                        <a href="#">${comment_writer_handle3}</a> <span style="color: #95989B;" class="comment-time">${updated_at3}</span>
+                                    </span>       
+                                    <p> ${comment_text3} </p>
+                                    <div class="comment-meta">
+                                            <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count3}</span></a>
+                                            <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count3}</span></a>
+                                            <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
+                                    </div>
+                                    <form class="comment_reply" action="${reply_link3}" method="post">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <div class="input-group">
+                                                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-sm-2">
+                                            <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                        </div>
+                                    </form>
+                                `
+                                var inside_html_4 = ``
+                                {{#each comment_list}}
+                                    var top4 = `<div class="comment-box replied">`
+                                    var comment_writer_handle4 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                                    var updated_at4 = "{{updated_at}}"
+                                    var comment_text4 = "{{comment_text}}"
+                                    var comment_id4 = "{{comment_id}}"
+                                    var reply_link4 = `/category/reply/${category_es_id}/${comment_id4}/`
+                                    var like_count4 = "{{vote_count.like_count}}"
+                                    var dislike_count4 = "{{vote_count.dislike_count}}"
+                                    var own_data4 = `
+                                        <span class="commenter-pic">
+                                        </span>
+                                        <span class="commenter-name">
+                                            <a href="#">${comment_writer_handle4}</a> <span style="color: #95989B;" class="comment-time">${updated_at4}</span>
+                                        </span>       
+                                        <p> ${comment_text4} </p>
+                                        <div class="comment-meta">
+                                            <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count4}</span></a>
+                                            <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count4}</span></a>
+                                        </div>
+                                        <form class="comment_reply" action="${reply_link4}" method="post">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-12">
+                                                    <div class="input-group">
+                                                        <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-2">
+                                                <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                            </div>
+                                        </form>
+                                    `
+                                    inside_html_4 += top4;
+                                    inside_html_4 += own_data4;
+                                    inside_html_4 += `</div>`;
+                                {{/each}}
+
+                                inside_html_3 += top3;
+                                inside_html_3 += own_data3;
+                                inside_html_3 += inside_html_4;
+                                inside_html_3 += `</div>`;
+                            {{/each}}
+                        inside_html_2 += top2;
+                        inside_html_2 += own_data2;
+                        inside_html_2 += inside_html_3
+                        inside_html_2 += `</div>`;
+                    {{/each}}
+                html += top
+                html += own_data
+                html += inside_html_2
+                html += `</div>`
+            {{/each}}
+            return html;
+        }
+
+        function getResourceList(){
+            console.log("getResourceList")
+            var dt_list = [];
+            {{#each resource_list}}
+                var resource_writer = '<a href = "/profile/{{resource_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{resource_writer_handle}}</a>'
+                var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
+                action_link += "</div>"
+                var data = ["{{resource_title}}", "{{resource_body}}", resource_writer, "{{updated_at}}", action_link];
+                dt_list.push(data)
+            {{/each}}
+
+            return dt_list;
+        }
+
+        function showResourcesDTSearchTable(){
+            var dt_list = getResourceList();
+            console.log('dt_list: ')
+            console.log(dt_list)
+            
+            $("#resourceListTable").dataTable({
+                "aaData": dt_list,
+                paging: false,
+                searching: false,
+                destroy: true,
+                scrollCollapse: true,
+                responsive: true,
+                pageLength: 10,
+                lengthMenu: [[3, 5, 10, -1], [3, 5, 10, 20]]
+            });
+        }
+
+        var html = generate_comment_data();
+        $(".comments").append(html);
+        showResourcesDTSearchTable();
+    });
+</script>

@@ -44,6 +44,15 @@ router.addCategoryForm = function(req, res, next) {
     res.render('add_category', {});
 }
 
+router.viewSingleCategory = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var category_id = words[words.length-2]
+  let category_data = await category_server.getCategoryDetails(res, req, category_id);
+  console.log(category_data)
+  res.render('view_single_category', category_data);
+}
+
 router.addCategoryFormSubmit = async function(req, res, next) {
   var category = req.body
   category = update_category_data(category)
@@ -92,6 +101,28 @@ router.viewCategoryListAfterFormSubmit = async function(req, res, next) {
 router.categorySubmit = function(req, res, next) {
     // Submit data to server (req.data)
     res.redirect('/');
+}
+
+
+router.addCategoryResourceForm = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var category_id = words[words.length-2]
+  var category_details = await category_server.getCategoryDetails(res, req, category_id)
+  res.render('add_category_resource', category_details);
+}
+
+router.addCategoryResourceFormSubmit = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var category_id = words[words.length-2]
+
+  var sess = req.session;
+  var res_body = req.body
+  res_body['resource_writer'] = sess.user_id
+  res_body['resource_ref_id'] = category_id
+  await category_server.postCategoryResource(res, req, res_body)
+  res.redirect('/category/view/' + category_id + '/');
 }
 
 module.exports = router;

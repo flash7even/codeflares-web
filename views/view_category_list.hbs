@@ -30,14 +30,6 @@
 <script type="text/javascript">
 
     function getCategoryList(){
-        var categorys = [
-            ['Data Structure', 'Data Structure', '5'],
-            ['Data Structure', 'Segment Tree', '8.5'],
-            ['Data Structure', 'Segment Tree', '8.5'],
-            ['DP', 'Bit Mask', '7.5'],
-            ['DP', 'LCA', '6.5']
-        ]
-
         var db_category_list = [];
 
         {{#each category_list}}
@@ -47,7 +39,7 @@
                 category_url = '<i class="fas fa-folder-open" style="color:#679AA4;"></i>  <a style="color: #368AA3; font-weight:700;" href = "/problem/list/{{category_name}}/">{{category_title}}</a>'
             }
             var stat_data = '<div> <i class="fas fa-check-circle" style="color:#55B232;"></i> {{solve_count}} / {{problem_count}} </div>'
-            var category_page_link = '<a style="color: #368AA3;" href = "/category/view/{{category_name}}/"><i class="fas fa-info-circle"></i></a>'
+            var category_page_link = '<a style="color: #368AA3;" href = "/category/view/{{category_id}}/"><i class="fas fa-external-link-alt"></i></a>'
             var category_data = ["{{category_root_title}}", category_url, stat_data, "{{category_difficulty}}", category_page_link];
             db_category_list.push(category_data)
         {{/each}}
