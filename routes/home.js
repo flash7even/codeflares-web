@@ -7,13 +7,19 @@ const axios = require('axios');
 
 var logout_url = config.server_host + 'auth/logout/at'
 
+var blog_server = require('./servers/blog_services.js');
 var user_server = require('./servers/user_services.js');
 var jshelper = require('./servers/jshelper.js');
 
 
-
 router.showHome = async function(req, res, next) {
-    res.render('index');
+    let data = await blog_server.getBlogList(res, req, {'status': 'homepage'});
+    let top_rated_users = await user_server.topRatedUsers(res, req, {})
+    let top_solved_users = await user_server.topSolverUsers(res, req, {})
+    data['top_rated_users'] = top_rated_users.user_list
+    data['top_solved_users'] = top_solved_users.user_list
+    console.log(data)
+    res.render('index', data);
 }
 
 router.showLogIn = function(req, res, next) {
