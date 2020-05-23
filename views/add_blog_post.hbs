@@ -2,9 +2,10 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
-<div class="form-type-1">	
-    <form action="/blog/post/add/" method="post">
-		<h2>Add Blog Post</h2>
+<div class="form-type-1" style="width: 100%;">	
+    <form action="/blog/post/add/{{blog_type}}/{{blog_ref_id}}/" method="post">
+		<h2>Create Blog Post</h2>
+		<p style="color: rgb(149, 167, 201); text-align:center;">Target Audience: [{{target_audience}}]</p>
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
@@ -15,18 +16,14 @@
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
-					<select class="form-control" id="blog_topic" name="blog_topic">
-						<option value="blog_topic">Blog Topic</option>
-						<option value="topic_learning">Topic Learning</option>
-						<option value="system_post">System Post</option>
-					</select>
+					<input type="text" autocomplete="off" id="blog_topic" class="form-control" name="blog_topic" placeholder="Enter Blog Topics (Comma Separated)">
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
-					<textarea type="text" id="blog_text" class="form-control" name="blog_text" placeholder="Write your blog"></textarea>
+					<textarea style="height: 300px;" type="text" id="blog_text" class="form-control" name="blog_text" placeholder="Write your blog"></textarea>
 				</div>
 			</div>
 		</div>
