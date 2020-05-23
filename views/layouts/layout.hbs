@@ -59,7 +59,7 @@
                         <li> <a href="/profile/{{session.username}}">Profile</a> </li>
                         <li> <a href="/update/profile/">Edit Profile</a> </li>
                         <li> <a href="/settings/update/">Settings</a> </li>
-                        <li> <a href="/blog/post/add/global/{{session.user_id}}/">Add Blog Post</a> </li>
+                        <li> <a href="/blog/post/add/global/{{session.user_id}}/">Create Blog Post</a> </li>
                         <li> <a href="/blog/list/global/all/">Blog List</a> </li>
                     </ul>
                 </li>
@@ -107,7 +107,6 @@
                     <ul class="collapse list-unstyled" id="adviseMenu">
                         <li> <a href="/problem/add/">Add Problem</a> </li>
                         <li> <a href="/category/add/">Add Category</a> </li>
-                        <li> <a href="/resource/add/">Add Resource</a> </li>
                     </ul>
                 </li>
                 {{/if}}
@@ -160,8 +159,8 @@
 
                             {{#if session.notification_data.UNREAD}}
                             <a type="button btn-lg" class="btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i style="color:rgb(9, 179, 37)" class="fas fa-bell navbar-btn-icon"></i>
-                                <span style="font-size:larger" class="notifi-num">({{session.notification_data.unread_length}})</span>
+                                <i style="color:rgb(9, 179, 37);" class="fas fa-bell navbar-btn-icon"></i>
+                                <span style="color:rgb(9, 179, 37);"><sup>{{session.notification_data.unread_length}}</sup></span>
                             </a>
                             {{else}}
                             <a type="button btn-lg" class="btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -277,6 +276,7 @@
                     </div>
                 </div>
             </nav>
+            <hr style="margin: 0px;">
             {{{body}}}
             <!-- Page footer -->
             <br>
