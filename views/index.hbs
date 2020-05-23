@@ -1,5 +1,6 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <div class="row">
@@ -48,6 +49,9 @@
 
                 </tbody>
             </table>
+        </div>
+        <div class="table-type-1" style="margin-left: 0px; padding:0px;">
+            <div id="donutchart" style="margin:0px; padding:0px; height: 350px; width: 350px"></div>
         </div>
     </div>
 </div>
@@ -151,6 +155,30 @@
             pageLength: 10
         });
     }
+
+    google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    6],
+          ['Entertainment',    7],
+          ['PC',    3],
+          ['Gamea',    4]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.4
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
 
     $(document).ready( function () {
         viewBlogInBlogs();

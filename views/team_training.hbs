@@ -25,8 +25,8 @@
                 {{#each problem_stat}}
                 <tr>
                     <td>{{idx}}</td>
-                    <td><a href = {{problem_info.source_link}} style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_info.problem_name}}</a></td>
-                    <td>{{problem_info.oj_name}}</td>
+                    <td><a href = "/problem/view/{{problem_info.id}}/" style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_info.problem_name}}</a></td>
+                    <td><a style="color: #accbe1;" href="{{problem_info.source_link}}"><i class="fas fa-external-link-alt"></i></a></td>
                     <td>{{relevant_score}}</td>
                     <td>
                         <a style="color: rgb(137, 161, 30);" href="#" class="edit" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-flag"></i></a>
@@ -48,10 +48,9 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th style="width: 30%;">Algorithm Name</th>
+                    <th style="width: 40%;">Algorithm Name</th>
                     <th>Algorithm Difficulty</th>
                     <th>Relevant Score</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,13 +58,9 @@
                 {{#each category_stat}}
                 <tr>
                     <td>{{idx}}</td>
-                    <td><a href = "" style="color: #4b1196; font-weight:500; text-decoration: underline;">{{category_info.category_title}}</a></td>
+                    <td><a href = "/category/view/{{category_info.category_id}}/" style="color: #4b1196; font-weight:500; text-decoration: underline;">{{category_info.category_title}}</a></td>
                     <td>{{category_info.category_difficulty}}</td>
                     <td>{{relevant_score}}</td>
-                    <td>
-                        <a style="color: rgb(137, 161, 30);" href="#" class="edit" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-tasks"></i></a>
-                        <a style="color: rgb(255, 124, 2);" href="#" class="delete" title="Delete from my list" data-toggle="tooltip"><i class="fas fa-trash"></i></a>
-                    </td>
                 </tr>
                  {{/each}}
 
