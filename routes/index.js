@@ -81,6 +81,8 @@ module.exports = function(newApp) {
 
     newApp.get('/classroom/add/', classroomController.addClassroomForm);
     newApp.post('/classroom/add/', classroomController.addClassroomFormSubmit);
+    newApp.get('/classroom/update/*', classroomController.updateClassroomForm);
+    newApp.post('/classroom/update/*', classroomController.updateClassroomFormSubmit);
     newApp.get('/classroom/list/', classroomController.viewClassroomList);
     newApp.get('/classroom/training/*', classroomController.trainingClassroom);
     newApp.get('/classroom/confirm/*', classroomController.confirmClassroom);

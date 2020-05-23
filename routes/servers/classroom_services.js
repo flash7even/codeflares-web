@@ -78,6 +78,25 @@ module.exports.postClassroom = async function(res, req, classroom_data) {
   return response.data
 };
 
+module.exports.updateClassroom = async function(res, req, classroom_id, classroom_data) {
+  var post_url = classroom_submit_url + classroom_id
+  console.log("post_url: " + post_url)
+  var sess = req.session;
+  var access_token = sess.access_token
+  const auth_config = {
+      headers: { Authorization: `Bearer ${access_token}` }
+  };
+  let response = await axios.put(post_url, classroom_data, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
+  return response.data
+};
+
 module.exports.postClassroomTask = async function(res, req, classroom_task_data) {
   var post_url = classroom_add_task_submit_url
   console.log("post_url: " + post_url)

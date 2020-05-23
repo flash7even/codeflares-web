@@ -1,0 +1,152 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<br>
+
+<div class="form-type-1" style="width: 80%;">	
+    <form action="/classroom/update/{{id}}/" method="post">
+        <div class="table-title-2">
+            <h2 style="text-align: center;"><b>Update Classroom Information</b></h2>
+			<h6 style="text-align: center; color: #0e586e;"><b>Class Name: {{team_name}}</b></h6>
+        </div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Classroom Name</b> </label>
+				<div class="input-group">
+					<input type="text" id="team_name" class="form-control" name="team_name" value="{{team_name}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Institution Name</b> </label>
+				<div class="input-group">
+					<input type="text" id="institution_name" class="form-control" name="institution_name" value="{{institution_name}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Team Purpose</b> </label>
+				<div class="input-group">
+					<input type="text" id="team_purpose" class="form-control" name="team_purpose" value="{{team_purpose}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Classroom Description</b> </label>
+				<div class="input-group">
+					<input type="text" id="description" class="form-control" name="description" value="{{description}}">
+				</div>
+			</div>
+		</div>
+		<div class="category-group">
+		</div>
+		<div class="form-row">
+			<div class="form-group col-sm-12" style="width: 10px !important;">
+				<button title="Add Member" class="btn add-more btn-block" type="button"><i class="fas fa-plus"></i></button>
+			</div>
+		</div>
+
+
+		<div class="copy hide" hidden>
+			<div class="form-row control-group">
+				<div class="form-group col-md-6">
+					<div class="input-group">
+						<input type="text" autocomplete="off" id="user_handle_tmp" class="form-control autocomplete" name="user_handle_tmp" placeholder="User Handle">
+					</div>
+				</div>
+				<div class="form-group col-md-5">
+					<div class="input-group">
+						<input type="text" id="remarks_tmp" class="form-control" name="remarks_tmp" placeholder="Remarks">
+					</div>
+				</div>
+				<div class="form-group col-sm-1" style="width: 10px !important;">
+					<button class="btn remove btn-block" type="button"><i class="fas fa-minus"></i></button>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
+        </div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var cat_item = 1;
+
+	function enableAutoComplete(){
+		$(".autocomplete").typeahead({
+			// data source
+			source: users,
+
+			// how many items to show
+			items: 8,
+
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			
+			itemContentSelector:'a',
+
+			// min length to trigger the suggestion list
+			minLength: 1,
+
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+
+			// auto selects the first item
+			autoSelect: true,
+
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+
+			// adds an item to the end of the list
+			addItem: false,
+
+			// delay between lookups
+			delay: 0,
+		});
+	}
+
+    $(document).ready(function() {
+		$(".add-more").click(function(){
+			cat_item++;
+			var html = $(".copy").html()
+			var user_handle_id = 'user_handle@' + cat_item.toString();
+			html = html.replace('user_handle_tmp', user_handle_id)
+			html = html.replace('user_handle_tmp', user_handle_id)
+			var remarks_id = 'remarks@' + cat_item.toString();
+			html = html.replace('remarks_tmp', remarks_id)
+			html = html.replace('remarks_tmp', remarks_id)
+			$(".category-group").append(html);
+			enableAutoComplete();
+		});
+
+		$("body").on("click",".remove",function(){ 
+			$(this).parents(".control-group").remove();
+		});
+    });
+
+	function get_user_list(){
+		var users = []
+
+        {{#each user_list}}
+            var data = {"name": "{{username}}", "code": "AF"}
+            console.log(data)
+            users.push(data)
+        {{/each}}
+
+		return users
+	}
+
+	const users = get_user_list();
+	enableAutoComplete();
+
+</script>

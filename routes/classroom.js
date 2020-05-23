@@ -19,6 +19,30 @@ router.addClassroomForm = async function(req, res, next) {
   res.render('add_classroom', user_list);
 }
 
+
+router.updateClassroomForm = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var classroom_id = words[words.length-2]
+  let user_list = await classroom_server.getUserList(res, req, {});
+  var classroom_details = await classroom_server.classroomDetails(res, req, classroom_id)
+  classroom_details['user_list'] = user_list['user_list']
+  console.log(classroom_details)
+  res.render('update_classroom', classroom_details);
+}
+
+
+router.updateClassroomFormSubmit = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var classroom_id = words[words.length-2]
+  var classroom = req.body
+  classroom = update_classroom_data(classroom)
+  await classroom_server.updateClassroom(res, req, classroom_id, classroom)
+  jshelper.sleep(1000);
+  res.redirect('/classroom/training/' + classroom_id + '/');
+}
+
 function update_classroom_data(classroom){
   var data = {}
   var user_handle = "user_handle"
