@@ -45,22 +45,22 @@
                 member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700;">{{user_handle}} ({{status}})</a>'
                 mem_count += 1
             {{/each}}
-            var team_link = '<a href = "/team/view/{{id}}/" style="color: #86c232; font-weight:700;">{{team_name}}</a>'
+            var team_link = '<a href = "/team/view/{{id}}/" style="color: #056290; font-weight:700;"><b>{{team_name}}</b></a>'
 
             var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
 
             if(my_status != "confirmed"){
                 action_link += '<a href="/team/confirm/{{id}}/" title="Confirm" data-toggle="tooltip" style="color: #5bc0de;"><i class="fas fa-check-circle"></i></a>'
                 action_link += "  "
-                action_link += '<a href="/team/reject/{{id}}/" title="Reject" data-toggle="tooltip" style="color: #f8b317;"><i class="fas fa-times-circle"></i></a>'
+                action_link += '<a href="/team/reject/{{id}}/" title="Reject" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-times-circle"></i></a>'
             }else{
                 var team_lead = "{{team_leader_id}}"
                 console.log("team_lead")
                 console.log(team_lead)
                 if(current_user == team_lead){
-                    action_link += '<a href="/team/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: #c40b00;"><i class="fas fa-trash"></i></a>'
+                    action_link += '<a href="/team/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-trash"></i></a>'
                 }else{
-                    action_link += '<a href="/team/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: #f8b317;"><i class="fas fa-minus-circle"></i></a>'
+                    action_link += '<a href="/team/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-minus-circle"></i></a>'
                 }
             }
             
@@ -78,7 +78,9 @@
         
         $("#teamListTable").dataTable({
             "aaData": dt_list,
-            paging: true,
+            paging: false,
+            searching: false,
+            ordering: false,
             destroy: true,
             scrollCollapse: true,
             responsive: true,
