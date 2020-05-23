@@ -45,7 +45,7 @@ router.addBlogFormSubmit = async function(req, res, next) {
   if(blog_type == 'classroom'){
     res.redirect('/classroom/training/' + blog_ref_id + '/')
   }else{
-    res.redirect('/blog/list/')
+    res.redirect('/blog/list/global/all/')
   }
 }
 
