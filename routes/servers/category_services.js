@@ -73,9 +73,12 @@ module.exports.postCategoryResource = async function(res, req, data) {
   return response.data
 };
 
-module.exports.getCategoryDetails = async function(res, req, category_id) {
+module.exports.getCategoryDetails = async function(res, req, category_id, user_id = null) {
     console.log('getCategoryDetails')
     var post_url = category_submit_url + category_id
+    if(user_id != null){
+        post_url = post_url + '/' + user_id
+    }
     console.log("post_url: " + post_url)
     var sess = req.session;
     const auth_config = {

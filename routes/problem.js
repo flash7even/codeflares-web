@@ -98,7 +98,17 @@ router.viewSingleProblem = async function(req, res, next) {
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
-  let problem_data = await problem_server.getProblemDetails(res, req, problem_id);
+  var sess = req.session;
+  let problem_data = {}
+  if (sess.user_id){
+    problem_data = await problem_server.getProblemDetails(res, req, problem_id, sess.user_id);
+    if(problem_data.user_status == 'SOLVED'){
+      problem_data['SOLVED'] = true
+    }
+  }else{
+    problem_data = await problem_server.getProblemDetails(res, req, problem_id);
+  }
+
   console.log(problem_data)
   res.render('view_single_problem', problem_data);
 }

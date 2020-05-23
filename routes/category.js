@@ -48,10 +48,17 @@ router.viewSingleCategory = async function(req, res, next) {
   var url = req.url
   var words = url.split("/");
   var category_id = words[words.length-2]
-  let category_data = await category_server.getCategoryDetails(res, req, category_id);
+  var sess = req.session;
+  var category_data = {}
+  if (sess.user_id){
+    category_data = await category_server.getCategoryDetails(res, req, category_id, sess.user_id);
+  }else{
+    category_data = await category_server.getCategoryDetails(res, req, category_id);
+  }
   console.log(category_data)
   res.render('view_single_category', category_data);
 }
+
 
 router.addCategoryFormSubmit = async function(req, res, next) {
   var category = req.body

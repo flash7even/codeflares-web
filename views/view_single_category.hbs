@@ -5,7 +5,7 @@
 
 <div class="blog-post-1">
     <div class="row">
-        <div class="col-md-11">
+        <div class="col-md-8">
             <div class="post-header">
                 <h3 style="color: rgb(23, 81, 104);" class="media-heading">Category: <b>{{category_title}} </b></h3>
                 <br>
@@ -14,6 +14,14 @@
                 <h5>Problem Count: <span style="color: rgb(207, 161, 7);"> <b>{{problem_count}}</b> </span></h5>
             </div>
         </div>
+        {{#if session.user_id}}
+        <div class="col-md-4">
+            <br>
+            <br>
+            <h4 style="color: rgb(173, 130, 48); text-align:center;" class="media-heading">{{skill_title}}</h4>
+            <h1 style="color: rgb(52, 156, 182); text-align:center;" class="media-heading">{{skill_value}}</h1>
+        </div>
+        {{/if}}
     </div>
     <br>
     <br>

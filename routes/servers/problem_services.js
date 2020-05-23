@@ -73,9 +73,12 @@ module.exports.postProblemResource = async function(res, req, data) {
   return response.data
 };
 
-module.exports.getProblemDetails = async function(res, req, problem_id) {
+module.exports.getProblemDetails = async function(res, req, problem_id, user_id = null) {
     console.log('getProblemDetails')
     var post_url = problem_submit_url + problem_id
+    if (user_id != null){
+        post_url = post_url + '/' + user_id
+    }
     console.log("post_url: " + post_url)
     var sess = req.session;
     const auth_config = {
