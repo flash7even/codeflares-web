@@ -134,6 +134,25 @@ module.exports.teamDetails = async function(res, req, team_id) {
   return response.data
 };
 
+module.exports.updateTeam = async function(res, req, team_id, team_data) {
+    var post_url = team_submit_url + team_id
+    console.log("post_url: " + post_url)
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    let response = await axios.put(post_url, team_data, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+  
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+  };
+
 module.exports.teamCodeforcesHistory = async function(res, req, team_id) {
   console.log('teamDetails called')
   var sess = req.session;

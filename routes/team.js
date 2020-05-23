@@ -15,6 +15,28 @@ router.addTeamForm = async function(req, res, next) {
   res.render('add_team', user_list);
 }
 
+router.updateTeamForm = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var team_id = words[words.length-2]
+  let user_list = await team_server.getUserList(res, req, {});
+  var team_details = await team_server.teamDetails(res, req, team_id)
+  team_details['user_list'] = user_list['user_list']
+  console.log(team_details)
+  res.render('update_team', team_details);
+}
+
+router.updateTeamFormSubmit = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var team_id = words[words.length-2]
+  var team = req.body
+  team = update_team_data(team)
+  await team_server.updateTeam(res, req, team_id, team)
+  jshelper.sleep(1000);
+  res.redirect('/training/team/');
+}
+
 function update_team_data(team){
   var data = {}
   var user_handle = "user_handle"
