@@ -6,7 +6,9 @@
 
 <div class="form-type-1" style="width: 80%;">	
     <form action="/classroom/add/" method="post">
-		<h2>Classroom Information</h2>
+		<div class="table-title-2">
+			<h2 style="text-align: center;"><b>Classroom Information</b></h2>
+		</div>
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
@@ -15,17 +17,21 @@
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-12">
 				<div class="input-group">
 					<input type="text" id="institution_name" class="form-control" name="institution_name" placeholder="Institution" required>
 				</div>
 			</div>
-			<div class="form-group col-md-4">
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
 				<div class="input-group">
 					<input type="text" id="team_purpose" class="form-control" name="team_purpose" placeholder="Purpose">
 				</div>
 			</div>
-			<div class="form-group col-md-4">
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
 				<div class="input-group">
 					<input type="text" id="description" class="form-control" name="description" placeholder="Description">
 				</div>
@@ -67,6 +73,8 @@
 				</div>
 			</div>
 		</div>
+
+		<br>
 
 		<div class="form-group">
             <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>

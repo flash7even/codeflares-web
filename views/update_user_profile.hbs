@@ -3,7 +3,7 @@
 </head>
 
 
-<div class="form-type-1" style="width: 80%;">	
+<div class="form-type-1" style="width: 80%; margin-top: 15px;">	
     <form action="/update/profile/" method="post">
 		<h2>Update Your Profile</h2>
 			<div class="form-group">
@@ -31,13 +31,13 @@
 			<div class="form-group col-md-6">
 				<label for="email"> <b>Codeforces Handle</b> </label>
 				<div class="input-group">
-					<input type="text" class="form-control" name="codeforces_handle" value={{codeforces_handle}}>
+					<input type="text" class="form-control" name="codeforces_handle" value="{{codeforces_handle}}" placeholder="Codeforces Handle">
 				</div>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="email"> <b>Codechef Handle</b> </label>
 				<div class="input-group">
-					<input type="text" class="form-control" name="codechef_handle" value={{codechef_handle}}>
+					<input type="text" class="form-control" name="codechef_handle" value="{{codechef_handle}}" placeholder="Codechef Handle">
 				</div>
 			</div>
 		</div>
@@ -46,13 +46,13 @@
 			<div class="form-group col-md-6">
 				<label for="email"> <b>SPOJ Handle</b> </label>
 				<div class="input-group">
-					<input type="text" class="form-control" name="spoj_handle" value={{spoj_handle}}>
+					<input type="text" class="form-control" name="spoj_handle" value="{{spoj_handle}}" placeholder="SPOJ Handle">
 				</div>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="email"> <b>UVA Handle</b> </label>
 				<div class="input-group">
-					<input type="text" class="form-control" name="uva_handle" value={{uva_handle}}>
+					<input type="text" class="form-control" name="uva_handle" value="{{uva_handle}}" placeholder="UVa Handle">
 				</div>
 			</div>
 		</div>
@@ -61,16 +61,17 @@
 			<div class="form-group col-md-6">
 				<label for="email"> <b>Atcoder Handle</b> </label>
 				<div class="input-group">
-					<input type="text" class="form-control" name="atcoder_handle" value={{atcoder_handle}}>
+					<input type="text" class="form-control" name="atcoder_handle" value="{{atcoder_handle}}" placeholder="At Code Handle">
 				</div>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="email"> <b>Lightoj Handle</b> </label>
 				<div class="input-group">
-					<input type="text" class="form-control" name="lightoj_handle" value={{lightoj_handle}}>
+					<input type="text" class="form-control" name="lightoj_handle" value="{{lightoj_handle}}" placeholder="LighOJ Handle">
 				</div>
 			</div>
 		</div>
+		<br>
 		<div class="form-group">
             <button type="submit" class="btn submit-btn btn-block btn-lg">Update</button>
         </div>

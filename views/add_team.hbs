@@ -2,9 +2,11 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
-<div class="form-type-1" style="width: 80%;">	
+<div class="form-type-1" style="width: 80%; margin-top: 15px;">	
     <form action="/team/add/" method="post">
-		<h2>Team Information</h2>
+		<div class="table-title-2">
+			<h2 style="text-align: center;"><b>Team Information</b></h2>
+		</div>
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
@@ -13,17 +15,21 @@
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-12">
 				<div class="input-group">
 					<input type="text" id="institution_name" class="form-control" name="institution_name" placeholder="Institution" required>
 				</div>
 			</div>
-			<div class="form-group col-md-4">
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
 				<div class="input-group">
 					<input type="text" id="team_purpose" class="form-control" name="team_purpose" placeholder="Purpose">
 				</div>
 			</div>
-			<div class="form-group col-md-4">
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
 				<div class="input-group">
 					<input type="text" id="description" class="form-control" name="description" placeholder="Description">
 				</div>
@@ -31,20 +37,18 @@
 		</div>
 		<div class="category-group">
 			<div class="form-row control-group">
-				<div class="form-group col-md-5">
+				<div class="form-group col-md-6">
 					<div class="input-group">
 						<input type="text" autocomplete="off" id="user_handle@1" class="form-control autocomplete" value="{{session.username}}" name="user_handle@1" readonly>
 					</div>
 				</div>
-				<div class="form-group col-md-4">
+				<div class="form-group col-md-5">
 					<div class="input-group">
 						<input type="text" id="remarks@1" class="form-control" name="remarks@1" placeholder="Remarks">
 					</div>
 				</div>
-				<div class="form-group col-md-3">
-					<div class="input-group-btn">
-						<button class="btn btn control-btn add-more" type="button"><i class="fas fa-plus"></i></button>
-					</div>
+				<div class="form-group col-sm-1" style="width: 10px !important;">
+					<button class="btn add-more btn-block" type="button"><i class="fas fa-plus"></i></button>
 				</div>
 			</div>
 		</div>
@@ -52,20 +56,18 @@
 
 		<div class="copy hide" hidden>
 			<div class="form-row control-group">
-				<div class="form-group col-md-5">
+				<div class="form-group col-md-6">
 					<div class="input-group">
 						<input type="text" autocomplete="off" id="user_handle_tmp" class="form-control autocomplete" name="user_handle_tmp" placeholder="User Handle">
 					</div>
 				</div>
-				<div class="form-group col-md-4">
+				<div class="form-group col-md-5">
 					<div class="input-group">
 						<input type="text" id="remarks_tmp" class="form-control" name="remarks_tmp" placeholder="Remarks">
 					</div>
 				</div>
-				<div class="form-group col-md-3">
-					<div class="input-group-btn"> 
-						<button class="btn control-btn remove" type="button"><i class="fas fa-minus"></i></button>
-					</div>
+				<div class="form-group col-sm-1" style="width: 10px !important;">
+					<button class="btn remove btn-block" type="button"><i class="fas fa-minus"></i></button>
 				</div>
 			</div>
 		</div>
