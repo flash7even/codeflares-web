@@ -9,6 +9,7 @@ var logout_url = config.server_host + 'auth/logout/at'
 
 var blog_server = require('./servers/blog_services.js');
 var user_server = require('./servers/user_services.js');
+var follower_server = require('./servers/follower_services.js');
 var jshelper = require('./servers/jshelper.js');
 
 
@@ -77,10 +78,9 @@ router.signUpSubmit = async function(req, res, next) {
 
 router.showUserProfile = async function(req, res, next) {
     var url = req.url
-    console.log(url)
     var words = url.split("/");
     var user_name = words[words.length-1]
-    console.log(user_name)
+    var sess = req.session;
 
     var param = {
         'username': user_name
@@ -90,6 +90,14 @@ router.showUserProfile = async function(req, res, next) {
     console.log(resp)
 
     var user_details = resp.user_list[0];
+    if(sess.user_id){
+        var follow_status = await follower_server.followStatus(res, req, user_details.id)
+        if(follow_status.status == 'following'){
+            user_details['following'] = true;
+        }else{
+            user_details['unfollowing'] = true;
+        }
+    }
     console.log(user_details)
     res.render('user_profile', user_details);
 }
