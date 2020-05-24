@@ -79,7 +79,7 @@ router.signUpSubmit = async function(req, res, next) {
 router.showUserProfile = async function(req, res, next) {
     var url = req.url
     var words = url.split("/");
-    var user_name = words[words.length-1]
+    var user_name = words[words.length-2]
     var sess = req.session;
 
     var param = {

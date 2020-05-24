@@ -56,7 +56,7 @@
                 <li>
                     <a href="#profileMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-user bell-icons"></i> {{session.username}}</a>
                     <ul class="collapse list-unstyled" id="profileMenu">
-                        <li> <a href="/profile/{{session.username}}">Profile</a> </li>
+                        <li> <a href="/profile/{{session.username}}/">Profile</a> </li>
                         <li> <a href="/update/profile/">Edit Profile</a> </li>
                         <li> <a href="/settings/update/">Settings</a> </li>
                         <li> <a href="/blog/post/add/global/{{session.user_id}}/">Create Blog Post</a> </li>
@@ -265,7 +265,7 @@
 
                         {{#if session.email}}
                         <div style="padding: 3px;">
-                            <a href="/profile/{{session.username}}" title="Profile">
+                            <a href="/profile/{{session.username}}/" title="Profile">
                             <button type="button btn-lg" id="" class="btn navbar-btn">
                                 <i class="fas fa-user navbar-btn-icon"></i>
                             </button>

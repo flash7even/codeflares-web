@@ -30,6 +30,7 @@ module.exports = function(newApp) {
     newApp.get('/follow/*', followerController.followUser);
     newApp.get('/unfollow/*', followerController.unfollowUser);
 
+    
     newApp.get('/blog/post/add/*', blogController.addBlogForm);
     newApp.post('/blog/post/add/*', blogController.addBlogFormSubmit);
     newApp.get('/blog/list/*', blogController.viewBlogList);

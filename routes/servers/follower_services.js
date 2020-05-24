@@ -13,8 +13,9 @@ module.exports.followUser = async function(res, req, user_id) {
   const auth_config = {
       headers: { Authorization: `Bearer ${sess.access_token}` }
   };
-  let response = await axios.put(url, auth_config)
+  let response = await axios.put(url, {}, auth_config)
   .catch(error => {
+      console.log(error)
       res.render('error_page', {});
   })
 
@@ -34,7 +35,7 @@ module.exports.unfollowUser = async function(res, req, user_id) {
     const auth_config = {
         headers: { Authorization: `Bearer ${sess.access_token}` }
     };
-    let response = await axios.put(url, auth_config)
+    let response = await axios.put(url, {}, auth_config)
     .catch(error => {
         res.render('error_page', {});
     })

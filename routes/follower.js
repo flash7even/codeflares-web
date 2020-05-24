@@ -9,6 +9,7 @@ var jshelper = require('./servers/jshelper.js');
 
 
 router.followUser = async function(req, res, next) {
+    console.log('followUser in controller called')
     var url = req.url
     var words = url.split("/");
     var user_id = words[words.length-2]
