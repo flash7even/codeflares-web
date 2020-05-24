@@ -11,6 +11,7 @@ var contestController = require('./contest.js');
 var blogController = require('./blog.js');
 var commentController = require('./comment.js');
 var voteController = require('./vote.js');
+var followerController = require('./follower.js');
 
 module.exports = function(newApp) {
     /* GET home page. */
@@ -26,6 +27,8 @@ module.exports = function(newApp) {
     newApp.get('/settings/update/', homeController.updateUserSettings);
     newApp.post('/settings/update/', homeController.updateUserSettingsSubmit);
 
+    newApp.get('/follow/*', followerController.followUser);
+    newApp.get('/unfollow/*', followerController.unfollowUser);
 
     newApp.get('/blog/post/add/*', blogController.addBlogForm);
     newApp.post('/blog/post/add/*', blogController.addBlogFormSubmit);
