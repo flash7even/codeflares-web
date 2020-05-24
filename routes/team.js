@@ -6,6 +6,7 @@ var router = express.Router();
 const axios = require('axios');
 
 var team_server = require('./servers/team_services.js');
+var follower_server = require('./servers/follower_services.js');
 var jshelper = require('./servers/jshelper.js');
 
 
@@ -92,10 +93,19 @@ router.viewTeam = async function(req, res, next) {
   var team_id = words[words.length-2]
   console.log(team_id)
   var team_details = await team_server.teamDetails(res, req, team_id)
-  console.log(team_details)
   var team_cf_history = await team_server.teamCodeforcesHistory(res, req, team_id)
   console.log(team_cf_history)
   team_details['codeforces_history'] = team_cf_history
+  var sess = req.session;
+  if(sess.user_id){
+      var follow_status = await follower_server.followStatus(res, req, team_id)
+      if(follow_status.status == 'following'){
+        team_details['following'] = true;
+      }else{
+        team_details['unfollowing'] = true;
+      }
+  }
+  console.log(team_details)
   res.render('team_profile', team_details);
 }
 
