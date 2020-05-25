@@ -15,12 +15,19 @@ var jshelper = require('./servers/jshelper.js');
 
 router.showHome = async function(req, res, next) {
     let data = await blog_server.getBlogList(res, req, {'status': 'homepage'});
-    let top_rated_users = await user_server.topRatedUsers(res, req, {})
-    let top_solved_users = await user_server.topSolverUsers(res, req, {})
+    let top_rated_users = await user_server.topRatedUsers(res, req, {'size': 10})
+    let top_solved_users = await user_server.topSolverUsers(res, req, {'size': 10})
     data['top_rated_users'] = top_rated_users.user_list
     data['top_solved_users'] = top_solved_users.user_list
     console.log(data)
     res.render('index', data);
+}
+
+router.leaderboard = async function(req, res, next) {
+    let data = {}
+    let top_rated_users = await user_server.topRatedUsers(res, req, {'size': 10})
+    data['top_rated_users'] = top_rated_users.user_list
+    res.render('leaderboard', data);
 }
 
 router.showLogIn = function(req, res, next) {

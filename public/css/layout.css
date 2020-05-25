@@ -2,6 +2,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     background: #E1EFF6;
+    min-height: 700px;
 }
 
 p {
@@ -192,7 +193,9 @@ ul {
   }
   .footer{
     padding:5px 5px;
+    top: 500px;
     border-radius: 0px 0px 3px 3px; 
+    text-align: center;
   }
   .notification-box{
     padding: 10px;

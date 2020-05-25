@@ -44,7 +44,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="/img/bg-logo-2.png" alt="image" height="140" width="220">
+                <img src="/img/bg-logo-2.png" alt="image" height="92" width="220">
             </div>
 
             <ul class="list-unstyled components">
@@ -60,7 +60,6 @@
                         <li> <a href="/update/profile/">Edit Profile</a> </li>
                         <li> <a href="/settings/update/">Settings</a> </li>
                         <li> <a href="/blog/post/add/global/{{session.user_id}}/">Create Blog Post</a> </li>
-                        <li> <a href="/blog/list/global/all/">Blog List</a> </li>
                     </ul>
                 </li>
                 <li>
@@ -97,7 +96,7 @@
                     <ul class="collapse list-unstyled" id="gatewayMenu">
                         <li> <a href="/category/list/">Categories</a> </li>
                         <li> <a href="/problem/list/all/">Problems</a> </li>
-                        <li> <a href="#">Leaderboard</a> </li>
+                        <li> <a href="/user/leaderboard/">Leaderboard</a> </li>
                     </ul>
                 </li>
 
@@ -223,7 +222,7 @@
                                     </li>
                                 {{/if}}
                                 {{/each}}
-                                <li class="footer text-center" style="background-color: #fff; border-top: 1px solid rgb(4, 39, 37);">
+                                <li class="text-center" style="background-color: #fff; border-top: 1px solid rgb(4, 39, 37);">
                                     <a href="/notification/list/" class="text"><b>View All</b></a>
                                 </li>
                             </ul>
@@ -288,11 +287,10 @@
             <!-- Page footer -->
             <br>
             <div class="footer">
-                <h6 class="text text-center tm-copyright-text" style="bottom: 0; text-align: center;">
+                <h6 class="text text-center tm-copyright-text">
                     Copyright &copy; 2020 CodeFlares.
                 </h6>
             </div>
-
         </div>
     </div>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
