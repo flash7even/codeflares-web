@@ -12,6 +12,26 @@ var user_server = require('./servers/user_services.js');
 var follower_server = require('./servers/follower_services.js');
 var jshelper = require('./servers/jshelper.js');
 
+function add_session_alert(req, alert_text){
+    var sess = req.session;
+    var alert_list = []
+    if(sess.alert_list){
+        alert_list = sess.alert_list
+    }
+    var alert_data = { "alert_text": alert_text}
+    alert_list.push(alert_data)
+    sess.alert_list = alert_list
+}
+
+function clean_session_alert(req){
+    var sess = req.session;
+    var alert_list = []
+    if(sess.alert_list){
+        alert_list = sess.alert_list
+        sess.alert_list = []
+    }
+    return alert_list
+}
 
 router.showHome = async function(req, res, next) {
     let data = await blog_server.getBlogList(res, req, {'status': 'homepage'});
@@ -20,6 +40,8 @@ router.showHome = async function(req, res, next) {
     data['top_rated_users'] = top_rated_users.user_list
     data['top_solved_users'] = top_solved_users.user_list
     console.log(data)
+    add_session_alert(req, "Welcome to home")
+    data["alert_list"] = clean_session_alert(req)
     res.render('index', data);
 }
 
@@ -48,6 +70,7 @@ router.logInSubmit = async function(req, res, next) {
     sess.access_token = login_data.access_token
     sess.refresh_token = login_data.refresh_token
     sess.user_settings = login_data.settings
+    add_session_alert(req, "Successfully logged in")
     res.redirect('/');
 }
 

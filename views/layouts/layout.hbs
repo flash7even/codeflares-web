@@ -279,19 +279,8 @@
             <hr style="margin: 0px;">
             
             <div class="alert-list" style="margin-top: 15px; text-align:center;">
-                <div class="alert alert-primary" role="alert">
-                    <div class="row">
-                        <div class="col-md-11">
-                            <p>This is a primary alert—check it out!</p>
-                        </div>
-                        <div class="col-md-1">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-                    
-                </div>
+
+
             </div>
     
             {{{body}}}
@@ -310,9 +299,26 @@
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
+            {{#each alert_list}}
+                var alert_text = "{{alert_text}}"
+                var html = `
+                    <div class="alert alert-primary" role="alert">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <p>${alert_text}</p>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `
+                $(".alert-list").append(html);
+            {{/each}}
         });
     </script>
 
 </body>
 </html>
-
