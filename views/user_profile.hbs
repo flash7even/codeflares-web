@@ -24,28 +24,32 @@
 
 			<div class="row" style="text-align: center; padding: 10px;">
 				{{#if following}}
-					<div class="col-md-1">
+					<div class="col-md-2">
 						<a href="/unfollow/{{id}}/" style="background-color: rgb(202, 216, 176);" class="btn btn-block"> <span title="Unfollow" class="fas fa-user-minus"></span></a>
 					</div>
 				{{/if}}
 				{{#if unfollowing}}
-					<div class="col-md-1">
+					<div class="col-md-2">
 						<a href="/follow/{{id}}/" style="background-color: rgb(202, 216, 176);" class="btn btn-block"><span title="Follow" class="fas fa-user-plus"></span></a>
 					</div>
 				{{/if}}
-				<div class="col-md-1">
+				<div class="col-md-2">
 					<a href="/user/sync/{{id}}/" style="background-color: rgb(169, 213, 221);" class="btn btn-block"><span title="Sync Profile" class="fas fa-sync"></span></a>
 				</div>
 				{{#if own_profile}}
-				<div class="col-md-1">
+				<div class="col-md-2">
 					<a href="/update/profile/" style="background-color: rgb(163, 201, 233);" class="btn btn-block"><span title="Update Profile" class="fas fa-user-edit"></span></a>
 				</div>
 				{{/if}}
 			</div>
         </div>
         <div class="col-md-4">
+			<br>
+			<br>
+			<br>
+			<br>
 			<div class="image-wrapper">
-				<img src="/img/profile.png" alt="image" height="380" width="380">
+				<img src="/img/profile.png" alt="image" height="200" width="200">
 			</div>
         </div>
     </div>

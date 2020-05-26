@@ -8,6 +8,7 @@ var jshelper = require('./servers/jshelper.js');
 var team_server = require('./servers/team_services.js');
 var classroom_server = require('./servers/classroom_services.js');
 var contest_server = require('./servers/contest_services.js');
+var system_server = require('./servers/system_services.js');
 
 
 router.addContestForm = async function(req, res, next) {
@@ -111,6 +112,7 @@ router.confirmContestFormSubmit = async function(req, res, next) {
   contest_data = update_confirmed_problem_set(contest_data)
   contest_data['status'] = 'confirmed'
   await contest_server.updateContest(res, req, contest_id, contest_data)
+  system_server.add_toast(req, 'Contest created successfully')
   res.redirect('/contest/view/' + contest_id + '/')
 }
 
@@ -122,6 +124,7 @@ router.viewContest = async function(req, res, next) {
   var contest_details = await contest_server.getContestDetails(res, req, contest_id);
   console.log('contest_details: ')
   console.log(contest_details)
+  contest_details = system_server.toast_update(req, contest_details)
   res.render('view_single_contest', contest_details);
 }
 
@@ -130,6 +133,7 @@ router.viewAllContest = async function(req, res, next) {
   var contest_list = await contest_server.getContestList(res, req, {});
   console.log('contest_list: ')
   console.log(contest_list)
+  contest_list = system_server.toast_update(req, contest_list)
   res.render('view_contest_list', contest_list);
 }
 

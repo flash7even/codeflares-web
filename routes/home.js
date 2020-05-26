@@ -11,27 +11,8 @@ var blog_server = require('./servers/blog_services.js');
 var user_server = require('./servers/user_services.js');
 var follower_server = require('./servers/follower_services.js');
 var jshelper = require('./servers/jshelper.js');
+var system_server = require('./servers/system_services.js');
 
-function add_session_alert(req, alert_text){
-    var sess = req.session;
-    var alert_list = []
-    if(sess.alert_list){
-        alert_list = sess.alert_list
-    }
-    var alert_data = { "alert_text": alert_text}
-    alert_list.push(alert_data)
-    sess.alert_list = alert_list
-}
-
-function clean_session_alert(req){
-    var sess = req.session;
-    var alert_list = []
-    if(sess.alert_list){
-        alert_list = sess.alert_list
-        sess.alert_list = []
-    }
-    return alert_list
-}
 
 router.showHome = async function(req, res, next) {
     let data = await blog_server.getBlogList(res, req, {'status': 'homepage'});
@@ -39,9 +20,9 @@ router.showHome = async function(req, res, next) {
     let top_solved_users = await user_server.topSolverUsers(res, req, {'size': 10})
     data['top_rated_users'] = top_rated_users.user_list
     data['top_solved_users'] = top_solved_users.user_list
-    console.log(data)
-    add_session_alert(req, "Welcome to home")
-    data["alert_list"] = clean_session_alert(req)
+    system_server.add_session_alert(req, "Welcome to CodeFlares. Please read our guideline before start.")
+    data = system_server.toast_update(req, data)
+    data['alert_list'] = system_server.clean_session_alert(req)
     res.render('index', data);
 }
 
@@ -53,7 +34,8 @@ router.leaderboard = async function(req, res, next) {
 }
 
 router.showLogIn = function(req, res, next) {
-    res.render('login', {});
+    var data = system_server.toast_update(req, {})
+    res.render('login', data);
 }
 
 router.logInSubmit = async function(req, res, next) {
@@ -70,12 +52,13 @@ router.logInSubmit = async function(req, res, next) {
     sess.access_token = login_data.access_token
     sess.refresh_token = login_data.refresh_token
     sess.user_settings = login_data.settings
-    add_session_alert(req, "Successfully logged in")
+    system_server.add_toast(req, "Successfully logged in!", "success")
     res.redirect('/');
 }
 
 router.showSignUp = function(req, res, next) {
-    res.render('signup', {});
+    var data = system_server.toast_update(req, {})
+    res.render('signup', data);
 }
 
 router.logOutSubmit = async function(req, res, next) {
@@ -94,8 +77,13 @@ router.logOutSubmit = async function(req, res, next) {
         res.render('error_page', {});
     })
     req.session.destroy();
-    console.log('log out done');
-    res.redirect('/login/');
+    var toast_data = {
+        'toast_data': {
+            'toast_text': 'Logged out successfully! Hope to see you soon again.',
+            'toast_type': 'info',
+        }
+    }
+    res.render('login', toast_data);
 }
 
 router.signUpSubmit = async function(req, res, next) {
@@ -103,7 +91,8 @@ router.signUpSubmit = async function(req, res, next) {
     user_data['user_role'] = 'contestant'
     delete user_data['confirm_password']
     await user_server.postUser(res, req, user_data)
-    res.render('login', {});
+    system_server.add_toast(req, "Registration successfully completed!")
+    res.redirect('/login/');
 }
 
 router.showUserProfile = async function(req, res, next) {
@@ -132,8 +121,7 @@ router.showUserProfile = async function(req, res, next) {
     if(sess.user_id == user_details.id){
         user_details['own_profile'] = true;
     }
-
-    console.log(user_details)
+    user_details = system_server.toast_update(req, user_details)
     res.render('user_profile', user_details);
 }
 
@@ -156,6 +144,7 @@ router.updateUserSettingsSubmit = async function(req, res, next) {
     var sess = req.session;
     var user_id = sess.user_id
     await user_server.updateUser(res, req, settings_data, user_id);
+    system_server.add_toast(req, "Updated settings successfully")
     res.redirect('/');
 }
 
@@ -170,6 +159,7 @@ router.updateUserProfile = async function(req, res, next) {
 router.updateUserProfileSubmit = async function(req, res, next) {
     var sess = req.session;
     await user_server.updateUser(res, req, req.body, sess.user_id);
+    system_server.add_toast(req, "Updated user data successfully")
     res.redirect('/');
 }
 
@@ -182,6 +172,7 @@ router.syncUserData = async function(req, res, next) {
     var user_id = words[words.length-2]
     var response = await user_server.syncUser(res, req, user_id);
     var sess = req.session;
+    system_server.add_toast(req, "Your request to sync user data has been sent to the server. We will process the request shortly.")
     res.redirect('back');
 }
 

@@ -11,6 +11,7 @@ var blog_server = require('./servers/blog_services.js');
 var classroom_server = require('./servers/classroom_services.js');
 var contest_server = require('./servers/contest_services.js');
 var jshelper = require('./servers/jshelper.js');
+var system_server = require('./servers/system_services.js');
 
 
 router.addClassroomForm = async function(req, res, next) {
@@ -40,6 +41,7 @@ router.updateClassroomFormSubmit = async function(req, res, next) {
   classroom = update_classroom_data(classroom)
   await classroom_server.updateClassroom(res, req, classroom_id, classroom)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Classroom updated!')
   res.redirect('/classroom/training/' + classroom_id + '/');
 }
 
@@ -79,6 +81,7 @@ router.addClassroomFormSubmit = async function(req, res, next) {
   classroom = update_classroom_data(classroom)
   await classroom_server.postClassroom(res, req, classroom)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Classroom created successfully!')
   res.redirect('/classroom/list/');
 }
 
@@ -87,6 +90,7 @@ router.viewClassroomList = async function(req, res, next) {
   let classroom_list = await classroom_server.getClassroomList(res, req, sess.username, {"team_type": "classroom"});
   classroom_list['logged_in_user_id'] = sess.user_id
   console.log(classroom_list)
+  classroom_list = system_server.toast_update(req, classroom_list)
   res.render('view_classroom_list', classroom_list);
 }
 
@@ -109,6 +113,7 @@ router.trainingClassroom = async function(req, res, next) {
     classroom_details['own_profile'] = true;
   }
   console.log(classroom_details)
+  classroom_details = system_server.toast_update(req, classroom_details)
   res.render('classroom_training', classroom_details);
 }
 
@@ -124,6 +129,7 @@ router.confirmClassroom = async function(req, res, next) {
   }
   await classroom_server.updtateClassroom(res, req, data)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Confirmed!')
   res.redirect('/classroom/list/');
 }
 
@@ -139,6 +145,7 @@ router.rejectClassroom = async function(req, res, next) {
   }
   await classroom_server.updtateClassroom(res, req, data)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Rejected!')
   res.redirect('/classroom/list/');
 }
 
@@ -148,6 +155,7 @@ router.deleteClassroom = async function(req, res, next) {
   var classroom_id = words[words.length-2]
   await classroom_server.deleteClassroom(res, req, classroom_id)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Deleted!')
   res.redirect('/classroom/list/');
 }
 
@@ -160,6 +168,7 @@ router.deleteClassroomMember = async function(req, res, next) {
   console.log('classroom_id: ' + classroom_id)
   await classroom_server.deleteClassroomMember(res, req, classroom_id, user_handle)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Member removed!')
   res.redirect('back');
 }
 
@@ -188,6 +197,7 @@ router.addClassroomTaskFormSubmit = async function(req, res, next) {
   console.log(classroom_task_data)
   await classroom_server.postClassroomTask(res, req, classroom_task_data)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Task added successfully!')
   res.redirect('/classroom/training/' + classroom_id + '/');
 }
 
@@ -204,6 +214,7 @@ router.deleteClassroomTask = async function(req, res, next) {
       res.render('error_page', {});
   })
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Deleted!')
   res.redirect('back');
 }
 
@@ -223,6 +234,7 @@ router.updateClassroomTaskSubmit = async function(req, res, next) {
   var task_id = words[words.length-2]
   updtateClassroomTask(res, req, req.body, task_id)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Successfully updated!')
   res.redirect('/');
 }
 
@@ -242,6 +254,7 @@ router.viewClassroomTaskList = async function(req, res, next) {
   var response_data = response.data
   classroom_details['task_list'] = response_data['task_list']
   console.log(classroom_details)
+  classroom_details = system_server.toast_update(req, classroom_details)
   res.render('view_classroom_task_list', classroom_details);
 }
 
@@ -270,6 +283,7 @@ router.addClassroomClassFormSubmit = async function(req, res, next) {
   console.log(classroom_class_data)
   await classroom_server.postClassroomClass(res, req, classroom_class_data)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Class schedule added!')
   res.redirect('/classroom/training/' + classroom_id + '/');
 }
 
@@ -286,6 +300,7 @@ router.deleteClassroomClass = async function(req, res, next) {
       res.render('error_page', {});
   })
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Deleted!')
   res.redirect('back');
 }
 
@@ -305,6 +320,7 @@ router.viewClassroomClassList = async function(req, res, next) {
   var response_data = response.data
   classroom_details['class_list'] = response_data['class_list']
   console.log(classroom_details)
+  classroom_details = system_server.toast_update(req, classroom_details)
   res.render('view_classroom_class_list', classroom_details);
 }
 
@@ -324,6 +340,7 @@ router.updateClassroomClassSubmit = async function(req, res, next) {
   var words = url.split("/");
   var class_id = words[words.length-2]
   classroom_server.updtateClassroomClass(res, req, req.body, class_id)
+  system_server.add_toast(req, 'Successfully updated!')
   res.redirect('/');
 }
 

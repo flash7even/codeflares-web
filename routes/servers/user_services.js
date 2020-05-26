@@ -9,6 +9,7 @@ var user_submit_url = config.server_host + 'user/'
 var login_url = config.server_host + 'auth/login'
 var team_search_url = config.server_host + 'team/search/user/'
 var serach_all_notification = config.server_host + 'notification/search/'
+var system_server = require('./system_services.js');
 
 
 module.exports.getAllNotification = async function(res, req, param, user_id) {
@@ -134,11 +135,13 @@ module.exports.logIn = async function(res, req, data) {
     console.log('Log in call to server')
     let response = await axios.post(login_url, data)
     .catch(error => {
-        res.render('error_page', {});
+        system_server.add_toast(req, "Login unsuccessful! Username or password is incorrect.", 'warning')
+        res.redirect('back')
     })
 
     if(response.status != 200 && response.status != 201){
-        res.render('error_page', {});
+        system_server.add_toast(req, "Login unsuccessful! Username or password is incorrect.", 'warning')
+        res.redirect('back')
     }
 
     console.log('logIn done');

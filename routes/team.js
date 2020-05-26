@@ -8,6 +8,7 @@ const axios = require('axios');
 var team_server = require('./servers/team_services.js');
 var follower_server = require('./servers/follower_services.js');
 var jshelper = require('./servers/jshelper.js');
+var system_server = require('./servers/system_services.js');
 
 
 router.addTeamForm = async function(req, res, next) {
@@ -35,6 +36,7 @@ router.updateTeamFormSubmit = async function(req, res, next) {
   team = update_team_data(team)
   await team_server.updateTeam(res, req, team_id, team)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Team updated!')
   res.redirect('/training/team/');
 }
 
@@ -74,6 +76,7 @@ router.addTeamFormSubmit = async function(req, res, next) {
   team = update_team_data(team)
   await team_server.postTeam(res, req, team)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Team added successfully!')
   res.redirect('/team/list/');
 }
 
@@ -82,6 +85,7 @@ router.viewTeamList = async function(req, res, next) {
   let team_list = await team_server.getTeamList(res, req, sess.username, {"team_type": "team"});
   team_list['logged_in_user_id'] = sess.user_id
   console.log(team_list)
+  team_list = system_server.toast_update(req, team_list)
   res.render('view_team_list', team_list);
 }
 
@@ -109,6 +113,7 @@ router.viewTeam = async function(req, res, next) {
     team_details['own_profile'] = true;
   }
   console.log(team_details)
+  team_details = system_server.toast_update(req, team_details)
   res.render('team_profile', team_details);
 }
 
@@ -124,6 +129,7 @@ router.confirmTeam = async function(req, res, next) {
   }
   await team_server.updtateTeam(res, req, data)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Confirmed!')
   res.redirect('/team/list/');
 }
 
@@ -139,6 +145,7 @@ router.rejectTeam = async function(req, res, next) {
   }
   await team_server.updtateTeam(res, req, data)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Rejected!')
   res.redirect('/team/list/');
 }
 
@@ -148,6 +155,7 @@ router.deleteTeam = async function(req, res, next) {
   var team_id = words[words.length-2]
   await team_server.deleteTeam(res, req, team_id)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Deleted!')
   res.redirect('/team/list/');
 }
 
@@ -160,6 +168,7 @@ router.syncTeamData = async function(req, res, next) {
   var team_id = words[words.length-2]
   var response = await team_server.syncTeam(res, req, team_id);
   var sess = req.session;
+  system_server.add_toast(req, "Your request to sync team data has been sent to the server. We will process the request shortly.")
   res.redirect('back');
 }
 

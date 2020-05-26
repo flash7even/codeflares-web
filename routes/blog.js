@@ -7,6 +7,7 @@ var router = express.Router();
 var blog_server = require('./servers/blog_services.js');
 var jshelper = require('./servers/jshelper.js');
 var classroom_server = require('./servers/classroom_services.js');
+var system_server = require('./servers/system_services.js');
 
 
 router.addBlogForm = async function(req, res, next) {
@@ -42,6 +43,7 @@ router.addBlogFormSubmit = async function(req, res, next) {
   blog['blog_type'] = blog_type
   await blog_server.postBlog(res, req, blog)
   jshelper.sleep(1000);
+  system_server.add_toast(req, 'Blog created successfully')
   if(blog_type == 'classroom'){
     res.redirect('/classroom/training/' + blog_ref_id + '/')
   }else{
@@ -64,6 +66,7 @@ router.viewBlogList = async function(req, res, next) {
   let blog_list = await blog_server.getBlogList(res, req, param);
   console.log('blog_list: ')
   console.log(blog_list)
+  blog_list = system_server.toast_update(req, blog_list)
   res.render('view_blog_list', blog_list);
 }
 
@@ -89,6 +92,7 @@ router.viewBlogPost = async function(req, res, next) {
     var classroom_details = await classroom_server.classroomDetails(res, req, blog_details.blog_ref_id)
     blog_details['target_audience'] =  classroom_details.team_name
   }
+  blog_details = system_server.toast_update(req, blog_details)
   res.render('view_blog_post', blog_details);
 }
 
