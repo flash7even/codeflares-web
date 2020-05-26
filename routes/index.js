@@ -28,6 +28,10 @@ module.exports = function(newApp) {
     newApp.get('/settings/update/', homeController.updateUserSettings);
     newApp.post('/settings/update/', homeController.updateUserSettingsSubmit);
 
+
+    newApp.get('/user/sync/*', homeController.syncUserData);
+    newApp.get('/team/sync/*', teamController.syncTeamData);
+
     newApp.get('/follow/*', followerController.followUser);
     newApp.get('/unfollow/*', followerController.unfollowUser);
 

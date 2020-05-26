@@ -174,3 +174,21 @@ module.exports.teamCodeforcesHistory = async function(res, req, team_id) {
   return response.data
 };
 
+module.exports.syncTeam = async function(res, req, team_id) {
+    var url = team_submit_url + 'sync' + '/' + team_id
+    console.log("url: " + url)
+    console.log("team_id: " + team_id)
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.put(url, {}, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+};

@@ -162,6 +162,7 @@ module.exports.updateUser = async function(res, req, user_data, user_id) {
     if(response.status != 200 && response.status != 201){
         res.render('error_page', {});
     }
+    return response.data
 };
 
 module.exports.postUser = async function(res, req, user_data) {
@@ -180,5 +181,25 @@ module.exports.postUser = async function(res, req, user_data) {
     if(response.status != 200 && response.status != 201){
         res.render('error_page', {});
     }
+    return response.data
 };
 
+
+module.exports.syncUser = async function(res, req, user_id) {
+    var url = user_submit_url + 'sync' + '/' + user_id
+    console.log("url: " + url)
+    console.log("user_id: " + user_id)
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.put(url, {}, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+};

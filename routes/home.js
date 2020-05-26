@@ -72,7 +72,7 @@ router.logOutSubmit = async function(req, res, next) {
     })
     req.session.destroy();
     console.log('log out done');
-    res.redirect('/');
+    res.redirect('/login/');
 }
 
 router.signUpSubmit = async function(req, res, next) {
@@ -97,7 +97,7 @@ router.showUserProfile = async function(req, res, next) {
     console.log(resp)
 
     var user_details = resp.user_list[0];
-    if(sess.user_id){
+    if(sess.user_id && sess.user_id != user_details.id){
         var follow_status = await follower_server.followStatus(res, req, user_details.id)
         if(follow_status.status == 'following'){
             user_details['following'] = true;
@@ -105,6 +105,11 @@ router.showUserProfile = async function(req, res, next) {
             user_details['unfollowing'] = true;
         }
     }
+
+    if(sess.user_id == user_details.id){
+        user_details['own_profile'] = true;
+    }
+
     console.log(user_details)
     res.render('user_profile', user_details);
 }
@@ -143,6 +148,18 @@ router.updateUserProfileSubmit = async function(req, res, next) {
     var sess = req.session;
     await user_server.updateUser(res, req, req.body, sess.user_id);
     res.redirect('/');
+}
+
+
+router.syncUserData = async function(req, res, next) {
+    console.log('syncUserData')
+    var url = req.url
+    console.log(url)
+    var words = url.split("/");
+    var user_id = words[words.length-2]
+    var response = await user_server.syncUser(res, req, user_id);
+    var sess = req.session;
+    res.redirect('back');
 }
 
 module.exports = router;

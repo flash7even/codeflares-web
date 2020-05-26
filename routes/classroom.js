@@ -98,12 +98,16 @@ router.trainingClassroom = async function(req, res, next) {
   var words = url.split("/");
   var classroom_id = words[words.length-2]
   console.log(classroom_id)
+  var sess = req.session;
 
   var classroom_details = await classroom_server.classroomDetails(res, req, classroom_id)
   var contest_list = await contest_server.getContestList(res, req, {"contest_ref_id": classroom_id});
   classroom_details['contest_list'] = contest_list['contest_list']
   let blog_data = await blog_server.getBlogList(res, req, {"blog_ref_id": classroom_id});
   classroom_details['blog_list'] = blog_data['blog_list']
+  if(sess.user_id == classroom_details.team_leader_id){
+    classroom_details['own_profile'] = true;
+  }
   console.log(classroom_details)
   res.render('classroom_training', classroom_details);
 }

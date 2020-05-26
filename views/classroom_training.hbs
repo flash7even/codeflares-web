@@ -21,11 +21,13 @@
         <div class="col-md-4">
         </div>
     </div>
-    <div class="row" style="margin-left: 1px;">
+    <div class="row" style="padding: 10px;">
         <div class="col-md-5">
             <a style="background-color: #8FC1e3; margin-right:10px;" title="User Skills" class='btn' href="#categoryWiseSkillTableTop"><i class="fas fa-chart-bar"></i></a>
             <a style="background-color: #8FC1e3; margin-right:10px;" title="Discussions" class='btn' href="#discussions"><i class="fas fa-comments"></i></a>
+            {{#if own_profile}}
             <a style="background-color: #8FC1e3;" title="Update Profile" class='btn' href="/classroom/update/{{id}}/"><i class="fas fa-edit"></i></a>
+            {{/if}}
         </div>
     </div>
 </div>

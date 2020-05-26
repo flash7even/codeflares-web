@@ -105,6 +105,9 @@ router.viewTeam = async function(req, res, next) {
         team_details['unfollowing'] = true;
       }
   }
+  if(sess.user_id == team_details.team_leader_id){
+    team_details['own_profile'] = true;
+  }
   console.log(team_details)
   res.render('team_profile', team_details);
 }
@@ -148,4 +151,17 @@ router.deleteTeam = async function(req, res, next) {
   res.redirect('/team/list/');
 }
 
+
+router.syncTeamData = async function(req, res, next) {
+  console.log('syncUserData')
+  var url = req.url
+  console.log(url)
+  var words = url.split("/");
+  var team_id = words[words.length-2]
+  var response = await team_server.syncTeam(res, req, team_id);
+  var sess = req.session;
+  res.redirect('back');
+}
+
 module.exports = router;
+

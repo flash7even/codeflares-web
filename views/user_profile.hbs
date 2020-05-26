@@ -6,53 +6,41 @@
 </head>
 
 
-<div class="blog-post-1" style="margin-top: 15px; background-color:#d7ebfa;">
+<div class="blog-post-1" style="margin-top: 15px;">
     <div class="row">
         <div class="col-md-8">
             <div class="post-header">
-                <h2 style="color: rgb(23, 81, 104);" class="media-heading"><b>{{skill_title}}</b></h2>
-                <br>
-                <h3><b>{{username}}</b></h3>
-				<h5 style="color:darkgreen">User Rating: {{skill_value}} (max rating: {{skill_value}})</h5>
+                <h2 style="color: rgb(16, 133, 148);" class="media-heading"><b>{{skill_title}}</b></h2>
+                <h3 style="color: rgb(199, 196, 42);"><b>{{username}}</b></h3>
+				<h5>User Rating: <span style="color:rgb(3, 164, 182); font-weight: 800;">{{skill_value}}</span></h5>
+				<h5>Problem Solved: <span style="color:rgb(13, 98, 155); font-weight: 800;">{{solve_count}}</span></h5>
+                <h5>Followers: <span style="color:rgb(110, 134, 64); font-weight: 800;">{{follow_stat.follower_count}}</span></h5>
+                <h5>Following: <span style="color:rgb(110, 134, 64); font-weight: 800;">{{follow_stat.following_count}}</span></h5>
 				<h5>Full Name: {{full_name}}</h5>
 				<h5>Email: {{email}}</h5>
-				<h5>Role: {{user_role}}</h5>
-                <h5>Registered Since: <b>{{created_at}}</b></h5>
+                <h5>Registered Since: {{created_at}}</h5>
             </div>
 			<br>
-			<div class="row" style="text-align: center;">
-				<div class="col-md-2 emphasis">
-					<h3><strong> {{follow_stat.follower_count}} </strong></h3>                    
-					<h6>Followers</h6>
-				</div>
-				<div class="col-md-2 emphasis">
-					<h3><strong> {{follow_stat.following_count}} </strong></h3>                    
-					<h6><small>Following</small></h6>
-				</div>
-				<div class="col-md-2 emphasis">
-					<h3><strong> {{solve_count}} </strong></h3>                    
-					<h6><small>Problem Solved</small></h6>
-				</div>
-			</div>
-			<br>
 
-			<div class="row" style="text-align: center;">
+			<div class="row" style="text-align: center; padding: 10px;">
 				{{#if following}}
-					<div class="col-md-2 emphasis">
-						<a href="/unfollow/{{id}}/" style="background-color: rgb(204, 196, 127);" class="btn btn-block"> <span class="fa fa-minus-circle"></span> Unfollow </a>
+					<div class="col-md-1">
+						<a href="/unfollow/{{id}}/" style="background-color: rgb(202, 216, 176);" class="btn btn-block"> <span title="Unfollow" class="fas fa-user-minus"></span></a>
 					</div>
 				{{/if}}
 				{{#if unfollowing}}
-					<div class="col-md-2 emphasis">
-						<a href="/follow/{{id}}/" style="background-color: rgb(124, 189, 115);" class="btn btn-block"><span class="fa fa-plus-circle"></span> Follow </a>
+					<div class="col-md-1">
+						<a href="/follow/{{id}}/" style="background-color: rgb(202, 216, 176);" class="btn btn-block"><span title="Follow" class="fas fa-user-plus"></span></a>
 					</div>
 				{{/if}}
-				<div class="col-md-2 emphasis">
-					<a style="background-color: rgb(173, 202, 197);" class="btn btn-block"><span class="fas fa-sync"></span> Sync </a>
+				<div class="col-md-1">
+					<a href="/user/sync/{{id}}/" style="background-color: rgb(169, 213, 221);" class="btn btn-block"><span title="Sync Profile" class="fas fa-sync"></span></a>
 				</div>
-				<div class="col-md-2 emphasis">
-					<a style="background-color: rgb(163, 201, 233);" class="btn btn-block"><span class="fas fa-user-edit"></span> Update </a>
+				{{#if own_profile}}
+				<div class="col-md-1">
+					<a href="/update/profile/" style="background-color: rgb(163, 201, 233);" class="btn btn-block"><span title="Update Profile" class="fas fa-user-edit"></span></a>
 				</div>
+				{{/if}}
 			</div>
         </div>
         <div class="col-md-4">
