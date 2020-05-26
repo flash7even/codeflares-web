@@ -40,7 +40,7 @@
         <div class="table-title">
             <h4 style="text-align: center;"><b>Next Problems To Solve</b></h4>
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped" style="text-align: center;">
             <thead>
                 <tr>
                     <th>#</th>
@@ -74,7 +74,7 @@
         <div class="table-title">
             <h4 style="text-align: center;"><b>Next Topics To Learn</b></h4>
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped" style="text-align: center;">
             <thead>
                 <tr>
                     <th>#</th>
@@ -121,7 +121,7 @@
     <div class="table-title-2">
         <h3 style="text-align: center;"><b>Overall Algorithm Skills</b></h3>
     </div>
-    <table id="categorySkillListTable" class="table table-striped table-bordered category-list-table">
+    <table id="categorySkillListTable" class="table table-striped table-bordered category-list-table" style="text-align: center;">
         <thead style="background-color: #ACCBE1;">
             <tr>
                 <th style="width: 13%;">Algorithm Root</th>
@@ -142,7 +142,7 @@
     <div class="table-title-2">
         <h5 style="text-align: center;"><b>Training Contest List</b></h5>
     </div>
-    <table id="contestListTable" class="table table-striped table-bordered">
+    <table id="contestListTable" class="table table-striped table-bordered" style="text-align: center;">
         <thead style="background-color: #ACCBE1;">
             <tr>
                 <th style="width: 15%;">Contest Name</th>
@@ -164,12 +164,13 @@
     function getCategorySkillList(){
         var db_category_list = [];
         {{#each category_skill_list}}
-            //console.log("{{category_root_title}}")
-            var category_root_title = "{{category_info.category_root_title}}";
-            var category_title = "{{category_info.category_title}}";
+            var category_root_link = '<span style="color: #4c5696; font-weight:500;">{{category_info.category_root_title}}</span>'
+            var category_link = '<a href = "/category/view/{{category_info.category_id}}/" style="color: #4b1196; font-weight:500; text-decoration: underline;">{{category_info.category_title}}</a>'
             var skill_value = parseFloat("{{skill_value}}")
             skill_value = skill_value.toFixed(2)
-            var category_data = ["<a href = >"+category_root_title+"</a>", "<a href = >"+category_title+"</a>", "{{category_info.category_difficulty}}", skill_value, "{{skill_title}}", "{{solve_count}}"];
+            var skill_value_field = '<span style="color: rgb(3, 164, 182);">' + skill_value + '</span>'
+            var solve_count_field = '<span style="color: rgb(13, 98, 155);">' + "{{solve_count}}" + '</span>'
+            var category_data = [category_root_link, category_link, "{{category_info.category_difficulty}}", skill_value_field, "{{skill_title}}", solve_count_field];
             db_category_list.push(category_data)
         {{/each}}
 

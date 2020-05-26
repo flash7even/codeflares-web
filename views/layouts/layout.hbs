@@ -76,7 +76,9 @@
                 <li>
                     <a href="#contestMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-cube"></i> Contest</a>
                     <ul class="collapse list-unstyled" id="contestMenu">
+                        {{#if session.email}}
                         <li> <a href="/contest/add/">Create Contest</a> </li>
+                        {{/if}}
                         <li> <a href="/contest/list/">View Contest</a> </li>
                     </ul>
                 </li>
