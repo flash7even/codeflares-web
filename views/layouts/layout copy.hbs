@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+        Codeflares
+    </title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Our Custom CSS -->
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@3.1.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Font Awesome JS -->
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    
+    <script src="/js/bootstrap3-typeahead.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@3.1.0/js/froala_editor.pkgd.min.js"></script>
+    <script src="/js/simplemde.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/simplemde.min.css">
+    <link rel='icon' href='/img/favicon.png' type='image/x-icon'/>
+
+    <!-- Bootstrap Typeahead Plugin -->
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="/img/cfs-logo-18.png" alt="image" height="70" width="210">
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="/"><i style="width: 30px;" class="fa fa-fw fa-home"></i> Home</a>
+                </li>
+
+                {{#if session.email}}
+                <li>
+                    <a href="#profileMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-user bell-icons"></i> {{session.username}}</a>
+                    <ul class="collapse list-unstyled" id="profileMenu">
+                        <li> <a href="/profile/{{session.username}}/">Profile</a> </li>
+                        <li> <a href="/update/profile/">Edit Profile</a> </li>
+                        <li> <a href="/settings/update/">Settings</a> </li>
+                        <li> <a href="/blog/post/add/global/{{session.user_id}}/">Create Blog Post</a> </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#trainingMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-chalkboard-teacher"></i> Training</a>
+                    <ul class="collapse list-unstyled" id="trainingMenu">
+                        <li> <a href="/training/individual/">Personal Training</a> </li>
+                        <li> <a href="/training/team/">Team Training</a> </li>
+                        <li> <a href="/team/list/">Your Teams</a> </li>
+                        <li> <a href="/team/add/">Create Team</a> </li>
+                    </ul>
+                </li>
+                {{/if}}
+
+                <li>
+                    <a href="#contestMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-cube"></i> Contest</a>
+                    <ul class="collapse list-unstyled" id="contestMenu">
+                        {{#if session.email}}
+                        <li> <a href="/contest/add/">Create Contest</a> </li>
+                        {{/if}}
+                        <li> <a href="/contest/list/">View Contest</a> </li>
+                    </ul>
+                </li>
+
+                {{#if session.email}}
+                <li>
+                    <a href="#classRoomMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-box"></i> Classroom</a>
+                    <ul class="collapse list-unstyled" id="classRoomMenu">
+                        <li> <a href="/classroom/list/">Your Classrooms</a> </li>
+                        <li> <a href="/classroom/add/">Create Classroom</a> </li>
+                    </ul>
+                </li>
+                {{/if}}
+
+                <li>
+                    <a href="#gatewayMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-database"></i> Gateway</a>
+                    <ul class="collapse list-unstyled" id="gatewayMenu">
+                        <li> <a href="/category/list/">Categories</a> </li>
+                        <li> <a href="/problem/list/all/">Problems</a> </li>
+                        <li> <a href="/user/leaderboard/">Leaderboard</a> </li>
+                    </ul>
+                </li>
+
+                {{#if session.email}}
+                <li>
+                    <a href="#adviseMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-archive"></i> Advise</a>
+                    <ul class="collapse list-unstyled" id="adviseMenu">
+                        <li> <a href="/problem/add/">Add Problem</a> </li>
+                        <li> <a href="/category/add/">Add Category</a> </li>
+                    </ul>
+                </li>
+                {{/if}}
+
+            </ul>
+            <ul class="list-unstyled components">
+                <li> <a href="#">About US</a> </li>
+                {{#if session.email}}
+                <li> <a href="#">Contact US</a> </li>
+                {{/if}}
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar sticky-top navbar-expand-lg">
+                <div class="container-fluid">
+
+                    <button type="button btn-lg" id="sidebarCollapse" class="btn navbar-btn">
+                        <i class="fas fa-align-justify navbar-btn-icon"></i>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                            </li>
+                        </ul>
+                        <div style="padding: 3px;">
+                            <a href="/blog/list/global/all/"  title="Discussions">
+                            <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
+                                <i class="fa fa-comments navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
+                        {{#if session.email}}
+
+                        <div style="padding: 3px;">
+                            <a href="/flagged/problem/list/"  title="Taskbar">
+                            <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
+                                <i class="fa fa-tasks navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
+                        <div style="padding: 3px;">
+
+                            {{#if session.notification_data.UNREAD}}
+                            <a type="button btn-lg" class="btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i style="color:rgb(9, 179, 37);" class="fas fa-bell navbar-btn-icon"></i>
+                                <span style="color:rgb(9, 179, 37);"><sup>{{session.notification_data.unread_length}}</sup></span>
+                            </a>
+                            {{else}}
+                            <a type="button btn-lg" class="btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell navbar-btn-icon"></i>
+                            </a>
+                            {{/if}}
+                            <ul class="dropdown-menu">
+                                <li class="head text" style="background-color: #fff;">
+                                    <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-12" style="color: rgb(77, 89, 122);">
+                                        <span>Notifications ({{session.notification_data.unread_length}})</span>
+                                        <a href="/notification/read/all/" class="float-right text">Mark all as read</a>
+                                    </div>
+                                </li>
+                                <hr class="thin">
+
+                                {{#each session.notification_data.notification_list}}
+
+                                {{#if UNREAD}}
+                                    <li class="notification-box" style="background-color: rgba(212, 229, 248, 0.658);">
+                                        <div class="row">
+                                        <div class="col-md-11">
+                                            <a href="{{redirect_url}}">
+                                                <div>
+                                                    <strong class="text" style="color: rgb(71, 112, 13)">{{notification_type}}</strong>
+                                                    <div style="color: black;">
+                                                        {{notification_text}}
+                                                    </div>
+                                                    <small class="text" style="color: rgb(17, 104, 158);">{{created_at}}</small>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <a href="/notification/read/single/{{id}}/" title="Mark as read" data-toggle="tooltip" style="color: #122f30;"><i class="fas fa-bullseye"></i></a>
+                                        </div>
+                                        </div>
+                                    </li>
+                                {{else}}
+                                    <li class="notification-box" style="background-color: #fff;">
+                                        <div class="row">
+                                        <div class="col-md-11">
+                                            <a href="{{redirect_url}}">
+                                                <div>
+                                                    <strong class="text" style="color: rgb(71, 112, 13)">{{notification_type}}</strong>
+                                                    <div style="color: black;">
+                                                        {{notification_text}}
+                                                    </div>
+                                                    <small class="text" style="color: rgb(17, 104, 158);">{{created_at}}</small>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        </div>
+                                    </li>
+                                {{/if}}
+                                {{/each}}
+                                <li class="text-center" style="background-color: #fff; border-top: 1px solid rgb(4, 39, 37);">
+                                    <a href="/notification/list/" class="text"><b>View All</b></a>
+                                </li>
+                            </ul>
+                        </div>
+                        {{/if}}
+
+                        {{#if session.email}}
+                        <div style="padding: 3px;">
+                            <a href="/training/individual/"  title="Personal Training">
+                            <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
+                                <i class="fas fa-bolt navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
+                        {{/if}}
+
+                        {{#unless session.email}}
+                        <div style="padding: 3px;">
+                            <a href="/login/" title="Log In">
+                            <button type="button btn-lg" onclick="/login/" id="" class="btn navbar-btn">
+                                <i class="fas fa-sign-in-alt navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
+                        {{/unless}}
+
+                        {{#if session.email}}
+                        <div style="padding: 3px;">
+                            <a href="/logout/" title="Log Out">
+                            <button type="button btn-lg" onclick="/logout/" id="" class="btn navbar-btn">
+                                <i class="fas fa-sign-out-alt navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
+                        {{/if}}
+
+                        {{#unless session.email}}
+                        <div style="padding: 3px;">
+                            <a href="/signup/" title="Sign Up">
+                            <button type="button btn-lg" id="" class="btn navbar-btn">
+                                <i class="fas fa-user-plus navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
+                        {{/unless}}
+
+                        {{#if session.email}}
+                        <div style="padding: 3px;">
+                            <a href="/profile/{{session.username}}/" title="Profile">
+                            <button type="button btn-lg" id="" class="btn navbar-btn">
+                                <i class="fas fa-user navbar-btn-icon"></i>
+                            </button>
+                            </a>
+                        </div>
+                        {{/if}}
+
+                    </div>
+                </div>
+            </nav>
+            <hr style="margin: 0px;">
+            
+            <div class="alert-list" style="margin-top: 15px; text-align:center;">
+            </div>
+    
+            {{{body}}}
+            <div class="toast-list" style="width: 300px;">
+            </div>
+            <!-- Page footer -->
+            <br>
+            <div class="footer">
+                <h6 class="text text-center tm-copyright-text">
+                    Copyright &copy; 2020 CodeFlares.
+                </h6>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+
+            {{#each alert_list}}
+                var alert_text = "{{alert_text}}"
+                var html = `
+                    <div class="alert alert-primary" role="alert">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <p>${alert_text}</p>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `
+                $(".alert-list").append(html);
+            {{/each}}
+
+            {{#if toast_data}}
+                var toast_text = "{{toast_data.toast_text}}"
+                var toast_type = "{{toast_data.toast_type}}"
+                var html = `
+                    <div class="toast alert-${toast_type}" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000" style="position: absolute; top: 6rem; right: 1rem; width: 25%;">
+                        <div class="toast-header alert-${toast_type}" style="padding:15px;">
+                            <strong class="mr-auto">System Notification</strong>
+                            <small>Just now</small>
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="toast-body">${toast_text}</div>
+                    </div>
+                `
+                $(".toast-list").append(html);
+            {{/if}}
+
+            $( document ).ready(function() {
+                $('.toast').toast('show');
+            });
+        });
+    </script>
+
+</body>
+</html>

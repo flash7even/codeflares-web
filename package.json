@@ -22,6 +22,7 @@
     "morgan": "^1.10.0",
     "req-flash": "0.0.3",
     "request": "^2.88.2",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "simplemde": "^1.11.2"
   }
 }

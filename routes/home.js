@@ -22,7 +22,7 @@ router.showHome = async function(req, res, next) {
     data['top_solved_users'] = top_solved_users.user_list
     system_server.add_session_alert(req, "Welcome to CodeFlares. Please read our guideline before start.")
     data = system_server.toast_update(req, data)
-    data['alert_list'] = system_server.clean_session_alert(req)
+    //data['alert_list'] = system_server.clean_session_alert(req)
     res.render('index', data);
 }
 
