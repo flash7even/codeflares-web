@@ -383,6 +383,9 @@
                 blog_text += ' . . .'
             }
 
+            var markdown_converter = new showdown.Converter()
+            var blog_text_html = markdown_converter.makeHtml(blog_text)
+
             var html = `
                 <div class="blog-post-1">
                 <div class="post-header">
@@ -392,7 +395,7 @@
                     <p class="text-left"> <b><span style="color: rgb(214, 193, 7); padding-right:3px;">{{blog_writer_handle}}</span>, <span style="color: #95989B; padding-left:7px;"> {{updated_at}}</span></b></p>
                 </div>
                 <div class="post-body">
-                    <p> ${blog_text} </p>
+                    <p> ${blog_text_html} </p>
                 </div>
                 <div class="post-read-more">
                     <a href="/blog/post/view/{{blog_id}}/"><p style="color: rgb(23, 81, 104);" class="media-heading"><b>READ MORE <i style="height: 11px;" class="fas fa-angle-double-right"></i></b></p></a>

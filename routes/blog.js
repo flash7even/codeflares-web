@@ -8,6 +8,7 @@ var blog_server = require('./servers/blog_services.js');
 var jshelper = require('./servers/jshelper.js');
 var classroom_server = require('./servers/classroom_services.js');
 var system_server = require('./servers/system_services.js');
+var showdown  = require('showdown');
 
 
 router.addBlogForm = async function(req, res, next) {
@@ -93,6 +94,8 @@ router.viewBlogPost = async function(req, res, next) {
     blog_details['target_audience'] =  classroom_details.team_name
   }
   blog_details = system_server.toast_update(req, blog_details)
+  console.log('blog_details: ')
+  console.log(blog_details)
   res.render('view_blog_post', blog_details);
 }
 

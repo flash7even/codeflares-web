@@ -10,7 +10,7 @@
         <p class="text-left"> <b><span style="color: rgb(214, 193, 7); padding-right:3px;">{{blog_writer_handle}}</span>, <span style="color: #95989B; padding-left:7px;"> {{updated_at}}</span></b></p>
     </div>
     <div class="post-body">
-          <p> {{blog_text}} </p>
+        <p id="blog_text"></p>
     </div>
     <div class="post-footer">
         <p class="text-left"> Blog Topic : <b><span style="color: rgb(123, 137, 150); padding-right:3px;">{{blog_topic}}</span></b></p>
@@ -52,6 +52,10 @@
 <script>
 
     $(document).ready(function(){
+        var markdown_converter = new showdown.Converter()
+        var blog_text_html = markdown_converter.makeHtml(`{{blog_text}}`)
+        document.getElementById("blog_text").innerHTML = blog_text_html
+
         $(document).on('click' , 'button.comment-reply' , function(){
             var closestDiv = $(this).closest('div'); // also you can use $(this).parent()
             //closestDiv.fadeOut();
