@@ -3,6 +3,12 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
+<div id="example"></div>
+
+<div class="fr-view">
+  Here comes the HTML edited with the Froala rich text editor.
+</div>
+
 <div class="row" style="margin-top: 15px;">
 
     <div class="col-md-9">
@@ -184,6 +190,7 @@
         viewBlogInBlogs();
         showTopRatedMemberDTSearchTable();
         showTopSolverMemberDTSearchTable();
+        var editor = new FroalaEditor('#example')
     } );
 
 </script>
