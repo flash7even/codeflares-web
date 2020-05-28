@@ -58,7 +58,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#trainingMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-chalkboard-teacher"></i> Training</a>
+                    <a href="#trainingMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-book"></i> Training</a>
                     <ul class="collapse list-unstyled" id="trainingMenu">
                         <li> <a href="/training/individual/">Personal Training</a> </li>
                         <li> <a href="/training/team/">Team Training</a> </li>
@@ -80,7 +80,7 @@
 
                 {{#if session.email}}
                 <li>
-                    <a href="#classRoomMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-box"></i> Classroom</a>
+                    <a href="#classRoomMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-chalkboard-teacher"></i> Classroom</a>
                     <ul class="collapse list-unstyled" id="classRoomMenu">
                         <li> <a href="/classroom/list/">Your Classrooms</a> </li>
                         <li> <a href="/classroom/add/">Create Classroom</a> </li>
@@ -109,10 +109,8 @@
 
             </ul>
             <ul class="list-unstyled components">
-                <li> <a href="#">About US</a> </li>
-                {{#if session.email}}
-                <li> <a href="#">Contact US</a> </li>
-                {{/if}}
+                <li><a href="/contact/us/"><i style="width: 30px;" class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="/contact/us/"><i style="width: 30px;" class="fas fa-paper-plane"></i> Contact Us</a></li>
             </ul>
         </nav>
 

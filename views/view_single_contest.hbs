@@ -7,7 +7,7 @@
 <div class="show-contest">
     <div class="table-type-1">
         <div class="table-title-2">
-		    <h2 style="text-align: center; color: #997c2e;"><b>{{contest_name}} [Level {{contest_level}}]</b></h2>
+		    <h2 style="text-align: center; color: #997c2e;"><b>Contest Title: {{contest_name}} [Level {{contest_level}}]</b></h2>
 		    <h5 style="text-align: center; color: #5bc0de;"><b>Setter: {{setter_handle}}</b></h5>
 		    <h6 style="text-align: center; color: #000000;"><b>Time: {{start_date}} - {{end_date}} </b></h6>
         </div>
@@ -15,6 +15,7 @@
             <thead style="background-color: #8FC1E3;">
                 <tr>
                     <th>Problem Name</th>
+                    <th>Source Link</th>
                     <th>Problem ID</th>
                     <th>OJ Name</th>
                 </tr>
@@ -31,8 +32,9 @@
     function getProblemList(){
         var data_list = [];
         {{#each problem_set}}
-            var problem_name = '<a href = "{{source_link}}" style="color: #408C9F; font-weight:700;">{{problem_name}}</a>'
-            var data = [problem_name, "{{problem_id}}", "{{oj_name}}"];
+            var prbolem_link = '<a href = "/problem/view/{{id}}/" style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_name}}</a>'
+            var source_link = '<a href = {{source_link}} style="color: #058876; font-weight:500; text-decoration: underline;"><i class="fas fa-link"></i></a>'
+            var data = [prbolem_link, source_link, "{{problem_id}}", "{{oj_name}}"];
             data_list.push(data)
         {{/each}}
         return data_list;

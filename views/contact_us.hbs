@@ -1,0 +1,98 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="form-type-1" style="width: 100%;">	
+    <form action="/contact/us/" method="post">
+		<h2>Contact Us</h2>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+					<input type="text" autocomplete="off" id="user_name" class="form-control" name="user_name" placeholder="Your Name">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+					<input type="text" autocomplete="off" id="user_email" class="form-control" name="user_email" placeholder="Email Address">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+                        <select class="form-control" id="topic_name">
+                            <option value="training_model">Training Model</option>
+                            <option value="contest_model">Contest Model</option>
+                            <option value="rating_system">Rating System</option>
+                            <option value="user_interface">User Interface</option>
+                            <option value="technical_bug">Technical Bug</option>
+                            <option value="review">Review</option>
+                            <option value="general_suggestions">General Suggestions</option>
+                        </select>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<textarea type="text" id="description" class="form-control blog-post-text-box" name="description" placeholder="Write your thoughts . . ."></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
+        </div>
+	</form>
+</div>
+
+
+<script type="text/javascript">
+    var simplemde = new SimpleMDE({
+        autofocus: true,
+        blockStyles: {
+            bold: "__",
+            italic: "_"
+        },
+        element: document.getElementById("description"),
+        hideIcons: ["guide", "heading"],
+        indentWithTabs: false,
+        insertTexts: {
+            horizontalRule: ["", "\n\n-----\n\n"],
+            image: ["![](http://", ")"],
+            link: ["[", "](http://)"],
+            table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
+        },
+        placeholder: "Write your thoughts . . .",
+        promptURLs: true,
+        renderingConfig: {
+            codeSyntaxHighlighting: true,
+        },
+        shortcuts: {
+            drawTable: "Cmd-Alt-T"
+        },
+        showIcons: ["code", "table"],
+        status: false,
+        status: ["autosave", "lines", "words", "cursor"],
+        status: ["autosave", "lines", "words", "cursor", {
+            className: "keystrokes",
+            defaultValue: function(el) {
+                this.keystrokes = 0;
+                el.innerHTML = "0 Keystrokes";
+            },
+            onUpdate: function(el) {
+                el.innerHTML = ++this.keystrokes + " Keystrokes";
+            }
+        }],
+        styleSelectedText: true,
+        tabSize: 4,
+    });
+
+    {{#if full_name}}
+        document.getElementById("user_name").value = "{{full_name}}";
+    {{/if}}
+
+    {{#if email}}
+        document.getElementById("user_email").value = "{{email}}";
+    {{/if}}
+</script>
+ 

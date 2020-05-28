@@ -10,6 +10,7 @@ var logout_url = config.server_host + 'auth/logout/at'
 var blog_server = require('./servers/blog_services.js');
 var user_server = require('./servers/user_services.js');
 var follower_server = require('./servers/follower_services.js');
+var contact_server = require('./servers/contact_us_services.js');
 var jshelper = require('./servers/jshelper.js');
 var system_server = require('./servers/system_services.js');
 
@@ -174,6 +175,22 @@ router.syncUserData = async function(req, res, next) {
     var sess = req.session;
     system_server.add_toast(req, "Your request to sync user data has been sent to the server. We will process the request shortly.")
     res.redirect('back');
+}
+
+
+router.contactUs = async function(req, res, next) {
+    var sess = req.session;
+    var user_details = {}
+    if(sess.user_id){
+        user_details = await user_server.getUserDetails(res, req, sess.user_id)
+    }
+    res.render('contact_us', user_details);
+}
+
+
+router.contactUsSubmit = async function(req, res, next) {
+    await contact_server.postContactUs(res, req, req.body)
+    res.redirect('/');
 }
 
 module.exports = router;
