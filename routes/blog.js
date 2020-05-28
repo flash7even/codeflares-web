@@ -108,7 +108,8 @@ router.deleteBlogPost = async function(req, res, next) {
   var words = url.split("/");
   var blog_id = words[words.length-2]
   await blog_server.deleteBlog(res, req, blog_id);
-  res.redirect('back')
+  system_server.add_toast(req, 'Blog deleted!', 'warning')
+  res.redirect('/')
 }
 
 router.updateBlogPost = async function(req, res, next) {
@@ -123,8 +124,10 @@ router.updateBlogPostSubmit = async function(req, res, next) {
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
-  let blog_details = await blog_server.blogDetails(res, req, blog_id);
-  res.render('update_blog_post', blog_details);
+  var blog_data = req.body
+  await blog_server.updateBlog(res, req, blog_data, blog_id);
+  system_server.add_toast(req, 'Blog updated!')
+  res.redirect('/blog/post/view/' + blog_id + '/');
 }
 
 module.exports = router;

@@ -3,26 +3,26 @@
 </head>
 
 <div class="form-type-1" style="width: 100%;">	
-    <form action="/blog/post/add/{{blog_type}}/{{blog_ref_id}}/" method="post">
-		<h2>Create Blog Post</h2>
+    <form action="/blog/update/{{blog_id}}/" method="post">
+		<h2>Update Blog Post</h2>
 		<p style="color: rgb(149, 167, 201); text-align:center;">Target Audience: [{{target_audience}}]</p>
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
-					<input type="text" autocomplete="off" id="blog_title" class="form-control" name="blog_title" value="">
+					<input type="text" autocomplete="off" id="blog_title" class="form-control" name="blog_title" value="{{blog_title}}">
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
-					<input type="text" autocomplete="off" id="blog_topic" class="form-control" name="blog_topic" value="">
+					<input type="text" autocomplete="off" id="blog_topic" class="form-control" name="blog_topic" value="{{blog_topic}}">
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-12">
-				<textarea type="text" id="blog_text" class="form-control blog-post-text-box" name="blog_text" value=""></textarea>
+				<textarea type="text" id="blog_text" class="form-control blog-post-text-box" name="blog_text"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
@@ -48,7 +48,7 @@
             link: ["[", "](http://)"],
             table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
         },
-        placeholder: "Write your post . . .",
+        initialValue: `{{blog_text}}`,
         promptURLs: true,
         renderingConfig: {
             codeSyntaxHighlighting: true,
