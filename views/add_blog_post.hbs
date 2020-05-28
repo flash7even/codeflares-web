@@ -4,8 +4,14 @@
 
 <div class="form-type-1" style="width: 100%;">	
     <form action="/blog/post/add/{{blog_type}}/{{blog_ref_id}}/" method="post">
-		<h2>Create Blog Post</h2>
-		<p style="color: rgb(149, 167, 201); text-align:center;">Target Audience: [{{target_audience}}]</p>
+		<div class="table-title-2">
+			<h2 style="text-align: center;"><b>Create Blog Post</b></h2>
+            <p style="color: rgb(149, 167, 201); text-align:center;">Target Audience: [{{target_audience}}]</p>
+			<hr class="thin" style="width: 100%; height: 0.007em; background-color: rgb(34, 77, 80)">
+		</div>
+		<br>
+		<br>
+		
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
@@ -25,6 +31,8 @@
 				<textarea type="text" id="blog_text" class="form-control blog-post-text-box" name="blog_text" placeholder="Write your blog"></textarea>
 			</div>
 		</div>
+		<br>
+		<br>
 		<div class="form-group">
             <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
         </div>

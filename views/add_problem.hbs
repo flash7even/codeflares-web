@@ -2,9 +2,14 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
-<div class="form-type-1">	
+<div class="form-type-1" style="width: 100%;">	
     <form action="/problem/add/" method="post">
-		<h2>Problem Suggestion</h2>
+		<div class="table-title-2">
+			<h2 style="text-align: center;"><b>Add Problem Suggestion</b></h2>
+			<hr class="thin" style="width: 100%; height: 0.007em; background-color: rgb(34, 77, 80)">
+		</div>
+		<br>
+		<br>
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
@@ -53,20 +58,18 @@
 		</div>
 		<div class="category-group">
 			<div class="form-row control-group">
-				<div class="form-group col-md-5">
+				<div class="form-group col-md-6">
 					<div class="input-group">
 						<input type="text" autocomplete="off" id="problem_category@1" class="form-control autocomplete" name="problem_category@1" placeholder="Category">
 					</div>
 				</div>
-				<div class="form-group col-md-4">
+				<div class="form-group col-md-5">
 					<div class="input-group">
 						<input type="text" id="dependency_factor@1" class="form-control" name="dependency_factor@1" placeholder="Factor">
 					</div>
 				</div>
-				<div class="form-group col-md-3">
-					<div class="input-group-btn">
-						<button class="btn btn control-btn add-more" type="button"><i class="fas fa-plus"></i></button>
-					</div>
+				<div class="form-group col-sm-1" style="width: 10px !important;">
+					<button class="btn add-more btn-block" type="button"><i class="fas fa-plus"></i></button>
 				</div>
 			</div>
 		</div>
@@ -74,24 +77,25 @@
 
 		<div class="copy hide" hidden>
 			<div class="form-row control-group">
-				<div class="form-group col-md-5">
+				<div class="form-group col-md-6">
 					<div class="input-group">
 						<input type="text" autocomplete="off" id="problem_category_tmp" class="form-control autocomplete" name="problem_category_tmp" placeholder="Category">
 					</div>
 				</div>
-				<div class="form-group col-md-4">
+				<div class="form-group col-md-5">
 					<div class="input-group">
 						<input type="text" id="dependency_factor_tmp" class="form-control" name="dependency_factor_tmp" placeholder="Factor">
 					</div>
 				</div>
-				<div class="form-group col-md-3">
-					<div class="input-group-btn"> 
-						<button class="btn control-btn remove" type="button"><i class="fas fa-minus"></i></button>
-					</div>
+				<div class="form-group col-sm-1" style="width: 10px !important;">
+					<button class="btn remove btn-block" type="button"><i class="fas fa-minus"></i></button>
 				</div>
 			</div>
 		</div>
 
+		<br>
+		<br>
+		<br>
 		<div class="form-group">
             <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
         </div>

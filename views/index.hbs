@@ -51,7 +51,7 @@
             </table>
         </div>
         <div class="table-type-1" style="margin-left: 0px; padding:0px;">
-            <div id="donutchart" style="margin:0px; padding:0px; height: 350px;"></div>
+            <div id="series_chart_div" style="margin:0px; padding:0px; height: 350px;"></div>
         </div>
     </div>
 </div>
@@ -155,30 +155,36 @@
             pageLength: 10
         });
     }
+    google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawSeriesChart);
 
-    google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
+        function drawSeriesChart() {
+
         var data = google.visualization.arrayToDataTable([
-          ['Topic', 'Percentage'],
-          ['DP',     120],
-          ['Graph',      22],
-          ['Base',  57],
-          ['DS', 55],
-          ['NT',    32],
-          ['Combinatorics',    11],
-          ['Math',    45],
-          ['Geometry',    0]
+            ['ID', 'Problem Collection', 'Solve Ratio', 'Algorithm Title', 'Solved Count'],
+            ['BASE',    112,              55.5,      'Base Skills',  100],
+            ['NT',    65,              61.36,      'Number Theory',         60],
+            ['DP',    105,               55.84,      'Dynamic Programming',         99],
+            ['DS',    54,              84.78,      'Data Structure',    50],
+            ['GEO',    7,              22.2,         'Geometry',         4],
+            ['CT',    19,              33.7,       'Combinatorics',    11],
+            ['SP',    11,              48.77,      'String Processing',    10],
+            ['GTH',    3,              72.96,      'Game Theory',    1],
+            ['GRD',    33,               91.54,      'Greedy',         33],
+            ['MATH',    45,              33.05,      'Mathematics',  40],
+            ['MISC',    62,              67.05,      'Miscellaneous',  55],
+            ['PS',    19,              51.05,      'Probability & Statistics',  10]
         ]);
 
         var options = {
-          title: 'Problem Statistics',
-          pieHole: 0.3
-        };
+            title: 'Algorithm Statistics in Our Site',
+            hAxis: {title: 'Problem Collection'},
+            vAxis: {title: 'Solve Ratio'},
+            bubble: {textStyle: {fontSize: 13}}      };
 
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
         chart.draw(data, options);
-      }
+        }
 
     $(document).ready( function () {
         viewBlogInBlogs();

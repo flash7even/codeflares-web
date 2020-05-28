@@ -2,45 +2,52 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
-<div class="form-type-1">	
+<div class="form-type-1" style="width: 100%;">	
     <form action="/category/add/" method="post">
-		<h2>Category Suggestion</h2>
+		<div class="table-title-2">
+			<h2 style="text-align: center;"><b>Add Category Suggestion</b></h2>
+			<hr class="thin" style="width: 100%; height: 0.007em; background-color: rgb(34, 77, 80)">
+		</div>
+		<br>
+		<br>
 		<div class="form-row">
 			<div class="form-group col-md-12">
+				<div class="input-group">
+					<input type="text" id="category_name" class="form-control" name="category_name" placeholder="Category Name">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<div class="input-group">
+					<input type="text" id="category_title" class="form-control" name="category_title" placeholder="Category Title">
+				</div>
+			</div>
+			<div class="form-group col-md-6">
 				<div class="input-group">
 					<input type="text" autocomplete="off" id="category_root" class="form-control autocomplete-root" name="category_root" placeholder="Category Root">
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="form-group col-md-4">
-				<div class="input-group">
-					<input type="text" id="category_name" class="form-control" name="category_name" placeholder="Category Name">
-				</div>
-			</div>
-			<div class="form-group col-md-4">
-				<div class="input-group">
-					<input type="text" id="category_title" class="form-control" name="category_title" placeholder="Category Title">
-				</div>
-			</div>
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-6">
 				<div class="input-group">
 					<input type="text" id="category_description" class="form-control" name="category_description" placeholder="Description">
 				</div>
 			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-6">
 				<div class="input-group">
 					<input type="text" id="category_difficulty" class="form-control" name="category_difficulty" placeholder="Difficulty">
 				</div>
 			</div>
-			<div class="form-group col-md-4">
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
 				<div class="input-group">
 					<input type="text" id="category_importance" class="form-control" name="category_importance" placeholder="Importance">
 				</div>
 			</div>
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-6">
 				<div class="input-group">
 					<input type="text" id="category_rareness" class="form-control" name="category_rareness" placeholder="Rareness">
 				</div>
@@ -48,20 +55,18 @@
 		</div>
 		<div class="category-group">
 			<div class="form-row control-group">
-				<div class="form-group col-md-5">
+				<div class="form-group col-md-6">
 					<div class="input-group">
 						<input type="text" autocomplete="off" id="dependency_category@1" class="form-control autocomplete" name="dependency_category@1" placeholder="Dependent On Category">
 					</div>
 				</div>
-				<div class="form-group col-md-4">
+				<div class="form-group col-md-5">
 					<div class="input-group">
 						<input type="text" id="dependency_factor@1" class="form-control" name="dependency_factor@1" placeholder="Factor">
 					</div>
 				</div>
-				<div class="form-group col-md-3">
-					<div class="input-group-btn">
-						<button class="btn btn control-btn add-more" type="button"><i class="fas fa-plus"></i></button>
-					</div>
+				<div class="form-group col-sm-1" style="width: 10px !important;">
+					<button class="btn add-more btn-block" type="button"><i class="fas fa-plus"></i></button>
 				</div>
 			</div>
 		</div>
@@ -69,24 +74,25 @@
 
 		<div class="copy hide" hidden>
 			<div class="form-row control-group">
-				<div class="form-group col-md-5">
+				<div class="form-group col-md-6">
 					<div class="input-group">
 						<input type="text" autocomplete="off" id="dependency_category_tmp" class="form-control autocomplete" name="dependency_category_tmp" placeholder="Dependent On Category">
 					</div>
 				</div>
-				<div class="form-group col-md-4">
+				<div class="form-group col-md-5">
 					<div class="input-group">
 						<input type="text" id="dependency_factor_tmp" class="form-control" name="dependency_factor_tmp" placeholder="Factor">
 					</div>
 				</div>
-				<div class="form-group col-md-3">
-					<div class="input-group-btn"> 
-						<button class="btn control-btn remove" type="button"><i class="fas fa-minus"></i></button>
-					</div>
+				<div class="form-group col-sm-1" style="width: 10px !important;">
+					<button class="btn remove btn-block" type="button"><i class="fas fa-minus"></i></button>
 				</div>
 			</div>
 		</div>
 
+		<br>
+		<br>
+		<br>
 		<div class="form-group">
             <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
         </div>

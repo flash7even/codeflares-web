@@ -39,12 +39,14 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="/img/cfs-logo-18.png" alt="image" height="70" width="210">
+                <a href="/">
+                    <img src="/img/cfs-logo-18.png" alt="image" height="70" width="210">
+                </a>
             </div>
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="/"><i style="width: 30px;" class="fa fa-fw fa-home"></i> Home</a>
+                    <a href="/"><i style="width: 30px;" class="fas fa-laptop-house"></i> Home</a>
                 </li>
 
                 {{#if session.email}}
@@ -99,7 +101,7 @@
 
                 {{#if session.email}}
                 <li>
-                    <a href="#adviseMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-archive"></i> Advise</a>
+                    <a href="#adviseMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-dice-d6"></i> Advise</a>
                     <ul class="collapse list-unstyled" id="adviseMenu">
                         <li> <a href="/problem/add/">Add Problem</a> </li>
                         <li> <a href="/category/add/">Add Category</a> </li>
@@ -273,20 +275,26 @@
             
             <div class="alert-list" style="margin-top: 15px; text-align:center;">
             </div>
+
+            <div style="min-height: 700px;">
+                {{{body}}}
+            </div>
     
-            {{{body}}}
             <div class="toast-list" style="width: 300px;">
             </div>
             <!-- Page footer -->
             <br>
             <div class="footer">
                 <h6 class="text text-center tm-copyright-text">
-                    Copyright &copy; 2020 CodeFlares.
+                    Copyright &copy; 2020 CodeFlares
+                </h6>
+                <h6 class="text text-center tm-copyright-text" style="font-size: smaller; color:rgb(19, 66, 66)">
+                    Developed & Maintained by <a style="color: rgb(125, 133, 58);" href="/profile/flash_7/">Tarango Khan</a>.
                 </h6>
             </div>
         </div>
     </div>
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
