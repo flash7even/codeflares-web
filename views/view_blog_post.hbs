@@ -19,6 +19,10 @@
         <a style="background-color: #8FC1e3; color: rgb(255, 124, 2);" title="Delete Blog" class='btn' href="/blog/delete/{{blog_id}}/"><i class="fas fa-trash"></i></i></a>
         <a style="background-color: #8FC1e3; color: rgb(42, 97, 92);" title="Update Blog" class='btn' href="/blog/update/{{blog_id}}/"><i class="fas fa-edit"></i></a>
         {{/if}}
+
+        {{#if admin_view}}
+            <a style="background-color: #8FC1e3; color: rgb(218, 238, 192);" title="Mark Blog to Homepage" class='btn' href="/blog/mark/{{blog_id}}/"><i class="fas fa-star"></i></a>
+        {{/if}}
     </div>
     <hr>
     <div class="row post-foter">

@@ -8,7 +8,7 @@ var blog_server = require('./servers/blog_services.js');
 var jshelper = require('./servers/jshelper.js');
 var classroom_server = require('./servers/classroom_services.js');
 var system_server = require('./servers/system_services.js');
-var showdown  = require('showdown');
+var user_server = require('./servers/user_services.js');
 
 
 router.addBlogForm = async function(req, res, next) {
@@ -95,8 +95,15 @@ router.viewBlogPost = async function(req, res, next) {
   }
   blog_details = system_server.toast_update(req, blog_details)
   var sess = req.session;
-  if (sess.user_id && sess.user_id == blog_details.blog_writer){
-    blog_details["own_profile"] = true
+  if (sess.user_id){
+    if (sess.user_id == blog_details.blog_writer){
+      blog_details["own_profile"] = true
+    }
+    var user_details = await user_server.getUserDetails(res, req, sess.user_id)
+    if(user_details.user_role == 'admin'){
+      blog_details["admin_view"] = true
+      blog_details["own_profile"] = true
+    }
   }
   console.log('blog_details: ')
   console.log(blog_details)
@@ -130,4 +137,15 @@ router.updateBlogPostSubmit = async function(req, res, next) {
   res.redirect('/blog/post/view/' + blog_id + '/');
 }
 
+router.markBlogPost = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var blog_id = words[words.length-2]
+  var blog_data = {
+    "status": "homepage"
+  }
+  await blog_server.updateBlog(res, req, blog_data, blog_id);
+  system_server.add_toast(req, 'Blog updated!')
+  res.redirect('back');
+}
 module.exports = router;
