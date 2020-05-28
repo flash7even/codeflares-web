@@ -50,9 +50,23 @@ module.exports.postBlog = async function(res, req, blog_data) {
   if(response.status != 200 && response.status != 201){
       res.render('error_page', {});
   }
-  console.log('postBlog done')
-  console.log('response.data: ')
-  console.log(response.data)
+  return response.data
+};
+
+module.exports.deleteBlog = async function(res, req, blog_id) {
+  console.log('deleteBlog called')
+  var post_url = blog_submit_url + blog_id
+  var sess = req.session;
+  const auth_config = {
+      headers: { Authorization: `Bearer ${sess.access_token}` }
+  };
+  let response = await axios.delete(post_url, auth_config)
+  .catch(error => {
+      res.render('error_page', {});
+  })
+  if(response.status != 200 && response.status != 201){
+      res.render('error_page', {});
+  }
   return response.data
 };
 

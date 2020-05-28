@@ -40,6 +40,9 @@ module.exports = function(newApp) {
     newApp.post('/blog/post/add/*', blogController.addBlogFormSubmit);
     newApp.get('/blog/list/*', blogController.viewBlogList);
     newApp.get('/blog/post/view/*', blogController.viewBlogPost);
+    newApp.get('/blog/delete/*', blogController.deleteBlogPost);
+    newApp.get('/blog/update/*', blogController.updateBlogPost);
+    newApp.post('/blog/update/*', blogController.updateBlogPostSubmit);
 
 
     newApp.post('/blog/post/comment/*', commentController.addCommentForBlogPost);

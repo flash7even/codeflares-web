@@ -94,9 +94,37 @@ router.viewBlogPost = async function(req, res, next) {
     blog_details['target_audience'] =  classroom_details.team_name
   }
   blog_details = system_server.toast_update(req, blog_details)
+  var sess = req.session;
+  if (sess.user_id && sess.user_id == blog_details.blog_writer){
+    blog_details["own_profile"] = true
+  }
   console.log('blog_details: ')
   console.log(blog_details)
   res.render('view_blog_post', blog_details);
+}
+
+router.deleteBlogPost = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var blog_id = words[words.length-2]
+  await blog_server.deleteBlog(res, req, blog_id);
+  res.redirect('back')
+}
+
+router.updateBlogPost = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var blog_id = words[words.length-2]
+  let blog_details = await blog_server.blogDetails(res, req, blog_id);
+  res.render('update_blog_post', blog_details);
+}
+
+router.updateBlogPostSubmit = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var blog_id = words[words.length-2]
+  let blog_details = await blog_server.blogDetails(res, req, blog_id);
+  res.render('update_blog_post', blog_details);
 }
 
 module.exports = router;
