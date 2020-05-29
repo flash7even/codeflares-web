@@ -29,7 +29,7 @@ router.showHome = async function(req, res, next) {
 
 router.leaderboard = async function(req, res, next) {
     let data = {}
-    let top_rated_users = await user_server.topRatedUsers(res, req, {'size': 10})
+    let top_rated_users = await user_server.topRatedUsers(res, req, {'size': 1000})
     data['top_rated_users'] = top_rated_users.user_list
     res.render('leaderboard', data);
 }

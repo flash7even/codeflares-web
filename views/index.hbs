@@ -57,17 +57,25 @@
 </div>
 
 
+
 <script type="text/javascript">
 
     function viewBlogInBlogs(){
+        var blog_para_max_length_first_blog = 2500
         var blog_para_max_length = 1000
-        var db_list = [];
+        var first_blog = 0
         {{#each blog_list}}
             var blog_text = `{{blog_text}}`
-            if(blog_text.length > blog_para_max_length){
-                blog_text = blog_text.substring(0, blog_para_max_length)
+            var max_len = blog_para_max_length
+            if(first_blog == 0) max_len = blog_para_max_length_first_blog
+            first_blog = 1
+            if(blog_text.length > max_len){
+                blog_text = blog_text.substring(0, max_len)
                 blog_text += ' . . .'
             }
+
+            var markdown_converter = new showdown.Converter()
+            var blog_text_html = markdown_converter.makeHtml(blog_text)
 
             var html = `
                 <div class="blog-post-1">
@@ -78,7 +86,7 @@
                     <p class="text-left"> <b><span style="color: rgb(214, 193, 7); padding-right:3px;">{{blog_writer_handle}}</span>, <span style="color: #95989B; padding-left:7px;"> {{updated_at}}</span></b></p>
                 </div>
                 <div class="post-body">
-                    <p> ${blog_text} </p>
+                    <p> ${blog_text_html} </p>
                 </div>
                 <div class="post-read-more">
                     <a href="/blog/post/view/{{blog_id}}/"><p style="color: rgb(23, 81, 104);" class="media-heading"><b>READ MORE <i style="height: 11px;" class="fas fa-angle-double-right"></i></b></p></a>
@@ -100,7 +108,6 @@
             `
             $(".blogs").append(html);
         {{/each}}
-        return db_list;
     }
 
 
