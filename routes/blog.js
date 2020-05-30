@@ -105,6 +105,9 @@ router.viewBlogPost = async function(req, res, next) {
       blog_details["own_profile"] = true
     }
   }
+  if(blog_details.status == 'homepage'){
+    blog_details['homepage_mark'] = true
+  }
   console.log('blog_details: ')
   console.log(blog_details)
   res.render('view_blog_post', blog_details);
@@ -143,6 +146,18 @@ router.markBlogPost = async function(req, res, next) {
   var blog_id = words[words.length-2]
   var blog_data = {
     "status": "homepage"
+  }
+  await blog_server.updateBlog(res, req, blog_data, blog_id);
+  system_server.add_toast(req, 'Blog updated!')
+  res.redirect('back');
+}
+
+router.unmarkBlogPost = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var blog_id = words[words.length-2]
+  var blog_data = {
+    "status": "unmarked"
   }
   await blog_server.updateBlog(res, req, blog_data, blog_id);
   system_server.add_toast(req, 'Blog updated!')

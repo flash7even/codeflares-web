@@ -46,6 +46,7 @@ module.exports = function(newApp) {
     newApp.get('/blog/update/*', blogController.updateBlogPost);
     newApp.post('/blog/update/*', blogController.updateBlogPostSubmit);
     newApp.get('/blog/mark/*', blogController.markBlogPost);
+    newApp.get('/blog/unmark/*', blogController.unmarkBlogPost);
 
 
     newApp.post('/blog/post/comment/*', commentController.addCommentForBlogPost);
