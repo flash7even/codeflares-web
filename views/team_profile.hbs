@@ -27,21 +27,23 @@
 
 			<div class="row" style="text-align: center; padding: 10px;">
 				{{#if following}}
-					<div class="col-md-1">
-						<a href="/unfollow/{{id}}/" style="background-color: rgb(202, 216, 176);" class="btn btn-block"> <span class="fas fa-user-minus"></span> </a>
+					<div class="col-md-2">
+						<a href="/unfollow/{{id}}/" style="background-color: rgb(218, 223, 228); color:rgb(126, 159, 192);" class="btn btn-block"> <span class="fas fa-user-friends"></span> </a>
 					</div>
 				{{/if}}
 				{{#if unfollowing}}
-					<div class="col-md-1">
-						<a href="/follow/{{id}}/" style="background-color: rgb(202, 216, 176);" class="btn btn-block"><span class="fas fa-user-plus"></span> </a>
+					<div class="col-md-2">
+						<a href="/follow/{{id}}/" style="background-color: rgb(218, 223, 228); color:rgb(231, 233, 240);" class="btn btn-block"><span class="fas fa-user-friends"></span> </a>
 					</div>
 				{{/if}}
-				<div class="col-md-1">
-					<a href="/team/sync/{{id}}/" style="background-color: rgb(169, 213, 221);" class="btn btn-block"><span class="fas fa-sync"></span> </a>
+				{{#if session.user_id}}
+				<div class="col-md-2">
+					<a href="/team/sync/{{id}}/" style="background-color: rgb(218, 223, 228);  color:rgb(39, 124, 150);" class="btn btn-block"><span class="fas fa-sync"></span> </a>
 				</div>
+				{{/if}}
 				{{#if own_profile}}
-				<div class="col-md-1">
-					<a href="/team/update/{{id}}/" style="background-color: rgb(163, 201, 233);" class="btn btn-block"><span class="fas fa-user-edit"></span> </a>
+				<div class="col-md-2">
+					<a href="/team/update/{{id}}/" style="background-color: rgb(218, 223, 228);  color:rgb(62, 100, 53);" class="btn btn-block"><span class="fas fa-user-edit"></span> </a>
 				</div>
 				{{/if}}
 			</div>
