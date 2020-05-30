@@ -232,10 +232,6 @@ hr.thin {
     width: 95%;
 }
 
-
-
-
-
 .blog-post-1 {
     background: #ffffff;
     border-radius: 5px;
@@ -249,6 +245,11 @@ hr.thin {
 .blog-post-text-box {
     background: #ffffff;
     font-size: large;
+}
+
+.post-body{
+    font-size: 14px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 

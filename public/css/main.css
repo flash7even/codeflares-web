@@ -94,7 +94,5 @@ body {
 }
 
 .post-header{
-    padding: 10px;
-    font-weight: 400;
-    font-family: 'Times New Roman', Times, serif;
+    padding-bottom: 10px;
 }
