@@ -60,15 +60,25 @@
 
 <div class="table-type-1">
     <div class="table-title-2">
-        <h3 style="text-align: center;"><b>CodeTrainer Rating History</b></h3>
+        <h6 style="text-align: center;"><b>CodeFlares Rating History</b></h6>
     </div>
     <br>
-	<div id="rating_chart" style="height: 400px; width: 100%;"></div>
+	<div id="rating_chart_skill_value" style="height: 400px; width: 100%;"></div>
+</div>
+
+<br>
+
+<div class="table-type-1">
+    <div class="table-title-2">
+        <h6 style="text-align: center;"><b>CodeFlares Solve Count History</b></h6>
+    </div>
+    <br>
+	<div id="rating_chart_solve_count" style="height: 400px; width: 100%;"></div>
 </div>
 
 <script>
 
-	//------ CodeTrainer TEAM RATING HISTORY CHART -------//
+	//------ CodeFlares TEAM RATING HISTORY CHART -------//
 	function show_rating_history(){
 		google.charts.load('current', {'packages':['line']});
 		google.charts.setOnLoadCallback(drawChart);
@@ -95,11 +105,43 @@
 				},
 			};
 
-		var chart = new google.charts.Line(document.getElementById('rating_chart'));
+		var chart = new google.charts.Line(document.getElementById('rating_chart_skill_value'));
 		chart.draw(data, google.charts.Line.convertOptions(options));
 		}
 	}
-	//------ CodeTrainer TEAM RATING HISTORY ENDS -------//
+
+	function show_solve_count_history(){
+		google.charts.load('current', {'packages':['line']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = new google.visualization.DataTable();
+
+			data.addColumn('date', 'Year');
+			data.addColumn('number', "Rating");
+
+			var rating_data_list = []
+			{{#each rating_history}}
+				var rating_data = []
+				rating_data.push(new Date({{date.year}}, {{date.month}}, {{date.day}}));
+				rating_data.push({{solve_count}})
+				rating_data_list.push(rating_data)
+			{{/each}}
+
+			data.addRows(rating_data_list);
+
+			var options = {
+				chart: {
+					title: ''
+				},
+			};
+
+		var chart = new google.charts.Line(document.getElementById('rating_chart_solve_count'));
+		chart.draw(data, google.charts.Line.convertOptions(options));
+		}
+	}
+	//------ CodeFlares TEAM RATING HISTORY ENDS -------//
 
 	show_rating_history();
+	show_solve_count_history();
 </script>
