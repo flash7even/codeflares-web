@@ -223,7 +223,7 @@
         {{#each member_list}}
             var member_id = "{{id}}"
             console.log('member_id: ' + member_id)
-            var user_name = '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700;">{{user_handle}} ({{status}})</a>'
+            var user_name = '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700;">{{user_handle}}</a>'
             var action_delete = ''
             
             if(logger_in_user == team_lead_id){
