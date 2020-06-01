@@ -94,7 +94,7 @@
             var count = 0
             {{#each category_dependency_list}}
                 if(count>0) category_list += ",  ";
-                category_list += '<a href = "/category/view/{{category_name}}/" style="color: #5bc0de; font-weight:700;">{{category_info.category_title}}</a>'
+                category_list += '<a href = "/category/view/{{category_id}}/" style="color: #5bc0de; font-weight:700;">{{category_info.category_title}}</a>'
                 count++
             {{/each}}
             var problem_data = [prbolem_link, source_link, "{{problem_difficulty}}", "{{oj_name}}", user_status, "{{solve_count}}", category_list];
