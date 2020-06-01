@@ -27,6 +27,7 @@ router.addCommentForBlogPost = async function(req, res, next) {
   comment['comment_ref_id'] = blog_id
   comment['comment_parent_id'] = blog_id
   comment['comment_type'] = 'blog_post_comment'
+  comment['comment_text'] = comment['comment_text'].replace("\r\n", "\\r\\n")
   await comment_server.postComment(res, req, comment)
   jshelper.sleep(1000);
   res.redirect('back')
@@ -43,6 +44,7 @@ router.addCommentForProblem = async function(req, res, next) {
   comment['comment_ref_id'] = problem_id
   comment['comment_parent_id'] = problem_id
   comment['comment_type'] = 'problem_comment'
+  comment['comment_text'] = comment['comment_text'].replace("\r\n", "\\r\\n")
   await comment_server.postComment(res, req, comment)
   jshelper.sleep(1000);
   res.redirect('back')
@@ -59,6 +61,7 @@ router.addCommentForCategory = async function(req, res, next) {
   comment['comment_ref_id'] = category_id
   comment['comment_parent_id'] = category_id
   comment['comment_type'] = 'category_comment'
+  comment['comment_text'] = comment['comment_text'].replace("\r\n", "\\r\\n")
   await comment_server.postComment(res, req, comment)
   jshelper.sleep(1000);
   res.redirect('back')
@@ -77,6 +80,7 @@ router.addReplyForBlogPost = async function(req, res, next) {
   comment['comment_ref_id'] = blog_id
   comment['comment_parent_id'] = parent_id
   comment['comment_type'] = 'blog_post_reply'
+  comment['comment_text'] = comment['comment_text'].replace("\r\n", "\\r\\n")
   console.log('comment to post: ')
   console.log(comment)
   await comment_server.postComment(res, req, comment)
@@ -97,6 +101,7 @@ router.addReplyForProblem = async function(req, res, next) {
   comment['comment_ref_id'] = problem_id
   comment['comment_parent_id'] = parent_id
   comment['comment_type'] = 'problem_comment'
+  comment['comment_text'] = comment['comment_text'].replace("\r\n", "\\r\\n")
   console.log('comment to post: ')
   console.log(comment)
   await comment_server.postComment(res, req, comment)
@@ -117,6 +122,7 @@ router.addReplyForCategory = async function(req, res, next) {
   comment['comment_ref_id'] = category_id
   comment['comment_parent_id'] = parent_id
   comment['comment_type'] = 'category_comment'
+  comment['comment_text'] = comment['comment_text'].replace("\r\n", "\\r\\n")
   console.log('comment to post: ')
   console.log(comment)
   await comment_server.postComment(res, req, comment)

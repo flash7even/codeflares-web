@@ -95,7 +95,7 @@
                 var top = `<div class="comment-box">`
                 var comment_writer_handle = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
                 var updated_at = "{{updated_at}}"
-                var comment_text = "{{comment_text}}"
+                var comment_text = `{{comment_text}}`
                 var comment_id = "{{comment_id}}"
                 var reply_link = `/problem/reply/${problem_es_id}/${comment_id}/`
                 var like_count = "{{vote_count.like_count}}"
@@ -106,7 +106,7 @@
                     <span class="commenter-name">
                         <a href="#">${comment_writer_handle}</a> <span style="color: #95989B;" class="comment-time">${updated_at}</span>
                     </span>       
-                    <p> ${comment_text}</p>
+                    <pre style="font-family: inherits"><p> ${comment_text}</p></pre>
                     <div class="comment-meta">
                             <a href="/vote/problem-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count}</span></a>
                             <a href="/vote/problem-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count}</span></a>
@@ -131,7 +131,7 @@
                         var top2 = `<div class="comment-box replied">`
                         var comment_writer_handle2 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
                         var updated_at2 = "{{updated_at}}"
-                        var comment_text2 = "{{comment_text}}"
+                        var comment_text2 = `{{comment_text}}`
                         var comment_id2 = "{{comment_id}}"
                         var reply_link2 = `/problem/reply/${problem_es_id}/${comment_id2}/`
                         var like_count2 = "{{vote_count.like_count}}"
@@ -142,7 +142,7 @@
                             <span class="commenter-name">
                                 <a href="#">${comment_writer_handle2}</a> <span style="color: #95989B;" class="comment-time">${updated_at2}</span>
                             </span>       
-                            <p> ${comment_text2}</p>
+                            <pre style="font-family: inherits"><p> ${comment_text2}</p></pre>
                             <div class="comment-meta">
                                     <a href="/vote/problem-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count2}</span></a>
                                     <a href="/vote/problem-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count2}</span></a>
@@ -166,7 +166,7 @@
                                 var top3 = `<div class="comment-box replied">`
                                 var comment_writer_handle3 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
                                 var updated_at3 = "{{updated_at}}"
-                                var comment_text3 = "{{comment_text}}"
+                                var comment_text3 = `{{comment_text}}`
                                 var comment_id3 = "{{comment_id}}"
                                 var reply_link3 = `/problem/reply/${problem_es_id}/${comment_id3}/`
                                 var like_count3 = "{{vote_count.like_count}}"
@@ -177,7 +177,7 @@
                                     <span class="commenter-name">
                                         <a href="#">${comment_writer_handle3}</a> <span style="color: #95989B;" class="comment-time">${updated_at3}</span>
                                     </span>       
-                                    <p> ${comment_text3} </p>
+                                    <pre style="font-family: inherits"><p> ${comment_text3}</p></pre>
                                     <div class="comment-meta">
                                             <a href="/vote/problem-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count3}</span></a>
                                             <a href="/vote/problem-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count3}</span></a>
@@ -201,7 +201,7 @@
                                     var top4 = `<div class="comment-box replied">`
                                     var comment_writer_handle4 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
                                     var updated_at4 = "{{updated_at}}"
-                                    var comment_text4 = "{{comment_text}}"
+                                    var comment_text4 = `{{comment_text}}`
                                     var comment_id4 = "{{comment_id}}"
                                     var reply_link4 = `/problem/reply/${problem_es_id}/${comment_id4}/`
                                     var like_count4 = "{{vote_count.like_count}}"
@@ -212,7 +212,7 @@
                                         <span class="commenter-name">
                                             <a href="#">${comment_writer_handle4}</a> <span style="color: #95989B;" class="comment-time">${updated_at4}</span>
                                         </span>       
-                                        <p> ${comment_text4} </p>
+                                        <pre style="font-family: inherits"><p> ${comment_text4}</p></pre>
                                         <div class="comment-meta">
                                             <a href="/vote/problem-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count4}</span></a>
                                             <a href="/vote/problem-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count4}</span></a>
