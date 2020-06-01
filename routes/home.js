@@ -37,6 +37,20 @@ router.leaderboard = async function(req, res, next) {
     res.render('leaderboard', data);
 }
 
+router.contributorsList = async function(req, res, next) {
+    let data = {}
+    let top_contributors = await user_server.topContributors(res, req, {'size': 1000})
+    data['top_contributors'] = top_contributors.user_list
+    res.render('leaderboard_contributors', data);
+}
+
+router.topSolverList = async function(req, res, next) {
+    let data = {}
+    let top_solved_users = await user_server.topSolverUsers(res, req, {'size': 1000})
+    data['top_solved_users'] = top_solved_users.user_list
+    res.render('leaderboard_top_solvers', data);
+}
+
 router.showLogIn = function(req, res, next) {
     var data = system_server.toast_update(req, {})
     res.render('login', data);

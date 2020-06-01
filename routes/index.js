@@ -23,6 +23,8 @@ module.exports = function(newApp) {
     newApp.post('/signup/', homeController.signUpSubmit);
     newApp.get('/profile/*', homeController.showUserProfile);
     newApp.get('/user/leaderboard/*', homeController.leaderboard);
+    newApp.get('/user/contributors/*', homeController.contributorsList);
+    newApp.get('/user/topsolvers/*', homeController.topSolverList);
     newApp.get('/update/profile/', homeController.updateUserProfile);
     newApp.post('/update/profile/', homeController.updateUserProfileSubmit);
     newApp.get('/settings/update/', homeController.updateUserSettings);
