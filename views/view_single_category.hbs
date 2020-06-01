@@ -24,8 +24,8 @@
     </div>
     <div class="row post-foter">
         <div class="col-md-10">
-            <a href="/vote/like/{{category_id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
-            <a href="/vote/dislike/{{category_id}}/"><span style="padding-right: 20px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
+            <a href="/vote/category/like/{{category_id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
+            <a href="/vote/category/dislike/{{category_id}}/"><span style="padding-right: 20px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
             <a href="#comments"><span style="color: rgb(19, 87, 104);"><i class="fas fa-comment"></i> {{comment_count}}</span></a>
         </div>
     </div>
@@ -108,8 +108,8 @@
                     </span>       
                     <p> ${comment_text}</p>
                     <div class="comment-meta">
-                            <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count}</span></a>
-                            <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count}</span></a>
+                            <a href="/vote/category-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count}</span></a>
+                            <a href="/vote/category-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count}</span></a>
                             <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
                     </div>
                     <form class="comment_reply" action="${reply_link}" method="post">
@@ -144,8 +144,8 @@
                             </span>       
                             <p> ${comment_text2}</p>
                             <div class="comment-meta">
-                                    <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count2}</span></a>
-                                    <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count2}</span></a>
+                                    <a href="/vote/category-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count2}</span></a>
+                                    <a href="/vote/category-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count2}</span></a>
                                     <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
                             </div>
                             <form class="comment_reply" action="${reply_link2}" method="post">
@@ -179,8 +179,8 @@
                                     </span>       
                                     <p> ${comment_text3} </p>
                                     <div class="comment-meta">
-                                            <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count3}</span></a>
-                                            <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count3}</span></a>
+                                            <a href="/vote/category-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count3}</span></a>
+                                            <a href="/vote/category-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count3}</span></a>
                                             <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
                                     </div>
                                     <form class="comment_reply" action="${reply_link3}" method="post">
@@ -214,8 +214,8 @@
                                         </span>       
                                         <p> ${comment_text4} </p>
                                         <div class="comment-meta">
-                                            <a href="/vote/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count4}</span></a>
-                                            <a href="/vote/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count4}</span></a>
+                                            <a href="/vote/category-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count4}</span></a>
+                                            <a href="/vote/category-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count4}</span></a>
                                         </div>
                                         <form class="comment_reply" action="${reply_link4}" method="post">
                                             <div class="form-row">

@@ -50,8 +50,22 @@
                 </tbody>
             </table>
         </div>
-        <div class="table-type-1" style="margin-left: 0px; padding:0px;">
-            <div id="series_chart_div" style="margin:0px; padding:0px; height: 550px;"></div>
+        <div class="table-type-1" style="margin-left: 0px;">
+            <div class="table-title-2">
+                <h6 style="text-align: center;"><b>Top Contributors [<a style="color: rgb(109, 164, 209);" href = "/user/contributors/">view all</a>]</b></h6>
+            </div>
+            <table id="topContributorsTable" class="table table-striped table-bordered" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>User</th>
+                        <th>Contribution</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -97,8 +111,8 @@
                 <hr>
                 <div class="row post-foter">
                     <div class="col-md-10">
-                        <a href="/vote/like/{{blog_id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
-                        <a href="/vote/dislike/{{blog_id}}/"><span style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
+                        <a href="/vote/blog/like/{{blog_id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
+                        <a href="/vote/blog/dislike/{{blog_id}}/"><span style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
                     </div>
                     <div class="col-md-2">
                         <a href="/blog/post/view/{{blog_id}}/"><span style="color: rgb(19, 87, 104);"><i class="fas fa-comment"></i> {{comment_count}} Comments</span></a>
@@ -127,6 +141,17 @@
         {{#each top_solved_users}}
             var user_link = '<a href = "/profile/{{username}}/" style="color: #5bc0de; font-weight:700;">{{username}}</a>'
             var data = ["{{rank}}", user_link, "{{solve_count}}"];
+            dt_list.push(data)
+        {{/each}}
+
+        return dt_list;
+    }
+
+    function top_contributors(){
+        var dt_list = [];
+        {{#each top_contributors}}
+            var user_link = '<a href = "/profile/{{username}}/" style="color: #5bc0de; font-weight:700;">{{username}}</a>'
+            var data = ["{{rank}}", user_link, "{{contribution}}"];
             dt_list.push(data)
         {{/each}}
 
@@ -162,41 +187,28 @@
             pageLength: 10
         });
     }
-    google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawSeriesChart);
 
-        function drawSeriesChart() {
 
-        var data = google.visualization.arrayToDataTable([
-            ['ID', 'Problem Collection', 'Solve Ratio', 'Algorithm Title', 'Solved Count'],
-            ['BASE',    112,              55.5,      'Base Skills',  100],
-            ['NT',    65,              61.36,      'Number Theory',         60],
-            ['DP',    105,               55.84,      'Dynamic Programming',         99],
-            ['DS',    54,              84.78,      'Data Structure',    50],
-            ['GEO',    7,              22.2,         'Geometry',         4],
-            ['CT',    19,              33.7,       'Combinatorics',    11],
-            ['SP',    11,              48.77,      'String Processing',    10],
-            ['GTH',    3,              72.96,      'Game Theory',    1],
-            ['GRD',    33,               91.54,      'Greedy',         33],
-            ['MATH',    45,              33.05,      'Mathematics',  40],
-            ['MISC',    62,              67.05,      'Miscellaneous',  55],
-            ['PS',    19,              51.05,      'Probability & Statistics',  10]
-        ]);
-
-        var options = {
-            title: 'Algorithm Statistics in Our Site',
-            hAxis: {title: 'Problem Collection'},
-            vAxis: {title: 'Solve Ratio'},
-            bubble: {textStyle: {fontSize: 13}}      };
-
-        var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-        chart.draw(data, options);
-        }
+    function showTopContributorsDTSearchTable(){
+        var dt_list = top_contributors();
+        
+        $("#topContributorsTable").dataTable({
+            "aaData": dt_list,
+            paging: false,
+            destroy: true,
+            searching: false,
+            ordering:  false,
+            scrollCollapse: true,
+            responsive: true,
+            pageLength: 10
+        });
+    }
 
     $(document).ready( function () {
         viewBlogInBlogs();
         showTopRatedMemberDTSearchTable();
         showTopSolverMemberDTSearchTable();
+        showTopContributorsDTSearchTable();
     } );
 
 </script>

@@ -14,11 +14,13 @@ router.addVote = async function(req, res, next) {
   var url = req.url
   console.log('URL: ' + url)
   var words = url.split("/");
+  var vote_topic = words[words.length-4]
   var vote_type = words[words.length-3]
   var vote_ref_id = words[words.length-2]
   var sess = req.session;
   var vote = {
     "vote_ref_id": vote_ref_id,
+    "vote_topic": vote_topic,
     "voter_id": sess.user_id,
     "vote_type": 'LIKE'
   }

@@ -19,10 +19,13 @@ router.showHome = async function(req, res, next) {
     let data = await blog_server.getBlogList(res, req, {'status': 'homepage'});
     let top_rated_users = await user_server.topRatedUsers(res, req, {'size': 10})
     let top_solved_users = await user_server.topSolverUsers(res, req, {'size': 10})
+    let top_contributors = await user_server.topContributors(res, req, {'size': 10})
     data['top_rated_users'] = top_rated_users.user_list
     data['top_solved_users'] = top_solved_users.user_list
+    data['top_contributors'] = top_contributors.user_list
     system_server.add_session_alert(req, "Welcome to CodeFlares. Please read our guideline before start.")
     data = system_server.toast_update(req, data)
+    console.log(data)
     //data['alert_list'] = system_server.clean_session_alert(req)
     res.render('index', data);
 }

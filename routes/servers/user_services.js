@@ -4,6 +4,7 @@ const axios = require('axios');
 
 var user_search_url = config.server_host + 'user/search'
 var user_search_url_skilled = config.server_host + 'user/search/skilled'
+var user_search_url_contributor = config.server_host + 'user/search/contributor'
 var user_search_url_solver = config.server_host + 'user/search/solved-count'
 var user_submit_url = config.server_host + 'user/'
 var login_url = config.server_host + 'auth/login'
@@ -114,6 +115,27 @@ module.exports.topSolverUsers = async function(res, req, user_data) {
     }
 
     console.log('searchUser completed')
+    return response.data
+};
+
+module.exports.topContributors = async function(res, req, user_data) {
+    console.log('topContributors called')
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    console.log("post_url: " + user_search_url_contributor)
+    let response = await axios.post(user_search_url_contributor, user_data, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+
+    console.log('topContributors completed')
     return response.data
 };
 
