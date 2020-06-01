@@ -81,6 +81,7 @@ router.viewCategoryList = async function(req, res, next) {
     res.render('view_category_list', category_list);
 }
 
+
 router.viewCategoryListByRoot = async function(req, res, next) {
   console.log('viewCategoryListByRoot called')
   var url = req.url

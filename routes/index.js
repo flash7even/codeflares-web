@@ -79,6 +79,7 @@ module.exports = function(newApp) {
     newApp.get('/category/resource/add/*', categoryController.addCategoryResourceForm);
     newApp.post('/category/resource/add/*', categoryController.addCategoryResourceFormSubmit);
 
+    
     newApp.get('/category/add/', categoryController.addCategoryForm);
     newApp.get('/category/view/*', categoryController.viewSingleCategory);
     newApp.post('/category/add/', categoryController.addCategoryFormSubmit);

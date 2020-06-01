@@ -11,15 +11,10 @@ module.exports.getProblemList = async function(res, req, search_param) {
   console.log('getProblemList called');
   var page = 0
   var problem_list = []
-  var sess = req.session;
-  var access_token = sess.access_token
-  const auth_config = {
-      headers: { Authorization: `Bearer ${access_token}` }
-  };
   while(1){
     var post_url = problem_search_url + page.toString()
     console.log("post_url: " + post_url)
-    let response = await axios.post(post_url, search_param, auth_config)
+    let response = await axios.post(post_url, search_param)
     .catch(error => {
         res.render('error_page', {});
     })
@@ -80,11 +75,7 @@ module.exports.getProblemDetails = async function(res, req, problem_id, user_id 
         post_url = post_url + '/' + user_id
     }
     console.log("post_url: " + post_url)
-    var sess = req.session;
-    const auth_config = {
-        headers: { Authorization: `Bearer ${sess.access_token}` }
-    };
-    let response = await axios.get(post_url, auth_config)
+    let response = await axios.get(post_url)
     .catch(error => {
         res.render('error_page', {});
     })

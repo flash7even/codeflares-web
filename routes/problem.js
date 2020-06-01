@@ -87,10 +87,10 @@ router.viewProblemList = async function(req, res, next) {
   if(category_name != 'all'){
     problem_list['params'] = {'category_name': category_name}
   }
-  let category_list = await category_server.getCategoryList(res, req, {});
-  problem_list['category_list'] = category_list['category_list']
-  let root_category_list = await category_server.getCategoryList(res, req, {"category_root": "root"});
-  problem_list['root_category_list'] = root_category_list['category_list']
+  //let category_list = await category_server.getCategoryList(res, req, {});
+  //problem_list['category_list'] = category_list['category_list']
+  //let root_category_list = await category_server.getCategoryList(res, req, {"category_root": "root"});
+  //problem_list['root_category_list'] = root_category_list['category_list']
   res.render('view_problem_list', problem_list);
 }
 
