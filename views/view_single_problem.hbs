@@ -22,8 +22,19 @@
         </div>
         {{/if}}
     </div>
+    <div class="row post-foter">
+        <div class="col-md-10">
+            <a href="/vote/like/{{id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
+            <a href="/vote/dislike/{{id}}/"><span style="padding-right: 20px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
+            <a href="#comments"><span style="color: rgb(19, 87, 104);"><i class="fas fa-comment"></i> {{comment_count}}</span></a>
+        </div>
+    </div>
     <br>
     <br>
+    <hr>
+    <br>
+    <br>
+    
     <div class="table-title-2">
         <h5 style="text-align: center;"><b>Problem Resources  </b> <a title="Add new resource" style="color: #accbe1;" href="/problem/resource/add/{{id}}/"> <i class="fas fa-plus"></i> </a> </h5>
     </div>
@@ -40,22 +51,6 @@
         <tbody>
         </tbody>
     </table>
-
-    <hr>
-    <br>
-    <br>
-
-    <div class="row post-foter">
-        <div class="col-md-10">
-            <a href="/vote/like/{{id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
-            <a href="/vote/dislike/{{id}}/"><span style="color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
-        </div>
-        <div class="col-md-2">
-            <a href="#comments"><span style="color: rgb(19, 87, 104);"><i class="fas fa-comment"></i> {{comment_count}} Comments</span></a>
-        </div>
-    </div>
-    <hr>
-
 </div>
 
 <div class="comment-post-1" style="background-color: #FAFAFA; margin-top:15px;">	

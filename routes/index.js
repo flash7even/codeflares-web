@@ -28,6 +28,7 @@ module.exports = function(newApp) {
     newApp.get('/settings/update/', homeController.updateUserSettings);
     newApp.post('/settings/update/', homeController.updateUserSettingsSubmit);
     newApp.get('/contact/us/', homeController.contactUs);
+    newApp.get('/about/us/', homeController.aboutUs);
     newApp.post('/contact/us/', homeController.contactUsSubmit);
 
 

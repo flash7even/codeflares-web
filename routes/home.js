@@ -193,4 +193,9 @@ router.contactUsSubmit = async function(req, res, next) {
     res.redirect('/');
 }
 
+
+router.aboutUs = async function(req, res, next) {
+    res.render('about_us', {});
+}
+
 module.exports = router;
