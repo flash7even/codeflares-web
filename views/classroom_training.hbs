@@ -5,12 +5,47 @@
 </head>
 
 
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+
+        {{#if home}}
+        <a style="background-color: rgb(119, 173, 209); margin-right:10px;" title="Home" class='btn' href="/classroom/training/{{id}}/home/"><i class="fas fa-home"></i> Home</a>
+        {{else}}
+        <a style="background-color: rgb(187, 212, 230); margin-right:10px;" title="Home" class='btn' href="/classroom/training/{{id}}/home/"><i class="fas fa-home"></i> Home</a>
+        {{/if}}
+        {{#if skill}}
+        <a style="background-color: rgb(119, 173, 209); margin-right:10px;" title="Member Skills" class='btn' href="/classroom/training/{{id}}/skill/"><i class="fas fa-chart-bar"></i> Member Skills</a>
+        {{else}}
+        <a style="background-color: rgb(187, 212, 230); margin-right:10px;" title="Member Skills" class='btn' href="/classroom/training/{{id}}/skill/"><i class="fas fa-chart-bar"></i> Member Skills</a>
+        {{/if}}
+        {{#if contest}}
+        <a style="background-color: rgb(119, 173, 209); margin-right:10px;" title="Contest" class='btn' href="/classroom/training/{{id}}/contest/"><i class="fas fa-cubes"></i> Contests</a>
+        {{else}}
+        <a style="background-color: rgb(187, 212, 230); margin-right:10px;" title="Contest" class='btn' href="/classroom/training/{{id}}/contest/"><i class="fas fa-cubes"></i> Contests</a>
+        {{/if}}
+        {{#if discussion}}
+        <a style="background-color: rgb(119, 173, 209); margin-right:10px;" title="Discussions" class='btn' href="/classroom/training/{{id}}/discussion/"><i class="fas fa-comments"></i> Discussions</a>
+        {{else}}
+        <a style="background-color: rgb(187, 212, 230); margin-right:10px;" title="Discussions" class='btn' href="/classroom/training/{{id}}/discussion/"><i class="fas fa-comments"></i> Discussions</a>
+        {{/if}}
+    </div>
+    <div class="col-md-3">
+    </div>
+    <hr style="width: 80%;">
+</div>
 
 <div class="blog-post-1" style="margin-top: 15px; background-color:#d7ebfa;">
     <div class="row">
         <div class="col-md-8">
             <div class="post-header">
-                <h2 style="color: rgb(23, 81, 104);" class="media-heading">Classroom: <b>{{team_name}}</b></h2>
+                <h2 style="color: rgb(23, 81, 104);" class="media-heading">
+                    Classroom: <b>{{team_name}}</b>
+                    {{#if own_profile}}
+                    <a style="background-color: rgb(107, 152, 170);" title="Update Profile" class='btn' href="/classroom/update/{{id}}/"><i class="fas fa-edit"></i></a>
+                    {{/if}}
+                </h2>
                 <br>
                 <h5>Institution Name: <b>{{institution_name}}</b></h5>
                 <h5>Classroom Purpose: <b>{{team_purpose}}</b></h5>
@@ -21,17 +56,9 @@
         <div class="col-md-4">
         </div>
     </div>
-    <div class="row" style="padding: 10px;">
-        <div class="col-md-5">
-            <a style="background-color: #8FC1e3; margin-right:10px;" title="User Skills" class='btn' href="#categoryWiseSkillTableTop"><i class="fas fa-chart-bar"></i></a>
-            <a style="background-color: #8FC1e3; margin-right:10px;" title="Discussions" class='btn' href="#discussions"><i class="fas fa-comments"></i></a>
-            {{#if own_profile}}
-            <a style="background-color: #8FC1e3;" title="Update Profile" class='btn' href="/classroom/update/{{id}}/"><i class="fas fa-edit"></i></a>
-            {{/if}}
-        </div>
-    </div>
 </div>
 
+{{#if home}}
 <div class="blog-post-1" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="row">
 
@@ -113,7 +140,6 @@
     </div>
 </div>
 
-
 <div class="table-type-1">
     <div class="table-title-2">
         <h5 style="text-align: center;"><b>Classroom Members</b></h5>
@@ -134,8 +160,11 @@
         </tbody>
     </table>
 </div>
+{{/if}}
 
+<br>
 
+{{#if skill}}
 <div class="table-type-1" id="categoryWiseSkillTableTop">
     <div class="table-title-2">
         <h5 style="text-align: center;"><b>Category Wise Skills</b></h5>
@@ -173,8 +202,9 @@
         </tbody>
     </table>
 </div>
+{{/if}}
 
-
+{{#if contest}}
 <div class="table-type-1">
     <div class="table-title-2">
         <h5 style="text-align: center;"><b>Training Contest List</b></h5>
@@ -195,8 +225,9 @@
         </tbody>
     </table>
 </div>
+{{/if}}
 
-
+{{#if discussion}}
 <div class="table-type-1" id="discussions">
     <div class="table-title-2">
         <h5 style="text-align: center;"><b>Classroom Discussions</b> <a title="Add new post" style="color: #accbe1;" href="/blog/post/add/classroom/{{id}}/"> <span style="color: #accbe1;"><i class="fas fa-plus"></i></span> </a> </h5>
@@ -206,6 +237,7 @@
 
     </div>
 </div>
+{{/if}}
 
 
 <script type="text/javascript">

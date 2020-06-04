@@ -46,7 +46,7 @@ router.addBlogFormSubmit = async function(req, res, next) {
   jshelper.sleep(1000);
   system_server.add_toast(req, 'Blog created successfully')
   if(blog_type == 'classroom'){
-    res.redirect('/classroom/training/' + blog_ref_id + '/')
+    res.redirect('/classroom/training/' + blog_ref_id + '/home/')
   }else{
     res.redirect('/blog/list/global/all/')
   }
