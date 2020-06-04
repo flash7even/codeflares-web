@@ -86,14 +86,49 @@
             var problem_data = [prbolem_link, source_link, problem.problem_difficulty, problem.oj_name, user_status, problem.solve_count, category_list];
             db_problem_list.push(problem_data)
         }
-
         return db_problem_list;
     }
 
+
+    function findCustomFilter(event) {
+        var custom_param = {}
+        var problem_name = '{{params.problem_name}}'
+        if(problem_name.length > 0){
+            custom_param['problem_name'] = problem_name
+        }
+        var category_root = '{{params.category_root}}'
+        if(category_root.length > 0){
+            custom_param['category_root'] = category_root
+        }
+        var category_name = '{{params.category_name}}'
+        if(category_name.length > 0){
+            custom_param['category_name'] = category_name
+        }
+        var minimum_difficulty = '{{params.minimum_difficulty}}'
+        if(minimum_difficulty.length > 0){
+            custom_param['minimum_difficulty'] = minimum_difficulty
+        }
+        var maximum_difficulty = '{{params.maximum_difficulty}}'
+        if(maximum_difficulty.length > 0){
+            custom_param['maximum_difficulty'] = maximum_difficulty
+        }
+        return custom_param
+    }
+
     function showProblemsDTSearchTable(){
+        var custom_param = findCustomFilter()
         $("#problemListTable").dataTable({
-            "pageLength": 10,
+            "pageLength": 50,
+            destroy: true,
+            ordering: true,
             serverSide: true,
+            "columnDefs": [
+                { "orderable": false, "targets": 1 },
+                { "orderable": false, "targets": 3 },
+                { "orderable": false, "targets": 4 },
+                { "orderable": false, "targets": 5 },
+                { "orderable": false, "targets": 6 }
+            ],
             ajax: {
                 url: 'http://localhost:5056/api/problem/dtsearch/heavy',
                 type: 'POST',
@@ -102,20 +137,28 @@
                     var ajax_body = JSON.stringify( d );
                     var ajax_json = JSON.parse(ajax_body)
                     {{#if session.user_id}}
-                        ajax_json['user_id'] = "{{session.user_id}}"
+                        custom_param['user_id'] = "{{session.user_id}}"
                     {{/if}}
+                    if(ajax_json['order'].length > 0){
+                        var oder_param = ajax_json['order'][0]
+                        if(oder_param.column == 0){
+                            ajax_json['sort_by'] = 'problem_name'
+                            ajax_json['sort_order'] = oder_param.dir
+                        }
+                        if(oder_param.column == 2){
+                            ajax_json['sort_by'] = 'problem_difficulty'
+                            ajax_json['sort_order'] = oder_param.dir
+                        }
+                    }
+                    ajax_json['custom_param'] = custom_param
                     return JSON.stringify(ajax_json)
                 },
                 "dataSrc": function ( data ) {
-                    console.log('data received: ')
-                    console.log(data)
-                    console.log('complete')
                     return getProblemList(data.data);
                 }
             }
         });
     }
-	var cat_item = 1;
 
 	function enableAutoCompleteCategory(){
 		$(".autocomplete_category").typeahead({
@@ -205,7 +248,6 @@
     }
 
     $(document).ready( function () {
-        console.log('DOCUMENT READY')
         enableAutoCompleteCategory();
         enableAutoCompleteRootCategory();
         showProblemsDTSearchTable();

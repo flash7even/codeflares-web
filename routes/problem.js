@@ -83,7 +83,7 @@ router.viewProblemList = async function(req, res, next) {
     param["user_id"] = sess.user_id
   }
 
-  let problem_list = await problem_server.getProblemList(res, req, param);
+  let problem_list = {}
   if(category_name != 'all'){
     problem_list['params'] = {'category_name': category_name}
   }
@@ -129,14 +129,14 @@ router.viewProblemListAfterFormSubmit = async function(req, res, next) {
     search_body["user_id"] = sess.user_id
   }
 
-  let problem_list = await problem_server.getProblemList(res, req, search_body);
+  let problem_list = {}
   let category_list = await category_server.getCategoryList(res, req, {});
   problem_list['category_list'] = category_list['category_list']
   let root_category_list = await category_server.getCategoryList(res, req, {"category_root": "root"});
   problem_list['root_category_list'] = root_category_list['category_list']
   problem_list['params'] = req.body
   jshelper.sleep(1000);
-  res.render('view_problem_list', problem_list);
+  res.render('view_problem_list_server', problem_list);
 }
 
 router.setProblemStatusFlag = async function(req, res, next) {

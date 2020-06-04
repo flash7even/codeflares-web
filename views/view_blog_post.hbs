@@ -96,12 +96,13 @@
                 var like_count = "{{vote_count.like_count}}"
                 var dislike_count = "{{vote_count.dislike_count}}"
                 var own_data = `
-                    <span class="commenter-pic">
-                    </span>
                     <span class="commenter-name">
                         <a href="#">${comment_writer_handle}</a> <span style="color: #95989B;" class="comment-time">${updated_at}</span>
-                    </span>       
-                    <pre style="font-family: inherits"><p> ${comment_text}</p></pre>
+                    </span>
+                    <div class="comment-text-box"><pre><p> ${comment_text}</p></pre></div>
+                    <p>I am okay</p>
+                    <p>I am okay</p>
+                    <p>I am okay</p>
                     <div class="comment-meta">
                             <a href="/vote/blog-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count}</span></a>
                             <a href="/vote/blog-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count}</span></a>
@@ -132,12 +133,10 @@
                         var like_count2 = "{{vote_count.like_count}}"
                         var dislike_count2 = "{{vote_count.dislike_count}}"
                         var own_data2 = `
-                            <span class="commenter-pic">
-                            </span>
                             <span class="commenter-name">
                                 <a href="#">${comment_writer_handle2}</a> <span style="color: #95989B;" class="comment-time">${updated_at2}</span>
-                            </span>       
-                            <pre style="font-family: inherits"><p> ${comment_text2}</p></pre>
+                            </span>
+                            <div class="comment-text-box"><pre><p> ${comment_text2}</p></pre></div>
                             <div class="comment-meta">
                                     <a href="/vote/blog-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count2}</span></a>
                                     <a href="/vote/blog-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count2}</span></a>
@@ -167,12 +166,10 @@
                                 var like_count3 = "{{vote_count.like_count}}"
                                 var dislike_count3 = "{{vote_count.dislike_count}}"
                                 var own_data3 = `
-                                    <span class="commenter-pic">
-                                    </span>
                                     <span class="commenter-name">
                                         <a href="#">${comment_writer_handle3}</a> <span style="color: #95989B;" class="comment-time">${updated_at3}</span>
-                                    </span>       
-                                    <pre style="font-family: inherits"><p> ${comment_text3}</p></pre>
+                                    </span>
+                                    <div class="comment-text-box"><pre><p> ${comment_text3}</p></pre></div>
                                     <div class="comment-meta">
                                             <a href="/vote/blog-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count3}</span></a>
                                             <a href="/vote/blog-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count3}</span></a>
@@ -202,12 +199,10 @@
                                     var like_count4 = "{{vote_count.like_count}}"
                                     var dislike_count4 = "{{vote_count.dislike_count}}"
                                     var own_data4 = `
-                                        <span class="commenter-pic">
-                                        </span>
                                         <span class="commenter-name">
                                             <a href="#">${comment_writer_handle4}</a> <span style="color: #95989B;" class="comment-time">${updated_at4}</span>
-                                        </span>       
-                                        <pre style="font-family: inherits"><p> ${comment_text4}</p></pre>
+                                        </span>
+                                        <div class="comment-text-box"><pre><p> ${comment_text4}</p></pre></div>
                                         <div class="comment-meta">
                                             <a href="/vote/blog-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count4}</span></a>
                                             <a href="/vote/blog-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count4}</span></a>

@@ -255,10 +255,8 @@ hr.thin {
 
 .comment-post-1 {
     background: #ffffff;
-    border-radius: 5px;
-    padding: 5px;
-    margin-bottom: 15px;
-    box-shadow: 1px 1px 3px #7180AC;
+    border-radius: 3px;
+    margin-bottom: 5px;
     padding: 30px;
     color: #0B0C10;
 }
@@ -266,9 +264,6 @@ hr.thin {
 .comment_reply{
     display: none;
 }
-
-
-
 
 .comments-details button.btn.dropdown-toggle,
 .comments-details .total-comments {
@@ -290,11 +285,10 @@ hr.thin {
 .comments .comment-box {
     width: 100%;
     float: left;
-    height: 100%;
     background-color: #FAFAFA;
-    padding: 10px 10px 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+    padding: 5px 5px 5px;
+    margin-bottom: 5px;
+    border-radius: 3px;
     border: 1px solid #ddd;
 }
 .comments .add-comment {
@@ -352,51 +346,32 @@ hr.thin {
     margin-left: 8px;
     font-size: 15px;
 }
-.comments p.comment-txt {
-    font-size: 15px;
-    border-bottom: 1px solid #ddd;
-    padding: 0px 0px 15px;
+.comments .comment-text-box {
+    font-size: 13px;
+    padding: auto;
+    margin: auto;
+    padding-left: 10px;
 }
 .comments .commenter-name {
     display: inline-block;
     position: relative;
-    top: -20px;
-    left: 10px;
     font-size: 16px;
     font-weight: bold;
+    padding-top: 5px;
+    padding-left: 10px;
 }
 .comments .comment-meta {
-    font-size: 14px;
+    font-size: 10px;
     color: #333;
-    padding: 2px 5px 0px;
-    line-height: 20px;
     float: right;
+    margin: 0px;
 }
 .comments .reply-box {
     display: none;
 }
 .comments .replied {
     background-color: #fff;
-    width: 95%;
+    width: 98%;
     float: right;
-    margin-top: 15px;
-}
-
-/*======Responsive CSS=======*/
-@media (max-width: 767px){
-.comments .commenter-name {
-    font-size: 13px;
-    top: -5px;
-}
-.comments .commenter-pic {
-    width: 40px;
-    height: 40px;
-}
-.comments .commenter-name a{
-  display: block;
-}
-.comments .commenter-name .comment-time{
-  display: block;
-  margin-left: 0px;
-}
+    margin-top: 7px;
 }
