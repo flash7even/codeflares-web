@@ -63,7 +63,7 @@
                 <li>
                     <a href="#trainingMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-book"></i> Training</a>
                     <ul class="collapse list-unstyled" id="trainingMenu">
-                        <li> <a href="/training/individual/">Personal Training</a> </li>
+                        <li> <a href="/training/individual/{{session.username}}/training-plan/">Personal Training</a> </li>
                         <li> <a href="/training/team/">Team Training</a> </li>
                         <li> <a href="/team/list/">Your Teams</a> </li>
                         <li> <a href="/team/add/">Create Team</a> </li>
@@ -221,7 +221,7 @@
 
                         {{#if session.email}}
                         <div style="padding: 3px;">
-                            <a href="/training/individual/"  title="Personal Training">
+                            <a href="/training/individual/{{session.username}}/training-plan/"  title="Personal Training">
                             <button type="button btn-lg" onclick="#" id="" class="btn navbar-btn">
                                 <i class="fas fa-bolt navbar-btn-icon"></i>
                             </button>
