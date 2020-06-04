@@ -67,6 +67,7 @@ module.exports = function(newApp) {
     newApp.get('/problem/view/*', problemController.viewSingleProblem);
     newApp.post('/problem/add/', problemController.addProblemFormSubmit);
     newApp.get('/problem/list/*', problemController.viewProblemList);
+    newApp.post('/update/problem/list/server/', problemController.viewProblemListFromServer);
     newApp.post('/problem/list/', problemController.viewProblemListAfterFormSubmit);
     newApp.get('/problem/user/status/flag/*', problemController.setProblemStatusFlag);
     newApp.get('/problem/user/status/remove/*', problemController.setProblemStatusRemove);
@@ -79,7 +80,7 @@ module.exports = function(newApp) {
     newApp.get('/category/resource/add/*', categoryController.addCategoryResourceForm);
     newApp.post('/category/resource/add/*', categoryController.addCategoryResourceFormSubmit);
 
-    
+
     newApp.get('/category/add/', categoryController.addCategoryForm);
     newApp.get('/category/view/*', categoryController.viewSingleCategory);
     newApp.post('/category/add/', categoryController.addCategoryFormSubmit);

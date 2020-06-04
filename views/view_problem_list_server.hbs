@@ -1,0 +1,215 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/view-problem.css">
+</head>
+
+<div class="row">
+
+<div class="view-form-table-1" style="width: 100%; margin-top: 15px;">
+    <div class="table-title-2">
+        <h2 style="text-align: center;"><b>Problemset Database</b></h2>
+        <hr class="thin">
+    </div>
+    <div style="text-align:center; font-size: smaller; margin-bottom:0px">
+      <form name="" action="/problem/list/" method="POST">
+            <div class="form-row">
+                <div class="form-group col-sm-3">
+                    <label>Problem Name</label>
+                    <input type="text" id="problem_name" class="form-control form-control-sm" name="problem_name" value="{{params.problem_name}}">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Root Category</label>
+                    <input type="text" autocomplete="off" id="category_root" class="form-control form-control-sm autocomplete_root_category" name="category_root" value="{{params.category_root}}">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Category Name</label>
+                    <input type="text" autocomplete="off" id="category_name" class="form-control form-control-sm autocomplete_category" name="category_name" value="{{params.category_name}}">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Minimum Difficulty</label>
+                    <input type="text" id="minimum_difficulty" class="form-control form-control-sm" name="minimum_difficulty" value="{{params.minimum_difficulty}}">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Maximum Difficulty</label>
+                    <input type="text" id="maximum_difficulty" class="form-control form-control-sm" name="maximum_difficulty" value="{{params.maximum_difficulty}}">
+                </div>
+				<div class="form-group col-sm-1" style="width: 10px !important;">
+                    <label for="pwd">Action</label>
+                    <button title="Adjust" class="btn  form-control-sm update btn-block btn-sm" type="submit"><i class="fas fa-adjust"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr style="width: 100%;">
+        <table id="problemListTable" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Source</th>
+                    <th>Problem Difficulty</th>
+                    <th>OJ Name</th>
+                    <th>Status</th>
+                    <th>User Solved</th>
+                    <th>Problem Category</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function getProblemList(problem_list){
+        console.log('getProblemList called')
+        var db_problem_list = [];
+        var pidx = 0
+        for(pidx = 0;pidx<problem_list.length;pidx++){
+            var problem = problem_list[pidx]
+            var prbolem_link = `<a href = "/problem/view/{{id}}/" style="color: #058876; font-weight:500; text-decoration: underline;">${problem.problem_name}</a>`
+            var source_link = `<a href = ${problem.source_link} style="color: #058876; font-weight:500; text-decoration: underline;"><i class="fas fa-link"></i></a>`
+            var user_status = '<i class="fas fa-dove" style="color:#C4C400;"></i>'
+            if (problem.solved == 'yes'){
+                user_status = '<i class="fas fa-check" style="color:#55B232;"></i>'
+            }
+            var category_list = ''
+            var cidx = 0
+            var category_dependency_list = problem.category_dependency_list;
+            for(cidx=0;cidx<category_dependency_list.length;cidx++){
+                var dependency = category_dependency_list[cidx]
+                if(cidx>0) category_list += ",  ";
+                category_list += `<a href = "/category/view/${dependency.category_id}/" style="color: #5bc0de; font-weight:700;">${dependency.category_info.category_title}</a>`
+                cidx++
+            }
+            var problem_data = [prbolem_link, source_link, problem.problem_difficulty, problem.oj_name, user_status, problem.solve_count, category_list];
+            db_problem_list.push(problem_data)
+        }
+
+        return db_problem_list;
+    }
+
+    function showProblemsDTSearchTable(){
+        $("#problemListTable").dataTable({
+            "pageLength": 10,
+            serverSide: true,
+            ajax: {
+                url: 'http://localhost:5056/api/problem/dtsearch/heavy',
+                type: 'POST',
+                "contentType": "application/json",
+                "data": function ( d ) {
+                    var ajax_body = JSON.stringify( d );
+                    var ajax_json = JSON.parse(ajax_body)
+                    {{#if session.user_id}}
+                        ajax_json['user_id'] = "{{session.user_id}}"
+                    {{/if}}
+                    return JSON.stringify(ajax_json)
+                },
+                "dataSrc": function ( data ) {
+                    console.log('data received: ')
+                    console.log(data)
+                    console.log('complete')
+                    return getProblemList(data.data);
+                }
+            }
+        });
+    }
+	var cat_item = 1;
+
+	function enableAutoCompleteCategory(){
+		$(".autocomplete_category").typeahead({
+			// data source
+			source: getAlgorithmList(),
+			// how many items to show
+			items: 8,
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			itemContentSelector:'a',
+			// min length to trigger the suggestion list
+			minLength: 1,
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+			// auto selects the first item
+			autoSelect: true,
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+			// adds an item to the end of the list
+			addItem: false,
+			// delay between lookups
+			delay: 0,
+		});
+	}
+
+	function enableAutoCompleteRootCategory(){
+		$(".autocomplete_root_category").typeahead({
+			// data source
+			source: getRootAlgorithmList(),
+			// how many items to show
+			items: 8,
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			itemContentSelector:'a',
+			// min length to trigger the suggestion list
+			minLength: 1,
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+			// auto selects the first item
+			autoSelect: true,
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+			// adds an item to the end of the list
+			addItem: false,
+			// delay between lookups
+			delay: 0,
+		});
+	}
+
+    function getAlgorithmList(){
+        var data_list = []
+        {{#each category_list}}
+            var data = {
+                "name": "{{category_name}}",
+                "code": "{{category_name}}"
+            }
+            data_list.push(data)
+        {{/each}}
+        console.log('data_list: ')
+        console.log(data_list)
+        return data_list
+    }
+
+    function getRootAlgorithmList(){
+        console.log('getRootAlgorithmList called')
+        var data_list = []
+        {{#each root_category_list}}
+            var data = {
+                "name": "{{category_name}}",
+                "code": "{{category_name}}"
+            }
+            console.log('data: ')
+            console.log(data)
+            data_list.push(data)
+        {{/each}}
+        console.log('data_list: ')
+        console.log(data_list)
+        return data_list
+    }
+
+    $(document).ready( function () {
+        console.log('DOCUMENT READY')
+        enableAutoCompleteCategory();
+        enableAutoCompleteRootCategory();
+        showProblemsDTSearchTable();
+    } );
+
+</script>
+
