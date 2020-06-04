@@ -31,24 +31,15 @@ router.showHome = async function(req, res, next) {
 }
 
 router.leaderboard = async function(req, res, next) {
-    let data = {}
-    let top_rated_users = await user_server.topRatedUsers(res, req, {'size': 1000})
-    data['top_rated_users'] = top_rated_users.user_list
-    res.render('leaderboard', data);
+    res.render('leaderboard', {});
 }
 
 router.contributorsList = async function(req, res, next) {
-    let data = {}
-    let top_contributors = await user_server.topContributors(res, req, {'size': 1000})
-    data['top_contributors'] = top_contributors.user_list
-    res.render('leaderboard_contributors', data);
+    res.render('leaderboard_contributors', {});
 }
 
 router.topSolverList = async function(req, res, next) {
-    let data = {}
-    let top_solved_users = await user_server.topSolverUsers(res, req, {'size': 1000})
-    data['top_solved_users'] = top_solved_users.user_list
-    res.render('leaderboard_top_solvers', data);
+    res.render('leaderboard_top_solvers', {});
 }
 
 router.showLogIn = function(req, res, next) {

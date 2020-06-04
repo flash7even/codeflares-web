@@ -25,31 +25,50 @@
 
 <script type="text/javascript">
 
-
-    function top_contributors(){
+    function top_contributors(user_list){
+        console.log('user_list:')
+        console.log(user_list)
         var dt_list = [];
-        {{#each top_contributors}}
-            var user_link = '<a href = "/profile/{{username}}/" style="color: #5bc0de; font-weight:700;">{{username}}</a>'
-            var data = ["{{rank}}", user_link, "{{contribution}}"];
+        var idx = 0
+        for(idx = 0;idx<user_list.length;idx++){
+            var user = user_list[idx]
+            var user_link = `<a href = "/profile/${user.username}/" style="color: #5bc0de; font-weight:700;">${user.username}</a>`
+            var data = [user.rank, user_link, user.contribution];
             dt_list.push(data)
-        {{/each}}
-
+        }
+        console.log(dt_list)
         return dt_list;
     }
 
     function showTopContributorsDTSearchTable(){
-        var dt_list = top_contributors();
-        
         $("#topContributorsTable").dataTable({
-            "aaData": dt_list,
-            paging: true,
+            "pageLength": 100,
             destroy: true,
-            scrollCollapse: true,
-            responsive: true,
-            pageLength: 50
+            ordering: true,
+            serverSide: true,
+            "columnDefs": [
+                { "orderable": false, "targets": 0 },
+                { "orderable": false, "targets": 1 },
+                { "orderable": false, "targets": 2 }
+            ],
+            ajax: {
+                url: 'http://localhost:5056/api/user/dtsearch',
+                type: 'POST',
+                "contentType": "application/json",
+                "data": function ( d ) {
+                    var ajax_body = JSON.stringify( d );
+                    var ajax_json = JSON.parse(ajax_body)
+                    ajax_json['sort_by'] = 'contribution'
+                    ajax_json['sort_order'] = 'asc'
+                    return JSON.stringify(ajax_json)
+                },
+                "dataSrc": function ( data ) {
+                    return top_contributors(data.data);
+                }
+            }
         });
     }
-
+    
     $(document).ready( function () {
         showTopContributorsDTSearchTable();
     } );

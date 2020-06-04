@@ -25,27 +25,48 @@
 
 <script type="text/javascript">
 
-    function getTopSolverList(){
-        var dt_list = [];
-        {{#each top_solved_users}}
-            var user_link = '<a href = "/profile/{{username}}/" style="color: #5bc0de; font-weight:700;">{{username}}</a>'
-            var data = ["{{rank}}", user_link, "{{solve_count}}"];
-            dt_list.push(data)
-        {{/each}}
 
+    function getTopSolverList(user_list){
+        console.log('user_list:')
+        console.log(user_list)
+        var dt_list = [];
+        var idx = 0
+        for(idx = 0;idx<user_list.length;idx++){
+            var user = user_list[idx]
+            var user_link = `<a href = "/profile/${user.username}/" style="color: #5bc0de; font-weight:700;">${user.username}</a>`
+            var data = [user.rank, user_link, user.solve_count];
+            dt_list.push(data)
+        }
+        console.log(dt_list)
         return dt_list;
     }
 
     function showTopSolverMemberDTSearchTable(){
-        var dt_list = getTopSolverList();
-        
         $("#topSolverMemberTable").dataTable({
-            "aaData": dt_list,
-            paging: true,
+            "pageLength": 100,
             destroy: true,
-            scrollCollapse: true,
-            responsive: true,
-            pageLength: 50
+            ordering: true,
+            serverSide: true,
+            "columnDefs": [
+                { "orderable": false, "targets": 0 },
+                { "orderable": false, "targets": 1 },
+                { "orderable": false, "targets": 2 }
+            ],
+            ajax: {
+                url: 'http://localhost:5056/api/user/dtsearch',
+                type: 'POST',
+                "contentType": "application/json",
+                "data": function ( d ) {
+                    var ajax_body = JSON.stringify( d );
+                    var ajax_json = JSON.parse(ajax_body)
+                    ajax_json['sort_by'] = 'solve_count'
+                    ajax_json['sort_order'] = 'asc'
+                    return JSON.stringify(ajax_json)
+                },
+                "dataSrc": function ( data ) {
+                    return getTopSolverList(data.data);
+                }
+            }
         });
     }
 
