@@ -48,14 +48,14 @@ module.exports.getIndividualTrainingModel = async function(res, req, user_id, tr
     return response.data
 };
 
-module.exports.getTeamTrainingModel = async function(res, req, team_id) {
+module.exports.getTeamTrainingModel = async function(res, req, team_id, training_param) {
     var url = team_training_url + team_id
     var sess = req.session;
     var access_token = sess.access_token
     const auth_config = {
         headers: { Authorization: `Bearer ${access_token}` }
     };
-    let response = await axios.get(url, auth_config)
+    let response = await axios.post(url, training_param, auth_config)
     .catch(error => {
         res.render('error_page', {});
     })

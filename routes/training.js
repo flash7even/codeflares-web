@@ -50,34 +50,35 @@ router.viewIndividualTraining = async function(req, res, next) {
 
 
 router.viewTeamTraining = async function(req, res, next) {
-    var sess = req.session;
-    var user_details = await training_server.getUserDetails(res, req, sess.user_id)
-    var team_id = user_details.settings.current_team_id
+    var url = req.url
+    var words = url.split("/");
+    var team_id = words[words.length-3]
+    var page_name = words[words.length-2]
+    var training_param = {}
+    var training_data = {}
 
-    var training_data = await training_server.getTeamTrainingModel(res, req, team_id)
+    if(page_name == 'training-plan'){
+        training_param['training_problems'] = true
+        training_param['training_categories'] = true
+        training_data = await training_server.getTeamTrainingModel(res, req, team_id, training_param)
+        training_data['training-plan'] = true
+    }
+    if(page_name == 'category-skill'){
+        training_param['category_skill'] = true,
+        training_param['root_category_skill'] = true
+        training_param['skill_comparison_info'] = true
+        training_data = await training_server.getTeamTrainingModel(res, req, team_id, training_param)
+        training_data['category-skill'] = true
+    }
+    if(page_name == 'contest'){
+        training_data = await training_server.getTeamTrainingModel(res, req, team_id, training_param)
+        var contest_list = await contest_server.getContestList(res, req, {"contest_ref_id": team_id});
+        training_data['contest_list'] = contest_list['contest_list']
+        training_data['contest'] = true
+    }
 
     console.log(training_data)
-
-    var len, idx;
-
-    len = training_data['problem_stat'].length
-    for(idx = 1;idx<=len;idx++){
-        training_data['problem_stat'][idx-1]['idx'] = idx;
-    }
-
-    len = training_data['category_stat'].length
-    for(idx = 1;idx<=len;idx++){
-        training_data['category_stat'][idx-1]['idx'] = idx;
-    }
-
-    len = training_data['category_skill_list'].length
-    for(idx = 1;idx<=len;idx++){
-        training_data['category_skill_list'][idx-1]['idx'] = idx;
-    }
-
-    var contest_list = await contest_server.getContestList(res, req, {"contest_ref_id": team_id});
-    training_data['contest_list'] = contest_list['contest_list']
-
+    console.log(req.session)
     res.render('team_training', training_data);
 }
 

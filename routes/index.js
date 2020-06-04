@@ -88,7 +88,7 @@ module.exports = function(newApp) {
     newApp.post('/category/list/', categoryController.viewCategoryListAfterFormSubmit);
 
     newApp.get('/training/individual/*', trainingController.viewIndividualTraining);
-    newApp.get('/training/team/', trainingController.viewTeamTraining);
+    newApp.get('/training/team/*', trainingController.viewTeamTraining);
 
 
     newApp.get('/team/add/', teamController.addTeamForm);

@@ -64,7 +64,7 @@
                     <a href="#trainingMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i style="width: 30px;" class="fas fa-book"></i> Training</a>
                     <ul class="collapse list-unstyled" id="trainingMenu">
                         <li> <a href="/training/individual/{{session.username}}/training-plan/">Personal Training</a> </li>
-                        <li> <a href="/training/team/">Team Training</a> </li>
+                        <li> <a href="/training/team/{{session.user_settings.current_team_id}}/training-plan/">Team Training</a> </li>
                         <li> <a href="/team/list/">Your Teams</a> </li>
                         <li> <a href="/team/add/">Create Team</a> </li>
                     </ul>
