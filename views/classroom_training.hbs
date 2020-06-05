@@ -5,51 +5,78 @@
 </head>
 
 
-<div class="row">
-    <div class="col-md-3">
+<div class="row page-box">
+    <div class="col-md-2">
     </div>
-    <div class="col-md-6">
-
+    <div class="col-md-2">
         {{#if home}}
-        <a style="background-color: rgb(119, 173, 209); margin-right:10px;" title="Home" class='btn' href="/classroom/training/{{id}}/home/"><i class="fas fa-home"></i> Home</a>
+        <a href="/classroom/training/{{id}}/home/"><i class="fas fa-home"></i> Home</a>
+        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
         {{else}}
-        <a style="background-color: rgb(194, 219, 238); margin-right:10px;" title="Home" class='btn' href="/classroom/training/{{id}}/home/"><i class="fas fa-home"></i> Home</a>
+        <a href="/classroom/training/{{id}}/home/"><i class="fas fa-home"></i> Home</a>
+        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
         {{/if}}
+    </div>
+    <div class="col-md-2">
         {{#if skill}}
-        <a style="background-color: rgb(119, 173, 209); margin-right:10px;" title="Member Skills" class='btn' href="/classroom/training/{{id}}/skill/"><i class="fas fa-chart-bar"></i> Member Skills</a>
+        <a href="/classroom/training/{{id}}/skill/"><i class="fas fa-chart-bar"></i> Member Skills</a>
+        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
         {{else}}
-        <a style="background-color: rgb(194, 219, 238); margin-right:10px;" title="Member Skills" class='btn' href="/classroom/training/{{id}}/skill/"><i class="fas fa-chart-bar"></i> Member Skills</a>
+        <a href="/classroom/training/{{id}}/skill/"><i class="fas fa-chart-bar"></i> Member Skills</a>
+        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
         {{/if}}
+    </div>
+    <div class="col-md-2">
         {{#if contest}}
-        <a style="background-color: rgb(119, 173, 209); margin-right:10px;" title="Contest" class='btn' href="/classroom/training/{{id}}/contest/"><i class="fas fa-cubes"></i> Contests</a>
+        <a href="/classroom/training/{{id}}/contest/"><i class="fas fa-cubes"></i> Contests</a>
+        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
         {{else}}
-        <a style="background-color: rgb(194, 219, 238); margin-right:10px;" title="Contest" class='btn' href="/classroom/training/{{id}}/contest/"><i class="fas fa-cubes"></i> Contests</a>
+        <a href="/classroom/training/{{id}}/contest/"><i class="fas fa-cubes"></i> Contests</a>
+        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
         {{/if}}
+    </div>
+    <div class="col-md-2">
         {{#if discussion}}
-        <a style="background-color: rgb(119, 173, 209); margin-right:10px;" title="Discussions" class='btn' href="/classroom/training/{{id}}/discussion/"><i class="fas fa-comments"></i> Discussions</a>
+        <a href="/classroom/training/{{id}}/discussion/"><i class="fas fa-comments"></i> Discussions</a>
+        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
         {{else}}
-        <a style="background-color: rgb(194, 219, 238); margin-right:10px;" title="Discussions" class='btn' href="/classroom/training/{{id}}/discussion/"><i class="fas fa-comments"></i> Discussions</a>
+        <a href="/classroom/training/{{id}}/discussion/"><i class="fas fa-comments"></i> Discussions</a>
+        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
         {{/if}}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
     </div>
-    <hr style="width: 90%;">
 </div>
 
-<div class="blog-post-1" style="margin-top: 15px; background-color:#d7ebfa;">
+<div class="transparent-header-div">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="post-header" style="text-align: center;">
+                <h5 style="color: rgb(48, 111, 119);" class="media-heading"><b>Classroom: {{team_name}}</b></h5>
+                <h6 style="color: rgb(59, 145, 160);"><b>Moderator: <a href = "/profile/{{team_leader_handle}}/" style="color: #5bc0de; font-weight:700;">{{team_leader_handle}}</a></b></h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+{{#if home}}
+<div class="blog-post-1">
     <div class="row">
         <div class="col-md-8">
             <div class="post-header">
                 <h2 style="color: rgb(23, 81, 104);" class="media-heading">
-                    Classroom: <b>{{team_name}}</b>
+                    Classroom Information
                     {{#if own_profile}}
-                    <a style="background-color: rgb(163, 197, 211);" title="Update Classroom" class='btn' href="/classroom/update/{{id}}/"><i class="fas fa-edit"></i></a>
+                    <a style="background-color: rgb(210, 223, 228);" title="Update Classroom" class='btn' href="/classroom/update/{{id}}/"><i class="fas fa-edit"></i></a>
                     {{/if}}
                 </h2>
                 <br>
                 <h5>Institution Name: <b>{{institution_name}}</b></h5>
                 <h5>Classroom Purpose: <b>{{team_purpose}}</b></h5>
                 <h5>Classroom Moderator: <b><a href = "/profile/{{team_leader_handle}}/" style="color: #5bc0de; font-weight:700;">{{team_leader_handle}}</a></b></h5>
+                <h5>Classroom Managers: <b><a href = "/profile/{{team_leader_handle}}/" style="color: #5bc0de; font-weight:700;">{{team_leader_handle}}</a></b></h5>
                 <h5>Created On: <b>{{created_at}}</b></h5>
             </div>
         </div>
@@ -58,7 +85,6 @@
     </div>
 </div>
 
-{{#if home}}
 <div class="blog-post-1" style="margin-top: 15px; margin-bottom: 15px;">
     <div class="row">
 
@@ -161,8 +187,6 @@
     </table>
 </div>
 {{/if}}
-
-<br>
 
 {{#if skill}}
 <div class="table-type-1" id="categoryWiseSkillTableTop">
