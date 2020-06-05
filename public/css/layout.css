@@ -237,9 +237,24 @@ hr.thin {
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 2px;
-    box-shadow: 1px 1px 3px #7180AC;
+    box-shadow: 1px 1px 1px #7180AC;
     padding: 30px;
     color: #0B0C10;
+}
+
+.transparent-header-div {
+    background: rgb(206, 225, 235);
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 2px;
+    box-shadow: 1px 1px 3px #7180AC;
+    padding: 10px;
+    color: #0B0C10;
+}
+
+.page-box{
+    margin-top: 15px;
+    text-align: center;
 }
 
 .blog-post-text-box {
