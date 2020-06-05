@@ -13,9 +13,19 @@ const app = require("express")();
 
 //view engine setup
 app.set("views", path.join(__dirname, "views")); //setting views directory for views.
-app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
+app.engine('.hbs', expressHbs(
+	{
+		defaultLayout: 'layout',
+		extname: '.hbs',
+		helpers: {
+			reverseWord: function (value) {
+				var reversedWord = value.split("").reverse().join("");
+  				return reversedWord;
+			}
+		}
+	}
+));
 app.set("view engine", "hbs"); //setting view engine as handlebars
-
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
