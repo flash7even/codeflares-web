@@ -20,6 +20,11 @@
 				</div>
 			</div>
 		</div>
+		<div class="form-row" hidden>
+			<div class="form-group col-md-12">
+				<textarea type="text" id="blog_text_tmp" class="form-control blog-post-text-box" name="blog_text_tmp">{{blog_text}}</textarea>
+			</div>
+		</div>
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<textarea type="text" id="blog_text" class="form-control blog-post-text-box" name="blog_text"></textarea>
@@ -33,44 +38,7 @@
 
 
 <script type="text/javascript">
-    var simplemde = new SimpleMDE({
-        autofocus: true,
-        blockStyles: {
-            bold: "__",
-            italic: "_"
-        },
-        element: document.getElementById("blog_text"),
-        hideIcons: ["guide", "heading"],
-        indentWithTabs: false,
-        insertTexts: {
-            horizontalRule: ["", "\n\n-----\n\n"],
-            image: ["![](http://", ")"],
-            link: ["[", "](http://)"],
-            table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
-        },
-        initialValue: `{{blog_text}}`,
-        promptURLs: true,
-        renderingConfig: {
-            codeSyntaxHighlighting: true,
-        },
-        shortcuts: {
-            drawTable: "Cmd-Alt-T"
-        },
-        showIcons: ["code", "table"],
-        status: false,
-        status: ["autosave", "lines", "words", "cursor"],
-        status: ["autosave", "lines", "words", "cursor", {
-            className: "keystrokes",
-            defaultValue: function(el) {
-                this.keystrokes = 0;
-                el.innerHTML = "0 Keystrokes";
-            },
-            onUpdate: function(el) {
-                el.innerHTML = ++this.keystrokes + " Keystrokes";
-            }
-        }],
-        styleSelectedText: true,
-        tabSize: 4,
-    });
+    var simplemde = new SimpleMDE({ element: document.getElementById("blog_text")});
+    simplemde.value(document.getElementById("blog_text_tmp").value);
 </script>
  

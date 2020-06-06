@@ -131,10 +131,15 @@ router.updateBlogPost = async function(req, res, next) {
 }
 
 router.updateBlogPostSubmit = async function(req, res, next) {
+  console.log('updateBlogPostSubmit called')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
+  console.log('blog id:  ' + blog_id)
   var blog_data = req.body
+  console.log(blog_data)
+  delete blog_data['blog_text_tmp'];
+  console.log(blog_data)
   await blog_server.updateBlog(res, req, blog_data, blog_id);
   system_server.add_toast(req, 'Blog updated!')
   res.redirect('/blog/post/view/' + blog_id + '/');

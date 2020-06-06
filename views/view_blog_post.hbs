@@ -2,8 +2,6 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
-<p>We need to reverse the word "palindrome": {{reverseWord "palindrome"}}.</p>
-
 <div class="blog-post-1" style="margin-top: 15px;">
     <div class="post-header">
         <a href="/blog/post/view/{{blog_id}}/">
@@ -27,8 +25,9 @@
     <div class="post-sub-header">
         <p class="text-left"> <b><span style="color: rgb(214, 193, 7); padding-right:3px;">{{blog_writer_handle}}</span>, <span style="color: #95989B; padding-left:7px;"> {{updated_at}}</span></b></p>
     </div>
-    <div class="post-body">
-        <p id="blog_text"></p>
+
+    <div class="post-body" id = 'myid2'>
+        {{showdown_helper blog_text}}
     </div>
     <div class="post-footer">
         <p class="text-left"> Blog Topic : <b><span style="color: rgb(123, 137, 150); padding-right:3px;">{{blog_topic}}</span></b></p>
@@ -72,10 +71,6 @@
 <script>
 
     $(document).ready(function(){
-        var markdown_converter = new showdown.Converter()
-        var blog_text_html = markdown_converter.makeHtml(`{{blog_text}}`)
-        document.getElementById("blog_text").innerHTML = blog_text_html
-
         $(document).on('click' , 'button.comment-reply' , function(){
             var closestDiv = $(this).closest('div'); // also you can use $(this).parent()
             //closestDiv.fadeOut();
@@ -102,9 +97,6 @@
                         <a href="#">${comment_writer_handle}</a> <span style="color: #95989B;" class="comment-time">${updated_at}</span>
                     </span>
                     <div class="comment-text-box"><pre><p> ${comment_text}</p></pre></div>
-                    <p>I am okay</p>
-                    <p>I am okay</p>
-                    <p>I am okay</p>
                     <div class="comment-meta">
                             <a href="/vote/blog-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count}</span></a>
                             <a href="/vote/blog-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count}</span></a>

@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var session  = require('express-session'); //
 var flash      = require('req-flash'); //
-var expressHbs = require('express-handlebars'); // Express_Handelbars requirement
+var expressHbs = require('express-handlebars'), Handlebars = require('handlebars');
 const app = require("express")();
 
 //view engine setup
@@ -21,10 +21,20 @@ app.engine('.hbs', expressHbs(
 				var reversedWord = value.split("").reverse().join("");
   				return reversedWord;
 			},
-			markdown: require('helper-markdown')
+			markdown: require('helper-markdown'),
+			showdown_helper: function (text) {
+				var showdown  = require('showdown'),
+				converter = new showdown.Converter(),
+				html      = converter.makeHtml(text);
+				return new Handlebars.SafeString(html);
+			},
+			showdown_markdown: function (text) {
+				return new Handlebars.SafeString(text);
+			}
 		}
 	}
 ));
+
 app.set("view engine", "hbs"); //setting view engine as handlebars
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
