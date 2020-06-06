@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var session  = require('express-session'); //
 var flash      = require('req-flash'); //
 var expressHbs = require('express-handlebars'); // Express_Handelbars requirement
-
 const app = require("express")();
 
 //view engine setup
@@ -21,7 +20,8 @@ app.engine('.hbs', expressHbs(
 			reverseWord: function (value) {
 				var reversedWord = value.split("").reverse().join("");
   				return reversedWord;
-			}
+			},
+			markdown: require('helper-markdown')
 		}
 	}
 ));
