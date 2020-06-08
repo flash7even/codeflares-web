@@ -128,6 +128,20 @@ router.viewContest = async function(req, res, next) {
   res.render('view_single_contest', contest_details);
 }
 
+router.viewContestStandings = async function(req, res, next) {
+  console.log('viewContestStandings in route')
+  var url = req.url
+  var words = url.split("/");
+  var contest_id = words[words.length-2]
+  var contest_details = await contest_server.getContestDetails(res, req, contest_id);
+  var contest_standings = await contest_server.getContestStandings(res, req, contest_id);
+  contest_details['standings'] = contest_standings['standings']
+  console.log('contest_details: ')
+  console.log(contest_details)
+  contest_details = system_server.toast_update(req, contest_details)
+  res.render('view_contest_standings', contest_details);
+}
+
 router.viewAllContest = async function(req, res, next) {
   console.log('viewContest in route')
   var contest_list = await contest_server.getContestList(res, req, {});

@@ -1,0 +1,72 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+
+<div class="show-contest">
+    <div class="table-type-1">
+        <div class="table-title-2">
+		    <a href="/contest/view/{{id}}/"><h3 style="text-align: center; color: #275b64;"><b>Contest Title: {{contest_name}} [Level {{contest_level}}]</b></h3></a>
+		    <h4 style="text-align: center; color: #5bc0de;"><b>Offline Standings</b></h4>
+        </div>
+        <table id="standingsTable" class="table table-striped table-bordered">
+            <thead style="background-color: #8FC1E3; text-align: center;">
+                <tr>
+                    <th>User</th>
+                    {{#each standings.problem_list}}
+                        <th><a href = "/problem/view/{{id}}/" style="font-weight:500; text-decoration: underline;">{{problem_order}}</a></th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody style="text-align: center;">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    function getUserStatList(){
+        var data_list = [];
+        {{#each standings.user_stat}}
+            var data = []
+            var user_handle = `<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700;">{{user_handle}}</a>`
+            data.push(user_handle)
+            {{#each problem_stat}}
+                var user_status = "{{status}}"
+                if(user_status == "SOLVED"){
+                    data.push(`<a href=""><i class="fas fa-check" style="color: green;"></i></a>`)
+                }else{
+                    data.push("");
+                }
+            {{/each}}
+            console.log('data:')
+            console.log(data)
+            data_list.push(data)
+        {{/each}}
+        console.log('data_list:')
+        console.log(data_list)
+        return data_list;
+    }
+
+    function showStandingsTable(){
+        var dt_list = getUserStatList();
+        
+        $("#standingsTable").dataTable({
+            "aaData": dt_list,
+            paging: false,
+            searching: false,
+            ordering: false,
+            destroy: true,
+            scrollCollapse: true,
+            responsive: true,
+            pageLength: 50,
+        });
+    }
+
+    $(document).ready( function () {
+        showStandingsTable();
+    } );
+
+</script>
