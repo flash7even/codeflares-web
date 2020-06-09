@@ -47,6 +47,7 @@ function update_contest_data(contest){
     }
   }
   data['contest_name'] = contest['contest_name']
+  data['contest_access'] = contest['contest_access']
   data['contest_type'] = contest['contest_type']
   data['start_date'] = contest['start_date']
   data['end_date'] = contest['end_date']

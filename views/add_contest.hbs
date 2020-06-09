@@ -13,12 +13,20 @@
 		<div style="text-align: left; color: #113a46;" class="table-title">
 			<h6 style="text-align: left;"><b>Basic Informations</b></h6>
 		</div>
-		<hr width="100%;"  align="left">
+		<hr width="100%;" style="background-color: rgb(31, 85, 99);">
+
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+					<input type="text" id="contest_name" class="form-control" name="contest_name" placeholder="Contest Name">
+				</div>
+			</div>
+		</div>
 
 		<div class="form-row">
 			<div class="form-group col-md-3">
 				<div class="input-group">
-					<input type="text" id="contest_name" class="form-control" name="contest_name" placeholder="Contest Name">
+					<input type="text" id="description" class="form-control" name="description" placeholder="Description">
 				</div>
 			</div>
 			<div class="form-group col-md-3">
@@ -57,12 +65,15 @@
 		<div class="form-row">
 			<div class="form-group col-md-3">
 				<div class="input-group">
-					<input type="text" id="description" class="form-control" name="description" placeholder="Description">
+					<input type="number" id="problem_count" class="form-control" name="problem_count"  min="5" max="30" placeholder="Problem Count">
 				</div>
 			</div>
 			<div class="form-group col-md-3">
 				<div class="input-group">
-					<input type="number" id="problem_count" class="form-control" name="problem_count"  min="5" max="30" placeholder="Problem Count">
+					<select class="form-control" title="Access Level" id="contest_access" name="contest_access">
+						<option value="private">Private</option>
+						<option value="public">Public</option>
+					</select>
 				</div>
 			</div>
 			<div class="form-group col-md-3">
@@ -82,7 +93,7 @@
 		<div style="text-align: left; color: #113a46;" class="table-title">
 			<h6 style="text-align: left;"><b>Custom Parameters</b></h6>
 		</div>
-		<hr width="100%;"  align="left">
+		<hr width="100%;" style="background-color: rgb(31, 85, 99);">
 
 		<div class="category-group">
 			<div class="form-row control-group">

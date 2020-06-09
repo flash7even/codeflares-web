@@ -1,38 +1,34 @@
 var config = require('../../config.js');
 const axios = require('axios');
 
-var contest_search_url = config.server_host + 'contest/search/'
+var contest_search_url = config.server_host + 'contest/search'
+var contest_search_public_url = config.server_host + 'contest/public/search'
 var contest_submit_url = config.server_host + 'contest/'
 
 
 module.exports.getContestList = async function(res, req, search_param) {
-  console.log('getContestList called');
-  console.log(search_param)
-  var page = 0
-  var contest_list = []
-  var sess = req.session;
-  var access_token = sess.access_token
-  const auth_config = {
-      headers: { Authorization: `Bearer ${access_token}` }
-  };
-  while(1){
-    var post_url = contest_search_url + page.toString()
-    console.log("post_url: " + post_url)
-    let response = await axios.post(post_url, search_param, auth_config)
+    console.log('getContestList called');
+    console.log(search_param)
+    var sess = req.session;
+    var url = contest_search_public_url
+    if(sess.user_id){
+        url = contest_search_url
+    }
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    console.log("url: " + url)
+    let response = await axios.post(url, search_param, auth_config)
     .catch(error => {
         res.render('error_page', {});
     })
-
     if(response.status != 200 && response.status != 201){
         res.render('error_page', {});
     }
-    contest_list = response.data
-    page++
-    break;
-  }
-  console.log('getContestList done');
-  console.log(contest_list)
-  return contest_list
+    console.log('getContestList done');
+    console.log(response.data)
+    return response.data
 };
 
 module.exports.getContestDetails = async function(res, req, contest_id) {
