@@ -71,6 +71,24 @@ module.exports.getContestStandings = async function(res, req, contest_id) {
     return response.data
 };
 
+module.exports.getContestStandingsForUser = async function(res, req, contest_id, user_id) {
+    console.log('getContestStandingsForUser called');
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    var url = contest_submit_url + 'standings/' + contest_id + '/' + user_id
+    let response = await axios.get(url, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    console.log('getContestStandingsForUser done');
+    return response.data
+};
+
 module.exports.postContest = async function(res, req, contest_data) {
   var post_url = contest_submit_url
   console.log("post_url: " + post_url)

@@ -134,6 +134,7 @@ module.exports = function(newApp) {
 
     newApp.get('/contest/add/', contestController.addContestForm);
     newApp.get('/contest/standings/*', contestController.viewContestStandings);
+    newApp.post('/update/contest/standings/*', contestController.viewContestStandingsAfterUpdate);
     newApp.post('/contest/add/', contestController.addContestFormSubmit);
     newApp.get('/contest/view/*', contestController.viewContest);
     newApp.get('/contest/list/', contestController.viewAllContest);
