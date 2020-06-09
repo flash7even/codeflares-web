@@ -70,7 +70,7 @@
 
             {{#each problem_stat}}
             <tr>
-                <td>{{idx}}</td>
+                <td>{{rank}}</td>
                 <td><a href = "/problem/view/{{problem_info.id}}/" style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_info.problem_name}}</a></td>
                 <td><a style="color: #accbe1;" href="{{problem_info.source_link}}"><i class="fas fa-external-link-alt"></i></a></td>
                 <td>{{relevant_score}}</td>
@@ -104,7 +104,7 @@
 
             {{#each category_stat}}
             <tr>
-                <td>{{idx}}</td>
+                <td>{{rank}}</td>
                 <td><a href = "/category/view/{{category_info.category_id}}/" style="color: #4b1196; font-weight:500; text-decoration: underline;">{{category_info.category_title}}</a></td>
                 <td>{{category_info.category_difficulty}}</td>
                 <td>{{relevant_score}}</td>

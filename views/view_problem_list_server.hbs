@@ -68,7 +68,10 @@
         var pidx = 0
         for(pidx = 0;pidx<problem_list.length;pidx++){
             var problem = problem_list[pidx]
-            var prbolem_link = `<a href = "/problem/view/{{id}}/" style="color: #058876; font-weight:500; text-decoration: underline;">${problem.problem_name}</a>`
+            console.log(problem)
+            var prbolem_link = `<a href = "/problem/view/${problem.id}/" style="color: #058876; font-weight:500; text-decoration: underline;">${problem.problem_name}</a>`
+            console.log('prbolem_link: ')
+            console.log(prbolem_link)
             var source_link = `<a href = ${problem.source_link} style="color: #058876; font-weight:500; text-decoration: underline;"><i class="fas fa-link"></i></a>`
             var user_status = '<i class="fas fa-dove" style="color:#C4C400;"></i>'
             if (problem.solved == 'yes'){
