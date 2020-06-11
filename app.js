@@ -87,8 +87,8 @@ app.use(userSettingsSetter)
 
 require('./routes/index')(app); // getting access of index.js
 
-app.listen(5055, function () {
-	console.log('Example app listening on port 5055!')
+app.listen(80, function () {
+	console.log('Example app listening on port 80!')
 })
 
 module.exports = app;
