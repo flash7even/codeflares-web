@@ -71,28 +71,28 @@ router.showSignUp = function(req, res, next) {
 }
 
 router.logOutSubmit = async function(req, res, next) {
-    console.log('log out called')
-    var sess = req.session;
-    var access_token = sess.access_token
-    console.log(access_token);
-    const config = {
-        headers: { Authorization: `Bearer ${access_token}` }
-    };
-    console.log(config)
-    console.log("logout_url")
-    console.log(logout_url)
-    var response = await axios.post(logout_url, {}, config)
-    .catch(error => {
-        res.render('error_page', {});
-    })
-    req.session.destroy();
-    var toast_data = {
-        'toast_data': {
-            'toast_text': 'Logged out successfully! Hope to see you soon again.',
-            'toast_type': 'info',
+    try{
+        console.log('log out called')
+        var sess = req.session;
+        if(sess.access_token){
+            var access_token = sess.access_token
+            console.log(access_token);
+            const config = {
+                headers: { Authorization: `Bearer ${access_token}` }
+            };
+            console.log(config)
+            console.log("logout_url")
+            console.log(logout_url)
+            var response = await axios.post(logout_url, {}, config)
+            .catch(error => {
+                res.render('error_page', {});
+            })
+            req.session.destroy();
         }
+        res.redirect('/login/');
+    } catch (ex){
+        res.render('error_page', {});
     }
-    res.render('login', toast_data);
 }
 
 router.signUpSubmit = async function(req, res, next) {
