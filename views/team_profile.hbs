@@ -3,8 +3,10 @@
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/css/user_profile.css">
+	<script type = "text/javascript">
+		google.charts.load('current', {packages: ['corechart','line']});  
+	</script>
 </head>
-
 
 
 <div class="blog-post-1" style="margin-top: 15px;">
@@ -102,12 +104,11 @@ window.onload = function () {
 
 
 	//------ CodeFlares TEAM RATING HISTORY CHART -------//
+	
 	function show_codetrainer_team_rating(){
-		google.charts.load('current', {'packages':['line']});
 		google.charts.setOnLoadCallback(drawChart);
-
 		function drawChart() {
-			var data = new google.visualization.DataTable();
+            var data = new google.visualization.DataTable();
 
 			data.addColumn('date', 'Year');
 			data.addColumn('number', "Rating");
@@ -119,18 +120,14 @@ window.onload = function () {
 				rating_data.push({{rating}})
 				rating_data_list.push(rating_data)
 			{{/each}}
-
 			data.addRows(rating_data_list);
-
-			var options = {
-				chart: {
-					title: ''
-				},
-			};
-
-		var chart = new google.charts.Line(document.getElementById('team_rating_chart'));
-		chart.draw(data, google.charts.Line.convertOptions(options));
-		}
+			
+            var options = {
+               	pointsVisible: true	  
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('team_rating_chart'));
+            chart.draw(data, options);
+         }
 	}
 	//------ CodeFlares TEAM RATING HISTORY ENDS -------//
 
