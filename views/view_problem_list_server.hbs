@@ -84,7 +84,6 @@
                 var dependency = category_dependency_list[cidx]
                 if(cidx>0) category_list += ",  ";
                 category_list += `<a href = "/category/view/${dependency.category_id}/" style="color: #5bc0de; font-weight:700;">${dependency.category_info.category_title}</a>`
-                cidx++
             }
             var problem_data = [prbolem_link, source_link, problem.problem_difficulty, problem.oj_name, user_status, problem.solve_count, category_list];
             db_problem_list.push(problem_data)
