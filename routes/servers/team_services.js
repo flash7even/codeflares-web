@@ -153,14 +153,14 @@ module.exports.updateTeam = async function(res, req, team_id, team_data) {
     return response.data
   };
 
-module.exports.teamCodeforcesHistory = async function(res, req, team_id) {
+module.exports.teamRatingHistoryComparison = async function(res, req, team_id, platform) {
   console.log('teamDetails called')
   var sess = req.session;
   var access_token = sess.access_token
   const auth_config = {
       headers: { Authorization: `Bearer ${access_token}` }
   };
-  var url = team_cf_history_url + team_id + '/codeforces'
+  var url = team_cf_history_url + team_id + '/' + platform
   console.log("url: " + url)
   let response = await axios.get(url, {}, auth_config)
   .catch(error => {

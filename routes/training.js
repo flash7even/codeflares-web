@@ -82,8 +82,10 @@ router.viewTeamTraining = async function(req, res, next) {
     }
     if(page_name == 'rating-comparison'){
         training_data = await training_server.getTeamTrainingModel(res, req, team_id, training_param)
-        var team_cf_history = await team_server.teamCodeforcesHistory(res, req, team_id)
+        var team_cf_history = await team_server.teamRatingHistoryComparison(res, req, team_id, 'codeforces')
         training_data['codeforces_history'] = team_cf_history
+        var team_cfs_history = await team_server.teamRatingHistoryComparison(res, req, team_id, 'codeflares')
+        training_data['codeflares_history'] = team_cfs_history
         training_data['rating-comparison'] = true
     }
 

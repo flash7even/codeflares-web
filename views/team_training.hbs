@@ -195,7 +195,7 @@
         <h3 style="text-align: center;"><b>CodeFlares Rating History Comparison</b></h3>
     </div>
     <br>
-	<div id="codetrainer_rating_comparison_chart" style="height: 400px; width: 100%;"></div>
+	<div id="codeflares_rating_comparison_chart" style="height: 400px; width: 100%;"></div>
 </div>
 
 <div class="table-type-1">
@@ -435,13 +435,13 @@
 			var data = new google.visualization.DataTable();
 			data.addColumn('date', 'Year');
 
-			{{#each codeforces_history.handle_list}}
+			{{#each codeflares_history.handle_list}}
 				var user_handle = "{{user_handle}}"
 				data.addColumn('number', user_handle);
 			{{/each}}
 
 			var rating_data_list = []
-			{{#each codeforces_history.history}}
+			{{#each codeflares_history.history}}
 				var rating = []
 				rating.push(new Date({{date.year}}, {{date.month}}, {{date.day}}));
 				{{#each rating_list}}
@@ -458,7 +458,7 @@
 				},
 			};
 
-			var chart = new google.charts.Line(document.getElementById('codetrainer_rating_comparison_chart'));
+			var chart = new google.charts.Line(document.getElementById('codeflares_rating_comparison_chart'));
 			chart.draw(data, google.charts.Line.convertOptions(options));
 		}
 	}
