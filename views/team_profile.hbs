@@ -28,7 +28,7 @@
             </div>
 			<br>
 
-			<div class="row" style="text-align: center; padding: 10px;">
+			<div class="row" style="text-align: center;">
 				{{#if following}}
 					<div class="col-md-2">
 						<a href="/unfollow/{{id}}/" style="background-color: rgb(218, 223, 228); color:rgb(68, 169, 219);" class="btn btn-block"> <span class="fas fa-user-friends"></span> </a>
@@ -72,22 +72,6 @@
     </div>
     <br>
 	<div id="team_rating_chart" style="height: 400px; width: 100%;"></div>
-</div>
-
-<div class="table-type-1">
-    <div class="table-title-2">
-        <h3 style="text-align: center;"><b>CodeFlares Rating History Comparison</b></h3>
-    </div>
-    <br>
-	<div id="codetrainer_rating_comparison_chart" style="height: 400px; width: 100%;"></div>
-</div>
-
-<div class="table-type-1">
-    <div class="table-title-2">
-        <h3 style="text-align: center;"><b>CodeForces Rating History Comparison</b></h3>
-    </div>
-    <br>
-	<div id="codeforces_rating_comparison_chart" style="height: 400px; width: 100%;"></div>
 </div>
 
 <script>
@@ -134,85 +118,6 @@ window.onload = function () {
 	}
 	//------ CodeFlares TEAM RATING HISTORY ENDS -------//
 
-	//------ CodeFlares RATING HISTORY COMPARISON CHART -------//
-	function show_codetrainer_rating(){
-		google.charts.load('current', {'packages':['line']});
-		google.charts.setOnLoadCallback(drawChart);
-
-		function drawChart() {
-			var data = new google.visualization.DataTable();
-			data.addColumn('date', 'Year');
-
-			{{#each codeforces_history.handle_list}}
-				var user_handle = "{{user_handle}}"
-				data.addColumn('number', user_handle);
-			{{/each}}
-
-			var rating_data_list = []
-			{{#each codeforces_history.history}}
-				var rating = []
-				rating.push(new Date({{date.year}}, {{date.month}}, {{date.day}}));
-				{{#each rating_list}}
-					rating.push({{rating}})
-				{{/each}}
-				rating_data_list.push(rating)
-			{{/each}}
-
-			data.addRows(rating_data_list);
-
-			var options = {
-				chart: {
-				title: ''
-				},
-			};
-
-			var chart = new google.charts.Line(document.getElementById('codetrainer_rating_comparison_chart'));
-			chart.draw(data, google.charts.Line.convertOptions(options));
-		}
-	}
-	//------ CodeFlares RATING HISTORY COMPARISON CHART ENDS -------//
-
-
-	//------ CODEFORCES RATING HISTORY COMPARISON CHART -------//
-	function show_codeforces_rating(){
-		google.charts.load('current', {'packages':['line']});
-		google.charts.setOnLoadCallback(drawChart);
-
-		function drawChart() {
-			var data = new google.visualization.DataTable();
-			data.addColumn('date', 'Year');
-
-			{{#each codeforces_history.handle_list}}
-				var user_handle = "{{user_handle}}"
-				data.addColumn('number', user_handle);
-			{{/each}}
-
-			var rating_data_list = []
-			{{#each codeforces_history.history}}
-				var rating = []
-				rating.push(new Date({{date.year}}, {{date.month}}, {{date.day}}));
-				{{#each rating_list}}
-					rating.push({{rating}})
-				{{/each}}
-				rating_data_list.push(rating)
-			{{/each}}
-
-			data.addRows(rating_data_list);
-
-			var options = {
-				chart: {
-				title: ''
-				},
-			};
-
-			var chart = new google.charts.Line(document.getElementById('codeforces_rating_comparison_chart'));
-			chart.draw(data, google.charts.Line.convertOptions(options));
-		}
-	}
-	//------ CODEFORCES RATING HISTORY COMPARISON CHART ENDS -------//
-
-	show_codeforces_rating();
-	show_codetrainer_rating();
 	show_codetrainer_team_rating();
 
 </script>

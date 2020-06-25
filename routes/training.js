@@ -3,6 +3,7 @@
 var express = require('express');
 var router = express.Router();
 
+var team_server = require('./servers/team_services.js');
 var training_server = require('./servers/training_services.js');
 var contest_server = require('./servers/contest_services.js');
 var jshelper = require('./servers/jshelper.js');
@@ -71,10 +72,19 @@ router.viewTeamTraining = async function(req, res, next) {
         training_data['category-skill'] = true
     }
     if(page_name == 'contest'){
+        
         training_data = await training_server.getTeamTrainingModel(res, req, team_id, training_param)
+
         var contest_list = await contest_server.getContestList(res, req, {"contest_ref_id": team_id});
         training_data['contest_list'] = contest_list['contest_list']
+
         training_data['contest'] = true
+    }
+    if(page_name == 'rating-comparison'){
+        training_data = await training_server.getTeamTrainingModel(res, req, team_id, training_param)
+        var team_cf_history = await team_server.teamCodeforcesHistory(res, req, team_id)
+        training_data['codeforces_history'] = team_cf_history
+        training_data['rating-comparison'] = true
     }
 
     console.log(training_data)

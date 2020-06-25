@@ -97,9 +97,6 @@ router.viewTeam = async function(req, res, next) {
   var team_id = words[words.length-2]
   console.log(team_id)
   var team_details = await team_server.teamDetails(res, req, team_id)
-  var team_cf_history = await team_server.teamCodeforcesHistory(res, req, team_id)
-  console.log(team_cf_history)
-  team_details['codeforces_history'] = team_cf_history
   var sess = req.session;
   if(sess.user_id){
       var follow_status = await follower_server.followStatus(res, req, team_id)

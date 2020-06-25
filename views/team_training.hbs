@@ -6,7 +6,7 @@
 </head>
 
 <div class="row page-box">
-    <div class="col-md-3">
+    <div class="col-md-2">
     </div>
     <div class="col-md-2">
         {{#if training-plan}}
@@ -32,6 +32,15 @@
         <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
         {{else}}
         <a href="/training/team/{{id}}/contest/"><i class="fas fa-cubes"></i> Contest</a>
+        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
+        {{/if}}
+    </div>
+    <div class="col-md-2">
+        {{#if rating-comparison}}
+        <a href="/training/team/{{id}}/rating-comparison/"><i class="fas fa-cubes"></i> Rating Comparison</a>
+        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
+        {{else}}
+        <a href="/training/team/{{id}}/rating-comparison/"><i class="fas fa-cubes"></i> Rating Comparison</a>
         <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
         {{/if}}
     </div>
@@ -179,6 +188,25 @@
     </table>
 </div>
 {{/if}}
+
+{{#if rating-comparison}}
+<div class="table-type-1">
+    <div class="table-title-2">
+        <h3 style="text-align: center;"><b>CodeFlares Rating History Comparison</b></h3>
+    </div>
+    <br>
+	<div id="codetrainer_rating_comparison_chart" style="height: 400px; width: 100%;"></div>
+</div>
+
+<div class="table-type-1">
+    <div class="table-title-2">
+        <h3 style="text-align: center;"><b>CodeForces Rating History Comparison</b></h3>
+    </div>
+    <br>
+	<div id="codeforces_rating_comparison_chart" style="height: 400px; width: 100%;"></div>
+</div>
+{{/if}}
+
 
 <script type="text/javascript">
 
@@ -398,9 +426,88 @@
         });
     }
 
+	//------ CodeFlares RATING HISTORY COMPARISON CHART -------//
+	function show_codetrainer_rating(){
+		google.charts.load('current', {'packages':['line']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('date', 'Year');
+
+			{{#each codeforces_history.handle_list}}
+				var user_handle = "{{user_handle}}"
+				data.addColumn('number', user_handle);
+			{{/each}}
+
+			var rating_data_list = []
+			{{#each codeforces_history.history}}
+				var rating = []
+				rating.push(new Date({{date.year}}, {{date.month}}, {{date.day}}));
+				{{#each rating_list}}
+					rating.push({{rating}})
+				{{/each}}
+				rating_data_list.push(rating)
+			{{/each}}
+
+			data.addRows(rating_data_list);
+
+			var options = {
+				chart: {
+				title: ''
+				},
+			};
+
+			var chart = new google.charts.Line(document.getElementById('codetrainer_rating_comparison_chart'));
+			chart.draw(data, google.charts.Line.convertOptions(options));
+		}
+	}
+	//------ CodeFlares RATING HISTORY COMPARISON CHART ENDS -------//
+
+
+	//------ CODEFORCES RATING HISTORY COMPARISON CHART -------//
+	function show_codeforces_rating(){
+		google.charts.load('current', {'packages':['line']});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('date', 'Year');
+
+			{{#each codeforces_history.handle_list}}
+				var user_handle = "{{user_handle}}"
+				data.addColumn('number', user_handle);
+			{{/each}}
+
+			var rating_data_list = []
+			{{#each codeforces_history.history}}
+				var rating = []
+				rating.push(new Date({{date.year}}, {{date.month}}, {{date.day}}));
+				{{#each rating_list}}
+					rating.push({{rating}})
+				{{/each}}
+				rating_data_list.push(rating)
+			{{/each}}
+
+			data.addRows(rating_data_list);
+
+			var options = {
+				chart: {
+				title: ''
+				},
+			};
+
+			var chart = new google.charts.Line(document.getElementById('codeforces_rating_comparison_chart'));
+			chart.draw(data, google.charts.Line.convertOptions(options));
+		}
+	}
+	//------ CODEFORCES RATING HISTORY COMPARISON CHART ENDS -------//
+
     show_topic_wise_comparison()
     showCategoriesSkillDTSearchTable();
     show_topic_wise_solve_count_comparison();
     showContestsDTSearchTable();
+	show_codeforces_rating();
+	show_codetrainer_rating();
 
 </script>
