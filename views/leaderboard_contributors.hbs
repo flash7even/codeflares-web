@@ -59,7 +59,7 @@
                     var ajax_body = JSON.stringify( d );
                     var ajax_json = JSON.parse(ajax_body)
                     ajax_json['sort_by'] = 'contribution'
-                    ajax_json['sort_order'] = 'asc'
+                    ajax_json['sort_order'] = 'desc'
                     return JSON.stringify(ajax_json)
                 },
                 "dataSrc": function ( data ) {
