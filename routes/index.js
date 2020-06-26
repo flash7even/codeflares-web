@@ -17,9 +17,14 @@ module.exports = function(newApp) {
     /* GET home page. */
     newApp.get('/', homeController.showHome);
     newApp.get('/login/', homeController.showLogIn);
+    newApp.get('/forgot/password/', homeController.showForgotPassword);
+    newApp.post('/forgot/password/', homeController.showForgotPasswordSubmit);
+    newApp.get('/user/confirm/password/*', homeController.ForgotPasswordClicked);
+    newApp.post('/confirm/forgot/password/*', homeController.ForgotPasswordConfirm);
     newApp.post('/login/', homeController.logInSubmit);
     newApp.get('/logout/', homeController.logOutSubmit);
     newApp.get('/signup/', homeController.showSignUp);
+    newApp.get('/user/activate/*', homeController.ActivateUserAccountClicked);
     newApp.post('/signup/', homeController.signUpSubmit);
     newApp.get('/profile/*', homeController.showUserProfile);
     newApp.get('/user/leaderboard/*', homeController.leaderboard);

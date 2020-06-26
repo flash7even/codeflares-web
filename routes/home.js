@@ -42,9 +42,66 @@ router.topSolverList = async function(req, res, next) {
     res.render('leaderboard_top_solvers', {});
 }
 
-router.showLogIn = function(req, res, next) {
+router.showLogIn = async function(req, res, next) {
+    console.log('Inside showLogIn')
+    console.log(req.body)
     var data = system_server.toast_update(req, {})
     res.render('login', data);
+}
+
+router.showForgotPassword = async function(req, res, next) {
+    res.render('forgot_password', {});
+}
+
+router.showForgotPasswordSubmit = async function(req, res, next) {
+    var data = req.body
+    await user_server.forgot_password_request(res, req, data)
+    data = {}
+    data.toast_data = {
+        "toast_text": "Request submitted. Please check your email to reser your password.",
+        "toast_type": "primary"
+    }
+    res.render('forgot_password', data);
+}
+
+router.ActivateUserAccountClicked = async function(req, res, next) {
+    var url = req.url
+    var words = url.split("/");
+    var token = words[words.length-1]
+    await user_server.activate_user_account(res, req, token)
+    var data = {}
+    data.toast_data = {
+        "toast_text": "Your account has been activated, you can now proceed to login",
+        "toast_type": "primary"
+    }
+    res.render('login', data);
+}
+
+router.ForgotPasswordClicked = async function(req, res, next) {
+    var url = req.url
+    var words = url.split("/");
+    var token = words[words.length-1]
+    var resp = await user_server.forgot_password_token_confirm(res, req, token)
+    var data = {
+        "token": token,
+        "user_id": resp.user_id
+    }
+    res.render('forgot_password_reset', data);
+}
+
+router.ForgotPasswordConfirm = async function(req, res, next) {
+    var url = req.url
+    var words = url.split("/");
+    var token = words[words.length-1]
+    var user_id = words[words.length-2]
+
+    var user_data = req.body
+    var data = {
+        "new_password": user_data.password
+    }
+    await user_server.forgot_password_reset(res, req, user_id, data, token)
+    system_server.add_session_alert(req, "Your password has been updated, you can now proceed to login.")
+    res.redirect('/login/');
 }
 
 router.logInSubmit = async function(req, res, next) {
@@ -100,8 +157,13 @@ router.signUpSubmit = async function(req, res, next) {
     user_data['user_role'] = 'contestant'
     delete user_data['confirm_password']
     await user_server.postUser(res, req, user_data)
-    system_server.add_toast(req, "Registration successfully completed!")
-    res.redirect('/login/');
+
+    var data = {}
+    data.toast_data = {
+        "toast_text": "Request submitted. Please check your email to activate your account.",
+        "toast_type": "primary"
+    }
+    res.render('signup', data);
 }
 
 router.showUserProfile = async function(req, res, next) {
