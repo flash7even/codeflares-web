@@ -17,6 +17,8 @@ module.exports = function(newApp) {
     /* GET home page. */
     newApp.get('/', homeController.showHome);
     newApp.get('/login/', homeController.showLogIn);
+    newApp.get('/change/password/', homeController.changePassword);
+    newApp.post('/change/password/', homeController.changePasswordSubmit);
     newApp.get('/forgot/password/', homeController.showForgotPassword);
     newApp.post('/forgot/password/', homeController.showForgotPasswordSubmit);
     newApp.get('/user/confirm/password/*', homeController.ForgotPasswordClicked);

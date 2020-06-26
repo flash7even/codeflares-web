@@ -23,7 +23,6 @@ router.showHome = async function(req, res, next) {
     data['top_rated_users'] = top_rated_users.user_list
     data['top_solved_users'] = top_solved_users.user_list
     data['top_contributors'] = top_contributors.user_list
-    system_server.add_session_alert(req, "Welcome to CodeFlares. Please read our guideline before start.")
     data = system_server.toast_update(req, data)
     console.log(data)
     //data['alert_list'] = system_server.clean_session_alert(req)
@@ -47,6 +46,17 @@ router.showLogIn = async function(req, res, next) {
     console.log(req.body)
     var data = system_server.toast_update(req, {})
     res.render('login', data);
+}
+
+router.changePassword = async function(req, res, next) {
+    res.render('change_password', {});
+}
+
+router.changePasswordSubmit = async function(req, res, next) {
+    var sess = req.session;
+    await user_server.change_password(res, req, sess.user_id, req.body)
+    system_server.add_toast(req, "Your password has been updated.")
+    res.redirect('/profile/' + sess.username + '/');
 }
 
 router.showForgotPassword = async function(req, res, next) {
@@ -100,7 +110,7 @@ router.ForgotPasswordConfirm = async function(req, res, next) {
         "new_password": user_data.password
     }
     await user_server.forgot_password_reset(res, req, user_id, data, token)
-    system_server.add_session_alert(req, "Your password has been updated, you can now proceed to login.")
+    system_server.add_toast(req, "Your password has been updated, you can now proceed to login.")
     res.redirect('/login/');
 }
 
@@ -230,8 +240,8 @@ router.updateUserProfile = async function(req, res, next) {
 router.updateUserProfileSubmit = async function(req, res, next) {
     var sess = req.session;
     await user_server.updateUser(res, req, req.body, sess.user_id);
-    system_server.add_toast(req, "Updated user data successfully")
-    res.redirect('/');
+    system_server.add_toast(req, "Your profile has been updated.")
+    res.redirect('/profile/' + sess.username + '/');
 }
 
 

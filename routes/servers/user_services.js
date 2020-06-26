@@ -14,6 +14,7 @@ var forgot_pass_reset_url = config.server_host + 'user/confirmpass/'
 var team_search_url = config.server_host + 'team/search/user/'
 var serach_all_notification = config.server_host + 'notification/search/'
 var user_activate_url = config.server_host + 'user/activate/'
+var change_pass_url = config.server_host + 'user/changepass/'
 
 var system_server = require('./system_services.js');
 
@@ -274,6 +275,22 @@ module.exports.forgot_password_token_confirm = async function(res, req, token) {
 module.exports.forgot_password_reset = async function(res, req, user_id, data, token) {
     var url = forgot_pass_reset_url + user_id + '/' + token
     let response = await axios.put(url, data)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+};
+
+module.exports.change_password = async function(res, req, user_id, data) {
+    var url = change_pass_url + user_id
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.put(url, data, auth_config)
     .catch(error => {
         res.render('error_page', {});
     })
