@@ -100,3 +100,18 @@ body {
 .post-body a{
     color: rgb(89, 146, 212);
 }
+
+
+.sidebar-stat-table {
+    text-align: center;
+    overflow: hidden;
+    font-size: smaller;
+}
+
+.sidebar-stat-table tbody>tr>:nth-child(2){
+    word-break: break-word;
+}
+
+.sidebar-stat-table tbody>tr>:nth-child(3){
+    word-break: break-word;
+}

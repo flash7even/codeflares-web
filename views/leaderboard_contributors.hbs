@@ -32,7 +32,7 @@
         var idx = 0
         for(idx = 0;idx<user_list.length;idx++){
             var user = user_list[idx]
-            var user_link = `<a href = "/profile/${user.username}/" style="color: #5bc0de; font-weight:700;">${user.username}</a>`
+            var user_link = `<a href = "/profile/${user.username}/" style="color: ${user.skill_color}; font-weight:700;">${user.username}</a>`
             var data = [user.rank, user_link, user.contribution];
             dt_list.push(data)
         }

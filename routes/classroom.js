@@ -105,6 +105,8 @@ router.trainingClassroom = async function(req, res, next) {
   console.log(classroom_id)
   var sess = req.session;
   var classroom_details = await classroom_server.classroomDetails(res, req, classroom_id)
+  console.log('classroom_details')
+  console.log(classroom_details)
   if(sess.user_id == classroom_details.team_leader_id){
     classroom_details['own_profile'] = true;
   }

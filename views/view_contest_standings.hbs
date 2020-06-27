@@ -53,7 +53,7 @@
         var data_list = [];
         {{#each standings.user_stat}}
             var data = []
-            var user_handle = `<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700;">{{user_handle}}</a>`
+            var user_handle = `<a href = "/profile/{{user_handle}}/" style="color: {{user_skill_color}}; font-weight:700;">{{user_handle}}</a>`
             data.push("{{rank}}")
             data.push(user_handle)
             {{#each problem_stat}}

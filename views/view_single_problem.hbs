@@ -93,7 +93,7 @@
             var html = ``
             {{#each comment_list}}
                 var top = `<div class="comment-box">`
-                var comment_writer_handle = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                var comment_writer_handle = '<a href = "/profile/{{comment_writer_handle}}/" style="color: {{comment_writer_skill_color}}; font-weight:700;">{{comment_writer_handle}}</a>'
                 var updated_at = "{{updated_at}}"
                 var comment_text = `{{comment_text}}`
                 var comment_id = "{{comment_id}}"
@@ -129,7 +129,7 @@
                     var inside_html_2 = ``
                     {{#each comment_list}}
                         var top2 = `<div class="comment-box replied">`
-                        var comment_writer_handle2 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                        var comment_writer_handle2 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: {{comment_writer_skill_color}}; font-weight:700;">{{comment_writer_handle}}</a>'
                         var updated_at2 = "{{updated_at}}"
                         var comment_text2 = `{{comment_text}}`
                         var comment_id2 = "{{comment_id}}"
@@ -164,7 +164,7 @@
                             var inside_html_3 = ``
                             {{#each comment_list}}
                                 var top3 = `<div class="comment-box replied">`
-                                var comment_writer_handle3 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                                var comment_writer_handle3 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: {{comment_writer_skill_color}}; font-weight:700;">{{comment_writer_handle}}</a>'
                                 var updated_at3 = "{{updated_at}}"
                                 var comment_text3 = `{{comment_text}}`
                                 var comment_id3 = "{{comment_id}}"
@@ -199,7 +199,7 @@
                                 var inside_html_4 = ``
                                 {{#each comment_list}}
                                     var top4 = `<div class="comment-box replied">`
-                                    var comment_writer_handle4 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{comment_writer_handle}}</a>'
+                                    var comment_writer_handle4 = '<a href = "/profile/{{comment_writer_handle}}/" style="color: {{comment_writer_skill_color}}; font-weight:700;">{{comment_writer_handle}}</a>'
                                     var updated_at4 = "{{updated_at}}"
                                     var comment_text4 = `{{comment_text}}`
                                     var comment_id4 = "{{comment_id}}"
@@ -257,7 +257,7 @@
             console.log("getResourceList")
             var dt_list = [];
             {{#each resource_list}}
-                var resource_writer = '<a href = "/profile/{{resource_writer_handle}}/" style="color: #5bc0de; font-weight:700;">{{resource_writer_handle}}</a>'
+                var resource_writer = '<a href = "/profile/{{resource_writer_handle}}/" style="color: {{resource_writer_skill_color}}; font-weight:700;">{{resource_writer_handle}}</a>'
                 var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
                 action_link += "</div>"
                 var data = ["{{resource_title}}", "{{resource_body}}", resource_writer, "{{updated_at}}", action_link];

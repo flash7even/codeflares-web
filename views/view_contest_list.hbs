@@ -33,7 +33,7 @@
         {{#each contest_list}}
             var contest_link = '<a href = "/contest/view/{{id}}/" style="color: #818101; font-weight:700;">{{contest_name}}</a>'
             var setter_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
-            setter_link += '<a href = "/profile/{{setter_handle}}/" style="color: #5bc0de; font-weight:700;">{{setter_handle}}</a>'
+            setter_link += '<a href = "/profile/{{setter_handle}}/" style="color: {{skill_color}}; font-weight:700;">{{setter_handle}}</a>'
             setter_link += "</div>"
             var data = [contest_link, setter_link, "{{contest_type}}", "{{contest_level}}", "{{description}}", "{{start_date}}", "{{end_date}}"];
             data_list.push(data)

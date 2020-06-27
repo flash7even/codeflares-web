@@ -53,7 +53,7 @@
         <div class="col-md-12">
             <div class="post-header" style="text-align: center;">
                 <h5 style="color: rgb(14, 56, 61);" class="media-heading"><b>Classroom: {{team_name}}</b></h5>
-                <h6 style="color: rgb(59, 145, 160);"><b>Moderator: <a href = "/profile/{{team_leader_handle}}/" style="color: #5bc0de; font-weight:700;">{{team_leader_handle}}</a></b></h6>
+                <h6 style="color: rgb(59, 145, 160);"><b>Moderator: <a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></b></h6>
             </div>
         </div>
     </div>
@@ -75,8 +75,8 @@
                 <br>
                 <h5>Institution Name: <b>{{institution_name}}</b></h5>
                 <h5>Classroom Purpose: <b>{{team_purpose}}</b></h5>
-                <h5>Classroom Moderator: <b><a href = "/profile/{{team_leader_handle}}/" style="color: #5bc0de; font-weight:700;">{{team_leader_handle}}</a></b></h5>
-                <h5>Classroom Managers: <b><a href = "/profile/{{team_leader_handle}}/" style="color: #5bc0de; font-weight:700;">{{team_leader_handle}}</a></b></h5>
+                <h5>Classroom Moderator: <b><a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></b></h5>
+                <h5>Classroom Managers: <b><a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></b></h5>
                 <h5>Created On: <b>{{created_at}}</b></h5>
             </div>
         </div>
@@ -280,7 +280,7 @@
         {{#each member_list}}
             var member_id = "{{id}}"
             console.log('member_id: ' + member_id)
-            var user_name = '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700;">{{user_handle}}</a>'
+            var user_name = '<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:700;">{{user_handle}}</a>'
             var action_delete = ''
             
             if(logger_in_user == team_lead_id){
@@ -301,7 +301,7 @@
     function getCategoryWiseSkillList(){
         var data_list = [];
         {{#each member_stat}}
-            var user_profile = '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700; padding:3px;">{{user_handle}}</a>'
+            var user_profile = '<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:700; padding:3px;">{{user_handle}}</a>'
             var cur_member_data = [user_profile]
             {{#each skill_list}}
                 var skill_value = parseFloat("{{skill_value}}")
@@ -318,7 +318,7 @@
     function getCategoryWiseSolveCountList(){
         var data_list = [];
         {{#each member_stat}}
-            var user_profile = '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700; padding:3px;">{{user_handle}}</a>'
+            var user_profile = '<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:700; padding:3px;">{{user_handle}}</a>'
             var cur_member_data = [user_profile]
             {{#each skill_list}}
                 var solve_count = parseFloat("{{solve_count}}")

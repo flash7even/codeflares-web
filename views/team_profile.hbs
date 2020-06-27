@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="post-header">
-                <h1 style="color: rgb(199, 196, 42);"><b>{{team_name}}</b></h1>
+                <h2 style="color: {{skill_color}};"><b>{{team_name}}</b></h2>
 				<h5 id="team_members"></h5>
 				<br>
 				<h5><i style="color:rgb(3, 164, 182); width: 30px;" class="fas fa-layer-group"></i> <span style="color:rgb(3, 164, 182); font-weight: 800; font-size:25px;">{{skill_title}}</span></h5>
@@ -21,7 +21,7 @@
 				<h5><i style="color:rgb(13, 98, 155); width: 30px;" class="fas fa-cheese"></i> Problem Solved: <span style="color:rgb(13, 98, 155); font-weight: 800;">{{solve_count}}</span></h5>
                 <h5><i style="color:rgb(77, 126, 172); width: 30px;" class="fas fa-user-secret"></i> Followers: <span style="color:rgb(110, 134, 64); font-weight: 800;">{{follow_stat.follower_count}}</span></h5>
                 <h5><i style="color:rgb(56, 193, 228); width: 30px;" class="fas fa-user-friends"></i> Following: <span style="color:rgb(110, 134, 64); font-weight: 800;">{{follow_stat.following_count}}</span></h5>
-                <h5><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-tie"></i> Created By: <a href = "/profile/{{team_leader_handle}}/" style="color: #5bc0de; font-weight:700;">{{team_leader_handle}}</a></h5>
+                <h5><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-tie"></i> Created By: <a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></h5>
 				<h5><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-university"></i> Institution Name: {{institution_name}}</h5>
                 <h5><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-info-circle"></i> Team Purpose: {{team_purpose}}</h5>
                 <h5><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-calendar-week"></i> Registered Since: {{created_at}}</h5>
@@ -81,7 +81,7 @@ window.onload = function () {
 	var mem_count = 0;
 	{{#each member_list}}
 		if(mem_count>0) member_list_items += " ";
-    	member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700; padding:3px;">{{user_handle}}</a>'
+    	member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:700; padding:3px;">{{user_handle}}</a>'
 		mem_count += 1
 	{{/each}}
 
