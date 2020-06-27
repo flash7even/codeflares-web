@@ -52,7 +52,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="post-header" style="text-align: center;">
-                <h5 style="color: rgb(14, 56, 61);" class="media-heading"><b>Team Training Model of <span style="color: #6890aa;">{{team_name}}</span></b></h5>
+                <h5 style="color: rgb(14, 56, 61);" class="media-heading"><b>Team Training Model of <span style="color: #96942d;"><a href = "/team/view/{{id}}/"><b>{{team_name}}</b></a></span></b></h5>
                 <h6><b><span style="color: #4993dd;">Rating: {{skill_value}}</span> | <span style="color: #335120;">Solved: {{solve_count}}</span> |
                      <span style="color: #0d5f8a;">Current Score: {{total_score}}</span> | <span style="color: #587e26;">Next Week Target: {{next_week_target}}</span></b></h6>
             </div>
@@ -80,13 +80,13 @@
 
             {{#each problem_stat}}
             <tr>
-                <td>{{rank}}</td>
-                <td><a href = "/problem/view/{{problem_info.id}}/" style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_info.problem_name}}</a></td>
+                <td style="color: #066d7a;"><b>{{rank}}</b></td>
+                <td><a href = "/problem/view/{{problem_info.id}}/" style="color: #066d7a; font-weight:500; text-decoration: underline;">{{problem_info.problem_name}}</a></td>
                 <td><a style="color: #accbe1;" href="{{problem_info.source_link}}"><i class="fas fa-external-link-alt"></i></a></td>
-                <td>{{relevant_score}}</td>
+                <td style="color: #05578E;"><b>{{relevant_score}}</b></td>
                 <td>
-                    <a style="color: rgb(137, 161, 30);" href="#" class="edit" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-flag"></i></a>
-                    <a style="color: rgb(255, 124, 2);" href="#" class="delete" title="Delete from my list" data-toggle="tooltip"><i class="fas fa-trash"></i></a>
+                    <a style="color: rgb(198,182,96);" href="#" class="edit" title="Flag for 3 days" data-toggle="tooltip"><i class="fas fa-eye-slash"></i></a>
+                    <a style="color: rgb(221, 117, 19);" href="#" class="delete" title="Delete from my list" data-toggle="tooltip"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
                 {{/each}}
@@ -99,14 +99,15 @@
 
 <div class="table-wrapper" style="width: 100%%;  margin-right:1px auto">
     <div class="table-title">
-        <h4 style="text-align: center;"><b>Next Topics To Learn</b></h4>
+        <h4 style="text-align: center;"><b>Next Algorithms To Learn</b></h4>
     </div>
-    <table class="table table-striped" style="text-align: center;">
+    <table class="table table-striped" style="text-align: center; width: 100%; table-layout: fixed;">
         <thead>
             <tr>
                 <th>#</th>
-                <th style="width: 40%;">Algorithm Name</th>
-                <th>Algorithm Difficulty</th>
+                <th>Algorithm Name</th>
+                <th>Algorithm Skill</th>
+                <th>Difficulty</th>
                 <th>Relevant Score</th>
             </tr>
         </thead>
@@ -114,12 +115,13 @@
 
             {{#each category_stat}}
             <tr>
-                <td>{{rank}}</td>
-                <td><a href = "/category/view/{{category_info.category_id}}/" style="color: #4b1196; font-weight:500; text-decoration: underline;">{{category_info.category_title}}</a></td>
-                <td>{{category_info.category_difficulty}}</td>
-                <td>{{relevant_score}}</td>
+                <td style="color: #067a6a;"><b>{{rank}}</b></td>
+                <td><a href = "/category/view/{{category_info.category_id}}/" style="color: #066d7a; font-weight:500; text-decoration: underline;">{{category_info.category_title}}</a></td>
+                <td style="color: #05578E;"><b>{{skill_value}}</b></td>
+                <td style="color: #066d7a;">{{category_info.category_difficulty}}</td>
+                <td style="color: #05578E;"><b>{{relevant_score}}</b></td>
             </tr>
-                {{/each}}
+            {{/each}}
 
         </tbody>
     </table>

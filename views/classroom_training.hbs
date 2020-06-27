@@ -301,11 +301,13 @@
     function getCategoryWiseSkillList(){
         var data_list = [];
         {{#each member_stat}}
-            var cur_member_data = ["{{user_handle}}"]
+            var user_profile = '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700; padding:3px;">{{user_handle}}</a>'
+            var cur_member_data = [user_profile]
             {{#each skill_list}}
                 var skill_value = parseFloat("{{skill_value}}")
                 var skill_value_final = skill_value.toFixed(2);
-                cur_member_data.push(skill_value_final)
+                var val = `<span style="color: #05578E">${skill_value_final}</span>`
+                cur_member_data.push(val)
             {{/each}}
             console.log(cur_member_data)
             data_list.push(cur_member_data)
@@ -316,10 +318,12 @@
     function getCategoryWiseSolveCountList(){
         var data_list = [];
         {{#each member_stat}}
-            var cur_member_data = ["{{user_handle}}"]
+            var user_profile = '<a href = "/profile/{{user_handle}}/" style="color: #5bc0de; font-weight:700; padding:3px;">{{user_handle}}</a>'
+            var cur_member_data = [user_profile]
             {{#each skill_list}}
                 var solve_count = parseFloat("{{solve_count}}")
-                cur_member_data.push(solve_count)
+                var val = `<span style="color: #05578E">${solve_count}</span>`
+                cur_member_data.push(val)
             {{/each}}
             console.log(cur_member_data)
             data_list.push(cur_member_data)
