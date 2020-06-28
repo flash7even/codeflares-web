@@ -24,7 +24,7 @@
             <tr>
                 <td>{{task_title}}</td>
                 <td>{{task_description}}</td>
-                <td><a href = "/profile/{{task_added_by_user_handle}}/" style="color: #5bc0de; font-weight:700;">{{task_added_by_user_handle}}</a></td>
+                <td><a href = "/profile/{{task_added_by_user_handle}}/" style="color: {{task_added_by_user_skill_color}}; font-weight:700;">{{task_added_by_user_handle}}</a></td>
                 <td>{{deadline}}</td>
                 <td>
                     <a href="/classroom/task/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3;"><i class="fas fa-edit"></i></a>
@@ -32,7 +32,6 @@
                 </td>
             </tr>
                 {{/each}}
-
         </tbody>
     </table>
     <div class="add-task">
