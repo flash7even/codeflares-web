@@ -128,7 +128,7 @@
                     {{#each task_list}}
                     <tr>
                         <td>{{task_title}}</td>
-                        <td><a href = "/profile/{{task_added_by_user_handle}}/" style="color: #5bc0de; font-weight:700;">{{task_added_by_user_handle}}</a></td>
+                        <td><a href = "/profile/{{task_added_by_user_handle}}/" style="color: {{task_added_by_skill_color}}; font-weight:700;">{{task_added_by_user_handle}}</a></td>
                         <td>{{deadline}}</td>
                         <td>
                             <a href="/classroom/task/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3;"><i class="fas fa-edit"></i></a>
@@ -166,7 +166,7 @@
                     {{#each class_list}}
                     <tr>
                         <td>{{class_title}}</td>
-                        <td><a href = "/profile/{{class_moderator_id_user_handle}}/" style="color: #5bc0de; font-weight:700;">{{class_moderator_id_user_handle}}</a></td>
+                        <td><a href = "/profile/{{class_moderator_id_user_handle}}/" style="color: {{class_moderator_skill_color}}; font-weight:700;">{{class_moderator_id_user_handle}}</a></td>
                         <td>{{class_time}}</td>
                         <td>
                             <a href="/classroom/class/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3;"><i class="fas fa-edit"></i></a>
