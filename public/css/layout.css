@@ -1,7 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
-    font-family: 'Poppins', sans-serif;
-    background: #E1EFF6;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: #f4f8fa;
     min-height: 700px;
 }
 
@@ -27,7 +27,7 @@ a:focus {
 }
 
 .navbar-btn {
-    background: #E1EFF6;
+    background: #f4f8fa;
     box-shadow: none;
     border: none;
 }
@@ -53,9 +53,10 @@ a:focus {
 #sidebar {
     min-width: 220px;
     max-width: 220px;
-    background: #0B0C10;
+    background: rgb(11,13,18);
     color: #fff;
     transition: all 0.3s;
+    box-shadow: 0px 0px 5px #565e61;
 }
 
 #sidebar.active {
@@ -64,14 +65,14 @@ a:focus {
 
 #sidebar .sidebar-header {
     border-radius: 3px;
-    border-color: #7180AC;
+    border-color: #565e61;
     padding-top: 10px;
     padding-bottom: 20px;
 }
 
 #sidebar ul.components {
     padding: 10px 0;
-    border-bottom: 1px solid #7180AC;
+    border-bottom: 1px solid #565e61;
     font-size: medium;
 }
 
@@ -94,7 +95,7 @@ a:focus {
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
-    background: #7180AC;
+    background: #565e61;
 }
 
 a[data-toggle="collapse"] {
@@ -128,7 +129,7 @@ ul.CTAs a {
 
 a.download {
     background: #fff;
-    color: #000000;
+    color: #565e61;
 }
 
 a.article,
@@ -176,7 +177,7 @@ ul {
     right: 178px;
     left: unset;
     width: 450px;
-    box-shadow: 0px 0px 0.3px 0px #7180AC;
+    box-shadow: 0px 0px 0.3px 0px #565e61;
     padding-bottom: 0px;
     padding: 5px;
   }
@@ -185,7 +186,7 @@ ul {
     position: absolute;
     top: -20px;
     right: 15px;
-    border:5px solid #7180AC;
+    border:5px solid #565e61;
     border-color: transparent transparent #343A40 transparent;
   }
   .head{
@@ -237,20 +238,32 @@ hr.thin {
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 2px;
-    box-shadow: 1px 1px 1px #7180AC;
+    box-shadow: 1px 1px 1px #565e61;
     padding: 30px;
     color: #0B0C10;
 }
 
+.blog-post-2 {
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 2px;
+    box-shadow: 0px 0px 5px #565e61;
+    padding: 30px;
+    color: #0B0C10;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .transparent-header-div {
-    background: #f3f9fa;
+    background: #ffffff;
     border-radius: 3px;
     padding: 10px;
     margin-bottom: 2px;
-    box-shadow: 1px 1px 3px #7180AC;
+    box-shadow: 1px 1px 3px #565e61;
     padding: 10px;
     color: #0B0C10;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 0px 0px 5px #565e61;
     border: 1px solid rgb(237, 243, 245);
     margin-bottom: 10px;
 }
@@ -393,4 +406,8 @@ hr.thin {
     width: 98%;
     float: right;
     margin-top: 7px;
+}
+
+.skill-color {
+    color: #ff1414;
 }

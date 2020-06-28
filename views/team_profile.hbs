@@ -9,56 +9,54 @@
 </head>
 
 
-<div class="blog-post-1" style="margin-top: 15px;">
+<div class="blog-post-2" style="margin-top: 15px;">
     <div class="row">
         <div class="col-md-8">
             <div class="post-header">
-                <h2 style="color: {{skill_color}};"><b>{{team_name}}</b></h2>
-				<h5 id="team_members"></h5>
+                <h1 style="color: {{skill_color}};"><b>{{team_name}}</b></h1>
+				<h6 id="team_members"></h6>
 				<br>
-				<h5><i style="color:rgb(3, 164, 182); width: 30px;" class="fas fa-layer-group"></i> <span style="color:rgb(3, 164, 182); font-weight: 800; font-size:25px;">{{skill_title}}</span></h5>
-				<h5><i style="color:rgb(3, 164, 182); width: 30px;" class="fas fa-poll-h"></i> Team Rating: <span style="color:rgb(3, 164, 182); font-weight: 800;">{{skill_value}}</span></h5>
-				<h5><i style="color:rgb(13, 98, 155); width: 30px;" class="fas fa-cheese"></i> Problem Solved: <span style="color:rgb(13, 98, 155); font-weight: 800;">{{solve_count}}</span></h5>
-                <h5><i style="color:rgb(77, 126, 172); width: 30px;" class="fas fa-user-secret"></i> Followers: <span style="color:rgb(110, 134, 64); font-weight: 800;">{{follow_stat.follower_count}}</span></h5>
-                <h5><i style="color:rgb(56, 193, 228); width: 30px;" class="fas fa-user-friends"></i> Following: <span style="color:rgb(110, 134, 64); font-weight: 800;">{{follow_stat.following_count}}</span></h5>
-                <h5><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-tie"></i> Created By: <a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></h5>
-				<h5><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-university"></i> Institution Name: {{institution_name}}</h5>
-                <h5><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-info-circle"></i> Team Purpose: {{team_purpose}}</h5>
-                <h5><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-calendar-week"></i> Registered Since: {{created_at}}</h5>
+				<h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-layer-group"></i> <span style="color:rgb(3, 164, 182); font-weight: 800; font-size:25px;">{{skill_title}}</span></h6>
+				<h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-poll-h"></i> Team Rating: <span style="color:rgb(3, 164, 182); font-weight: 800;">{{skill_value}}</span></h6>
+				<h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-cheese"></i> Problem Solved: <span style="color:rgb(13, 98, 155); font-weight: 800;">{{solve_count}}</span></h6>
+                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-secret"></i> Followers: <span style="color:rgb(110, 134, 64); font-weight: 800;">{{follow_stat.follower_count}}</span></h6>
+                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-secret"></i> Following: <span style="color:rgb(110, 134, 64); font-weight: 800;">{{follow_stat.following_count}}</span></h6>
+                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-tie"></i> Created By: <a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></h6>
+				<h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-university"></i> Institution Name: {{institution_name}}</h6>
+                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-info-circle"></i> Team Purpose: {{team_purpose}}</h6>
+                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-calendar-week"></i> Registered Since: {{created_at}}</h6>
             </div>
 			<br>
 
-			<div class="row" style="text-align: center;">
+			<div class="row">
 				{{#if following}}
-					<div class="col-md-2">
-						<a href="/unfollow/{{id}}/" style="background-color: rgb(218, 223, 228); color:rgb(68, 169, 219);" class="btn btn-block"> <span class="fas fa-user-friends"></span> </a>
+					<div class="col-md-1" style="padding-left: 0px;">
+						<a href="/unfollow/{{id}}/" style="color:rgb(68, 169, 219);" class="btn btn-block"> <span class="fas fa-user-friends"></span> </a>
 					</div>
 				{{/if}}
 				{{#if unfollowing}}
-					<div class="col-md-2">
-						<a href="/follow/{{id}}/" style="background-color: rgb(218, 223, 228); color:rgb(145, 156, 160);" class="btn btn-block"><span class="fas fa-user-friends"></span> </a>
+					<div class="col-md-1" style="padding-left: 0px;">
+						<a href="/follow/{{id}}/" style="color:rgb(145, 156, 160);" class="btn btn-block"><span class="fas fa-user-friends"></span> </a>
 					</div>
 				{{/if}}
 				{{#if session.user_id}}
-				<div class="col-md-2">
-					<a href="/team/sync/{{id}}/" style="background-color: rgb(218, 223, 228);  color:rgb(39, 124, 150);" class="btn btn-block"><span class="fas fa-sync"></span> </a>
+				<div class="col-md-1" style="padding-left: 0px;">
+					<a href="/team/sync/{{id}}/" style=" color:rgb(39, 124, 150);" class="btn btn-block"><span class="fas fa-sync"></span> </a>
 				</div>
 				{{/if}}
 				{{#if own_profile}}
-				<div class="col-md-2">
-					<a href="/team/update/{{id}}/" style="background-color: rgb(218, 223, 228);  color:rgb(62, 100, 53);" class="btn btn-block"><span class="fas fa-user-edit"></span> </a>
+				<div class="col-md-1" style="padding-left: 0px;">
+					<a href="/team/update/{{id}}/" style=" color:rgb(62, 100, 53);" class="btn btn-block"><span class="fas fa-user-edit"></span> </a>
 				</div>
 				{{/if}}
-				{{#if session.user_id}}
-				<div class="col-md-2">
-					<a href="/training/team/{{id}}/training-plan/" style="background-color: rgb(218, 223, 228);  color:rgb(53, 93, 100);" class="btn btn-block"><span title="Training Plan" class="fas fa-tenge"></span></a>
+				<div class="col-md-1" style="padding-left: 0px;">
+					<a href="/training/team/{{id}}/training-plan/" style=" color:rgb(53, 93, 100);" class="btn btn-block"><span title="Training Plan" class="fas fa-tenge"></span></a>
 				</div>
-				{{/if}}
 			</div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="padding: 30px">
 			<div class="image-wrapper">
-				<img src="/img/profile.png" alt="image" height="380" width="380">
+				<img src="/img/profile-8.png" alt="image" height="360" width="300">
 			</div>
         </div>
     </div>
@@ -66,7 +64,7 @@
 
 <br>
 
-<div class="table-type-1">
+<div class="table-type-2">
     <div class="table-title-2">
         <h3 style="text-align: center;"><b>CodeFlares Team Rating History</b></h3>
     </div>
@@ -80,8 +78,8 @@ window.onload = function () {
 	var member_list_items = "";
 	var mem_count = 0;
 	{{#each member_list}}
-		if(mem_count>0) member_list_items += " ";
-    	member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:700; padding:3px;">{{user_handle}}</a>'
+		if(mem_count>0) member_list_items += ", ";
+    	member_list_items += '<b><a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; padding:2px;">{{user_handle}}</a></b>'
 		mem_count += 1
 	{{/each}}
 

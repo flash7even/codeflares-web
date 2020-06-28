@@ -1,6 +1,5 @@
 body {
     color: #0B0C01;
-    font-family: 'Roboto', sans-serif;
     font-size: small;
     line-height: inherit;
 }
@@ -84,6 +83,16 @@ body {
     padding: 5px;
     margin-bottom: 15px;
     box-shadow: 1px 1px 3px #7180AC;
+    padding: 30px;
+    color: #0B0C10;
+}
+
+.table-type-2 {
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 5px #565e61;
     padding: 30px;
     color: #0B0C10;
 }

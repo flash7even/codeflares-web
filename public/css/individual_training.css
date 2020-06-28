@@ -8,8 +8,7 @@ body {
     margin-bottom: 10px;
     margin-top: 0px;
     background: rgb(255, 255, 255);
-    border: 1px solid #f3f3f3;
-    box-shadow: 1px 1px 3px #7180AC;
+    border: 1px solid #dcdfe0;
     font-size: small;
 }
 .table-title {
