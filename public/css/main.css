@@ -97,6 +97,16 @@ body {
     color: #0B0C10;
 }
 
+.sidebar-rating-table {
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 5px #565e61;
+    padding: 5px;
+    padding-top: 15px;
+}
+
 .table-title-2 {
     font-family: 'Courier New', Courier, monospace;
     color: rgb(25, 46, 71);
@@ -114,7 +124,6 @@ body {
 .sidebar-stat-table {
     text-align: center;
     overflow: hidden;
-    font-size: smaller;
 }
 
 .sidebar-stat-table tbody>tr>:nth-child(2){
