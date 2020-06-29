@@ -254,6 +254,15 @@ hr.thin {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.blog-post-3 {
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #565e61;
+    padding: 30px;
+    color: #0B0C10;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .transparent-header-div {
     background: #ffffff;
     border-radius: 3px;

@@ -97,6 +97,16 @@ body {
     color: #0B0C10;
 }
 
+.table-type-3 {
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 15px;
+    box-shadow: 0px 0px 5px #565e61;
+    padding: 30px;
+    color: #0B0C10;
+}
+
 .sidebar-rating-table {
     background: #ffffff;
     border-radius: 5px;
@@ -105,6 +115,7 @@ body {
     box-shadow: 0px 0px 5px #565e61;
     padding: 5px;
     padding-top: 15px;
+    padding-bottom: 1px;
 }
 
 .table-title-2 {

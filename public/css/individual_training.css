@@ -13,12 +13,21 @@ body {
 }
 .table-wrapper-2 {
     color: black;
-    padding: 20px 25px;
+    padding: 5px;
     margin: 30px auto;
     margin-bottom: 10px;
     margin-top: 0px;
     background: rgb(255, 255, 255);
     box-shadow: 0px 0px 5px #565e61;
+    border: 1px solid #dcdfe0;
+    font-size: small;
+}
+.table-wrapper-3 {
+    color: black;
+    margin: 15px auto;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    background: rgb(255, 255, 255);
     border: 1px solid #dcdfe0;
     font-size: small;
 }
@@ -28,7 +37,6 @@ body {
     padding: 8px;
     padding-top: 15px;
     font-size: smaller;
-    margin: -20px -25px 10px;
 }
 .table-title h2 {
     margin: 5px 0 0;

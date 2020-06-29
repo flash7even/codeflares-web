@@ -18,7 +18,7 @@
     function viewBlogInBlogs(){
         {{#each blog_list}}
             var html = `
-                <div class="blog-post-2">
+                <div class="blog-post-1">
                 <div class="post-header">
                     <a href="/blog/post/view/{{blog_id}}/"><h2 style="color: rgb(23, 81, 104);" class="media-heading"><b>{{blog_title}}</b></h2></a>
                 </div>
@@ -45,6 +45,7 @@
                     </div>
                 </div>
             </div>
+            <br>
             `
             $(".blogs").append(html);
         {{/each}}
