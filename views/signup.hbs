@@ -9,8 +9,9 @@
 			<div class="form-group">
 				<div class="input-group">
 					<span style="padding-right: 10px;" class="input-group-addon"><i class="fa fa-user"></i></span>
-					<input type="text" class="form-control" name="username" placeholder="Username" required="required">
+					<input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required">
 				</div>
+			<span style="padding-left: 30px;" id='username_message'></span>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
@@ -21,13 +22,14 @@
         <div class="form-group">
 			<div class="input-group">
 				<span style="padding-right: 10px;" class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-				<input type="email" class="form-control" name="email" placeholder="Email Address" required="required">
+				<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required="required">
 			</div>
+			<span style="padding-left: 30px;" id='email_message'></span>
         </div>
 		<div class="form-group">
 			<div class="input-group">
 				<span style="padding-right: 10px;" class="input-group-addon"><i class="fa fa-lock"></i></span>
-				<input type="text" class="form-control" name="password" placeholder="Password" required="required">
+				<input type="password" class="form-control" id="password" name="password" placeholder="Password" required="required">
 			</div>
         </div>
 		<div class="form-group">
@@ -36,8 +38,9 @@
 					<i class="fa fa-lock"></i>
 					<i class="fa fa-check"></i>
 				</span>
-				<input type="text" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+				<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required="required">
 			</div>
+			<span style="padding-left: 30px;" id='password_message'></span>
         </div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
@@ -83,3 +86,61 @@
 	<div class="text-center">Already have an account? <a style="color: rgb(40, 167, 167);" href="/login/">Login here</a>.</div>
 	</form>
 </div>
+
+<script>
+	var user_search_url = 'http://localhost:5056/api/user/search'
+	$('#confirm_password').on('keyup', function () {
+	if ($('#password').val() == $('#confirm_password').val()) {
+		$('#password_message').html('Password matched').css('color', 'green');
+	} else 
+		$('#password_message').html('Password does not match').css('color', 'red');
+	});
+	$('#username').on('keyup', function () {
+		var username = $('#username').val();
+		$.ajax({
+			url: user_search_url,
+			dataType: 'json',
+			type: 'post',
+			contentType: 'application/json',
+			data: JSON.stringify({"username": username }),
+			processData: false,
+			success: function( data, textStatus, jQxhr ){
+				var resp_str = JSON.stringify( data );
+				var resp = JSON.parse(resp_str)
+				var len = resp.user_list.length
+				if(len != 0){
+					$('#username_message').html('Username already exists.').css('color', 'red');
+				}else{
+					$('#username_message').html('').css('color', 'green');
+				}
+			},
+			error: function( jqXhr, textStatus, errorThrown ){
+				console.log( errorThrown );
+			}
+		});
+	})
+	$('#email').on('keyup', function () {
+		var email = $('#email').val();
+		$.ajax({
+			url: user_search_url,
+			dataType: 'json',
+			type: 'post',
+			contentType: 'application/json',
+			data: JSON.stringify({"email": email }),
+			processData: false,
+			success: function( data, textStatus, jQxhr ){
+				var resp_str = JSON.stringify( data );
+				var resp = JSON.parse(resp_str)
+				var len = resp.user_list.length
+				if(len != 0){
+					$('#email_message').html('Email already taken.').css('color', 'red');
+				}else{
+					$('#email_message').html('').css('color', 'green');
+				}
+			},
+			error: function( jqXhr, textStatus, errorThrown ){
+				console.log( errorThrown );
+			}
+		});
+	})
+</script>
