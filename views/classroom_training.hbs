@@ -66,9 +66,6 @@
             <div class="post-header">
                 <h2 style="color: rgb(23, 81, 104);" class="media-heading">
                     Classroom Information
-                    {{#if own_profile}}
-                    <a style="background-color: rgb(210, 223, 228);" title="Update Classroom" class='btn' href="/classroom/update/{{id}}/"><i class="fas fa-edit"></i></a>
-                    {{/if}}
                 </h2>
                 <br>
                 <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-university"></i> Institution Name: <b>{{institution_name}}</b></h6>
@@ -76,6 +73,9 @@
                 <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-tie"></i> Classroom Moderator: <b><a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></b></h6>
                 <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-tie"></i> Classroom Managers: <b><a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></b></h6>
                 <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-calendar-week"></i> Registered Since: <b>{{created_at}}</b></h6>
+                {{#if own_profile}}
+                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-edit"></i> <a style="color: rgb(27, 100, 143);" href="/classroom/update/{{id}}/">Update Classroom</a></h6>
+                {{/if}}
             </div>
         </div>
         <div class="col-md-4">
