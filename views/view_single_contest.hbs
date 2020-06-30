@@ -5,14 +5,12 @@
 <div class="show-contest">
     <div class="table-type-2">
         <div class="table-title-2">
-		    <h2 style="text-align: center; color: #275b64;"><b>Contest Title: {{contest_name}} [Level {{contest_level}}]</b></h2>
-		    <h4 style="text-align: center; color: #275b64;"><b>Setter: <a href="/profile/{{user_handle}}/" style="color: {{skill_color}};">{{setter_handle}}</a></b></h4>
-		    <a href="/contest/standings/{{id}}/"><h6 style="text-align: center; color: #599ba7;"><b>Offline Standings</b></h6></a>
-            <h6 style="text-align: center; font-size:16px; color: #000000;"><b>Time: {{start_date}} - {{end_date}} </b></h6>
+		    <a href="/contest/view/{{id}}/"><h5 style="text-align: center; color: #2b3a47;"><b>Contest Title: {{contest_name}} [Level {{contest_level}}]</b></h5></a>
+		    <a href="/contest/standings/{{id}}/"><h6 style="text-align: center; color: #2b3a47;"><b>Offline Standings</b></h6></a>
         </div>
         <br>
-        <table id="problemListTable" class="table table-striped table-bordered" style="text-align: center;">
-            <thead style="background-color: #8FC1E3;">
+        <table id="problemListTable" class="table table-striped" style="text-align: center;">
+            <thead style="background-color: #ffffff;">
                 <tr>
                     <th>Problem Order</th>
                     <th>Problem Name</th>
@@ -25,6 +23,8 @@
             <tbody>
             </tbody>
         </table>
+        <br>
+        <h6 style="text-align: center; font-size:small;">Contest Set by <a href="/profile/{{user_handle}}/" style="color: {{user_skill_color}};">{{setter_handle}}</a>, from <span style="color: rgb(73, 141, 185);">{{start_date}}</span> to <span style="color: rgb(73, 141, 185);">{{end_date}}</span></h6>
     </div>
 </div>
 
@@ -51,6 +51,7 @@
             paging: false,
             searching: false,
             ordering: false,
+            info: false,
             destroy: true,
             scrollCollapse: true,
             responsive: true,

@@ -6,8 +6,8 @@
 <div class="show-contest">
     <div class="table-type-2">
         <div class="table-title-2">
-		    <a href="/contest/view/{{id}}/"><h3 style="text-align: center; color: #275b64;"><b>Contest Title: {{contest_name}} [Level {{contest_level}}]</b></h3></a>
-		    <h4 style="text-align: center; color: #599ba7;"><b>Offline Standings</b></h4>
+		    <a href="/contest/view/{{id}}/"><h5 style="text-align: center; color: #2b3a47;"><b>Contest Title: {{contest_name}} [Level {{contest_level}}]</b></h5></a>
+		    <a href="/contest/standings/{{id}}/"><h6 style="text-align: center; color: #2b3a47;"><b>Offline Standings</b></h6></a>
         </div>
         <div style="text-align: center; margin: auto; width: 10%;">	
             <form action="/update/contest/standings/{{id}}/" method="post">
@@ -29,15 +29,15 @@
             </form>
         </div>
         <br>
-        <table id="standingsTable" class="table table-striped table-bordered">
-            <thead style="background-color: #8FC1E3; text-align: center;">
+        <table id="standingsTable" class="table standings-table">
+            <thead style="background-color: #ffffff; text-align: center;">
                 <tr>
-                    <th>Rank</th>
-                    <th>User</th>
+                    <td style="width: 5%;"><b>Rank</b></td>
+                    <td><b>User</b></td>
                     {{#each standings.problem_list}}
-                        <th><a href = "/problem/view/{{id}}/" style="font-weight:500; text-decoration: underline;">{{problem_order}}</a></th>
+                        <td><b><a href = "/problem/view/{{id}}/" style="font-weight:500; text-decoration: underline;">{{problem_order}}</a></b></td>
                     {{/each}}
-                    <th>Score</th>
+                    <td><b>Score</b></td>
                 </tr>
             </thead>
             <tbody style="text-align: center;">
@@ -79,8 +79,8 @@
         
         $("#standingsTable").dataTable({
             "aaData": dt_list,
-            paging: false,
-            searching: false,
+            paging: true,
+            searching: true,
             ordering: false,
             destroy: true,
             scrollCollapse: true,
