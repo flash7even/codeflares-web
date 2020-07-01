@@ -1,8 +1,6 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/css/individual_training.css">
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 
@@ -31,17 +29,33 @@
     </div>
 </div>
 
-<div class="transparent-header-div">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="post-header" style="text-align: center;">
-                <h5 style="color: rgb(14, 56, 61);;" class="media-heading"><b>Individual Training Model of <span style="color: {{user_details.skill_color}};"><a href = "/profile/{{user_details.username}}/">{{user_details.username}}</a></span></b></h5>
-                
-                <h6><b><span style="color: #175a56;">Rating: {{user_details.skill_value}}</span> |
-                 <span style="color: #2c1a55;">Solved: {{user_details.solve_count}}</span> |
-                     <span style="color: #0d5f8a;">Current Score: {{user_details.total_score}}</span> |
-                      <span style="color: #56752e;">Next Week Target: {{user_details.next_week_target}}</span></b></h6>
-            </div>
+<div class="transparent-header-div" style="text-align: center;">
+    <h4 style="color: rgb(14, 56, 61);;" class="media-heading"><b>Individual Training Model - <span style="color: {{user_details.skill_color}};"><a href = "/profile/{{user_details.username}}/">{{user_details.username}}</a></span></b></h4>
+    <br>
+    <div  class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+            <h6><span style="color: #2b3a47;">User Rating</span></h6>
+            <hr style="color: #2b3a47; width: 90%;">
+            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{user_details.skill_value}}</span></h6>
+        </div>
+        <div class="col-md-2">
+            <h6><span style="color: #2b3a47;">Solve Count</span></h6>
+            <hr style="color: #2b3a47; width: 90%;">
+            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{user_details.solve_count}}</span></h6>
+        </div>
+        <div class="col-md-2">
+            <h6><span style="color: #2b3a47;">Score Earned</span></h6>
+            <hr style="color: #2b3a47; width: 90%;">
+            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{user_details.total_score}}</span></h6>
+        </div>
+        <div class="col-md-2">
+            <h6><span style="color: #2b3a47;">Target Score</span></h6>
+            <hr style="color: #2b3a47; width: 90%;">
+            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{user_details.next_week_target}}</span></h6>
+        </div>
+        <div class="col-md-2">
         </div>
     </div>
 </div>
@@ -98,7 +112,7 @@
                 {{#each category_stat}}
                 <tr>
                     <td style="color: #2b3a47; font-weight: 500px;">{{rank}}</td>
-                    <td style=""><a href = "/category/view/{{category_info.category_id}}/" style="color: #1770ac; font-weight:500; text-decoration: underline;">{{category_info.category_title}}</a></td>
+                    <td style=""><a href = "/category/view/{{category_info.category_id}}/" style="color: #0061a1; font-weight:500; text-decoration: underline;">{{category_info.category_title}}</a></td>
                     <td style="color: #2b3a47; font-weight: 500px;">{{skill_value}}</td>
                     <td style="color: #2b3a47; font-weight: 500px;">{{category_info.category_difficulty}}</td>
                     <td style="color: #2b3a47; font-weight: 500px;">{{relevant_score}}</td>
@@ -111,9 +125,9 @@
 {{/if}}
 
 {{#if category-skill}}
-<div class="table-wrapper-2" id="topicWiseSkill">
+<div class="table-wrapper-2">
     <div class="table-title">
-        <h5 style="text-align: center;"><b>Topic Wise Skill</b></h5>
+        <h6 style="text-align: center;">Topic Wise Skill</h6>
     </div>
     <br>
     <br>
@@ -124,7 +138,7 @@
 
 <div class="table-wrapper-2">
     <div class="table-title">
-        <h5 style="text-align: center;"><b>Topic Wise Solved Count</b></h5>
+        <h6 style="text-align: center;">Topic Wise Solved Count</h6>
     </div>
     <br>
     <br>
@@ -135,7 +149,7 @@
 
 <div class="table-wrapper-2" id="overallAlgorithmSkill">
     <div class="table-title">
-        <h5 style="text-align: center;"><b>Overall Algorithm Skills</b></h5>
+        <h6 style="text-align: center;">Overall Algorithm Skills</h6>
     </div>
     <div style="padding: 10px;">
     <table id="categorySkillListTable" class="table table-striped table-bordered category-list-table" style="text-align: center;">
@@ -159,17 +173,21 @@
 {{/if}}
 
 <script type="text/javascript">
+    function tableClassHack() {
+        var className = 'google-visualization-table-table';
+        $('.'+className).removeClass(className);
+    }
 
     function getCategorySkillList(){
         var db_category_list = [];
 
         {{#each category_skill_list}}
-            var category_root_link = '<span style="color: #4c5696; font-weight:500;">{{category_info.category_root_title}}</span>'
-            var category_link = '<a href = "/category/view/{{category_info.category_id}}/" style="color: #4b1196; font-weight:500; text-decoration: underline;">{{category_info.category_title}}</a>'
+            var category_root_link = '<span style="color: #0061a1; font-weight:500;">{{category_info.category_root_title}}</span>'
+            var category_link = '<a href = "/category/view/{{category_info.category_id}}/" style="color: #0061a1; font-weight:500; text-decoration: underline;">{{category_info.category_title}}</a>'
             var skill_value = parseFloat("{{skill_value}}")
             skill_value = skill_value.toFixed(2)
-            var skill_value_field = '<span style="color: rgb(3, 164, 182);">' + skill_value + '</span>'
-            var solve_count_field = '<span style="color: rgb(13, 98, 155);">' + "{{solve_count}}" + '</span>'
+            var skill_value_field = '<span style="color: #2b3a47;">' + skill_value + '</span>'
+            var solve_count_field = '<span style="color: #2b3a47;">' + "{{solve_count}}" + '</span>'
             var category_data = [category_root_link, category_link, "{{category_info.category_difficulty}}", skill_value_field, "{{skill_title}}", solve_count_field];
             db_category_list.push(category_data)
         {{/each}}
@@ -230,18 +248,31 @@
             var options = {
                 bars: 'horizontal', // Required for Material Bar Charts.
                 hAxis: {format: 'decimal'},
-                colors: ['#5085A5']
+                colors: ['#5085A5'],
+                cssClassNames: {
+                    headerRow: 'someclass',
+                    tableRow: 'someclass',
+                    oddTableRow: 'someclass',
+                    selectedTableRow: 'someclass',
+                    hoverTableRow: 'someclass',
+                    headerCell: 'someclass',
+                    tableCell: 'someclass',
+                    rowNumberCell: 'someclass'
+                }
             };
 
             var chart = new google.charts.Bar(document.getElementById('skillComparisonChart'));
             chart.draw(data, google.charts.Bar.convertOptions(options));
-            var btns = document.getElementById('btn-group');
+            var className = 'google-visualization-table-table';
+            tableClassHack();
             btns.onclick = function (e) {
                 if (e.target.tagName === 'BUTTON') {
                     options.hAxis.format = e.target.id === 'none' ? '' : e.target.id;
                     chart.draw(data, google.charts.Bar.convertOptions(options));
+                    tableClassHack();
                 }
             }
+            tableClassHack();
         }
     }
 
@@ -275,18 +306,22 @@
 
             var chart = new google.charts.Bar(document.getElementById('solveCountComparisonChart'));
             chart.draw(data, google.charts.Bar.convertOptions(options));
+            tableClassHack();
             var btns = document.getElementById('btn-group');
             btns.onclick = function (e) {
                 if (e.target.tagName === 'BUTTON') {
                     options.hAxis.format = e.target.id === 'none' ? '' : e.target.id;
                     chart.draw(data, google.charts.Bar.convertOptions(options));
+                    tableClassHack();
                 }
             }
+            tableClassHack();
         }
     }
-
-    show_topic_wise_skill()
-    showCategoriesSkillDTSearchTable();
-    show_topic_wise_solve_count();
+    {{#if category-skill}}
+        show_topic_wise_skill()
+        showCategoriesSkillDTSearchTable();
+        show_topic_wise_solve_count();
+    {{/if}}
 
 </script>
