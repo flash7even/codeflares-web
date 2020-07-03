@@ -6,9 +6,6 @@
 <div class="show-contest">
     <div class="problem-set-table">
         <div class="table-title">
-            <h6 style="text-align: center;"><b>Problem Set</b></h6>
-        </div>
-        <div class="table-title-2" style="border: 1px solid #d4d4d4; padding: 10px;">
 		    <div class="row">
                 <div class="col-md-1" style="margin-right: 20px;">
                     <a href="/contest/view/{{id}}/" class="btn btn-light" role="button">Problems</a>
@@ -21,36 +18,42 @@
             </div>
         </div>
         <br>
-        <br>
+    <div class="row">
+        <div class="col-md-9">
 
-    <ul style="width: 97%;">
-        {{#each problem_set}}
-            <a href="/">
-            <li class="problem-row">
-                <div class="row">
-                    <div class="col-md-4" style="padding-top: 10px;">
-                        <a href = "/problem/view/{{id}}/" style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_order}}. {{problem_name}}</a>
-                        
-                    </div>
-                    <div class="col-md-3" style="padding-top: 10px;">
-                        <h6>{{oj_name}}</h6>
-                    </div>
-                    <div class="col-md-3" style="padding-top: 10px;">
-                        <h6>{{problem_id}}</h6>
-                    </div>
-                    <div class="col-md-2">
-                        <div class = "display: flex; align-items: center; justify-content: center;">
-                            <a href="{{source_link}}" class="btn btn-light" role="button">Solve Problem</a>
+        <ul style="width: 97%;">
+            {{#each problem_set}}
+                <a href="/">
+                <li class="problem-row">
+                    <div class="row">
+                        <div class="col-md-4" style="padding-top: 10px;">
+                            <a href = "/problem/view/{{id}}/" style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_order}}. {{problem_name}}</a>
+                            
+                        </div>
+                        <div class="col-md-3" style="padding-top: 10px;">
+                            <h6>{{oj_name}}</h6>
+                        </div>
+                        <div class="col-md-3" style="padding-top: 10px;">
+                            <h6>{{problem_id}}</h6>
+                        </div>
+                        <div class="col-md-2">
+                            <div class = "display: flex; align-items: center; justify-content: center;">
+                                <a href="{{source_link}}" class="btn btn-light" role="button">Solve Problem</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
-            </a>
-            <br>
-        {{/each}}
-    </ul>
-        <br>
-        <h6 style="text-align: center; font-size:small;">Contest Set by <a href="/profile/{{user_handle}}/" style="color: {{user_skill_color}};">{{setter_handle}}</a>, from <span style="color: rgb(73, 141, 185);">{{start_date}}</span> to <span style="color: rgb(73, 141, 185);">{{end_date}}</span></h6>
+                </li>
+                </a>
+                <br>
+            {{/each}}
+        </ul>
+        </div>
+        <div class="col-md-3">
+            <h4>{{contest_name}}</h4>
+            <h6>{{start_date}}-{{end_date}}</h6>
+            <h6 style="text-align: center; font-size:small;">Problem Setter: <a href="/profile/{{user_handle}}/" style="color: {{user_skill_color}};">{{setter_handle}}</a></h6>
+        </div>
+    </div>
     </div>
 </div>
 
