@@ -144,3 +144,60 @@ body {
 .sidebar-stat-table tbody>tr>:nth-child(3){
     word-break: break-word;
 }
+
+.contest-list-table{
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.contest-list-table tbody tr{
+    height: 80px;
+    text-align: center;
+    border: 3px solid red;
+    border-radius: 5px;
+    outline: thin solid;
+}
+
+.contest-row {
+    height: 80px;
+    font-size: 15px;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 5px;
+    padding: 10px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.contest-table {
+    color: black;
+    margin: 30px auto;
+    margin-bottom: 15px;
+    margin-top: 0px;
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px #565e61;
+    overflow: hidden;
+    table-layout: fixed;
+    border: 1px solid #dcdfe0;
+    font-size: small;
+}
+.problem-set-table {
+    color: black;
+    margin: 30px auto;
+    margin-bottom: 15px;
+    margin-top: 0px;
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 0px 3px #565e61;
+    overflow: hidden;
+    table-layout: fixed;
+    border: 1px solid #dcdfe0;
+    font-size: small;
+}
+
+.problem-row {
+    height: 60px;
+    font-size: 15px;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 5px;
+    padding: 10px;
+    padding-top: 10px;
+    padding-left: 20px;
+}
