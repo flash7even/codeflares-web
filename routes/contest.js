@@ -126,6 +126,7 @@ router.viewContest = async function(req, res, next) {
   console.log('contest_details: ')
   console.log(contest_details)
   contest_details = system_server.toast_update(req, contest_details)
+  contest_details['contest_page'] = true
   res.render('view_single_contest', contest_details);
 }
 
@@ -140,6 +141,7 @@ router.viewContestStandings = async function(req, res, next) {
   console.log('contest_details: ')
   console.log(contest_details)
   contest_details = system_server.toast_update(req, contest_details)
+  contest_details['contest_page'] = true
   res.render('view_contest_standings', contest_details);
 }
 
@@ -163,6 +165,7 @@ router.viewContestStandingsAfterUpdate = async function(req, res, next) {
   }
   contest_details['standings'] = contest_standings['standings']
   contest_details = system_server.toast_update(req, contest_details)
+  contest_details['contest_page'] = true
   res.render('view_contest_standings', contest_details);
 }
 

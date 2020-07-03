@@ -1,14 +1,28 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/individual_training.css">
 </head>
 
 
 <div class="show-contest">
-    <div class="table-type-2">
-        <div class="table-title-2">
-		    <a href="/contest/view/{{id}}/"><h5 style="text-align: center; color: #2b3a47;"><b>Contest Title: {{contest_name}} [Level {{contest_level}}]</b></h5></a>
-		    <a href="/contest/standings/{{id}}/"><h6 style="text-align: center; color: #2b3a47;"><b>Offline Standings</b></h6></a>
+    <div class="table-wrapper-2">
+        <div class="table-title-contest">
+		    <div class="row" style="margin-left: 30px; text-align: center; padding: 5px; padding-bottom: 10px;">
+                <div class="col-md-1" style="background-color: rgb(226, 226, 226); border-radius: 3px; margin-right: 15px;">
+                    <a href="/contest/view/{{id}}/" class="btn" role="button">Problems</a>
+                </div>
+                <div class="col-md-1" style="background-color: rgb(226, 226, 226); border-radius: 3px; margin-right: 15px;">
+                    <a href="/contest/standings/{{id}}/" class="btn" role="button">Standings</a>
+                </div>
+                <div class="col-md-1" style="background-color: rgb(226, 226, 226); border-radius: 3px; margin-right: 15px;">
+                    <a href="/contest/standings/{{id}}/" class="btn" role="button">Announcements</a>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
         </div>
+        <br>
+        <br>
         <div style="text-align: center; margin: auto; width: 10%;">	
             <form action="/update/contest/standings/{{id}}/" method="post">
                 <div class="form-row">
