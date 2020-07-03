@@ -6,41 +6,48 @@
 <div class="show-contest">
     <div class="problem-set-table">
         <div class="table-title-contest">
-		    <div class="row" style="margin-left: 30px; text-align: center; padding: 5px; padding-bottom: 10px;">
-                <div class="col-md-1" style="background-color: rgb(226, 226, 226); border-radius: 3px; margin-right: 15px;">
-                    <a href="/contest/view/{{id}}/" class="btn" role="button">Problems</a>
+		    <div class="row table-title-inside" style="">
+                {{#if problem-set-page}}
+                <div class="selected-button">
+                <a style="color: rgb(0, 0, 0);" href="/contest/view/{{id}}/" class="btn btn-sm" role="button"><b>Problems</b></a>
                 </div>
-                <div class="col-md-1" style="background-color: rgb(226, 226, 226); border-radius: 3px; margin-right: 15px;">
-                    <a href="/contest/standings/{{id}}/" class="btn" role="button">Standings</a>
+                {{else}}
+                <a href="/contest/view/{{id}}/" class="btn btn-sm" role="button"><b>Problems</b></a>
+                {{/if}}
+                {{#if standings-page}}
+                <div class="selected-button">
+                <a style="color: rgb(0, 0, 0);" href="/contest/standings/{{id}}/" class="btn btn-sm" role="button"><b>Standings</b></a>
                 </div>
-                <div class="col-md-1" style="background-color: rgb(226, 226, 226); border-radius: 3px; margin-right: 15px;">
-                    <a href="/contest/standings/{{id}}/" class="btn" role="button">Announcements</a>
+                {{else}}
+                <a href="/contest/standings/{{id}}/" class="btn btn-sm" role="button"><b>Standings</b></a>
+                {{/if}}
+                {{#if announcement-page}}
+                <div class="selected-button">
+                <a style="color: rgb(0, 0, 0);" href="/contest/announcements/{{id}}/" class="btn btn-sm" role="button"><b>Announcements</b></a>
                 </div>
-                <div class="col-md-6">
-                </div>
+                {{else}}
+                <a href="/contest/announcements/{{id}}/" class="btn btn-sm" role="button"><b>Announcements</b></a>
+                {{/if}}
             </div>
         </div>
         <br>
         <br>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <ul style="width: 97%;">
                     {{#each problem_set}}
                         <a href="/">
                         <li class="problem-row">
                             <div class="row">
-                                <div class="col-md-4" style="padding-top: 10px;">
+                                <div class="col-md-6" style="padding-top: 10px;">
                                     <a href = "/problem/view/{{id}}/" style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_order}}. {{problem_name}}</a>
                                 </div>
-                                <div class="col-md-3" style="padding-top: 10px;">
-                                    <h6>{{oj_name}}</h6>
-                                </div>
-                                <div class="col-md-3" style="padding-top: 10px;">
-                                    <h6>{{problem_id}}</h6>
+                                <div class="col-md-4" style="padding-top: 10px;">
+                                    <h6>{{oj_name}} - {{problem_id}}</h6>
                                 </div>
                                 <div class="col-md-2">
                                     <div class = "display: flex; align-items: center; justify-content: center;">
-                                        <a href="{{source_link}}" class="btn btn-light" role="button">Solve Problem</a>
+                                        <a href="{{source_link}}" class="btn btn-light" role="button">Solve</a>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +57,7 @@
                     {{/each}}
                 </ul>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="contest-header">
                     <h4><b>{{contest_name}}</b></h4>
                     <hr>
