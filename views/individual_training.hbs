@@ -1,68 +1,79 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/css/individual_training.css">
 </head>
 
-
-<div class="row page-box">
-    <div class="col-md-4">
+<div class="cfs-transparent-header-div" style="text-align: center;">
+    <div class="cfs-title-light">
+        <h4 class="media-heading"><b>Individual Training Model <span>#</span> <span style="color: {{user_details.skill_color}};"><a href = "/profile/{{user_details.username}}/">{{user_details.username}}</a></span></b></h4>
     </div>
-    <div class="col-md-2">
-        {{#if training-plan}}
-        <a title="Home" href="/training/individual/{{user_details.username}}/training-plan/"><i class="fas fa-tenge"></i> Training Plan</a>
-        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
-        {{else}}
-        <a title="Home" href="/training/individual/{{user_details.username}}/training-plan/"><i class="fas fa-tenge"></i> Training Plan</a>
-        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
-        {{/if}}
-    </div>
-    <div class="col-md-2">
-        {{#if category-skill}}
-        <a title="Member Skills" href="/training/individual/{{user_details.username}}/category-skill/"><i class="fas fa-chart-bar"></i> Category Skills</a>
-        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
-        {{else}}
-        <a title="Member Skills" href="/training/individual/{{user_details.username}}/category-skill/"><i class="fas fa-chart-bar"></i> Category Skills</a>
-        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
-        {{/if}}
-    </div>
-    <div class="col-md-4">
-    </div>
-</div>
-
-<div class="transparent-header-div" style="text-align: center;">
-    <h4 style="color: rgb(14, 56, 61);;" class="media-heading"><b>Individual Training Model - <span style="color: {{user_details.skill_color}};"><a href = "/profile/{{user_details.username}}/">{{user_details.username}}</a></span></b></h4>
-    <br>
+    <hr class="light">
     <div  class="row">
         <div class="col-md-2">
         </div>
         <div class="col-md-2">
             <h6><span style="color: #2b3a47;">User Rating</span></h6>
             <hr style="color: #2b3a47; width: 90%;">
-            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{user_details.skill_value}}</span></h6>
+            <h6 style="font-size: 25px;"><span style="color: #2b3a47;">{{user_details.skill_value}}</span></h6>
         </div>
         <div class="col-md-2">
             <h6><span style="color: #2b3a47;">Solve Count</span></h6>
             <hr style="color: #2b3a47; width: 90%;">
-            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{user_details.solve_count}}</span></h6>
+            <h6 style="font-size: 25px;"><span style="color: #2b3a47;">{{user_details.solve_count}}</span></h6>
         </div>
         <div class="col-md-2">
             <h6><span style="color: #2b3a47;">Score Earned</span></h6>
             <hr style="color: #2b3a47; width: 90%;">
-            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{user_details.total_score}}</span></h6>
+            <h6 style="font-size: 25px;"><span style="color: #2b3a47;">{{user_details.total_score}}</span></h6>
         </div>
         <div class="col-md-2">
             <h6><span style="color: #2b3a47;">Target Score</span></h6>
             <hr style="color: #2b3a47; width: 90%;">
-            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{user_details.next_week_target}}</span></h6>
+            <h6 style="font-size: 25px;"><span style="color: #2b3a47;">{{user_details.next_week_target}}</span></h6>
         </div>
         <div class="col-md-2">
         </div>
     </div>
+
+    <hr class="light">
+
+    <div class="row page-box">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-2">
+            {{#if training-plan}}
+            <b>
+            <a title="Home" href="/training/individual/{{user_details.username}}/training-plan/"><i class="fas fa-tenge"></i> Training Plan</a>
+            <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            </b>
+            {{else}}
+            <b>
+            <a title="Home" href="/training/individual/{{user_details.username}}/training-plan/"><i class="fas fa-tenge"></i> Training Plan</a>
+            <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
+            </b>
+            {{/if}}
+        </div>
+        <div class="col-md-2">
+            {{#if category-skill}}
+            <b>
+            <a title="Member Skills" href="/training/individual/{{user_details.username}}/category-skill/"><i class="fas fa-chart-bar"></i> Category Skills</a>
+            <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            </b>
+            {{else}}
+            <b>
+            <a title="Member Skills" href="/training/individual/{{user_details.username}}/category-skill/"><i class="fas fa-chart-bar"></i> Category Skills</a>
+            <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
+            </b>
+            {{/if}}
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+
 </div>
 
 {{#if training-plan}}
-    <div class="table-wrapper-2" style="width: 100%%; font-weight:500; margin-right:1px auto">			
-        <div class="table-title">
+    <div class="cfs-table-1" style="width: 100%%; font-weight:500; margin-right:1px auto">			
+        <div class="cfs-title-1">
             <h6 style="text-align: center;">Next Problems To Solve</h6>
         </div>
         <table class="table" style="text-align: center;">
@@ -93,8 +104,8 @@
         </table>
     </div>
 
-    <div class="table-wrapper-2" style="width: 100%%;  margin-right:1px auto">
-        <div class="table-title">
+    <div class="cfs-table-1" style="width: 100%%;  margin-right:1px auto">
+        <div class="cfs-title-1">
             <h6 style="text-align: center;">Next Algorithms To Learn</h6>
         </div>
         <table class="table" style="text-align: center; width: 100%; table-layout: fixed;">
@@ -125,8 +136,8 @@
 {{/if}}
 
 {{#if category-skill}}
-<div class="table-wrapper-2">
-    <div class="table-title">
+<div class="cfs-table-1">
+    <div class="cfs-title-1">
         <h6 style="text-align: center;">Topic Wise Skill</h6>
     </div>
     <br>
@@ -136,8 +147,8 @@
     </div>
 </div>
 
-<div class="table-wrapper-2">
-    <div class="table-title">
+<div class="cfs-table-1">
+    <div class="cfs-title-1">
         <h6 style="text-align: center;">Topic Wise Solved Count</h6>
     </div>
     <br>
@@ -147,8 +158,8 @@
     </div>
 </div>
 
-<div class="table-wrapper-2" id="overallAlgorithmSkill">
-    <div class="table-title">
+<div class="cfs-table-1" id="overallAlgorithmSkill">
+    <div class="cfs-title-1">
         <h6 style="text-align: center;">Overall Algorithm Skills</h6>
     </div>
     <div style="padding: 10px;">

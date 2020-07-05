@@ -23,13 +23,13 @@ body {
     border: 1px solid #dcdfe0;
     font-size: small;
 }
-.table-title {
+.cfs-title-1 {
     border-radius: 20px;
     background: rgb(88, 167, 150);		
     padding: 16px 25px;
     margin: -10px -15px 5px;
 }
-.table-title h2 {
+.cfs-title-1 h2 {
     margin: 5px 0 0;
     font-size: 24px;
 }

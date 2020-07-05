@@ -122,7 +122,7 @@ body {
     padding-bottom: 1px;
 }
 
-.table-title-2 {
+.cfs-title-1-2 {
     color: rgb(25, 46, 71);
 }
 
@@ -213,7 +213,7 @@ body {
     margin-left: 30px;
 }
 
-.table-title-contest {
+.cfs-title-1-contest {
     border-radius: 1px;
     background: #485f74;
     color: #ffffff;
@@ -222,13 +222,13 @@ body {
     border-bottom: 1px solid rgb(214, 214, 214);
 }
 
-.table-title-inside {
+.cfs-title-1-inside {
     margin-left: 30px;
     text-align: center;
     padding-bottom: 5px;
 }
 
-.table-title-inside a{
+.cfs-title-1-inside a{
     color: #ffffff;
     font-size: large;
 }
@@ -249,18 +249,6 @@ body {
     margin-bottom: 15px;
     margin-top: 0px;
     background: rgb(255, 255, 255);
-    border: 1px solid #dcdfe0;
-    font-size: small;
-}
-.table-wrapper-2 {
-    color: black;
-    margin: 30px auto;
-    margin-bottom: 15px;
-    margin-top: 0px;
-    background: rgb(255, 255, 255);
-    box-shadow: 0px 0px 3px #565e61;
-    overflow: hidden;
-    table-layout: fixed;
     border: 1px solid #dcdfe0;
     font-size: small;
 }
@@ -312,18 +300,6 @@ body {
     color: #0B0C10;
 }
 
-.transparent-header-div {
-    background: #ffffff;
-    border-radius: 3px;
-    padding: 10px;
-    margin-bottom: 2px;
-    box-shadow: 1px 1px 3px #565e61;
-    color: #0B0C10;
-    box-shadow: 0px 0px 3px #565e61;
-    border: 1px solid rgb(237, 243, 245);
-    margin-bottom: 15px;
-    font-size: smaller;
-}
 
 .page-box{
     margin-top: 15px;
@@ -466,7 +442,28 @@ body {
 .skill-color {
     color: #ff1414;
 }
-.table-title {
+
+hr.light {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cfs-table-1 {
+    color: black;
+    margin: 30px auto;
+    margin-bottom: 15px;
+    margin-top: 0px;
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 0px 5px #565e61;
+    border: 1px solid #dcdfe0;
+    overflow: hidden;
+    table-layout: fixed;
+    font-size: small;
+}
+
+.cfs-title-1 {
     border-radius: 1px;
     background: #485f74;
     color: #ffffff;	
@@ -474,14 +471,23 @@ body {
     padding-top: 15px;
     font-size: smaller;
 }
-.table-title h2 {
-    margin: 5px 0 0;
-    font-size: 24px;
+
+.cfs-transparent-header-div {
+    background: #ffffff;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 2px;
+    box-shadow: 0px 0px 5px #565e61;
+    border: 1px solid rgb(237, 243, 245);
+    margin-bottom: 15px;
+    font-size: smaller;
 }
 
-hr.light {
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+.cfs-transparent-header-div .h6 {
+    font-size: smaller;
+}
+
+.cfs-title-light {
+    font-family: Roboto;
+    font-size: xx-large;
 }
