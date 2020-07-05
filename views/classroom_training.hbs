@@ -5,59 +5,73 @@
 </head>
 
 
-<div class="row page-box">
-    <div class="col-md-2">
+<div class="cfs-transparent-header-div" style="text-align: center;">
+    <div class="cfs-title-light">
+        <h4 class="media-heading"><b>Classroom: {{team_name}} [Moderator: <span style="color: {{team_leader_skill_color}};"><a href = "/profile/{{team_leader_handle}}/">{{team_leader_handle}}</a></span>]</b></h4>
     </div>
-    <div class="col-md-2">
-        {{#if home}}
-        <a href="/classroom/training/{{id}}/home/"><i class="fas fa-home"></i> Home</a>
-        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
-        {{else}}
-        <a href="/classroom/training/{{id}}/home/"><i class="fas fa-home"></i> Home</a>
-        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
-        {{/if}}
-    </div>
-    <div class="col-md-2">
-        {{#if skill}}
-        <a href="/classroom/training/{{id}}/skill/"><i class="fas fa-chart-bar"></i> Member Skills</a>
-        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
-        {{else}}
-        <a href="/classroom/training/{{id}}/skill/"><i class="fas fa-chart-bar"></i> Member Skills</a>
-        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
-        {{/if}}
-    </div>
-    <div class="col-md-2">
-        {{#if contest}}
-        <a href="/classroom/training/{{id}}/contest/"><i class="fas fa-cubes"></i> Training</a>
-        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
-        {{else}}
-        <a href="/classroom/training/{{id}}/contest/"><i class="fas fa-cubes"></i> Training</a>
-        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
-        {{/if}}
-    </div>
-    <div class="col-md-2">
-        {{#if discussion}}
-        <a href="/classroom/training/{{id}}/discussion/"><i class="fas fa-comments"></i> Discussions</a>
-        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
-        {{else}}
-        <a href="/classroom/training/{{id}}/discussion/"><i class="fas fa-comments"></i> Discussions</a>
-        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
-        {{/if}}
-    </div>
-    <div class="col-md-2">
-    </div>
-</div>
+    <hr class="light">
 
-<div class="cfs-transparent-header-div">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="post-header" style="text-align: center;">
-                <h5 style="color: rgb(14, 56, 61);" class="media-heading"><b>Classroom: {{team_name}}</b></h5>
-                <h6 style="color: rgb(59, 145, 160);"><b>Moderator: <a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></b></h6>
-            </div>
+    <div class="row page-box">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+            {{#if home}}
+            <b>
+            <a href="/classroom/training/{{id}}/home/"><i class="fas fa-home"></i> Home</a>
+            <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            </b>
+            {{else}}
+            <b>
+            <a href="/classroom/training/{{id}}/home/"><i class="fas fa-home"></i> Home</a>
+            <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
+            </b>
+            {{/if}}
+        </div>
+        <div class="col-md-2">
+            {{#if skill}}
+            <b>
+            <a href="/classroom/training/{{id}}/skill/"><i class="fas fa-chart-bar"></i> Member Skills</a>
+            <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            </b>
+            {{else}}
+            <b>
+            <a href="/classroom/training/{{id}}/skill/"><i class="fas fa-chart-bar"></i> Member Skills</a>
+            <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
+            </b>
+            {{/if}}
+        </div>
+        <div class="col-md-2">
+            {{#if contest}}
+            <b>
+            <a href="/classroom/training/{{id}}/contest/"><i class="fas fa-cubes"></i> Training</a>
+            <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            </b>
+            {{else}}
+            <b>
+            <a href="/classroom/training/{{id}}/contest/"><i class="fas fa-cubes"></i> Training</a>
+            <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
+            </b>
+            {{/if}}
+        </div>
+        <div class="col-md-2">
+            {{#if discussion}}
+            <b>
+            <a href="/classroom/training/{{id}}/discussion/"><i class="fas fa-comments"></i> Discussions</a>
+            <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            </b>
+            {{else}}
+            <b>
+            <a href="/classroom/training/{{id}}/discussion/"><i class="fas fa-comments"></i> Discussions</a>
+            <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
+            </b>
+            {{/if}}
+        </div>
+        <div class="col-md-2">
         </div>
     </div>
+
 </div>
+
 
 {{#if home}}
 <div class="blog-post-2">
@@ -85,12 +99,12 @@
 
 <br>
 
-<div class="table-type-2">
-    <div class="cfs-title-1-2">
+<div class="cfs-table-1">
+    <div class="cfs-title-1">
         <h5 style="text-align: center;"><b>Classroom Members</b></h5>
     </div>
-    <table id="memberTable" class="table table-striped table-bordered category-list-table" style="text-align: center;">
-        <thead style="background-color: #ACCBE1;">
+    <table id="memberTable" class="table category-list-table" style="text-align: center;">
+        <thead>
             <tr>
                 <th style="min-width: 13%;">User Handle</th>
                 <th>Name</th>
@@ -115,7 +129,7 @@
             <div class="cfs-title-1">
                 <h5 style="text-align: center;"><b>Task List</b></h5>
             </div>
-            <table class="table table-striped table-bordered" style="text-align: center;">
+            <table class="table" style="text-align: center;">
                 <thead>
                     <tr>
                         <th style="width: 30%;">Task Name</th>
@@ -153,7 +167,7 @@
             <div class="cfs-title-1">
                 <h5 style="text-align: center;"><b>Class List</b></h5>
             </div>
-            <table class="table table-striped table-bordered" style="text-align: center;">
+            <table class="table" style="text-align: center;">
                 <thead>
                     <tr>
                         <th style="width: 25%;">Class Title</th>
@@ -192,12 +206,12 @@
 
 
 {{#if skill}}
-<div class="table-type-2" id="categoryWiseSkillTableTop">
-    <div class="cfs-title-1-2">
+<div class="cfs-table-1" id="categoryWiseSkillTableTop">
+    <div class="cfs-title-1">
         <h5 style="text-align: center;"><b>Category Wise Skills</b></h5>
     </div>
-    <table id="categoryWiseSkillTable" class="table table-striped table-bordered category-list-table" style="text-align: center;">
-        <thead style="background-color: #ACCBE1;">
+    <table id="categoryWiseSkillTable" class="table category-list-table" style="text-align: center; padding: 5px;">
+        <thead>
             <tr>
                 <th style="min-width: 13%;">User Handle</th>
                 {{#each category_list}}
@@ -211,12 +225,12 @@
     </table>
 </div>
 
-<div class="table-type-2">
-    <div class="cfs-title-1-2">
+<div class="cfs-table-1">
+    <div class="cfs-title-1">
         <h5 style="text-align: center;"><b>Category Wise Solve Count</b></h5>
     </div>
-    <table id="categoryWiseSolveCountTable" class="table table-striped table-bordered category-list-table" style="text-align: center;">
-        <thead style="background-color: #ACCBE1;">
+    <table id="categoryWiseSolveCountTable" class="table category-list-table" style="text-align: center; padding: 5px;">
+        <thead>
             <tr>
                 <th style="width: 13%;">User Handle</th>
                 {{#each category_list}}
@@ -232,12 +246,12 @@
 {{/if}}
 
 {{#if contest}}
-<div class="table-type-2">
-    <div class="cfs-title-1-2">
+<div class="cfs-table-1">
+    <div class="cfs-title-1">
         <h5 style="text-align: center;"><b>Training Contest List</b></h5>
     </div>
-    <table id="contestListTable" class="table table-striped table-bordered" style="text-align: center;">
-        <thead style="background-color: #ACCBE1;">
+    <table id="contestListTable" class="table" style="text-align: center; padding: 5px;">
+        <thead>
             <tr>
                 <th style="min-width: 20%;">Contest Name</th>
                 <th>Setter</th>
@@ -255,8 +269,8 @@
 {{/if}}
 
 {{#if discussion}}
-<div class="table-type-2" id="discussions">
-    <div class="cfs-title-1-2">
+<div class="cfs-table-1" id="discussions">
+    <div class="cfs-title-1">
         <h5 style="text-align: center;"><b>Classroom Discussions</b> <a title="Add new post" style="border-color: rgb(68, 169, 219);" href="/blog/post/add/classroom/{{id}}/"> <span style="color: #accbe1;"><i class="fas fa-plus"></i></span></a> </h5>
     </div>
     <hr style="width: 100%;">
@@ -309,7 +323,7 @@
             {{#each skill_list}}
                 var skill_value = parseFloat("{{skill_value}}")
                 var skill_value_final = skill_value.toFixed(2);
-                var val = `<span style="color: #05578E">${skill_value_final}</span>`
+                var val = `<span style="">${skill_value_final}</span>`
                 cur_member_data.push(val)
             {{/each}}
             console.log(cur_member_data)
@@ -325,7 +339,7 @@
             var cur_member_data = [user_profile]
             {{#each skill_list}}
                 var solve_count = parseFloat("{{solve_count}}")
-                var val = `<span style="color: #05578E">${solve_count}</span>`
+                var val = `<span style="">${solve_count}</span>`
                 cur_member_data.push(val)
             {{/each}}
             console.log(cur_member_data)
@@ -365,7 +379,8 @@
         
         $("#taskListTable").dataTable({
             "aaData": dt_list,
-            paging: true,
+            paging: false,
+            searching: false,
             destroy: true,
             scrollCollapse: true,
             responsive: true,
@@ -381,6 +396,7 @@
             "aaData": dt_list,
             info: false,
             paging: false,
+            searching: false,
             pageLength: 100,
             destroy: true,
             scrollY: '1000px',
@@ -394,6 +410,7 @@
         $("#categoryWiseSkillTable").dataTable({
             "aaData": dt_list,
             paging: false,
+            searching: false,
             info: false,
             pageLength: 100,
             destroy: true,
@@ -407,7 +424,8 @@
         
         $("#categoryWiseSolveCountTable").dataTable({
             "aaData": dt_list,
-            paging: true,
+            paging: false,
+            searching: false,
             info: false,
             destroy: true,
             responsive: true,

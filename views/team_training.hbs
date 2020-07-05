@@ -1,85 +1,94 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/css/individual_training.css">
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
-
-<div class="row page-box">
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-2">
-        {{#if training-plan}}
-        <a href="/training/team/{{id}}/training-plan/"><i class="fas fa-tenge"></i> Training Plan</a>
-        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
-        {{else}}
-        <a href="/training/team/{{id}}/training-plan/"><i class="fas fa-tenge"></i> Training Plan</a>
-        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
-        {{/if}}
-    </div>
-    <div class="col-md-2">
-        {{#if category-skill}}
-        <a href="/training/team/{{id}}/category-skill/"><i class="fas fa-chart-bar"></i> Category Skills</a>
-        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
-        {{else}}
-        <a href="/training/team/{{id}}/category-skill/"><i class="fas fa-chart-bar"></i> Category Skills</a>
-        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
-        {{/if}}
-    </div>
-    <div class="col-md-2">
-        {{#if contest}}
-        <a href="/training/team/{{id}}/contest/"><i class="fas fa-cubes"></i> Contest</a>
-        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
-        {{else}}
-        <a href="/training/team/{{id}}/contest/"><i class="fas fa-cubes"></i> Contest</a>
-        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
-        {{/if}}
-    </div>
-    <div class="col-md-2">
-        {{#if rating-comparison}}
-        <a href="/training/team/{{id}}/rating-comparison/"><i class="fas fa-cubes"></i> Rating Comparison</a>
-        <hr style="border: 1px solid rgb(26, 72, 87); border-radius: 1px;">
-        {{else}}
-        <a href="/training/team/{{id}}/rating-comparison/"><i class="fas fa-cubes"></i> Rating Comparison</a>
-        <hr style="border: 1px solid rgb(178, 204, 211); border-radius: 1px;">
-        {{/if}}
-    </div>
-    <div class="col-md-3">
-    </div>
-</div>
-
-
-
 <div class="cfs-transparent-header-div" style="text-align: center;">
-    <h4 style="color: rgb(14, 56, 61);;" class="media-heading"><b>Team Training Model - <span style="color: {{skill_color}};"><a href = "/team/view/{{id}}/">{{team_name}}</a></span></b></h4>
-    <br>
+    <div class="cfs-title-light">
+        <h4 class="media-heading"><b>Team Training Model <span>#</span> <span style="color: {{skill_color}};"><a href = "/team/view/{{id}}/">{{team_name}}</a></span></b></h4>
+    </div>
+    <hr class="light">
     <div  class="row">
         <div class="col-md-2">
         </div>
         <div class="col-md-2">
             <h6><span style="color: #2b3a47;">Team Rating</span></h6>
             <hr style="color: #2b3a47; width: 90%;">
-            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{skill_value}}</span></h6>
+            <h6 style="font-size: 25px;"><span style="color: #2b3a47;">{{skill_value}}</span></h6>
         </div>
         <div class="col-md-2">
             <h6><span style="color: #2b3a47;">Solve Count</span></h6>
             <hr style="color: #2b3a47; width: 90%;">
-            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{solve_count}}</span></h6>
+            <h6 style="font-size: 25px;"><span style="color: #2b3a47;">{{solve_count}}</span></h6>
         </div>
         <div class="col-md-2">
             <h6><span style="color: #2b3a47;">Score Earned</span></h6>
             <hr style="color: #2b3a47; width: 90%;">
-            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{total_score}}</span></h6>
+            <h6 style="font-size: 25px;"><span style="color: #2b3a47;">{{total_score}}</span></h6>
         </div>
         <div class="col-md-2">
             <h6><span style="color: #2b3a47;">Target Score</span></h6>
             <hr style="color: #2b3a47; width: 90%;">
-            <h6 style="font-size: 30px;"><span style="color: #2b3a47;">{{next_week_target}}</span></h6>
+            <h6 style="font-size: 25px;"><span style="color: #2b3a47;">{{next_week_target}}</span></h6>
         </div>
         <div class="col-md-2">
         </div>
     </div>
+
+    <hr class="light">
+
+    <div class="row page-box">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-2">
+            {{#if training-plan}}
+            <b>
+            <a title="Home" href="/training/team/{{id}}/training-plan/"><i class="fas fa-tenge"></i> Training Plan</a>
+            <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            </b>
+            {{else}}
+            <b>
+            <a title="Home" href="/training/team/{{id}}/training-plan/"><i class="fas fa-tenge"></i> Training Plan</a>
+            <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
+            </b>
+            {{/if}}
+        </div>
+        <div class="col-md-2">
+            {{#if category-skill}}
+            <b>
+            <a title="Member Skills" href="/training/team/{{id}}/category-skill/"><i class="fas fa-chart-bar"></i> Category Skills</a>
+            <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            </b>
+            {{else}}
+            <b>
+            <a title="Member Skills" href="/training/team/{{id}}/category-skill/"><i class="fas fa-chart-bar"></i> Category Skills</a>
+            <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
+            </b>
+            {{/if}}
+        </div>
+        <div class="col-md-2">
+            {{#if contest}}
+            <a href="/training/team/{{id}}/contest/"><i class="fas fa-cubes"></i> Contest</a>
+            <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            {{else}}
+            <a href="/training/team/{{id}}/contest/"><i class="fas fa-cubes"></i> Contest</a>
+            <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
+            {{/if}}
+        </div>
+        <div class="col-md-2">
+            {{#if rating-comparison}}
+            <a href="/training/team/{{id}}/rating-comparison/"><i class="fas fa-cubes"></i> Rating Comparison</a>
+            <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            {{else}}
+            <a href="/training/team/{{id}}/rating-comparison/"><i class="fas fa-cubes"></i> Rating Comparison</a>
+            <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
+            {{/if}}
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+
 </div>
 
 {{#if training-plan}}
