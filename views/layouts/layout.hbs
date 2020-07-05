@@ -52,12 +52,12 @@
                         <li class="list-item">
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="/" class="list-link"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+                                    <a href="/" class="list-link"><i style="width: 17px;" class="fa fa-home" aria-hidden="true"></i>Home</a>
                                 </li>
 
                                 {{#if session.email}}
                                 <li>
-                                    <a href="#" class="list-link link-arrow"><i class="fa fa-user" aria-hidden="true"></i>Profile</a>
+                                    <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-user" aria-hidden="true"></i>Profile</a>
                                     <ul class="list-unstyled list-hidden dropdown">
                                         <li> <a class="list-link" href="/profile/{{session.username}}/">Profile</a> </li>
                                         <li> <a class="list-link" href="/update/profile/">Edit Profile</a> </li>
@@ -70,23 +70,30 @@
                             <ul class="list-unstyled">
                                 {{#if session.email}}
                                 <li>
-                                    <a href="#" class="list-link link-arrow"><i class="fa fa-book" aria-hidden="true"></i>Training</a>
+                                    <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-book" aria-hidden="true"></i>Training</a>
                                     <ul class="list-unstyled list-hidden dropdown">
                                         <li> <a class="list-link" href="/training/individual/{{session.username}}/training-plan/">Personal Training</a> </li>
-                                        {{#if session.user_settings.current_team_id}}
-                                            <li> <a class="list-link" href="/training/team/{{session.user_settings.current_team_id}}/training-plan/">Team Training</a> </li>
-                                        {{else}}
-                                            <li title="No active team"> <a class="list-link">Team Training</a> </li>
-                                        {{/if}}
-                                        <li> <a class="list-link" href="/team/list/">Your Teams</a> </li>
-                                        <li> <a class="list-link" href="/team/add/">Create Team</a> </li>
+                                        
+                                        <li>
+                                            <a href="#" class="list-link link-arrow">Team Training</a>
+                                            <ul class="list-unstyled list-hidden">
+                                                {{#if session.user_settings.current_team_id}}
+                                                    <li> <a class="list-link" href="/training/team/{{session.user_settings.current_team_id}}/training-plan/">Team Training</a> </li>
+                                                {{else}}
+                                                    <li title="No active team"> <a class="list-link">Team Training</a> </li>
+                                                {{/if}}
+                                                <li> <a class="list-link" href="/team/list/">Your Teams</a> </li>
+                                                <li> <a class="list-link" href="/team/add/">Create Team</a> </li>
+                                            </ul>
+                                        </li>
+
                                     </ul>
                                 </li>
                                 {{/if}}
                             </ul>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="#" class="list-link link-arrow"><i class="fa fa-cube" aria-hidden="true"></i>Contest</a>
+                                    <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-cube" aria-hidden="true"></i>Contest</a>
                                     <ul class="list-unstyled list-hidden dropdown">
                                         {{#if session.email}}
                                         <li> <a class="list-link" href="/contest/add/">Create Contest</a> </li>
@@ -98,7 +105,7 @@
                             <ul class="list-unstyled">
                                 {{#if session.email}}
                                 <li>
-                                    <a href="#" class="list-link link-arrow"><i class="fa fa-institution" aria-hidden="true"></i>Classroom</a>
+                                    <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-institution" aria-hidden="true"></i>Classroom</a>
                                     <ul class="list-unstyled list-hidden dropdown">
                                         <li> <a class="list-link" href="/classroom/list/">Your Classrooms</a> </li>
                                         <li> <a class="list-link" href="/classroom/add/">Create Classroom</a> </li>
@@ -108,7 +115,7 @@
                             </ul>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="#" class="list-link link-arrow"><i class="fa fa-database" aria-hidden="true"></i>Gateway</a>
+                                    <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-database" aria-hidden="true"></i>Gateway</a>
                                     <ul class="list-unstyled list-hidden dropdown">
                                         <li> <a class="list-link" href="/category/list/">Categories</a> </li>
                                         <li> <a class="list-link" href="/problem/list/all/">Problems</a> </li>
@@ -119,7 +126,7 @@
                             <ul class="list-unstyled">
                                 {{#if session.email}}
                                 <li>
-                                    <a href="#" class="list-link link-arrow"><i class="fa fa-language" aria-hidden="true"></i>Advise</a>
+                                    <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-language" aria-hidden="true"></i>Advise</a>
                                     <ul class="list-unstyled list-hidden dropdown">
                                         <li> <a class="list-link" href="/problem/add/">Add Problem</a> </li>
                                         <li> <a class="list-link" href="/category/add/">Add Category</a> </li>
@@ -127,17 +134,32 @@
                                 </li>
                                 {{/if}}
                             </ul>
-                        </li>
-
-                        <!-- simple menu -->
-                        <li class="list-item">
+                            <hr class="light">
                             <ul class="list-unstyled">
-                                <li><a class="list-link" href="/about/us/"><i class="fa fa-info-circle"></i> About Us</a></li>
-                                <li><a class="list-link" href="/contact/us/"><i class="fa fa-paper-plane"></i> Contact Us</a></li>
+                                <li><a class="list-link" href="/about/us/"><i style="width: 17px;" class="fa fa-info-circle"></i> About Us</a></li>
+                                <li><a class="list-link" href="/contact/us/"><i style="width: 17px;" class="fa fa-paper-plane"></i> Contact Us</a></li>
                             </ul>
+                            <hr class="light">
                         </li>
                     </ul>
                 </div>
+                    <div class="sidebar-footer">
+                        <a href="#">
+                            <i class="fa fa-bell"></i>
+                            <span class="badge badge-pill badge-warning notification">3</span>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope"></i>
+                            <span class="badge badge-pill badge-success notification">7</span>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-cog"></i>
+                            <span class="badge-sonar"></span>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-power-off"></i>
+                        </a>
+                    </div>
             </div>
 
             <!-- website content -->
@@ -147,8 +169,8 @@
 
                     <!-- navbar sidebar menu toggle -->
                     <span class="navbar-text" style="margin-right: 20px;">
-                        <a href="#" id="sidebar-toggle" class="navbar-bars">
-                            <i class="fas fa-bars" aria-hidden="true"></i>
+                        <a class="list-link" href="#" id="sidebar-toggle" class="navbar-bars">
+                            <i class="fa fa-align-justify navbar-btn-icon" aria-hidden="true"></i>
                         </a>
                     </span>
 
@@ -178,12 +200,12 @@
 
                                 {{#if session.notification_data.UNREAD}}
                                 <a class="list-link"  title="Notifications" type="button btn-lg" class="btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i style="color:rgb(9, 179, 37);" class="fas fa-bell navbar-btn-icon"></i>
+                                    <i style="color:rgb(9, 179, 37);" class="fa fa-bell navbar-btn-icon"></i>
                                     <span style="color:rgb(9, 179, 37);"><sup>{{session.notification_data.unread_length}}</sup></span>
                                 </a>
                                 {{else}}
                                 <a class="list-link" title="Notifications" type="button btn-lg" class="btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-bell navbar-btn-icon"></i>
+                                    <i class="fa fa-bell navbar-btn-icon"></i>
                                 </a>
                                 {{/if}}
                                 <ul class="dropdown-menu">
@@ -213,7 +235,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="/notification/read/single/{{id}}/" title="Mark as read" data-toggle="tooltip" style="color: #122f30;"><i class="fas fa-bullseye"></i></a>
+                                                <a href="/notification/read/single/{{id}}/" title="Mark as read" data-toggle="tooltip" style="color: #122f30;"><i class="fa fa-bullseye"></i></a>
                                             </div>
                                             </div>
                                         </li>
@@ -245,7 +267,7 @@
                             {{#if session.email}}
                             <div style="padding: 3px;">
                                 <a class="list-link" href="/training/individual/{{session.username}}/training-plan/"  title="Personal Training">
-                                    <i class="fas fa-bolt navbar-btn-icon"></i>
+                                    <i class="fa fa-bolt navbar-btn-icon"></i>
                                 </a>
                             </div>
                             {{/if}}
@@ -253,7 +275,7 @@
                             {{#unless session.email}}
                             <div style="padding: 3px;">
                                 <a class="list-link" href="/login/" title="Log In">
-                                    <i class="fas fa-sign-in-alt navbar-btn-icon"></i>
+                                    <i class="fa fa-sign-in navbar-btn-icon"></i>
                                 </a>
                             </div>
                             {{/unless}}
@@ -261,7 +283,7 @@
                             {{#if session.email}}
                             <div style="padding: 3px;">
                                 <a class="list-link" href="/logout/" title="Log Out">
-                                    <i class="fas fa-sign-out-alt navbar-btn-icon"></i>
+                                    <i class="fa fa-sign-out navbar-btn-icon"></i>
                                 </a>
                             </div>
                             {{/if}}
@@ -269,7 +291,7 @@
                             {{#unless session.email}}
                             <div style="padding: 3px;">
                                 <a class="list-link" href="/signup/" title="Sign Up">
-                                    <i class="fas fa-user-plus navbar-btn-icon"></i>
+                                    <i class="fa fa-user-plus navbar-btn-icon"></i>
                                 </a>
                             </div>
                             {{/unless}}
@@ -277,7 +299,7 @@
                             {{#if session.email}}
                             <div style="padding: 3px;">
                                 <a class="list-link" href="/profile/{{session.username}}/" title="Profile">
-                                    <i class="fas fa-user navbar-btn-icon"></i>
+                                    <i class="fa fa-user navbar-btn-icon"></i>
                                 </a>
                             </div>
                             {{/if}}

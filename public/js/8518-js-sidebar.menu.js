@@ -21,7 +21,7 @@
         "z-index": "1"
       });
       flg = 0;
-      $(".cfs-body").css("margin-left", "287px")
+      $(".cfs-body").css("margin-left", "280px")
     }else{
       $(".sidebar-lighten").css({
         "margin-top": "-8px",
@@ -31,7 +31,7 @@
         "border-radius": "0px",
         "margin-left": "-17rem"
       });
-      $(".cfs-body").css("margin-left", "15px")
+      $(".cfs-body").css("margin-left", "40px")
       flg = 1;
     }
     //$('#wrapper').toggleClass('sidebar-toggle');
