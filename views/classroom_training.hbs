@@ -82,42 +82,47 @@
                     Classroom Information
                 </h2>
                 <br>
-                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-university"></i> Institution Name: <b>{{institution_name}}</b></h6>
-                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-info-circle"></i> Classroom Purpose: <b>{{team_purpose}}</b></h6>
-                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-tie"></i> Classroom Moderator: <b><a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></b></h6>
-                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-tie"></i> Classroom Managers: <b><a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></b></h6>
-                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-calendar-week"></i> Registered Since: <b>{{created_at}}</b></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-university"></i> Institution Name: <b>{{institution_name}}</b></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-info-circle"></i> Classroom Purpose: <b>{{team_purpose}}</b></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-tie"></i> Classroom Moderator: <b><a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></b></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-tie"></i> Classroom Managers: <b><a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:700;">{{team_leader_handle}}</a></b></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-calendar-week"></i> Registered Since: <b>{{created_at}}</b></h6>
                 {{#if own_profile}}
-                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-edit"></i> <a style="color: rgb(27, 100, 143);" href="/classroom/update/{{id}}/">Update Classroom</a></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-edit"></i> <a style="color: #3d87b9;" href="/classroom/update/{{id}}/">Update Classroom</a></h6>
                 {{/if}}
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="padding: 30px">
+			<div class="image-wrapper">
+				<img src="/img/classroom-1.jpg" alt="image" height="180" width="450">
+			</div>
         </div>
     </div>
 </div>
 
 <br>
 
-<div class="cfs-table-1">
+<div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
         <h5 style="text-align: center;"><b>Classroom Members</b></h5>
     </div>
-    <table id="memberTable" class="table category-list-table" style="text-align: center;">
-        <thead>
-            <tr>
-                <th style="min-width: 13%;">User Handle</th>
-                <th>Name</th>
-                <th>Skill Value</th>
-                <th>Skill Title</th>
-                <th>Solve Count</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="cfs-table-1">
+        <table id="memberTable" class="table category-list-table" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th style="min-width: 13%;">User Handle</th>
+                    <th>Name</th>
+                    <th>Skill Value</th>
+                    <th>Skill Title</th>
+                    <th>Solve Count</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 {{/if}}
 
@@ -155,10 +160,10 @@
             </table>
             <div class="add-task row" style="padding: 5px;">
                 <div style="margin-right: 5px; margin-left:15px;">
-                    <a style="border-color: #8FC1e3;" title="Add new task" class='btn' href="/classroom/task/add/{{id}}/"><i class="fas fa-plus"></i></a>
+                    <a style="border-color: #3d87b9;" title="Add new task" class='btn' href="/classroom/task/add/{{id}}/"><i class="fas fa-plus"></i></a>
                 </div>
                 <div >
-                    <a style="border-color: #8FC1e3;" title="View all tasks" class='btn' href="/classroom/task/view/{{id}}/"  style="margin: 30px;"><i class="fas fa-bars"></i></a>
+                    <a style="border-color: #3d87b9;" title="View all tasks" class='btn' href="/classroom/task/view/{{id}}/"  style="margin: 30px;"><i class="fas fa-bars"></i></a>
                 </div>
             </div>
         </div>
@@ -193,10 +198,10 @@
             </table>
             <div class="add-task row" style="padding: 5px;">
                 <div style="margin-right: 5px; margin-left:15px;">
-                    <a style="border-color: #8FC1e3;" title="Add new class" class='btn' href="/classroom/class/add/{{id}}/"><i class="fas fa-plus"></i></a>
+                    <a style="border-color: #3d87b9;" title="Add new class" class='btn' href="/classroom/class/add/{{id}}/"><i class="fas fa-plus"></i></a>
                 </div>
                 <div >
-                    <a style="border-color: #8FC1e3;" title="View all class" class='btn' href="/classroom/class/view/{{id}}/"  style="margin: 30px;"><i class="fas fa-bars"></i></a>
+                    <a style="border-color: #3d87b9;" title="View all class" class='btn' href="/classroom/class/view/{{id}}/"  style="margin: 30px;"><i class="fas fa-bars"></i></a>
                 </div>
             </div>
         </div>
@@ -206,7 +211,7 @@
 
 
 {{#if skill}}
-<div class="cfs-table-1" id="categoryWiseSkillTableTop">
+<div class="cfs-table-wrapper-1" id="categoryWiseSkillTableTop">
     <div class="cfs-title-1">
         <h5 style="text-align: center;"><b>Category Wise Skills</b></h5>
     </div>
@@ -225,7 +230,7 @@
     </table>
 </div>
 
-<div class="cfs-table-1">
+<div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
         <h5 style="text-align: center;"><b>Category Wise Solve Count</b></h5>
     </div>
@@ -246,7 +251,7 @@
 {{/if}}
 
 {{#if contest}}
-<div class="cfs-table-1">
+<div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
         <h5 style="text-align: center;"><b>Training Contest List</b></h5>
     </div>
@@ -269,9 +274,9 @@
 {{/if}}
 
 {{#if discussion}}
-<div class="cfs-table-1" id="discussions">
+<div class="cfs-table-wrapper-1" id="discussions">
     <div class="cfs-title-1">
-        <h5 style="text-align: center;"><b>Classroom Discussions</b> <a title="Add new post" style="border-color: rgb(68, 169, 219);" href="/blog/post/add/classroom/{{id}}/"> <span style="color: #accbe1;"><i class="fas fa-plus"></i></span></a> </h5>
+        <h5 style="text-align: center;"><b>Classroom Discussions</b> <a title="Add new post" style="border-color: #3d87b9;" href="/blog/post/add/classroom/{{id}}/"> <span style="color: #accbe1;"><i class="fas fa-plus"></i></span></a> </h5>
     </div>
     <hr style="width: 100%;">
     <br>
@@ -436,9 +441,9 @@
     function getContestList(){
         var data_list = [];
         {{#each contest_list}}
-            var contest_link = '<a href = "/contest/view/{{id}}/" style="color: #818101; font-weight:700;">{{contest_name}}</a>'
+            var contest_link = '<a href = "/contest/view/{{id}}/" style="color: #3d87b9; font-weight:700;">{{contest_name}}</a>'
             var setter_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
-            setter_link += '<a href = "/profile/{{setter_handle}}/" style="color: #5bc0de; font-weight:700;">{{setter_handle}}</a>'
+            setter_link += '<a href = "/profile/{{setter_handle}}/" style="color: {{setter_skill_color}}; font-weight:700;">{{setter_handle}}</a>'
             setter_link += "</div>"
             var data = [contest_link, setter_link, "{{contest_type}}", "{{contest_level}}", "{{description}}", "{{start_date}}", "{{end_date}}"];
             data_list.push(data)
@@ -454,6 +459,8 @@
             paging: false,
             destroy: true,
             info: false,
+            searching: false,
+            ordering: false,
             scrollCollapse: true,
             responsive: true,
             pageLength: 100

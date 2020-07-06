@@ -54,7 +54,7 @@ body {
 .form-type-1 .submit-btn {        
     font-size: 16px;
     font-weight: bold;
-    background: rgb(128, 162, 185);
+    background: #39424e;
     border-radius: 3px;
     border: none;
     min-width: 140px;
@@ -64,7 +64,7 @@ body {
     justify-content: center;
 }
 .form-type-1 .submit-btn:hover, .form-type-1 .submit-btn:focus {
-    background: #ACCBE1;
+    background: #5a6574;
 }
 
 .form-type-1 .control-btn {        
@@ -127,7 +127,7 @@ body {
 }
 
 .post-body a{
-    color: rgb(89, 146, 212);
+    color: #3d87b9;
 }
 
 
@@ -450,7 +450,7 @@ hr.light {
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.cfs-table-1 {
+.cfs-table-wrapper-1 {
     color: black;
     margin: 30px auto;
     margin-bottom: 15px;
@@ -463,12 +463,23 @@ hr.light {
     font-size: small;
 }
 
+.cfs-table-1 {
+    padding: 10px;
+}
+
 .cfs-title-1 {
     border-radius: 1px;
-    background: #485f74;
+    background: #374c64;
     color: #ffffff;	
     padding: 8px;
     padding-top: 15px;
+    font-size: smaller;
+}
+
+.cfs-title-2 {
+    border-radius: 1px;
+    background: #ffffff;
+    color: #000000;	
     font-size: smaller;
 }
 
