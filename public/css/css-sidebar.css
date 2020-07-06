@@ -288,11 +288,11 @@
 .navbar-lighten .navbar-bars,
 .dropdown-logged-lighten .dropdown-logged-toggle:before,
 .dropdown-menu-lighten .dropdown-logged-item .fa {
-  opacity: 0.3;
+  opacity: 0.7;
 }
 
 .navbar-lighten .navbar-bars:hover {
-  opacity: 0.7;
+  opacity: 1.0;
 }
 
 .sidebar-lighten .link-arrow.active:before,
@@ -322,7 +322,7 @@
   bottom: 0;
   display: flex;
   padding: 5px;
-  background-color: #7d94a8;
+  background-color: #62768b;
 }
 
 .sidebar-footer > a {
