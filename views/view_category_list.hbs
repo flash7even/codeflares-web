@@ -15,7 +15,6 @@
                     <th>Root Category</th>
                     <th>Category Name</th>
                     <th>Statistics</th>
-                    <th>Category Difficulty</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -40,7 +39,7 @@
             }
             var stat_data = '<div> <i class="fas fa-check-circle" style="color:#55B232;"></i> {{solve_count}} / {{problem_count}} </div>'
             var category_page_link = '<a style="color: #368AA3;" href = "/category/view/{{category_id}}/"><i class="fas fa-external-link-alt"></i></a>'
-            var category_data = ["{{category_root_title}}", category_url, stat_data, "{{category_difficulty}}", category_page_link];
+            var category_data = ["{{category_root_title}}", category_url, stat_data, category_page_link];
             db_category_list.push(category_data)
         {{/each}}
 

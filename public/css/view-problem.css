@@ -7,14 +7,13 @@
     padding: 10px 0;
     color: #0B0C10;
     background: #ffffff;
-    border-radius: 5px;
+    border-radius: 10px;
     margin: 15px;
     margin-top: 5px;
     margin-bottom: 15px;
     box-shadow: 0px 0px 5px #565e61;
     padding: 30px;
     font-size: small;
-    color: #0B0C10;
 }
 .view-form-table-1 .input-group-addon {
     max-width: 42px;

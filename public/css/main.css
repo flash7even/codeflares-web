@@ -8,10 +8,12 @@ body {
     border-radius: 0;
 }
 .form-type-1 {
+    background-color: #ffffff;
     width: 60%;
     margin: 0 auto;
-    padding: 10px 0;
-    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0px 0px 5px #565e61;
+    border-radius: 10px;
     color: #0B0C10;
 }
 .form-type-1 h2 {
@@ -23,14 +25,6 @@ body {
     font-size: 14px;
     margin-bottom: 30px;
     text-align: center;
-}
-.form-type-1 form {		
-    border-radius: 5px;
-    margin-bottom: 15px;
-    background: rgb(255, 255, 255);
-    border: 1px solid #f3f3f3;
-    box-shadow: 1px 1px 3px #7180AC;
-    padding: 30px;
 }
 .form-type-1 .form-group {
     margin-bottom: 20px;
@@ -114,7 +108,7 @@ body {
 
 .sidebar-rating-table {
     background: #ffffff;
-    border-radius: 3px;
+    border-radius: 10px;
     margin-bottom: 15px;
     box-shadow: 0px 0px 3px #565e61;
     padding: 0px;
@@ -152,7 +146,6 @@ body {
 .contest-list-table tbody tr{
     height: 80px;
     text-align: center;
-    border: 3px solid red;
     border-radius: 5px;
     outline: thin solid;
 }
@@ -173,6 +166,7 @@ body {
     margin-top: 0px;
     background: rgb(255, 255, 255);
     box-shadow: 0px 0px 3px #565e61;
+    border-radius: 10px;
     overflow: hidden;
     table-layout: fixed;
     border: 1px solid #dcdfe0;
@@ -182,8 +176,9 @@ body {
     color: black;
     margin-bottom: 15px;
     background: rgb(255, 255, 255);
-    box-shadow: 0px 0px 3px #565e61;
+    box-shadow: 0px 0px 5px #565e61;
     border: 1px solid #dcdfe0;
+    border-radius: 10px;
     font-size: small;
 }
 
@@ -214,8 +209,7 @@ body {
 }
 
 .cfs-title-1-contest {
-    border-radius: 1px;
-    background: #485f74;
+    background: #2f5984;
     color: #ffffff;
     padding: 8px;
     padding-top: 15px;
@@ -238,8 +232,8 @@ body {
 }
 
 .selected-button{
-    background: #b4b9bd;
-    border-radius: 3px;
+    border: 1px solid #2f7bc7;
+    border-radius: 10px;
 }
 
 .table-wrapper {
@@ -284,7 +278,7 @@ body {
 
 .blog-post-2 {
     background: #ffffff;
-    border-radius: 3px;
+    border-radius: 10px;
     padding: 5px;
     margin-bottom: 2px;
     box-shadow: 0px 0px 3px #565e61;
@@ -458,6 +452,7 @@ hr.light {
     background: rgb(255, 255, 255);
     box-shadow: 0px 0px 5px #565e61;
     border: 1px solid #dcdfe0;
+    border-radius: 10px;
     overflow: hidden;
     table-layout: fixed;
     font-size: small;
@@ -469,7 +464,7 @@ hr.light {
 
 .cfs-title-1 {
     border-radius: 1px;
-    background: #374c64;
+    background: #2f5984;
     color: #ffffff;	
     padding: 8px;
     padding-top: 15px;
@@ -485,7 +480,7 @@ hr.light {
 
 .cfs-transparent-header-div {
     background: #ffffff;
-    border-radius: 3px;
+    border-radius: 10px;
     padding: 10px;
     margin-bottom: 2px;
     box-shadow: 0px 0px 5px #565e61;

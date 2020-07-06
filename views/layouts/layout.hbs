@@ -151,23 +151,25 @@
                         </li>
                     </ul>
                 </div>
+                {{#if session.email}}
                     <div class="sidebar-footer">
-                        <a href="#">
+                        <a href="/notification/list/">
                             <i class="fa fa-bell"></i>
-                            <span class="badge badge-pill badge-warning notification">3</span>
+                            <span class="badge badge-pill badge-warning notification">{{session.notification_data.unread_length}}</span>
                         </a>
                         <a href="#">
                             <i class="fa fa-envelope"></i>
                             <span class="badge badge-pill badge-success notification">7</span>
                         </a>
-                        <a href="#">
+                        <a href="/settings/update/">
                             <i class="fa fa-cog"></i>
                             <span class="badge-sonar"></span>
                         </a>
-                        <a href="#">
+                        <a href="/logout/">
                             <i class="fa fa-power-off"></i>
                         </a>
                     </div>
+                {{/if}}
             </div>
 
             <!-- website content -->

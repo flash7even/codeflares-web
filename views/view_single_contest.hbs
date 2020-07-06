@@ -1,91 +1,88 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/css/individual_training.css">
 </head>
 
-<div class="show-contest">
-    <div class="problem-set-table">
-        <div class="cfs-title-1-contest">
-		    <div class="row cfs-title-1-inside" style="">
-                {{#if problem-set-page}}
-                <div class="selected-button">
-                <a style="color: rgb(0, 0, 0);" href="/contest/view/{{id}}/" class="btn btn-sm" role="button"><b>Problems</b></a>
-                </div>
-                {{else}}
-                <a href="/contest/view/{{id}}/" class="btn btn-sm" role="button"><b>Problems</b></a>
-                {{/if}}
-                {{#if standings-page}}
-                <div class="selected-button">
-                <a style="color: rgb(0, 0, 0);" href="/contest/standings/{{id}}/" class="btn btn-sm" role="button"><b>Standings</b></a>
-                </div>
-                {{else}}
-                <a href="/contest/standings/{{id}}/" class="btn btn-sm" role="button"><b>Standings</b></a>
-                {{/if}}
-                {{#if announcement-page}}
-                <div class="selected-button">
-                <a style="color: rgb(0, 0, 0);" href="/contest/announcements/{{id}}/" class="btn btn-sm" role="button"><b>Announcements</b></a>
-                </div>
-                {{else}}
-                <a href="/contest/announcements/{{id}}/" class="btn btn-sm" role="button"><b>Announcements</b></a>
-                {{/if}}
+<div class="problem-set-table">
+    <div class="cfs-title-1-contest"  style="border-radius: 10px;">
+        <div class="row cfs-title-1-inside">
+            {{#if problem-set-page}}
+            <div class="selected-button">
+            <a style="color: rgb(0, 0, 0);" href="/contest/view/{{id}}/" class="btn btn-sm" role="button"><b>Problems</b></a>
             </div>
+            {{else}}
+            <a href="/contest/view/{{id}}/" class="btn btn-sm" role="button"><b>Problems</b></a>
+            {{/if}}
+            {{#if standings-page}}
+            <div class="selected-button">
+            <a style="color: rgb(0, 0, 0);" href="/contest/standings/{{id}}/" class="btn btn-sm" role="button"><b>Standings</b></a>
+            </div>
+            {{else}}
+            <a href="/contest/standings/{{id}}/" class="btn btn-sm" role="button"><b>Standings</b></a>
+            {{/if}}
+            {{#if announcement-page}}
+            <div class="selected-button">
+            <a style="color: rgb(0, 0, 0);" href="/contest/announcements/{{id}}/" class="btn btn-sm" role="button"><b>Announcements</b></a>
+            </div>
+            {{else}}
+            <a href="/contest/announcements/{{id}}/" class="btn btn-sm" role="button"><b>Announcements</b></a>
+            {{/if}}
         </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-8">
-                <ul style="width: 97%;">
-                    {{#each problem_set}}
-                        <a href="/">
-                        <li class="problem-row">
-                            <div class="row">
-                                <div class="col-md-6" style="padding-top: 10px;">
-                                    <a href = "/problem/view/{{id}}/" style="color: #058876; font-weight:500; text-decoration: underline;">{{problem_order}}. {{problem_name}}</a>
-                                </div>
-                                <div class="col-md-4" style="padding-top: 10px;">
-                                    <h6>{{oj_name}} - {{problem_id}}</h6>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class = "display: flex; align-items: center; justify-content: center;">
-                                        <a href="{{source_link}}" class="btn btn-light" role="button">Solve</a>
-                                    </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-8">
+            <ul style="width: 97%;">
+                {{#each problem_set}}
+                    <a href="/">
+                    <li class="problem-row">
+                        <div class="row">
+                            <div class="col-md-6" style="padding-top: 10px;">
+                                <a href = "/problem/view/{{id}}/" style="color: #3d87b9; font-weight:500; text-decoration: underline;">{{problem_order}}. {{problem_name}}</a>
+                            </div>
+                            <div class="col-md-4" style="padding-top: 10px;">
+                                <h6>{{oj_name}} - {{problem_id}}</h6>
+                            </div>
+                            <div class="col-md-2">
+                                <div class = "display: flex; align-items: center; justify-content: center;">
+                                    <a href="{{source_link}}" class="btn btn-light" role="button">Solve</a>
                                 </div>
                             </div>
-                        </li>
-                        </a>
-                        <br>
-                    {{/each}}
-                </ul>
+                        </div>
+                    </li>
+                    </a>
+                    <br>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <div class="contest-header">
+                <h4><b>{{contest_name}}</b></h4>
+                <hr>
+                <h6 style="font-size: 12px;">{{start_date}} - {{end_date}}</h6>
+                <h6 style="text-align: center; font-size:small;">Problem Setter: <a href="/profile/{{user_handle}}/" style="color: {{user_skill_color}};">{{setter_handle}}</a></h6>
             </div>
-            <div class="col-md-3">
-                <div class="contest-header">
-                    <h4><b>{{contest_name}}</b></h4>
-                    <hr>
-                    <h6 style="font-size: 12px;">{{start_date}} - {{end_date}}</h6>
-                    <h6 style="text-align: center; font-size:small;">Problem Setter: <a href="/profile/{{user_handle}}/" style="color: {{user_skill_color}};">{{setter_handle}}</a></h6>
-                </div>
-                <br>
-                <br>
-                <br>
-                <div class="contest-info-box" style="height: 200px;">
+            <br>
+            <br>
+            <br>
+            <div class="contest-info-box" style="height: 200px;">
 
-                    <h4>Contest Level: {{contest_level}}</h4>
-                    <hr>
-                    <p style="font-size: 12px;">Contest level defines the difficulty of a contest. The more the contest level is closer to the individual skill level of a
-                        contestant, the more it is suitable for him.
-                    </p>
-                </div>
-                <br>
-                <br>
-                <br>
-                <div class="contest-info-box" style="height: 250px;">
+                <h4>Contest Level: {{contest_level}}</h4>
+                <hr>
+                <p style="font-size: 12px;">Contest level defines the difficulty of a contest. The more the contest level is closer to the individual skill level of a
+                    contestant, the more it is suitable for him.
+                </p>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="contest-info-box" style="height: 250px;">
 
-                    <h4>Contest Format</h4>
-                    <hr>
-                    <p style="font-size: 12px;">Training contest statistics are generated completely based on the offline problem solving history. After any
-                        contestant solve a particular problem, he needs to sync his profile to see his performance reflected on the contest standings.
-                    </p>
-                </div>
+                <h4>Contest Format</h4>
+                <hr>
+                <p style="font-size: 12px;">Training contest statistics are generated completely based on the offline problem solving history. After any
+                    contestant solve a particular problem, he needs to sync his profile to see his performance reflected on the contest standings.
+                </p>
             </div>
         </div>
     </div>
