@@ -12,26 +12,26 @@
     if(flg == 1){
       $(".sidebar-lighten").css({
         "margin-top": "-8px",
-        "background-color": "#1d324b",
-        "border-top": "1px solid #1d324b",
-        "box-shadow": "0px 0px 5px #1d324b",
+        "background-color": "#97A7B6",
+        "border-top": "1px solid #97A7B6",
+        "box-shadow": "0px 0px 5px #000000",
         "border-radius": "0px",
         "margin-left": "0",
         "position": "fixed",
         "z-index": "1"
       });
       flg = 0;
-      $(".cfs-body").css("margin-left", "280px")
+      $(".cfs-body").css("margin-left", "300px")
     }else{
       $(".sidebar-lighten").css({
         "margin-top": "-8px",
-        "background-color": "#1d324b",
-        "border-top": "1px solid #1d324b",
-        "box-shadow": "0px 0px 5px #1d324b",
+        "background-color": "#97A7B6",
+        "border-top": "1px solid #97A7B6",
+        "box-shadow": "0px 0px 5px #000000",
         "border-radius": "0px",
         "margin-left": "-17rem"
       });
-      $(".cfs-body").css("margin-left", "40px")
+      $(".cfs-body").css("margin-left", "60px")
       flg = 1;
     }
     //$('#wrapper').toggleClass('sidebar-toggle');

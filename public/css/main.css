@@ -13,7 +13,8 @@ body {
     margin: 0 auto;
     padding: 10px;
     box-shadow: 0px 0px 5px #565e61;
-    border-radius: 10px;
+    border: 1px solid #8498aa;
+    border-radius: 5px;
     color: #0B0C10;
 }
 .form-type-1 h2 {
@@ -48,7 +49,7 @@ body {
 .form-type-1 .submit-btn {        
     font-size: 16px;
     font-weight: bold;
-    background: #3c5370;
+    background: rgb(140, 161, 180);
     border-radius: 3px;
     border: none;
     min-width: 140px;
@@ -58,7 +59,7 @@ body {
     justify-content: center;
 }
 .form-type-1 .submit-btn:hover, .form-type-1 .submit-btn:focus {
-    background: #4d6685;
+    background: #b3c0cc;
 }
 
 .form-type-1 .control-btn {        
@@ -108,9 +109,11 @@ body {
 
 .sidebar-rating-table {
     background: #ffffff;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    box-shadow: 0px 0px 3px #565e61;
+    border-radius: 5px;
+    margin: 30px auto;
+    margin-top: 15px;
+    box-shadow: 0px 0px 5px #565e61;
+    border: 1px solid #8498aa;
     padding: 0px;
     padding-top: 15px;
     padding-bottom: 1px;
@@ -162,11 +165,9 @@ body {
 .contest-table {
     color: black;
     margin: 30px auto;
-    margin-bottom: 15px;
-    margin-top: 0px;
     background: rgb(255, 255, 255);
     box-shadow: 0px 0px 3px #565e61;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
     table-layout: fixed;
     border: 1px solid #dcdfe0;
@@ -174,11 +175,13 @@ body {
 }
 .problem-set-table {
     color: black;
-    margin-bottom: 15px;
+    margin: 30px auto;
     background: rgb(255, 255, 255);
     box-shadow: 0px 0px 5px #565e61;
-    border: 1px solid #dcdfe0;
-    border-radius: 10px;
+    border: 1px solid #8498aa;
+    border-radius: 5px;
+    overflow: hidden;
+    table-layout: fixed;
     font-size: small;
 }
 
@@ -209,10 +212,10 @@ body {
 }
 
 .cfs-title-1-contest {
-    background: #1d324b;
+    background: #97A7B6;
     color: #ffffff;
-    padding: 8px;
-    padding-top: 15px;
+    padding: 3px;
+    padding-top: 7px;
     border-bottom: 1px solid rgb(214, 214, 214);
 }
 
@@ -224,7 +227,7 @@ body {
 
 .cfs-title-1-inside a{
     color: #ffffff;
-    font-size: large;
+    font-size: small;
 }
 
 .standings-box {
@@ -232,8 +235,8 @@ body {
 }
 
 .selected-button{
-    border: 1px solid #2c486b;
-    border-radius: 10px;
+    border: 1px solid #c9cfd8;
+    border-radius: 5px;
 }
 
 .table-wrapper {
@@ -278,10 +281,12 @@ body {
 
 .blog-post-2 {
     background: #ffffff;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 5px;
-    margin-bottom: 2px;
-    box-shadow: 0px 0px 3px #565e61;
+    margin: 30px auto;
+    margin-top: 15px;
+    box-shadow: 0px 0px 5px #565e61;
+    border: 1px solid #8498aa;
     padding: 30px;
     color: #0B0C10;
 }
@@ -447,12 +452,10 @@ hr.light {
 .cfs-table-wrapper-1 {
     color: black;
     margin: 30px auto;
-    margin-bottom: 15px;
-    margin-top: 0px;
     background: rgb(255, 255, 255);
     box-shadow: 0px 0px 5px #565e61;
-    border: 1px solid #dcdfe0;
-    border-radius: 10px;
+    border: 1px solid #8498aa;
+    border-radius: 5px;
     overflow: hidden;
     table-layout: fixed;
     font-size: small;
@@ -464,10 +467,11 @@ hr.light {
 
 .cfs-title-1 {
     border-radius: 1px;
-    background: #34506b;
-    color: #ffffff;	
-    padding: 8px;
-    padding-top: 15px;
+    background: #b3c0cc;
+    border-bottom: 1px solid #8498aa;
+    color: #000000;	
+    padding: 3px;
+    padding-top: 7px;
     font-size: smaller;
 }
 
@@ -480,12 +484,11 @@ hr.light {
 
 .cfs-transparent-header-div {
     background: #ffffff;
-    border-radius: 10px;
+    border-radius: 5px;
+    margin: 30px auto;
     padding: 10px;
-    margin-bottom: 2px;
     box-shadow: 0px 0px 5px #565e61;
-    border: 1px solid rgb(237, 243, 245);
-    margin-bottom: 15px;
+    border: 1px solid #8498aa;
     font-size: smaller;
 }
 
