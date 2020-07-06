@@ -207,7 +207,7 @@
 }
 
 .cfs-body {
-  margin-top: 15px;
+  margin-top: 30px;
   margin-bottom: 0px;
   margin-right: 40px;
   margin-left: 280px;
@@ -237,7 +237,6 @@
   background-color: #5f6b77;
 }
 
-
 .navbar-lighten {
   background-color: #081727;
   color: #ffffff;
@@ -245,9 +244,9 @@
 
 .sidebar-lighten {
   margin-top: -6px;
-  background-color: #162433;
-  border-top: 1px solid #223753;
-  box-shadow: 1px 1px 5px #a4afbd;
+  background-color: #1d324b;
+  border-top: 1px solid #1d324b;
+  box-shadow: 0px 0px 5px #1d324b;
   border-radius: 0px;
   position: fixed;
   z-index: 1;
@@ -323,7 +322,8 @@
   bottom: 0;
   display: flex;
   padding: 5px;
-  background-color: #081727;
+  background-color: #182c44;
+  border-top: 1px solid #2c4769;
 }
 
 .sidebar-footer > a {

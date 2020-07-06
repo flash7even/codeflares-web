@@ -12,9 +12,9 @@
     if(flg == 1){
       $(".sidebar-lighten").css({
         "margin-top": "-8px",
-        "background-color": "#162433",
-        "border-top": "1px solid #223753",
-        "box-shadow": "1px 1px 5px #a4afbd",
+        "background-color": "#1d324b",
+        "border-top": "1px solid #1d324b",
+        "box-shadow": "0px 0px 5px #1d324b",
         "border-radius": "0px",
         "margin-left": "0",
         "position": "fixed",
@@ -25,9 +25,9 @@
     }else{
       $(".sidebar-lighten").css({
         "margin-top": "-8px",
-        "background-color": "#162433",
-        "border-top": "1px solid #223753",
-        "box-shadow": "1px 1px 5px #a4afbd",
+        "background-color": "#1d324b",
+        "border-top": "1px solid #1d324b",
+        "box-shadow": "0px 0px 5px #1d324b",
         "border-radius": "0px",
         "margin-left": "-17rem"
       });

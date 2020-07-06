@@ -40,7 +40,7 @@ ul.CTAs a {
     top: 20px;
     padding: 10px;
     padding-left: 10px;
-    border-top: 1px solid rgb(4, 39, 37);
+    border-bottom: 1px solid rgb(4, 39, 37);
 }
 
 .notif-box{
