@@ -218,8 +218,8 @@ body {
 }
 
 .cfs-title-1-contest {
-    background: #eeeeef;
-    border-bottom: 1px solid #dfdfe0;
+    background: #FAFAFA;
+    border-bottom: 1px solid #e4e7eb;
     color: #ffffff;
     padding: 3px;
     padding-top: 7px;
@@ -326,10 +326,11 @@ body {
 
 
 .comment-post-1 {
-    background: #ffffff;
+    background: #FAFAFA;
+    margin: 20px;
     border-radius: 3px;
-    margin-bottom: 5px;
-    padding: 30px;
+    border: 1px solid #d2dbdf;
+    padding: 10px;
     color: #0B0C10;
 }
 
@@ -358,7 +359,7 @@ body {
     width: 100%;
     float: left;
     background-color: #FAFAFA;
-    padding: 5px 5px 5px;
+    padding: 5px;
     margin-bottom: 5px;
     border-radius: 3px;
     border: 1px solid #ddd;
@@ -416,18 +417,18 @@ body {
 .comments .commenter-name .comment-time {
     font-weight: normal;
     margin-left: 8px;
-    font-size: 15px;
+    font-size: 12px;
 }
 .comments .comment-text-box {
-    font-size: 13px;
-    padding: auto;
-    margin: auto;
+    font-size: small;
     padding-left: 10px;
+    padding-top: 15px;
+    margin: 0px;
 }
 .comments .commenter-name {
     display: inline-block;
     position: relative;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     padding-top: 5px;
     padding-left: 10px;
@@ -436,7 +437,6 @@ body {
     font-size: 10px;
     color: #333;
     float: right;
-    margin: 0px;
 }
 .comments .reply-box {
     display: none;
@@ -478,8 +478,8 @@ hr.light {
 
 .cfs-title-1 {
     border-radius: 1px;
-    background: #eeeeef;
-    border-bottom: 1px solid #dfdfe0;
+    background: #FAFAFA;
+    border-bottom: 1px solid #e4e7eb;
     color: #000000;	
     padding: 3px;
     padding-top: 7px;
