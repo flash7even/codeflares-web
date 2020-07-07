@@ -321,7 +321,9 @@ body {
 }
 
 .post-body{
-    font-size: 14px;
+    font-size: medium;
+    font-weight: normal;
+    color: #000000;
 }
 
 

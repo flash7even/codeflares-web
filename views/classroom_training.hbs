@@ -149,7 +149,7 @@
                         <td>{{deadline}}</td>
                         <td>
                             <a href="/classroom/task/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3;"><i class="fas fa-edit"></i></a>
-                            <a href="/classroom/task/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-trash"></i></a>
+                            <a href="/classroom/task/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     {{/each}}
@@ -187,7 +187,7 @@
                         <td>{{class_time}}</td>
                         <td>
                             <a href="/classroom/class/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3;"><i class="fas fa-edit"></i></a>
-                            <a href="/classroom/class/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-trash"></i></a>
+                            <a href="/classroom/class/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     {{/each}}
@@ -314,10 +314,10 @@
             
             if(logger_in_user == team_lead_id){
                 if(logger_in_user != member_id){
-                    action_delete = '<a href="/classroom/member/delete/'+classroom_id+'/{{user_handle}}/" title="Delete member" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-trash"></i></a>'
+                    action_delete = '<a href="/classroom/member/delete/'+classroom_id+'/{{user_handle}}/" title="Delete member" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-trash"></i></a>'
                 }
             }else if(logger_in_user == member_id){
-                action_delete = '<a href="/classroom/member/delete/'+classroom_id+'/{{user_handle}}/" title="Leave team" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-trash"></i></a>'
+                action_delete = '<a href="/classroom/member/delete/'+classroom_id+'/{{user_handle}}/" title="Leave team" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-trash"></i></a>'
             }
             
             data = [user_name, "{{full_name}}", "{{skill_value}}", "{{skill_title}}", "{{solve_count}}", action_delete]
