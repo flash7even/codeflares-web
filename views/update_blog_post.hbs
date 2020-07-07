@@ -3,9 +3,12 @@
 </head>
 
 <div class="form-type-1" style="width: 100%;">	
-    <form action="/blog/update/{{blog_id}}/" method="post">
+	<div class="cfs-title-1">
 		<h2>Update Blog Post</h2>
 		<p style="color: rgb(149, 167, 201); text-align:center;">Target Audience: [{{target_audience}}]</p>
+	</div>
+	<br>
+    <form action="/blog/update/{{blog_id}}/" method="post" style="padding: 10px;">
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
@@ -30,8 +33,8 @@
 				<textarea type="text" id="blog_text" class="form-control blog-post-text-box" name="blog_text"></textarea>
 			</div>
 		</div>
-		<div class="form-group">
-            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Update</button>
+		<div class="form-group submit-btn-div">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn">Update</button>
         </div>
 	</form>
 </div>

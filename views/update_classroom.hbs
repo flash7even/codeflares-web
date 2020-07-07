@@ -2,14 +2,12 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
-<br>
-
 <div class="form-type-1" style="width: 80%;">	
-    <form action="/classroom/update/{{id}}/" method="post">
-        <div class="cfs-title-1">
-            <h2 style="text-align: center;"><b>Update Classroom Information</b></h2>
-			<h6 style="text-align: center; color: #0e586e;"><b>Class Name: {{team_name}}</b></h6>
-        </div>
+	<div class="cfs-title-1">
+		<h2 style="text-align: center;"><b>Update Classroom Information</b></h2>
+		<h6 style="text-align: center; color: #0e586e;"><b>Class Name: {{team_name}}</b></h6>
+	</div>
+    <form action="/classroom/update/{{id}}/" method="post" style="padding: 10px;">
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<label for="email"> <b>Classroom Name</b> </label>
@@ -69,8 +67,8 @@
 			</div>
 		</div>
 
-		<div class="form-group">
-            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
+		<div class="form-group submit-btn-div">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn">Submit</button>
         </div>
 	</form>
 </div>

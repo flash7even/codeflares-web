@@ -2,13 +2,13 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
-<div class="form-type-1">	
-    <form action="/classroom/task/update/{{id}}/" method="post">
-        <div class="cfs-title-1">
-            <h2 style="text-align: center;"><b>Update Task Data</b></h2>
-			<h6 style="text-align: center; color: #0e586e;"><b>Task Name: {{task_title}}</b></h6>
-        </div>
-		<br>
+<div class="form-type-1" style="width: 80%;">	
+	<div class="cfs-title-1">
+		<h6 style="text-align: center;"><b>Update Task Data</b></h6>
+		<h6 style="text-align: center; color: #0e586e;"><b>Task Name: {{task_title}}</b></h6>
+	</div>
+	<br>
+    <form action="/classroom/task/update/{{id}}/" method="post" style="padding: 10px;">
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<label for="email"> <b>Task Name</b> </label>
@@ -33,8 +33,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
-            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
+		<div class="form-group submit-btn-div">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn">Submit</button>
         </div>
 	</form>
 </div>
