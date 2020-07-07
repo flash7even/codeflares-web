@@ -8,20 +8,24 @@ body {
     border-radius: 0;
 }
 .form-type-1 {
-    background-color: #ffffff;
+    color: black;
     width: 60%;
-    margin: 0 auto;
-    padding: 10px;
+    margin: 30px auto;
+    background: rgb(255, 255, 255);
     box-shadow: 0px 0px 5px #565e61;
     border: 1px solid #8498aa;
     border-radius: 5px;
-    color: #0B0C10;
+    overflow: hidden;
+    table-layout: fixed;
+    font-size: small;
 }
+
 .form-type-1 h2 {
     color: #636363;
     margin: 0 0 15px;
     text-align: center;
 }
+
 .form-type-1 .lead {
     font-size: 14px;
     margin-bottom: 30px;
@@ -46,20 +50,17 @@ body {
     border-width: 0 0 1px 0;
     padding-left: 5px;
 }
-.form-type-1 .submit-btn {        
-    font-size: 16px;
-    font-weight: bold;
-    background: rgb(140, 161, 180);
-    border-radius: 3px;
-    border: none;
-    min-width: 140px;
-    outline: none !important;
+.form-type-1 .submit-btn {
+    background: #537a9e;
+    color: #ffffff;
+    width: 50%;
+}
+.form-type-1 .submit-btn-div {        
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 .form-type-1 .submit-btn:hover, .form-type-1 .submit-btn:focus {
-    background: #b3c0cc;
+    background: #7e9fbe;
 }
 
 .form-type-1 .control-btn {        

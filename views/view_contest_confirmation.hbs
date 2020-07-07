@@ -3,13 +3,12 @@
 </head>
 
 <div class="form-type-1" style="width: 100%;">	
-    <form action="/contest/confirm/{{id}}/" method="post">
-
-		<h2 style="text-align: center; color: #144611;"><b>Problem Set Confirmation</b></h2>
-		<p style="text-align: center; color: #997c2e;"><b>Contest {{contest_name}} [Level {{contest_level}}]</b></p>
-		<hr width="100%;" style="background-color: rgb(31, 85, 99);">
-		<br>
-
+	<div class="cfs-title-1">
+	<h6 style="text-align: center; color: #144611;"><b>Problem Set Confirmation</b></h6>
+	<p style="text-align: center; color: #997c2e;"><b>Contest {{contest_name}} [Level {{contest_level}}]</b></p>
+	</div>
+	<br>
+    <form action="/contest/confirm/{{id}}/" method="post" style="padding: 10px;">
 		<div class="problem-set">
             {{#each problem_set}}
                 <div class="form-row control-group">
@@ -65,8 +64,8 @@
 			</div>
 		</div>
 
-		<div class="form-group">
-            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Confirm</button>
+		<div class="form-group submit-btn-div">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn">Confirm</button>
         </div>
 	</form>
 </div>

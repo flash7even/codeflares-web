@@ -3,13 +3,13 @@
 </head>
 
 
-<div class="form-type-1">	
-    <form action="/classroom/task/add/{{id}}/" method="post">
-        <div class="table-title-2">
-            <h2 style="text-align: center;"><b>Add New Task</b></h2>
-			<h6 style="text-align: center; color: #0e586e;"><b>Classroom: {{team_name}}</b></h6>
-        </div>
-		<br>
+<div class="form-type-1" style="width: 80%;">	
+	<div class="cfs-title-1">
+		<h6 style="text-align: center;"><b>Add New Task</b></h6>
+		<h6 style="text-align: center; color: #0e586e;"><b>Classroom: {{team_name}}</b></h6>
+	</div>
+	<br>
+    <form action="/classroom/task/add/{{id}}/" method="post" style="padding: 10px;">
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<div class="input-group">
@@ -31,8 +31,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
-            <button type="submit" class="btn submit-btn btn-primary btn-block btn-lg">Submit</button>
+		<div class="form-group submit-btn-div">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn">Submit</button>
         </div>
 	</form>
 </div>
