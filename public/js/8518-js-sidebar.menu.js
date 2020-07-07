@@ -12,8 +12,8 @@
     if(flg == 1){
       $(".sidebar-lighten").css({
         "margin-top": "-8px",
-        "background-color": "#97A7B6",
-        "border-top": "1px solid #97A7B6",
+        "background-color": "#0f2436",
+        "border-top": "1px solid #0f2436",
         "box-shadow": "0px 0px 5px #000000",
         "border-radius": "0px",
         "margin-left": "0",
@@ -25,8 +25,8 @@
     }else{
       $(".sidebar-lighten").css({
         "margin-top": "-8px",
-        "background-color": "#97A7B6",
-        "border-top": "1px solid #97A7B6",
+        "background-color": "#0f2436",
+        "border-top": "1px solid #0f2436",
         "box-shadow": "0px 0px 5px #000000",
         "border-radius": "0px",
         "margin-left": "-17rem"
