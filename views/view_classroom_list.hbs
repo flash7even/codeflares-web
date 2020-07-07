@@ -8,13 +8,15 @@
             <h6 style="text-align: center;"><b>Your Classrooms</b></h6>
         </div>
         <div class="cfs-table-1">
-            <table id="teamListTable" class="table">
+            <table id="teamListTable" class="table top-list-table">
                 <thead>
-                    <tr>
+                    <tr style="display: none;">
                         <th>Classroom Name</th>
                         <th>Purpose</th>
                         <th>Institution</th>
-                        <th>Members</th>
+                        <th>Member Skill</th>
+                        <th>Training</th>
+                        <th>Discussion</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -39,35 +41,33 @@
         {{#each team_list}}
             console.log("{{team_name}}")
             var team_name = "{{team_name}}"
-            var member_list_items = "";
             var mem_count = 0;
             var my_status = "{{status}}"
-            {{#each member_list}}
-                if(mem_count>0) member_list_items += ",  ";
-                member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:700;">{{user_handle}} ({{status}})</a>'
-                mem_count += 1
-            {{/each}}
             var team_link = '<a href = "/classroom/training/{{id}}/home/" style="color: #056290; font-weight:700;">{{team_name}}</a>'
             var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
 
             if(my_status != "confirmed"){
                 action_link += '<a href="/classroom/confirm/{{id}}/" title="Confirm" data-toggle="tooltip" style="color: #5bc0de;"><i class="fas fa-check-circle"></i></a>'
                 action_link += "  "
-                action_link += '<a href="/classroom/reject/{{id}}/" title="Reject" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-times-circle"></i></a>'
+                action_link += '<a href="/classroom/reject/{{id}}/" title="Reject" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-times-circle"></i></a>'
             }else{
                 var team_lead = "{{team_leader_id}}"
                 console.log("team_lead")
                 console.log(team_lead)
                 if(current_user == team_lead){
-                    action_link += '<a href="/classroom/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-trash"></i></a>'
+                    action_link += '<a href="/classroom/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-trash"></i></a>'
                 }else{
-                    action_link += '<a href="/classroom/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-minus-circle"></i></a>'
+                    action_link += '<a href="/classroom/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-minus-circle"></i></a>'
                 }
             }
+
+            var member_skill_link = `<a class="btn btn-sm btn-light" href="/classroom/training/{{id}}/skill/" role="button">Member Skill</a>`
+            var training_link = `<a class="btn btn-sm btn-light" href="/classroom/training/{{id}}/contest/" role="button">Training</a>`
+            var discussion_link = `<a class="btn btn-sm btn-light" href="/classroom/training/{{id}}/discussion/" role="button">Discussion</a>`
             
             action_link += "</div>"
 
-            var team_data = [team_link, "{{team_purpose}}", "{{institution_name}}", member_list_items, action_link];
+            var team_data = [team_link, "{{team_purpose}}", "{{institution_name}}", member_skill_link, training_link, discussion_link, action_link];
             db_team_list.push(team_data)
         {{/each}}
 

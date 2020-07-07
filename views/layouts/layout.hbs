@@ -62,7 +62,6 @@
                                         <li> <a class="list-link" href="/profile/{{session.username}}/">Profile</a> </li>
                                         <li> <a class="list-link" href="/update/profile/">Edit Profile</a> </li>
                                         <li> <a class="list-link" href="/settings/update/">Settings</a> </li>
-                                        <li> <a class="list-link" href="/blog/post/add/global/{{session.user_id}}/">Create Blog Post</a> </li>
                                     </ul>
                                 </li>
                                 {{/if}}
@@ -128,6 +127,21 @@
                                             </ul>
                                         </li>
 
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-comments" aria-hidden="true"></i>Blog</a>
+                                    <ul class="list-unstyled list-hidden dropdown">
+                                        <li> <a class="list-link" href="/blog/post/add/global/{{session.user_id}}/">Create Post</a> </li>                               
+                                        <li>
+                                            <a href="#" class="list-link link-arrow">View Blogs</a>
+                                            <ul class="list-unstyled list-hidden">
+                                                <li> <a class="list-link" href="/blog/list/global/all/">Public Blogs</a> </li>
+                                                <li> <a class="list-link" href="/blog/list/global/all/">My Blogs</a> </li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>

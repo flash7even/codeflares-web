@@ -8,13 +8,15 @@
             <h6 style="text-align: center;"><b>Your Teamlist</b></h6>
         </div>
         <div class="cfs-table-1">
-            <table id="teamListTable" class="table">
+            <table id="teamListTable" class="table top-list-table">
                 <thead>
-                    <tr>
+                    <tr style="display: none;">
                         <th>Team Name</th>
                         <th>Purpose</th>
                         <th>Institution</th>
                         <th>Members</th>
+                        <th>Training</th>
+                        <th>Contests</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -54,21 +56,23 @@
             if(my_status != "confirmed"){
                 action_link += '<a href="/team/confirm/{{id}}/" title="Confirm" data-toggle="tooltip" style="color: #5bc0de;"><i class="fas fa-check-circle"></i></a>'
                 action_link += "  "
-                action_link += '<a href="/team/reject/{{id}}/" title="Reject" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-times-circle"></i></a>'
+                action_link += '<a href="/team/reject/{{id}}/" title="Reject" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-times-circle"></i></a>'
             }else{
                 var team_lead = "{{team_leader_id}}"
                 console.log("team_lead")
                 console.log(team_lead)
                 if(current_user == team_lead){
-                    action_link += '<a href="/team/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-trash"></i></a>'
+                    action_link += '<a href="/team/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-trash"></i></a>'
                 }else{
-                    action_link += '<a href="/team/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-minus-circle"></i></a>'
+                    action_link += '<a href="/team/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-minus-circle"></i></a>'
                 }
             }
             
             action_link += "</div>"
+            var training_link = `<a class="btn btn-sm btn-light" href="/training/team/{{id}}/training-plan/" role="button">Training Plan</a>`
+            var contest_link = `<a class="btn btn-sm btn-light" href="/training/team/{{id}}/contest/" role="button">Training Contests</a>`
 
-            var team_data = [team_link, "{{team_purpose}}", "{{institution_name}}", member_list_items, action_link];
+            var team_data = [team_link, "{{team_purpose}}", "{{institution_name}}", member_list_items, training_link, contest_link, action_link];
             db_team_list.push(team_data)
         {{/each}}
 

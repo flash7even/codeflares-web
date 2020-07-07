@@ -2,7 +2,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
-<div class="contest-table" style="width: 100%; font-weight:500; margin-right:1px auto">
+<div class="rich-data-table" style="width: 100%; font-weight:500; margin-right:1px auto">
     <div class="cfs-title-1">
         <h6 style="text-align: center;"><b>Training Contest List</b></h6>
     </div>
@@ -31,10 +31,10 @@
                         <h6 style="font-size: 12px;">{{start_date}} - {{end_date}}</h6>
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-light">View Problems</button>
+                        <a class="btn btn-sm btn-light" href="/contest/view/{{id}}/" role="button">View Problems</a>
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-light">Standings</button>
+                        <a class="btn btn-sm btn-light" href="/contest/standings/{{id}}/" role="button">Standings</a>
                     </div>
                 </div>
             </li>
