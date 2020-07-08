@@ -561,3 +561,8 @@ hr.light {
 .leaderboard thead{
     font-weight: 700;
 }
+
+.post-body b, strong{
+  color: #495057;
+  font-weight: bolder;
+}

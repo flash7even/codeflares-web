@@ -7,11 +7,6 @@
   line-height: 23px;
 }
 
-b, strong {
-  color: #495057;
-  font-weight: bolder;
-}
-
 .content {
   min-width: 100vw;
 }
