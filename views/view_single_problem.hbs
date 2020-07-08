@@ -32,7 +32,7 @@
     </div>
 </div>
 
-<div class="cfs-transparent-header-div" style="text-align: center;">
+<div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
         <div class="row">
             <div class="col-md-2">
@@ -40,20 +40,22 @@
             <div class="col-md-8" style="padding-top: 3px;">
                 <h5 style="text-align: center;"><b>Problem Resources</b></h5>
             </div>
+            {{#if session.user_id}}
             <div class="col-md-2" style="float: right;">
-                <a title="Add new post" class="btn btn-sm btn-light" role="button" type="button" style="border-color: #9fb6c5;" href="/problem/resource/add/{{id}}/"> <span style="color: #aab4bb;"><i class="fas fa-plus"></i></span> Add Resource</a>
+                <a title="Add new post" class="btn btn-sm btn-light" role="button" type="button" style="border-color: #9fb6c5;"  data-toggle="modal" data-target="#addResourceModal"> <span style="color: #aab4bb;"><i class="fas fa-plus"></i></span> Add Resource</a>
             </div>
+            {{/if}}
         </div>
     </div>
     <div class="cfs-table-1">
-        <table id="resourceListTable" class="table table-bordered" style="font-size: smaller;">
+        <table id="resourceListTable" class="table" style="text-align: center;">
             <thead>
                 <tr>
-                    <th>Resource Title</th>
-                    <th>Description</th>
-                    <th>Resource Writer</th>
-                    <th>Date</th>
-                    <th>Action</th>
+                    <td>Resource Title</td>
+                    <td>Description</td>
+                    <td>Resource Writer</td>
+                    <td>Date</td>
+                    <td>Action</td>
                 </tr>
             </thead>
             <tbody>
@@ -61,6 +63,57 @@
         </table>
     </div>
 </div>
+
+
+<!-- Modal Section Starts-->
+
+<div class="modal fade" id="addResourceModal" tabindex="-1" role="dialog" aria-labelledby="addResourceModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Your Task</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form action="/problem/resource/add/{{id}}/" method="post" style="padding: 10px;">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" id="resource_title" class="form-control" name="resource_title" placeholder="Resource Name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" id="resource_body" class="form-control" name="resource_body" placeholder="Resource Details">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" title="resource_type" id="resource_type" class="form-control" name="resource_type" placeholder="Resource Type">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" id="resource_owner" class="form-control" name="resource_owner" placeholder="Resource Credit">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group submit-btn-div">
+                <button type="submit" class="btn submit-btn btn-info btn-block btn">Add Resource</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Section Ends-->
 
 <div class="cfs-table-wrapper-1" style="margin-top: 10px;">
     <div class="cfs-title-1" style="background-color: #ebebeb;">
@@ -284,6 +337,8 @@
                 "aaData": dt_list,
                 paging: false,
                 searching: false,
+                info: false,
+                ordering: false,
                 destroy: true,
                 scrollCollapse: true,
                 responsive: true,

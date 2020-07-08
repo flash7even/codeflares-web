@@ -31,7 +31,8 @@ router.addProblemResourceFormSubmit = async function(req, res, next) {
   res_body['resource_writer'] = sess.user_id
   res_body['resource_ref_id'] = problem_id
   await problem_server.postProblemResource(res, req, res_body)
-  res.redirect('/problem/view/' + problem_id + '/');
+  jshelper.sleep(1000)
+  res.redirect('back');
 }
 
 function update_problem_data(problem){

@@ -567,3 +567,15 @@ hr.light {
   color: #495057;
   font-weight: bolder;
 }
+
+.modal {
+    position: relative;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+
+
+.cfs-table-1 thead{
+    font-weight: 700;
+}

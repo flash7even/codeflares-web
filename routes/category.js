@@ -130,7 +130,8 @@ router.addCategoryResourceFormSubmit = async function(req, res, next) {
   res_body['resource_writer'] = sess.user_id
   res_body['resource_ref_id'] = category_id
   await category_server.postCategoryResource(res, req, res_body)
-  res.redirect('/category/view/' + category_id + '/');
+  jshelper.sleep(1000)
+  res.redirect('back');
 }
 
 module.exports = router;

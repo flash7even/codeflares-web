@@ -150,7 +150,7 @@
             </table>
             <div class="add-task row" style="padding: 5px;">
                 <div style="margin-right: 5px; margin-left:15px;">
-                    <a style="border-color: #3d87b9;" title="Add new task" class='btn' href="/classroom/task/add/{{id}}/"><i class="fas fa-plus"></i></a>
+                    <a style="border-color: #3d87b9;" title="Add new task" class='btn'  data-toggle="modal" data-target="#addTaskModal"><i class="fas fa-plus"></i></a>
                 </div>
                 <div >
                     <a style="border-color: #3d87b9;" title="View all tasks" class='btn' href="/classroom/task/view/{{id}}/"  style="margin: 30px;"><i class="fas fa-bars"></i></a>
@@ -188,7 +188,7 @@
             </table>
             <div class="add-task row" style="padding: 5px;">
                 <div style="margin-right: 5px; margin-left:15px;">
-                    <a style="border-color: #3d87b9;" title="Add new class" class='btn' href="/classroom/class/add/{{id}}/"><i class="fas fa-plus"></i></a>
+                    <a style="border-color: #3d87b9;" title="Add new class" class='btn'  data-toggle="modal" data-target="#addClassModal"><i class="fas fa-plus"></i></a>
                 </div>
                 <div >
                     <a style="border-color: #3d87b9;" title="View all class" class='btn' href="/classroom/class/view/{{id}}/"  style="margin: 30px;"><i class="fas fa-bars"></i></a>
@@ -199,6 +199,103 @@
 </div>
 {{/if}}
 
+<!-- Modal Section Starts-->
+
+<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Your Task</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form action="/classroom/task/add/{{id}}/" method="post" style="padding: 10px;">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" id="task_title" class="form-control" name="task_title" placeholder="Task Name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" id="task_description" class="form-control" name="task_description" placeholder="Task Details">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="date" title="Deadline" id="deadline" class="form-control" name="deadline" placeholder="Deadline">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group submit-btn-div">
+                <button type="submit" class="btn btn-unique submit-btn btn-info btn-block btn">Submit</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="addClassModal" tabindex="-1" role="dialog" aria-labelledby="addClassModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Class Schedule</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <form action="/classroom/class/add/{{id}}/" method="post" style="padding: 10px;">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" id="class_title" class="form-control" name="class_title" placeholder="Class Name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" id="class_description" class="form-control" name="class_description" placeholder="Details">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="date" title="Class Time" id="class_time" class="form-control" name="class_time">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" title="Duration" id="class_duration" class="form-control" name="class_duration" placeholder="Duration">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" id="resource_link" class="form-control" name="resource_link" placeholder="Resources">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group submit-btn-div">
+                <button type="submit" class="btn submit-btn btn-info btn-block btn">Add Class</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Section Ends -->
 
 {{#if skill}}
 <div class="cfs-table-wrapper-1" id="categoryWiseSkillTableTop">

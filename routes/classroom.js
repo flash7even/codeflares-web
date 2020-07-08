@@ -209,7 +209,7 @@ router.addClassroomTaskFormSubmit = async function(req, res, next) {
   await classroom_server.postClassroomTask(res, req, classroom_task_data)
   jshelper.sleep(1000);
   system_server.add_toast(req, 'Task added successfully!')
-  res.redirect('/classroom/training/' + classroom_id + '/home/');
+  res.redirect('back')
 }
 
 router.deleteClassroomTask = async function(req, res, next) {
@@ -295,7 +295,7 @@ router.addClassroomClassFormSubmit = async function(req, res, next) {
   await classroom_server.postClassroomClass(res, req, classroom_class_data)
   jshelper.sleep(1000);
   system_server.add_toast(req, 'Class schedule added!')
-  res.redirect('/classroom/training/' + classroom_id + '/home/');
+  res.redirect('back');
 }
 
 router.deleteClassroomClass = async function(req, res, next) {
