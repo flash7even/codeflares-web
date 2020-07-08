@@ -125,6 +125,11 @@
   margin: 0.9375rem 0 0.9375rem 0.625rem;
 }
 
+.list-link-notif {
+  font-size: larger;
+  padding: 0 0.625rem;
+}
+
 .list-link {
   display: block;
   padding: 0 0.625rem;

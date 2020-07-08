@@ -174,15 +174,14 @@
                     <div class="sidebar-footer">
                         <a href="/notification/list/">
                             <i class="fa fa-bell"></i>
-                            <span class="badge badge-pill badge-warning notification">{{session.notification_data.unread_length}}</span>
-                        </a>
-                        <a href="#">
-                            <i class="fa fa-envelope"></i>
-                            <span class="badge badge-pill badge-success notification">7</span>
+                            <span class="badge badge-pill badge-info notification">{{session.notification_data.unread_length}}</span>
                         </a>
                         <a href="/settings/update/">
                             <i class="fa fa-cog"></i>
                             <span class="badge-sonar"></span>
+                        </a>
+                        <a href="/profile/{{session.username}}/">
+                            <i class="fa fa-user"></i>
                         </a>
                         <a href="/logout/">
                             <i class="fa fa-power-off"></i>
@@ -226,9 +225,8 @@
                                 </a>
                             </div>
                             <div style="padding: 3px;">
-
                                 {{#if session.notification_data.UNREAD}}
-                                <a class="list-link"  title="Notifications" type="button btn-lg" class="btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="list-link-notif"  title="Notifications" type="button btn-lg" class="btn navbar-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i style="color:rgb(9, 179, 37);" class="fa fa-bell navbar-btn-icon"></i>
                                     <span style="color:rgb(9, 179, 37);"><sup>{{session.notification_data.unread_length}}</sup></span>
                                 </a>
