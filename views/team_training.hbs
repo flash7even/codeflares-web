@@ -48,10 +48,8 @@
             <hr style="border: 1px solid #2b3847; border-radius: 1px;">
             </b>
             {{else}}
-            <b>
             <a title="Home" href="/training/team/{{id}}/training-plan/"><i class="fas fa-tenge"></i> Training Plan</a>
             <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
-            </b>
             {{/if}}
         </div>
         <div class="col-md-2">
@@ -61,16 +59,16 @@
             <hr style="border: 1px solid #2b3847; border-radius: 1px;">
             </b>
             {{else}}
-            <b>
             <a title="Member Skills" href="/training/team/{{id}}/category-skill/"><i class="fas fa-chart-bar"></i> Category Skills</a>
             <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
-            </b>
             {{/if}}
         </div>
         <div class="col-md-2">
             {{#if contest}}
+            <b>
             <a href="/training/team/{{id}}/contest/"><i class="fas fa-cubes"></i> Contest</a>
             <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            </b>
             {{else}}
             <a href="/training/team/{{id}}/contest/"><i class="fas fa-cubes"></i> Contest</a>
             <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
@@ -78,8 +76,10 @@
         </div>
         <div class="col-md-2">
             {{#if rating-comparison}}
+            <b>
             <a href="/training/team/{{id}}/rating-comparison/"><i class="fas fa-cubes"></i> Rating Comparison</a>
             <hr style="border: 1px solid #2b3847; border-radius: 1px;">
+            </b>
             {{else}}
             <a href="/training/team/{{id}}/rating-comparison/"><i class="fas fa-cubes"></i> Rating Comparison</a>
             <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
@@ -94,7 +94,7 @@
 {{#if training-plan}}
 <div class="cfs-table-wrapper-1" style="width: 100%%;  margin-right:1px auto">			
     <div class="cfs-title-1">
-        <h6 style="text-align: center;">Next Problems To Solve</h6>
+        <h5 style="text-align: center;">Next Problems To Solve</h5>
     </div>
     <table class="table" style="text-align: center;">
         <thead>
@@ -127,7 +127,7 @@
 
 <div class="cfs-table-wrapper-1" style="width: 100%%;  margin-right:1px auto">
     <div class="cfs-title-1">
-        <h6 style="text-align: center;">Next Algorithms To Learn</h6>
+        <h5 style="text-align: center;">Next Algorithms To Learn</h5>
     </div>
     <table class="table" style="text-align: center; width: 100%; table-layout: fixed;">
         <thead>
@@ -160,7 +160,7 @@
 {{#if category-skill}}
 <div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
-        <h6 style="text-align: center;">Topic Wise Skill Comparison</h6>
+        <h5 style="text-align: center;">Topic Wise Skill Comparison</h5>
     </div>
     <br>
     <br>
@@ -171,7 +171,7 @@
 
 <div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
-        <h6 style="text-align: center;">Topic Wise Solved Count Comparison</h6>
+        <h5 style="text-align: center;">Topic Wise Solved Count Comparison</h5>
     </div>
     <br>
     <br>
@@ -182,7 +182,7 @@
 
 <div class="cfs-table-wrapper-1" id="categorySkillListTableTop">
     <div class="cfs-title-1">
-        <h6 style="text-align: center;">Overall Algorithm Skills</h6>
+        <h5 style="text-align: center;">Overall Algorithm Skills</h5>
     </div>
     <div style="padding: 10px;">
     <table id="categorySkillListTable" class="table category-list-table" style="text-align: center;">
@@ -206,7 +206,16 @@
 {{#if contest}}
 <div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
-        <h6 style="text-align: center;"><b>Training Contest List</b></h6>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8" style="padding-top: 3px;">
+                <h5 style="text-align: center;"><b>Training Contests</b></h5>
+            </div>
+            <div class="col-md-2" style="float: right;">
+                <a title="Add new post" class="btn btn-sm btn-light" role="button" type="button" style="border-color: #9fb6c5;" href="/contest/add/"> <span style="color: #aab4bb;"><i class="fas fa-plus"></i></span> Add Contest</a>
+            </div>
+        </div>
     </div>
     <div style="padding: 10px;">
     <table id="contestListTable" class="table" style="text-align: center;">
@@ -231,7 +240,7 @@
 {{#if rating-comparison}}
 <div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
-        <h6 style="text-align: center;">CodeFlares Rating History Comparison</h6>
+        <h5 style="text-align: center;">CodeFlares Rating History Comparison</h5>
     </div>
     <br>
     <div style="padding: 10px;">
@@ -241,7 +250,7 @@
 
 <div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
-        <h6 style="text-align: center;">CodeForces Rating History Comparison</h6>
+        <h5 style="text-align: center;">CodeForces Rating History Comparison</h5>
     </div>
     <br>
     <div style="padding: 10px;">

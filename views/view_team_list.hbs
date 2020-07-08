@@ -5,7 +5,7 @@
 <div class="show-team"  >
     <div class="cfs-table-wrapper-1">
         <div class="cfs-title-1">
-            <h6 style="text-align: center;"><b>Your Teamlist</b></h6>
+            <h5 style="text-align: center;"><b>Your Teamlist</b></h5>
         </div>
         <div class="cfs-table-1">
             <table id="teamListTable" class="table top-list-table">
@@ -49,7 +49,7 @@
                 member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:700;">{{user_handle}} ({{status}})</a>'
                 mem_count += 1
             {{/each}}
-            var team_link = '<a href = "/team/view/{{id}}/" style="color: #3d87b9; font-weight:700;"><b>{{team_name}}</b></a>'
+            var team_link = '<a href = "/team/view/{{id}}/" style="color: {{skill_color}}; font-weight:700;">{{team_name}}</a>'
 
             var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
 

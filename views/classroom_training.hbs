@@ -21,10 +21,8 @@
             <hr style="border: 1px solid #2b3847; border-radius: 1px;">
             </b>
             {{else}}
-            <b>
             <a href="/classroom/training/{{id}}/home/"><i class="fas fa-home"></i> Home</a>
             <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
-            </b>
             {{/if}}
         </div>
         <div class="col-md-2">
@@ -34,10 +32,8 @@
             <hr style="border: 1px solid #2b3847; border-radius: 1px;">
             </b>
             {{else}}
-            <b>
             <a href="/classroom/training/{{id}}/skill/"><i class="fas fa-chart-bar"></i> Member Skills</a>
             <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
-            </b>
             {{/if}}
         </div>
         <div class="col-md-2">
@@ -47,10 +43,8 @@
             <hr style="border: 1px solid #2b3847; border-radius: 1px;">
             </b>
             {{else}}
-            <b>
             <a href="/classroom/training/{{id}}/contest/"><i class="fas fa-cubes"></i> Training</a>
             <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
-            </b>
             {{/if}}
         </div>
         <div class="col-md-2">
@@ -60,10 +54,8 @@
             <hr style="border: 1px solid #2b3847; border-radius: 1px;">
             </b>
             {{else}}
-            <b>
             <a href="/classroom/training/{{id}}/discussion/"><i class="fas fa-comments"></i> Discussions</a>
             <hr style="border: 1px solid #c5c5c5; border-radius: 1px;">
-            </b>
             {{/if}}
         </div>
         <div class="col-md-2">
@@ -251,7 +243,16 @@
 {{#if contest}}
 <div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
-        <h5 style="text-align: center;"><b>Training Contest List</b></h5>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8" style="padding-top: 3px;">
+                <h5 style="text-align: center;"><b>Training Contests</b></h5>
+            </div>
+            <div class="col-md-2" style="float: right;">
+                <a title="Add new post" class="btn btn-sm btn-light" role="button" type="button" style="border-color: #9fb6c5;" href="/contest/add/"> <span style="color: #aab4bb;"><i class="fas fa-plus"></i></span> Add Contest</a>
+            </div>
+        </div>
     </div>
     <table id="contestListTable" class="table" style="text-align: center; padding: 5px;">
         <thead>

@@ -55,7 +55,7 @@ body {
     background: #ececec;
     color: #000000;
     border: 1px solid #e4e4e4;
-    width: 13%;
+    width: 20%;
     height: 40px;
 }
 .form-type-1 .submit-btn-div {        
@@ -517,6 +517,12 @@ hr.light {
     padding: 3px;
     padding-top: 7px;
     font-size: smaller;
+    text-align: center;
+    
+}
+
+.cfs-title-1 h6 {
+    font-weight: 800px;
 }
 
 .cfs-title-2 {
@@ -550,4 +556,8 @@ hr.light {
     line-height: 40px;
     border: 1px solid black;
     border-radius: 5px;
+}
+
+.leaderboard thead{
+    font-weight: 700;
 }

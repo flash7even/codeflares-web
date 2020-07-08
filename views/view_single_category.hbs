@@ -33,7 +33,16 @@
 
 <div class="cfs-transparent-header-div" style="text-align: center;">
     <div class="cfs-title-1">
-        <h5 style="text-align: center;"><b>Category Resources  </b> <a title="Add new resource" style="color: #accbe1;" href="/category/resource/add/{{category_id}}/"> <i class="fas fa-plus"></i> </a> </h5>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8" style="padding-top: 3px;">
+                <h5 style="text-align: center;"><b>Category Resources</b></h5>
+            </div>
+            <div class="col-md-2" style="float: right;">
+                <a title="Add new post" class="btn btn-sm btn-light" role="button" type="button" style="border-color: #9fb6c5;" href="/category/resource/add/{{category_id}}/"> <span style="color: #aab4bb;"><i class="fas fa-plus"></i></span> Add Resource</a>
+            </div>
+        </div>
     </div>
     <div class="cfs-table-1">
         <table id="resourceListTable" class="table table-bordered" style="font-size: smaller;">

@@ -9,12 +9,12 @@
         <h6 style="text-align: center;"><b>Leaderboard</b></h6>
     </div>
     <div class="cfs-table-1">
-        <table id="topRatedMemberTable" class="table" style="text-align: center;">
+        <table id="topRatedMemberTable" class="leaderboard table" style="text-align: center;">
             <thead>
                 <tr>
-                    <th>Rank</th>
-                    <th>User</th>
-                    <th>Skill Value</th>
+                    <td>Rank</td>
+                    <td>User</td>
+                    <td>Skill Value</td>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +46,7 @@
         $("#topRatedMemberTable").dataTable({
             "pageLength": 100,
             destroy: true,
-            ordering: true,
+            ordering: false,
             serverSide: true,
             "columnDefs": [
                 { "orderable": false, "targets": 0 },

@@ -6,15 +6,15 @@
 
 <div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
-        <h4 style="text-align: center;"><b>Top Contributors</b></h4>
+        <h5 style="text-align: center;"><b>Top Contributors</b></h5>
     </div>
     <div class="cfs-table-1">
-        <table id="topContributorsTable" class="table" style="text-align: center;">
+        <table id="topContributorsTable" class="leaderboard table" style="text-align: center;">
             <thead>
                 <tr>
-                    <th>Rank</th>
-                    <th>User</th>
-                    <th>Contribution</th>
+                    <td>Rank</td>
+                    <td>User</td>
+                    <td>Contribution</td>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +46,7 @@
         $("#topContributorsTable").dataTable({
             "pageLength": 100,
             destroy: true,
-            ordering: true,
+            ordering: false,
             serverSide: true,
             "columnDefs": [
                 { "orderable": false, "targets": 0 },

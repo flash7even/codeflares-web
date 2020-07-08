@@ -13,52 +13,53 @@
                 <h2 style="color: {{skill_color}};"><b>{{username}}</b></h2>
 				<h6>{{full_name}}</h6>
 				<br>
-				<h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-layer-group"></i> <span style="color:rgb(3, 164, 182); font-weight: 800; font-size:25px;">{{skill_title}}</span></h6>
-				<h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-poll-h"></i> User Rating: <span style="color:rgb(3, 164, 182); font-weight: 800;">{{skill_value}}</span></h6>
-				<h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-cheese"></i> Problem Solved: <span style="color:rgb(13, 98, 155); font-weight: 800;">{{solve_count}}</span></h6>
-                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-secret"></i> Followers: <span style="color:rgb(110, 134, 64); font-weight: 800;">{{follow_stat.follower_count}}</span></h6>
-                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-secret"></i> Following: <span style="color:rgb(110, 134, 64); font-weight: 800;">{{follow_stat.following_count}}</span></h6>
-				<h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-envelope"></i> Email: {{email}}</h6>
-                <h6><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-calendar-week"></i> Registered Since: {{created_at}}</h6>
+				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-layer-group"></i> <span style="color:{{skill_color}}; font-weight: 600; font-size:25px;">{{skill_title}}</span></h6>
+				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-poll-h"></i> User Rating: <span style="color: rgb(13, 98, 155); font-weight: 500;">{{skill_value}}</span></h6>
+				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-cheese"></i> Problem Solved: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{solve_count}}</span></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-secret"></i> Followers: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{follow_stat.follower_count}}</span></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-secret"></i> Following: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{follow_stat.following_count}}</span></h6>
+				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-envelope"></i> Email: {{email}}</h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-calendar-week"></i> Registered Since: {{created_at}}</h6>
 				
 				{{#if own_profile}}
-				<h6 style="color: rgb(58, 101, 158);"><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-lock"></i> <a href="/change/password/">Change Password</a></h6>
-				<h6 style="color: rgb(58, 101, 158);"><i style="color:rgb(68, 169, 219); width: 30px;" class="fas fa-user-edit"></i> <a href="/update/profile/">Update Profile</a></h6>
+				<h6 style="color: #3d87b9;"><i style="color:#3d87b9; width: 30px;" class="fas fa-lock"></i> <a href="/change/password/">Change Password</a></h6>
+				<h6 style="color: #3d87b9;"><i style="color:#3d87b9; width: 30px;" class="fas fa-user-edit"></i> <a href="/update/profile/">Update Profile</a></h6>
 				{{/if}}
             </div>
+			<br>
 			<br>
 
 			<div class="row">
 				{{#if following}}
-					<div class="col-md-1" style="padding-left: 5px;">
-						<a style="border-color: rgb(68, 169, 219); color:rgb(68, 169, 219);" href="/unfollow/{{id}}/" class="btn btn-block"> <span title="Unfollow" class="fas fa-user-friends"></span></a>
+					<div class="col-md-2" style="padding-left: 5px;">
+						<a style="border-color: rgb(13, 98, 155); color:rgb(13, 98, 155);" href="/unfollow/{{id}}/" class="btn btn-block"> <span title="Unfollow" class="fas fa-user-friends"></span></a>
 					</div>
 				{{/if}}
 				{{#if unfollowing}}
-					<div class="col-md-1" style="padding-left: 5px;">
+					<div class="col-md-2" style="padding-left: 5px;">
 						<a style="border-color: rgb(145, 156, 160); color:rgb(145, 156, 160);" href="/follow/{{id}}/" class="btn btn-block"><span title="Follow" class="fas fa-user-friends"></span></a>
 					</div>
 				{{/if}}
 				{{#if session.user_id}}
-				<div class="col-md-1" style="padding-left: 5px;">
-					<a style="border-color: rgb(39, 124, 150); color:rgb(39, 124, 150);" href="/user/sync/{{id}}/" class="btn btn-block"><span title="Sync Profile" class="fas fa-sync"></span></a>
+				<div class="col-md-2" style="padding-left: 5px;">
+					<a style="border-color: rgb(13, 98, 155); color:rgb(13, 98, 155);" href="/user/sync/{{id}}/" class="btn btn-block"><span title="Sync Profile" class="fas fa-sync"></span></a>
 				</div>
 				{{/if}}
 				{{#if own_profile}}
-				<div class="col-md-1" style="padding-left: 5px;">
-					<a style="border-color: rgb(101, 114, 187); color:rgb(101, 114, 187);" href="/update/profile/" class="btn btn-block"><span title="Update Profile" class="fas fa-user-edit"></span></a>
+				<div class="col-md-2" style="padding-left: 5px;">
+					<a style="border-color: rgb(13, 98, 155); color:rgb(13, 98, 155);" href="/update/profile/" class="btn btn-block"><span title="Update Profile" class="fas fa-user-edit"></span></a>
 				</div>
 				{{/if}}
 				{{#if session.user_id}}
-				<div class="col-md-1" style="padding-left: 5px;">
-					<a style="border-color: rgb(70, 143, 196); color:rgb(70, 143, 196);" href="/training/individual/{{username}}/training-plan/" class="btn btn-block"><span title="Training Plan" class="fas fa-tenge"></span></a>
+				<div class="col-md-2" style="padding-left: 5px;">
+					<a style="border-color: rgb(13, 98, 155); color:rgb(13, 98, 155);" href="/training/individual/{{username}}/training-plan/" class="btn btn-block"><span title="Training Plan" class="fas fa-tenge"></span></a>
 				</div>
 				{{/if}}
 			</div>
         </div>
         <div class="col-md-4" style="padding: 30px">
 			<div class="image-wrapper">
-				<img src="/img/profile-8.png" alt="image" height="360" width="300">
+				<img src="/img/profile-8.png" alt="image" height="340" width="280">
 			</div>
         </div>
     </div>
@@ -66,7 +67,7 @@
 
 <div class="cfs-table-wrapper-1">
     <div class="cfs-title-1" >
-        <h6 style="text-align: center;"><b>CodeFlares Rating History</b></h6>
+        <h5 style="text-align: center;"><b>CodeFlares Rating History</b></h5>
     </div>
 	<div id="rating_chart_skill_value" style="height: 400px; width: 100%;"></div>
 </div>
@@ -74,7 +75,7 @@
 
 <div class="cfs-table-wrapper-1">
     <div class="cfs-title-1">
-        <h6 style="text-align: center;"><b>CodeFlares Solve Count History</b></h6>
+        <h5 style="text-align: center;"><b>CodeFlares Solve Count History</b></h5>
     </div>
 	<div id="rating_chart_solve_count" style="height: 400px; width: 100%;"></div>
 </div>
