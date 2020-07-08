@@ -135,12 +135,16 @@
                                 <li>
                                     <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-comments" aria-hidden="true"></i>Blog</a>
                                     <ul class="list-unstyled list-hidden dropdown">
-                                        <li> <a class="list-link" href="/blog/post/add/global/{{session.user_id}}/">Create Post</a> </li>                               
+                                        {{#if session.email}}
+                                        <li> <a class="list-link" href="/blog/post/add/global/{{session.user_id}}/">Create Post</a> </li>
+                                        {{/if}}               
                                         <li>
                                             <a href="#" class="list-link link-arrow">View Blogs</a>
                                             <ul class="list-unstyled list-hidden">
                                                 <li> <a class="list-link" href="/blog/list/global/all/">Public Blogs</a> </li>
+                                                {{#if session.email}}
                                                 <li> <a class="list-link" href="/blog/list/global/all/">My Blogs</a> </li>
+                                                {{/if}}
                                             </ul>
                                         </li>
                                     </ul>

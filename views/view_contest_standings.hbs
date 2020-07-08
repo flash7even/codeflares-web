@@ -42,16 +42,18 @@
             <form action="/update/contest/standings/{{id}}/" method="post" style="padding-top: 15px;">
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        {{#if include_friends_checked}}
-                        <div class="input-group">
-                            <input type="checkbox" id="include_friends" name="include_friends" value="unchecked" onChange="this.form.submit()" checked>
-                            <label style="padding-left: 5px;" for="include_friends"> Include Friends</label><br>
-                        </div>
-                        {{else}}
-                        <div class="input-group">
-                            <input type="checkbox" id="include_friends" name="include_friends" value="checked" onChange="this.form.submit()">
-                            <label style="padding-left: 5px;" for="include_friends"> Include Friends</label><br>
-                        </div>
+                        {{#if session.user_id}}
+                            {{#if include_friends_checked}}
+                            <div class="input-group">
+                                <input type="checkbox" id="include_friends" name="include_friends" value="unchecked" onChange="this.form.submit()" checked>
+                                <label style="padding-left: 5px;" for="include_friends"> Include Friends</label><br>
+                            </div>
+                            {{else}}
+                            <div class="input-group">
+                                <input type="checkbox" id="include_friends" name="include_friends" value="checked" onChange="this.form.submit()">
+                                <label style="padding-left: 5px;" for="include_friends"> Include Friends</label><br>
+                            </div>
+                            {{/if}}
                         {{/if}}
                     </div>
                 </div>

@@ -53,6 +53,8 @@ router.addCommentForProblem = async function(req, res, next) {
 router.addCommentForCategory = async function(req, res, next) {
   console.log('addCommentForCategory called')
   var url = req.url
+  console.log('url: ');
+  console.log(url)
   var words = url.split("/");
   var category_id = words[words.length-2]
   var sess = req.session;

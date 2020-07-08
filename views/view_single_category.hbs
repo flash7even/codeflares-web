@@ -29,12 +29,9 @@
             <a href="#comments"><span style="color: rgb(19, 87, 104);"><i class="fas fa-comment"></i> {{comment_count}}</span></a>
         </div>
     </div>
-    <br>
-    <br>
-    <hr>
-    <br>
-    <br>
-    
+</div>
+
+<div class="cfs-transparent-header-div" style="text-align: center;">
     <div class="cfs-title-1">
         <h5 style="text-align: center;"><b>Category Resources  </b> <a title="Add new resource" style="color: #accbe1;" href="/category/resource/add/{{category_id}}/"> <i class="fas fa-plus"></i> </a> </h5>
     </div>
@@ -55,27 +52,34 @@
     </div>
 </div>
 
-<div class="comment-post-1" style="background-color: #FAFAFA; margin-top:15px;">	
-    <form action="/category/comment/{{category_id}}/" method="post">
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <div class="input-group">
-                    <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
+
+<div class="cfs-table-wrapper-1" style="margin-top: 10px;">
+    <div class="cfs-title-1" style="background-color: #ebebeb;">
+        <h4 style="text-align: center;"><b>Comments</b></h6>
+    </div>
+    {{#if session.user_id}}
+    <div class="comment-post-1">	
+        <form action="/category/comment/{{category_id}}/" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group col-sm-2" style="left: 84%; height:15px;">
-            <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
-        </div>
-    </form>
-</div>
-
-  <div class="row">
-    <div class="col-12">
-      <div class="comments" id = "comments">
-      </div>
+            <div class="form-group comment-btn col-sm-2" style="left: 84%; height:15px;">
+                <button type="submit" class="btn btn-sm submit-btn btn-block">Comment</button>
+            </div>
+        </form>
     </div>
-  </div>
+    {{/if}}
+    <div class="row" style="margin: 5px;">
+        <div class="col-12">
+            <div class="comments">
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
 
@@ -103,15 +107,13 @@
                 var like_count = "{{vote_count.like_count}}"
                 var dislike_count = "{{vote_count.dislike_count}}"
                 var own_data = `
-                    <span class="commenter-pic">
-                    </span>
                     <span class="commenter-name">
                         <a href="#">${comment_writer_handle}</a> <span style="color: #95989B;" class="comment-time">${updated_at}</span>
-                    </span>       
-                    <pre style="font-family: inherits"><p> ${comment_text}</p></pre>
+                    </span>
+                    <div class="comment-text-box"><pre ng-show = "textFile.isPresent"><span>${comment_text}</span></pre></div>
                     <div class="comment-meta">
-                            <a href="/vote/category-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count}</span></a>
-                            <a href="/vote/category-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count}</span></a>
+                            <a href="/vote/blog-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count}</span></a>
+                            <a href="/vote/blog-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count}</span></a>
                             <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
                     </div>
                     <form class="comment_reply" action="${reply_link}" method="post">
@@ -123,7 +125,7 @@
                             </div>
                         </div>
                         <div class="form-group col-sm-2">
-                            <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                            <button type="submit" class="btn btn-sm submit-btn btn btn-block">Comment</button>
                         </div>
                     </form>
                 `
@@ -139,15 +141,13 @@
                         var like_count2 = "{{vote_count.like_count}}"
                         var dislike_count2 = "{{vote_count.dislike_count}}"
                         var own_data2 = `
-                            <span class="commenter-pic">
-                            </span>
                             <span class="commenter-name">
                                 <a href="#">${comment_writer_handle2}</a> <span style="color: #95989B;" class="comment-time">${updated_at2}</span>
-                            </span>       
-                            <pre style="font-family: inherits"><p> ${comment_text2}</p></pre>
+                            </span>
+                            <div class="comment-text-box"><pre ng-show = "textFile.isPresent"><span>${comment_text2}</span></pre></div>
                             <div class="comment-meta">
-                                    <a href="/vote/category-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count2}</span></a>
-                                    <a href="/vote/category-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count2}</span></a>
+                                    <a href="/vote/blog-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count2}</span></a>
+                                    <a href="/vote/blog-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count2}</span></a>
                                     <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
                             </div>
                             <form class="comment_reply" action="${reply_link2}" method="post">
@@ -159,7 +159,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-2">
-                                    <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                    <button type="submit" class="btn btn-sm submit-btn btn btn-block">Comment</button>
                                 </div>
                             </form>
                         `
@@ -174,15 +174,13 @@
                                 var like_count3 = "{{vote_count.like_count}}"
                                 var dislike_count3 = "{{vote_count.dislike_count}}"
                                 var own_data3 = `
-                                    <span class="commenter-pic">
-                                    </span>
                                     <span class="commenter-name">
                                         <a href="#">${comment_writer_handle3}</a> <span style="color: #95989B;" class="comment-time">${updated_at3}</span>
-                                    </span>       
-                                    <pre style="font-family: inherits"><p> ${comment_text3}</p></pre>
+                                    </span>
+                                    <div class="comment-text-box"><pre ng-show = "textFile.isPresent"><span>${comment_text3}</span></pre></div>
                                     <div class="comment-meta">
-                                            <a href="/vote/category-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count3}</span></a>
-                                            <a href="/vote/category-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count3}</span></a>
+                                            <a href="/vote/blog-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count3}</span></a>
+                                            <a href="/vote/blog-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count3}</span></a>
                                             <button class="comment-reply"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>     
                                     </div>
                                     <form class="comment_reply" action="${reply_link3}" method="post">
@@ -194,7 +192,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-2">
-                                            <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                            <button type="submit" class="btn btn-sm submit-btn btn btn-block">Comment</button>
                                         </div>
                                     </form>
                                 `
@@ -209,15 +207,13 @@
                                     var like_count4 = "{{vote_count.like_count}}"
                                     var dislike_count4 = "{{vote_count.dislike_count}}"
                                     var own_data4 = `
-                                        <span class="commenter-pic">
-                                        </span>
                                         <span class="commenter-name">
                                             <a href="#">${comment_writer_handle4}</a> <span style="color: #95989B;" class="comment-time">${updated_at4}</span>
-                                        </span>       
-                                        <pre style="font-family: inherits"><p> ${comment_text4}</p></pre>
+                                        </span>
+                                        <div class="comment-text-box"><pre ng-show = "textFile.isPresent"><span>${comment_text4}</span></pre></div>
                                         <div class="comment-meta">
-                                            <a href="/vote/category-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count4}</span></a>
-                                            <a href="/vote/category-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count4}</span></a>
+                                            <a href="/vote/blog-comment/like/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> ${like_count4}</span></a>
+                                            <a href="/vote/blog-comment/dislike/{{comment_id}}/"><span style="padding-right: 10px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> ${dislike_count4}</span></a>
                                         </div>
                                         <form class="comment_reply" action="${reply_link4}" method="post">
                                             <div class="form-row">
@@ -228,7 +224,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-2">
-                                                <button style="background-color: #c9dbe7; color:black" type="submit" class="btn btn-sm submit-btn btn-info btn-block">Comment</button>
+                                                <button type="submit" class="btn btn-sm submit-btn btn btn-block">Comment</button>
                                             </div>
                                         </form>
                                     `
