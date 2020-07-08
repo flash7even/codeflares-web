@@ -29,10 +29,18 @@ ul.CTAs a {
     border-radius: 3px 3px 0px 0px;
 }
 .footer{
-    padding:5px 5px;
-    top: 1000px;
-    border-radius: 0px 0px 3px 3px; 
+    bottom: 0px;
+    padding: 5px;
+    padding-top: 8px;
     text-align: center;
+    background-color: rgb(240, 240, 240);
+    height: 30px;
+    font-size: 12px;
+    border-radius: 0px;
+}
+
+.body-wrapper {
+    min-height: 1000px;
 }
 
 .notification-box{

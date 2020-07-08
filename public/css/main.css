@@ -317,13 +317,13 @@ body {
 
 .blog-post-text-box {
     background: #ffffff;
-    font-size: large;
+    font-size: medium;
 }
 
 .post-body{
-    font-size: medium;
+    font-size: 14px;
     font-weight: normal;
-    color: #000000;
+    color: #1b1f1f;
 }
 
 
