@@ -533,6 +533,10 @@ hr.light {
     font-size: smaller;
 }
 
+.cfs-table-data {
+    border-bottom: 1px solid #e4e7eb;
+}
+
 .cfs-transparent-header-div {
     background: #ffffff;
     border-radius: 5px;

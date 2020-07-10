@@ -11,8 +11,7 @@
                 <h5>Problem Difficulty: <b>{{problem_difficulty}}</b></h5>
                 <h5>Online Judge: <b>{{oj_name}}</b></h5>
                 <h5>Problem ID: <b>{{problem_id}}</b></h5>
-                <h5>User Solved: <span style="color: rgb(207, 161, 7);"> <b>{{solve_count}}</b> </span></h5>
-                <h6 style="color: #3d87b9;"><a href="/problem/submission/history/{{id}}/">Submission History</a></h6>
+                <a style="color: #3d87b9;" href="/problem/submission/history/{{id}}/"><h5>User Solved: <span> <b>{{solve_count}}</b> </span></h5></a>
             </div>
         </div>
         {{#if SOLVED}}

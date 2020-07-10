@@ -4,10 +4,10 @@
 
 <div class="cfs-table-wrapper-1" style="width: 100%;  margin-right:1px auto">		
         <div class="cfs-title-1">
-            <h5 style="text-align: center;">Users Followed by <span style="color: {{user_skill_color}}; font-weight:500;"><a href="/profile/{{user_handle}}/">{{user_handle}}</a></span></h5>
+            <h5 style="text-align: center;">Users Followed by <span style="color: {{user_skill_color}}; font-weight:500;"><a href="/profile/{{user_handle}}/"><b>{{user_handle}}</b></a></span></h5>
         </div>
         <div class="cfs-table-1">
-        <table class="table" style="text-align: center;">
+        <table class="table cfs-table-data" id="userFollowingTable" style="text-align: center;">
             <thead style="background-color: rgb(255, 255, 255);">
                 <tr>
                     <td>#</th>
@@ -16,16 +16,44 @@
                 </tr>
             </thead>
             <tbody>
-
-                {{#each following_list}}
-                <tr>
-                    <td>{{order}}</td>
-                    <td><a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:500;"><b>{{user_handle}}</b></a></td>
-                    <td style="color: {{skill_color}};">{{skill_value}}</td>
-                </tr>
-                 {{/each}}
-
             </tbody>
         </table>
     </div>
 </div>
+
+
+<script type="text/javascript">
+
+    function getFollowingList(){
+        var dt_list = [];
+        {{#each following_list}}
+            var user_link = `<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:500;"><b>{{user_handle}}</b></a>`
+            var skill = `<span style="color: {{skill_color}};">{{skill_value}}</span>`
+            var data = ["{{order}}", user_link, skill];
+            dt_list.push(data)
+        {{/each}}
+        return dt_list;
+    }
+
+    function showFollowingTable(){
+        var dt_list = getFollowingList();
+        
+        $("#userFollowingTable").dataTable({
+            "aaData": dt_list,
+            paging: false,
+            searching: true,
+            ordering: false,
+            info: false,
+            destroy: true,
+            scrollCollapse: true,
+            responsive: true,
+            pageLength: 50,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 100]]
+        });
+    }
+
+    $(document).ready( function () {
+        showFollowingTable();
+    } );
+
+</script>
