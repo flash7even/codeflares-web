@@ -203,5 +203,13 @@ router.showFlaggedProblemList = async function(req, res, next) {
   res.render('view_user_problem_task_list', problem_list);
 }
 
-module.exports = router;
+router.getSubmissionHistory = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var problem_id = words[words.length-2]
+  var data_list = await problem_server.getSubmissionHistory(res, req, problem_id)
+  data_list['problem_id'] = problem_id
+  res.render('view_problem_submission_history', data_list);
+}
 
+module.exports = router;

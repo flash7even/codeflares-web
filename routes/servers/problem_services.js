@@ -7,6 +7,7 @@ var problem_resource_submit_url = config.server_host + 'resource/'
 var user_problem_status_submit_url = config.server_host + 'problem/status/'
 
 
+
 module.exports.getProblemList = async function(res, req, search_param) {
   console.log('getProblemList called');
   var page = 0
@@ -122,4 +123,20 @@ module.exports.viewFlaggedProblems = async function(res, req, param, user_id) {
   return response.data
 };
 
+module.exports.getSubmissionHistory = async function(res, req, problem_id) {
+    var url = config.server_host + 'problem/submission/history/' + problem_id + '/' + "0"
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.get(url, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+};
 

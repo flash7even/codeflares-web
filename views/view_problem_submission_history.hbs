@@ -1,0 +1,31 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="cfs-table-wrapper-1" style="width: 100%%;  margin-right:1px auto">		
+        <div class="cfs-title-1">
+            <h5 style="text-align: center;">Submission History of <span style="color: #3d87b9; font-weight:500;"><a href="/problem/view/{{problem_id}}/">{{problem_id}}</a></span></h5>
+        </div>
+        <div class="cfs-table-1">
+        <table class="table" style="text-align: center;">
+            <thead style="background-color: rgb(255, 255, 255);">
+                <tr>
+                    <td style="width: 30%;">User Handle</td>
+                    <td>Status</th>
+                    <td>Submission Link</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                {{#each submission_history}}
+                <tr>
+                    <td><a href = "/profile/{{user_handle}}/" style="color: {{user_skill_color}}; font-weight:500; text-decoration: underline;"><b>{{user_handle}}</b></a></td>
+                    <td>SOLVED</td>
+                    <td><a href = "{{submission_link}}" style="color: #3d87b9; font-weight:500; text-decoration: underline;">Submission Link</a></td>
+                </tr>
+                 {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</div>

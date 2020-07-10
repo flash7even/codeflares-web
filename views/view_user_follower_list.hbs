@@ -1,0 +1,31 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="cfs-table-wrapper-1" style="width: 100%;  margin-right:1px auto">		
+        <div class="cfs-title-1">
+            <h5 style="text-align: center;">Followers of <span style="color: {{user_skill_color}}; font-weight:500;"><a href="/profile/{{user_handle}}/">{{user_handle}}</a></span></h5>
+        </div>
+        <div class="cfs-table-1">
+        <table class="table" style="text-align: center;">
+            <thead style="background-color: rgb(255, 255, 255);">
+                <tr>
+                    <td>#</th>
+                    <td>User Handle</td>
+                    <td>Skill Value</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {{#each follower_list}}
+                <tr>
+                    <td>{{order}}</td>
+                    <td><a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:500;"><b>{{user_handle}}</b></a></td>
+                    <td style="color: {{skill_color}};">{{skill_value}}</td>
+                </tr>
+                 {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</div>

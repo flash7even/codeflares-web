@@ -26,6 +26,9 @@ module.exports = function(newApp) {
     newApp.post('/login/', homeController.logInSubmit);
     newApp.get('/logout/', homeController.logOutSubmit);
     newApp.get('/signup/', homeController.showSignUp);
+
+
+
     newApp.get('/user/activate/*', homeController.ActivateUserAccountClicked);
     newApp.post('/signup/', homeController.signUpSubmit);
     newApp.get('/profile/*', homeController.showUserProfile);
@@ -36,6 +39,8 @@ module.exports = function(newApp) {
     newApp.post('/update/profile/', homeController.updateUserProfileSubmit);
     newApp.get('/settings/update/', homeController.updateUserSettings);
     newApp.post('/settings/update/', homeController.updateUserSettingsSubmit);
+
+
     newApp.get('/contact/us/', homeController.contactUs);
     newApp.get('/about/us/', homeController.aboutUs);
     newApp.post('/contact/us/', homeController.contactUsSubmit);
@@ -46,6 +51,8 @@ module.exports = function(newApp) {
 
     newApp.get('/follow/*', followerController.followUser);
     newApp.get('/unfollow/*', followerController.unfollowUser);
+    newApp.get('/user/followers/*', followerController.showUserFollowerList);
+    newApp.get('/user/followings/*', followerController.showUserFollowingList);
 
     
     newApp.get('/blog/post/add/*', blogController.addBlogForm);
@@ -78,6 +85,7 @@ module.exports = function(newApp) {
     newApp.get('/problem/user/status/flag/*', problemController.setProblemStatusFlag);
     newApp.get('/problem/user/status/remove/*', problemController.setProblemStatusRemove);
     newApp.get('/problem/user/status/clear/*', problemController.setProblemStatusClear);
+    newApp.get('/problem/submission/history/*', problemController.getSubmissionHistory);
     newApp.get('/flagged/problem/list/', problemController.showFlaggedProblemList);
 
 
