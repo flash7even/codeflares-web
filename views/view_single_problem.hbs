@@ -48,14 +48,15 @@
         </div>
     </div>
     <div class="cfs-table-1">
-        <table id="resourceListTable" class="table" style="text-align: center;">
+        <table class="resourceTable table table-bordered" id="resourceListTable">
             <thead>
                 <tr>
-                    <td>Resource Title</td>
-                    <td>Description</td>
-                    <td>Resource Writer</td>
+                    <td>Title</td>
+                    <td style="width: 30%;">Description</td>
+                    <td>Added By</td>
+                    <td>Credit</td>
                     <td>Date</td>
-                    <td>Action</td>
+                    <td>Source</td>
                 </tr>
             </thead>
             <tbody>
@@ -87,7 +88,7 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <div class="input-group">
-                        <input type="text" id="resource_body" class="form-control" name="resource_body" placeholder="Resource Details">
+                        <textarea type="text" id="resource_body" class="form-control blog-post-text-box" name="resource_body" placeholder="Resource details"></textarea>
                     </div>
                 </div>
             </div>
@@ -101,7 +102,14 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <div class="input-group">
-                        <input type="text" id="resource_owner" class="form-control" name="resource_owner" placeholder="Resource Credit">
+                        <input type="text" title="resource_owner" id="resource_owner" class="form-control" name="resource_owner" placeholder="Resource Credit">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <input type="text" id="resource_ref_id" class="form-control" name="resource_ref_id" placeholder="Resource Link">
                     </div>
                 </div>
             </div>
@@ -117,7 +125,7 @@
 
 <div class="cfs-table-wrapper-1" style="margin-top: 10px;">
     <div class="cfs-title-1" style="background-color: #ebebeb;">
-        <h4 style="text-align: center;"><b>Comments</b></h6>
+        <h5 style="text-align: center;"><b>Discussions</b></h5>
     </div>
     {{#if session.user_id}}
     <div class="comment-post-1">	
@@ -321,7 +329,9 @@
                 var resource_writer = '<a href = "/profile/{{resource_writer_handle}}/" style="color: {{resource_writer_skill_color}}; font-weight:700;">{{resource_writer_handle}}</a>'
                 var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
                 action_link += "</div>"
-                var data = ["{{resource_title}}", "{{resource_body}}", resource_writer, "{{updated_at}}", action_link];
+                var resource_link = `<a style="color: #3d87b9;" href="{{resource_ref_id}}"><i class="fas fa-external-link-alt"></i></a>`
+                var resource_body = `<pre ng-show = "textFile.isPresent"><span>{{resource_body}}</span></pre>`
+                var data = ["{{resource_title}}", resource_body, resource_writer, "{{resource_owner}}", "{{updated_at}}", resource_link];
                 dt_list.push(data)
             {{/each}}
 

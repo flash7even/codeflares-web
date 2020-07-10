@@ -583,3 +583,14 @@ hr.light {
 .cfs-table-1 thead{
     font-weight: 700;
 }
+
+.resourceTable .td{
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.resourceTable tbody>tr>:nth-child(2){
+    max-width: 500px;
+}
