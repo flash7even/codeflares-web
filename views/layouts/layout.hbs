@@ -143,7 +143,7 @@
                                             <ul class="list-unstyled list-hidden">
                                                 <li> <a class="list-link" href="/blog/list/global/all/">Public Blogs</a> </li>
                                                 {{#if session.email}}
-                                                <li> <a class="list-link" href="/blog/list/global/all/">My Blogs</a> </li>
+                                                <li> <a class="list-link" href="/blog/own/list/">My Blogs</a> </li>
                                                 {{/if}}
                                             </ul>
                                         </li>
@@ -172,10 +172,16 @@
                 </div>
                 {{#if session.email}}
                     <div class="sidebar-footer">
+                        {{#if session.notification_data.UNREAD}}
                         <a href="/notification/list/">
                             <i class="fa fa-bell"></i>
                             <span class="badge badge-pill badge-info notification">{{session.notification_data.unread_length}}</span>
                         </a>
+                        {{else}}
+                        <a href="/notification/list/">
+                            <i class="fa fa-bell"></i>
+                        </a>
+                        {{/if}}
                         <a href="/settings/update/">
                             <i class="fa fa-cog"></i>
                             <span class="badge-sonar"></span>

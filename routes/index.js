@@ -58,6 +58,7 @@ module.exports = function(newApp) {
     newApp.get('/blog/post/add/*', blogController.addBlogForm);
     newApp.post('/blog/post/add/*', blogController.addBlogFormSubmit);
     newApp.get('/blog/list/*', blogController.viewBlogList);
+    newApp.get('/blog/own/list/', blogController.viewOwnBlogList);
     newApp.get('/blog/post/view/*', blogController.viewBlogPost);
     newApp.get('/blog/delete/*', blogController.deleteBlogPost);
     newApp.get('/blog/update/*', blogController.updateBlogPost);

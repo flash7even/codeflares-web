@@ -71,6 +71,18 @@ router.viewBlogList = async function(req, res, next) {
   res.render('view_blog_list', blog_list);
 }
 
+router.viewOwnBlogList = async function(req, res, next) {
+  var sess = req.session;
+  var param = {
+    'blog_writer': sess.user_id
+  }
+  let blog_list = await blog_server.getBlogList(res, req, param);
+  console.log('blog_list: ')
+  console.log(blog_list)
+  blog_list = system_server.toast_update(req, blog_list)
+  res.render('view_blog_list', blog_list);
+}
+
 router.viewBlogListAfterFormSubmit = async function(req, res, next) {
   var search_body = req.body
   var sess = req.session;
