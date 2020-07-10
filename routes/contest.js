@@ -142,7 +142,7 @@ router.viewContestStandings = async function(req, res, next) {
   console.log(contest_details)
   contest_details = system_server.toast_update(req, contest_details)
   contest_details['standings-page'] = true
-  res.render('view_contest_standings', contest_details);
+  res.render('view_single_contest', contest_details);
 }
 
 router.viewContestStandingsAfterUpdate = async function(req, res, next) {
@@ -166,7 +166,40 @@ router.viewContestStandingsAfterUpdate = async function(req, res, next) {
   contest_details['standings'] = contest_standings['standings']
   contest_details = system_server.toast_update(req, contest_details)
   contest_details['standings-page'] = true
-  res.render('view_contest_standings', contest_details);
+  res.render('view_single_contest', contest_details);
+}
+
+router.viewContestAnnouncements = async function(req, res, next) {
+  console.log('viewContestAnnouncements in route')
+  var url = req.url
+  var words = url.split("/");
+  var contest_id = words[words.length-2]
+  console.log('contest_id')
+  console.log(contest_id)
+  var contest_details = await contest_server.getContestDetails(res, req, contest_id);
+  var announcement_data = await contest_server.getAnnouncements(res, req, contest_id);
+  contest_details['announcement_list'] = announcement_data.announcement_list
+  console.log('contest_details: ')
+  console.log(contest_details)
+  contest_details = system_server.toast_update(req, contest_details)
+  contest_details['announcement-page'] = true
+  res.render('view_single_contest', contest_details);
+}
+
+router.addContestAnnouncementSubmit = async function(req, res, next) {
+  console.log('addContestAnnouncementSubmit in route')
+  var url = req.url
+  var words = url.split("/");
+  var contest_id = words[words.length-2]
+  console.log('contest_id')
+  console.log(contest_id)
+  var data = req.body;
+  data['contest_id'] = contest_id
+  await contest_server.postAnnouncement(res, req, data);
+  console.log('Announcement added')
+  system_server.add_toast(req, 'Announcement created')
+  jshelper.sleep(1000)
+  res.redirect('back');
 }
 
 router.viewAllContest = async function(req, res, next) {

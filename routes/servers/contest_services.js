@@ -122,3 +122,42 @@ module.exports.updateContest = async function(res, req, contest_id, contest_data
     }
     return response.data
   };
+
+
+  module.exports.postAnnouncement = async function(res, req, data) {
+    var url = config.server_host + 'contest/announcement/'
+    console.log("url: " + url)
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    let response = await axios.post(url, data, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+  
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+  };
+
+  module.exports.getAnnouncements = async function(res, req, contest_id) {
+    var url = config.server_host + 'contest/announcement/search/' + contest_id
+    console.log("url: " + url)
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    let response = await axios.get(url, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+  
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+  };
