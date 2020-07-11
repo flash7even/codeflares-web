@@ -181,14 +181,10 @@ router.showUserProfile = async function(req, res, next) {
     var words = url.split("/");
     var user_name = words[words.length-2]
     var sess = req.session;
-
     var param = {
         'username': user_name
     }
-
     var resp = await user_server.searchUser(res, req, param)
-    console.log(resp)
-
     var user_details = resp.user_list[0];
     if(sess.user_id && sess.user_id != user_details.id){
         var follow_status = await follower_server.followStatus(res, req, user_details.id)
@@ -198,14 +194,32 @@ router.showUserProfile = async function(req, res, next) {
             user_details['unfollowing'] = true;
         }
     }
-
     if(sess.user_id == user_details.id){
         user_details['own_profile'] = true;
     }
+    user_details['profile-page'] = true
     user_details = system_server.toast_update(req, user_details)
     res.render('user_profile', user_details);
 }
 
+router.showUserSubmissionHistory = async function(req, res, next) {
+    var url = req.url
+    var words = url.split("/");
+    var user_handle = words[words.length-2]
+    var param = {
+        'username': user_handle
+    }
+    var resp = await user_server.searchUser(res, req, param)
+    var user_details = resp.user_list[0];
+    var user_id = user_details.id
+    var submission_history = await user_server.userSubmissionHistory(res, req, user_id)
+    submission_history['user_handle'] = user_handle
+    submission_history['user_skill_color'] = user_details.skill_color
+    submission_history['skill_color'] = submission_history.user_skill_color
+    submission_history['username'] = submission_history.user_handle
+    submission_history['submission-page'] = true
+    res.render('user_profile', submission_history);
+}
 
 router.updateUserSettings = async function(req, res, next) {
     var sess = req.session;
@@ -276,23 +290,6 @@ router.contactUsSubmit = async function(req, res, next) {
 
 router.aboutUs = async function(req, res, next) {
     res.render('about_us', {});
-}
-
-router.showUserSubmissionHistory = async function(req, res, next) {
-    var url = req.url
-    var words = url.split("/");
-    var user_handle = words[words.length-2]
-    var param = {
-        'username': user_handle
-    }
-    var resp = await user_server.searchUser(res, req, param)
-    var user_details = resp.user_list[0];
-    var user_id = user_details.id
-    
-    var submission_history = await user_server.userSubmissionHistory(res, req, user_id)
-    submission_history['user_handle'] = user_handle
-    submission_history['user_skill_color'] = user_details.skill_color
-    res.render('view_user_submission_history', submission_history);
 }
 
 module.exports = router;

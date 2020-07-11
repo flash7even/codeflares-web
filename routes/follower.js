@@ -48,7 +48,10 @@ router.showUserFollowerList = async function(req, res, next) {
     console.log(follower_list)
     follower_list['user_handle'] = user_handle
     follower_list['user_skill_color'] = user_details['skill_color']
-    res.render('view_user_follower_list', follower_list);
+    follower_list['skill_color'] = follower_list.user_skill_color
+    follower_list['username'] = follower_list.user_handle
+    follower_list['follower-page'] = true
+    res.render('user_profile', follower_list);
 }
 
 router.showUserFollowingList = async function(req, res, next) {
@@ -65,7 +68,10 @@ router.showUserFollowingList = async function(req, res, next) {
     var follower_list = await follower_server.userFollowingList(res, req, user_id)
     follower_list['user_handle'] = user_handle
     follower_list['user_skill_color'] = user_details['skill_color']
-    res.render('view_user_following_list', follower_list);
+    follower_list['skill_color'] = follower_list.user_skill_color
+    follower_list['username'] = follower_list.user_handle
+    follower_list['following-page'] = true
+    res.render('user_profile', follower_list);
 }
 
 module.exports = router;
