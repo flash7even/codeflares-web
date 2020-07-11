@@ -28,8 +28,17 @@
         var dt_list = [];
         {{#each submission_history}}
             var problem_link = `<a href = "/profile/{{user_handle}}/" style="color: {{user_skill_color}}; font-weight:500; text-decoration: underline;"><b>{{user_handle}}</b></a>`
-            var sub_link = `<a href = "{{submission_link}}" style="color: #3d87b9; font-weight:500; text-decoration: underline;">Submission Link</a>`
-            var data = [problem_link, 'SOLVED', sub_link];
+            
+            var submisson_stat = ''
+            var cnt = 0;
+            {{#each submission_list}}
+                if (cnt>0) {
+                    submisson_stat += ', '
+                }
+                submisson_stat += `<a href = "{{submission_link}}" style="color: #3d87b9; font-weight:500; text-decoration: underline;">Code Link</a>`
+                cnt += 1
+            {{/each}}
+            var data = [problem_link, 'SOLVED', submisson_stat];
             dt_list.push(data)
         {{/each}}
         return dt_list;
