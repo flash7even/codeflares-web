@@ -88,6 +88,7 @@ module.exports = function(newApp) {
     newApp.get('/problem/user/status/remove/*', problemController.setProblemStatusRemove);
     newApp.get('/problem/user/status/clear/*', problemController.setProblemStatusClear);
     newApp.get('/problem/submission/history/*', problemController.getSubmissionHistory);
+    newApp.get('/problem/resource/history/*', problemController.getResourceHistory);
     newApp.get('/flagged/problem/list/', problemController.showFlaggedProblemList);
 
 

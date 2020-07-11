@@ -121,7 +121,30 @@ router.viewSingleProblem = async function(req, res, next) {
   }
 
   console.log(problem_data)
+  problem_data['problem-page'] = true
   res.render('view_single_problem', problem_data);
+}
+
+router.getResourceHistory = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var problem_id = words[words.length-2]
+  var sess = req.session;
+  let problem_data = await problem_server.getProblemDetails(res, req, problem_id);
+  console.log(problem_data)
+  problem_data['resource-page'] = true
+  res.render('view_single_problem', problem_data);
+}
+
+router.getSubmissionHistory = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var problem_id = words[words.length-2]
+  var data_list = await problem_server.getSubmissionHistory(res, req, problem_id)
+  data_list['problem_id'] = problem_id
+  data_list['id'] = problem_id
+  data_list['submission-page'] = true
+  res.render('view_single_problem', data_list);
 }
 
 router.viewProblemListAfterFormSubmit = async function(req, res, next) {
@@ -202,15 +225,6 @@ router.showFlaggedProblemList = async function(req, res, next) {
   }
   var problem_list = await problem_server.viewFlaggedProblems(res, req, param, user_id)
   res.render('view_user_problem_task_list', problem_list);
-}
-
-router.getSubmissionHistory = async function(req, res, next) {
-  var url = req.url
-  var words = url.split("/");
-  var problem_id = words[words.length-2]
-  var data_list = await problem_server.getSubmissionHistory(res, req, problem_id)
-  data_list['problem_id'] = problem_id
-  res.render('view_problem_submission_history', data_list);
 }
 
 module.exports = router;

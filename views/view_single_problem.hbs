@@ -2,7 +2,36 @@
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
-<div class="blog-post-2">
+<div class="profile-wrapper-1" style="width: 100%;  margin-right:1px auto;">
+    <div class="cfs-title-1">
+        <div class="row cfs-title-1-inside">
+            {{#if problem-page}}
+            <div class="selected-button">
+            <a style="color: #0f2436;" href="/problem/view/{{id}}/" class="btn btn-sm" role="button"><b>Problem</b></a>
+            </div>
+            {{else}}
+            <a style="color: #0f2436;" href="/problem/view/{{id}}/" class="btn btn-sm" role="button"><b>Problem</b></a>
+            {{/if}}
+            {{#if submission-page}}
+            <div class="selected-button">
+            <a style="color: #0f2436;" href="/problem/submission/history/{{id}}/" class="btn btn-sm" role="button"><b>Submissions</b></a>
+            </div>
+            {{else}}
+            <a style="color: #0f2436;" href="/problem/submission/history/{{id}}/" class="btn btn-sm" role="button"><b>Submissions</b></a>
+            {{/if}}
+
+            {{#if resource-page}}
+            <div class="selected-button">
+            <a style="color: #0f2436;" href="/problem/resource/history/{{id}}/" class="btn btn-sm" role="button"><b>Resources</b></a>
+            </div>
+            {{else}}
+            <a style="color: #0f2436;" href="/problem/resource/history/{{id}}/" class="btn btn-sm" role="button"><b>Resources</b></a>
+            {{/if}}
+        </div>
+    </div>
+
+	{{#if problem-page}}
+	<div style="padding: 30px; padding-left: 50px;">
     <div class="row">
         <div class="col-md-11">
             <div class="post-header">
@@ -25,46 +54,101 @@
     <br>
     <div class="row post-foter">
         <div class="col-md-10">
+        </div>
+        <div class="col-md-2">
             <a href="/vote/problem/like/{{id}}/"><span style="padding-right: 20px; color: rgb(31, 192, 57);"><i class="fas fa-thumbs-up"></i> {{vote_count.like_count}}</span></a>
             <a href="/vote/problem/dislike/{{id}}/"><span style="padding-right: 20px; color: rgb(209, 84, 0);"><i class="fas fa-thumbs-down"></i> {{vote_count.dislike_count}}</span></a>
             <a href="#comments"><span style="color: rgb(19, 87, 104);"><i class="fas fa-comment"></i> {{comment_count}}</span></a>
         </div>
     </div>
+	</div>
+	{{/if}}
+
+	{{#if submission-page}}	
+        <div class="cfs-title-2" style="margin-top: 30px;">
+            <h5 style="text-align: center;"><b>Problem Submission History</b></h5>
+        </div>
+        <div class="cfs-table-1">
+            <table class="table cfs-table-data" id="problemSubmissionListTable" style="text-align: center;">
+                <thead style="background-color: rgb(255, 255, 255);">
+                    <tr>
+                        <td>#</th>
+                        <td style="width: 30%;">User Handle</td>
+                        <td>Status</th>
+                        <td>Submission Link</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+	{{/if}}
+
+	{{#if resource-page}}
+        <div class="cfs-title-2" style="margin-top: 30px;">
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8" style="padding-top: 3px;">
+                    <h5 style="text-align: center;"><b>Problem Resources</b></h5>
+                </div>
+                {{#if session.user_id}}
+                <div class="col-md-2" style="float: right;">
+                    <a title="Add new post" class="btn btn-sm btn-light" role="button" type="button" style="border-color: #9fb6c5;"  data-toggle="modal" data-target="#addResourceModal"> <span style="color: #aab4bb;"><i class="fas fa-plus"></i></span> Add Resource</a>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        <div class="cfs-table-1">
+            <table class="resourceTable table table-bordered" id="resourceListTable">
+                <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td style="width: 30%;">Description</td>
+                        <td>Added By</td>
+                        <td>Credit</td>
+                        <td>Date</td>
+                        <td>Source</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+	{{/if}}
+
 </div>
 
-<div class="cfs-table-wrapper-1">
-    <div class="cfs-title-1">
-        <div class="row">
-            <div class="col-md-2">
+
+{{#if problem-page}}
+<div class="cfs-table-wrapper-1" style="margin-top: 10px;">
+    <div class="cfs-title-1" style="background-color: #ebebeb;">
+        <h5 style="text-align: center;"><b>Discussions</b></h5>
+    </div>
+    {{#if session.user_id}}
+    <div class="comment-post-1">	
+        <form action="/problem/comment/{{id}}/" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div class="input-group">
+                        <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-8" style="padding-top: 3px;">
-                <h5 style="text-align: center;"><b>Problem Resources</b></h5>
+            <div class="form-group comment-btn col-sm-2" style="left: 84%; height:15px;">
+                <button type="submit" class="btn btn-sm submit-btn btn-block">Comment</button>
             </div>
-            {{#if session.user_id}}
-            <div class="col-md-2" style="float: right;">
-                <a title="Add new post" class="btn btn-sm btn-light" role="button" type="button" style="border-color: #9fb6c5;"  data-toggle="modal" data-target="#addResourceModal"> <span style="color: #aab4bb;"><i class="fas fa-plus"></i></span> Add Resource</a>
+        </form>
+    </div>
+    {{/if}}
+    <div class="row" style="margin: 5px;">
+        <div class="col-12">
+            <div class="comments">
             </div>
-            {{/if}}
         </div>
     </div>
-    <div class="cfs-table-1">
-        <table class="resourceTable table table-bordered" id="resourceListTable">
-            <thead>
-                <tr>
-                    <td>Title</td>
-                    <td style="width: 30%;">Description</td>
-                    <td>Added By</td>
-                    <td>Credit</td>
-                    <td>Date</td>
-                    <td>Source</td>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
 </div>
-
+{{/if}}
 
 <!-- Modal Section Starts-->
 
@@ -122,35 +206,6 @@
 </div>
 
 <!-- Modal Section Ends-->
-
-<div class="cfs-table-wrapper-1" style="margin-top: 10px;">
-    <div class="cfs-title-1" style="background-color: #ebebeb;">
-        <h5 style="text-align: center;"><b>Discussions</b></h5>
-    </div>
-    {{#if session.user_id}}
-    <div class="comment-post-1">	
-        <form action="/problem/comment/{{id}}/" method="post">
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <div class="input-group">
-                        <textarea type="text" class="form-control" name="comment_text" placeholder="Write a response . . ."></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group comment-btn col-sm-2" style="left: 84%; height:15px;">
-                <button type="submit" class="btn btn-sm submit-btn btn-block">Comment</button>
-            </div>
-        </form>
-    </div>
-    {{/if}}
-    <div class="row" style="margin: 5px;">
-        <div class="col-12">
-            <div class="comments">
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <script>
 
@@ -359,6 +414,52 @@
 
         var html = generate_comment_data();
         $(".comments").append(html);
-        showResourcesDTSearchTable();
+
+
+
+        function getSubmissionList(){
+            var dt_list = [];
+            {{#each submission_history}}
+                var user_link = `<a href = "/profile/{{user_handle}}/" style="color: {{user_skill_color}}; font-weight:500; text-decoration: underline;"><b>{{user_handle}}</b></a>`
+                
+                var submisson_stat = ''
+                var cnt = 0;
+                {{#each submission_list}}
+                    if (cnt>0) {
+                        submisson_stat += ', '
+                    }
+                    submisson_stat += `<a href = "{{submission_link}}" style="color: #3d87b9; font-weight:500; text-decoration: underline;">Code Link</a>`
+                    cnt += 1
+                {{/each}}
+                var data = ["{{order}}", user_link, 'SOLVED', submisson_stat];
+                dt_list.push(data)
+            {{/each}}
+            return dt_list;
+        }
+
+        function showProblemSubmissionTable(){
+            var dt_list = getSubmissionList();
+            
+            $("#problemSubmissionListTable").dataTable({
+                "aaData": dt_list,
+                paging: true,
+                searching: true,
+                ordering: false,
+                info: true,
+                destroy: true,
+                scrollCollapse: true,
+                responsive: true,
+                pageLength: 50,
+                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 100]]
+            });
+        }
+
+	    {{#if submission-page}}
+            showProblemSubmissionTable();
+        {{/if}}
+
+	    {{#if resource-page}}
+            showResourcesDTSearchTable();
+        {{/if}}
     });
 </script>
