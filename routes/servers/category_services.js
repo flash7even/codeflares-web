@@ -95,3 +95,23 @@ module.exports.getCategoryDetails = async function(res, req, category_id, user_i
     console.log(response.data)
     return response.data
 };
+
+module.exports.getCategoryToppers = async function(res, req, category_id) {
+    console.log('getCategoryDetails')
+    var url = config.server_host + 'category/user/toppers/' + category_id
+    console.log("url: " + url)
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.get(url, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    console.log(response.data)
+    return response.data
+};

@@ -56,6 +56,34 @@ router.viewSingleCategory = async function(req, res, next) {
     category_data = await category_server.getCategoryDetails(res, req, category_id);
   }
   console.log(category_data)
+  category_data['category-page'] = true
+  res.render('view_single_category', category_data);
+}
+
+router.viewCategoryResourceHistory = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var category_id = words[words.length-2]
+  var sess = req.session;
+  var category_data = {}
+  if (sess.user_id){
+    category_data = await category_server.getCategoryDetails(res, req, category_id, sess.user_id);
+  }else{
+    category_data = await category_server.getCategoryDetails(res, req, category_id);
+  }
+  console.log(category_data)
+  category_data['resource-page'] = true
+  res.render('view_single_category', category_data);
+}
+
+router.viewCategoryToppers = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var category_id = words[words.length-2]
+  var category_data = await category_server.getCategoryToppers(res, req, category_id);
+  category_data['category_id'] = category_id
+  console.log(category_data)
+  category_data['toppers-page'] = true
   res.render('view_single_category', category_data);
 }
 
