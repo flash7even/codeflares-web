@@ -39,6 +39,7 @@ module.exports = function(newApp) {
     newApp.post('/update/profile/', homeController.updateUserProfileSubmit);
     newApp.get('/settings/update/', homeController.updateUserSettings);
     newApp.post('/settings/update/', homeController.updateUserSettingsSubmit);
+    newApp.get('/user/submissions/*', homeController.showUserSubmissionHistory);
 
 
     newApp.get('/contact/us/', homeController.contactUs);

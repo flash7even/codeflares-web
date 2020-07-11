@@ -278,4 +278,21 @@ router.aboutUs = async function(req, res, next) {
     res.render('about_us', {});
 }
 
+router.showUserSubmissionHistory = async function(req, res, next) {
+    var url = req.url
+    var words = url.split("/");
+    var user_handle = words[words.length-2]
+    var param = {
+        'username': user_handle
+    }
+    var resp = await user_server.searchUser(res, req, param)
+    var user_details = resp.user_list[0];
+    var user_id = user_details.id
+    
+    var submission_history = await user_server.userSubmissionHistory(res, req, user_id)
+    submission_history['user_handle'] = user_handle
+    submission_history['user_skill_color'] = user_details.skill_color
+    res.render('view_user_submission_history', submission_history);
+}
+
 module.exports = router;

@@ -15,7 +15,7 @@
 				<br>
 				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-layer-group"></i> <span style="color:{{skill_color}}; font-weight: 600; font-size:25px;">{{skill_title}}</span></h6>
 				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-poll-h"></i> User Rating: <span style="color: rgb(13, 98, 155); font-weight: 500;">{{skill_value}}</span></h6>
-				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-cheese"></i> Problem Solved: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{solve_count}}</span></h6>
+				<a href="/user/submissions/{{username}}/" style="color:rgb(13, 98, 155); font-weight: 500;"><h6><i style="color:#3d87b9; width: 30px;" class="fas fa-cheese"></i> Problem Solved: {{solve_count}}</h6></a>
                 <a href="/user/followers/{{username}}/" style="color:rgb(13, 98, 155); font-weight: 500;"><h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-secret"></i> Followers: {{follow_stat.follower_count}}</h6></a>
                 <a href="/user/followings/{{username}}/" style="color:rgb(13, 98, 155); font-weight: 500;"><h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-secret"></i> Following: {{follow_stat.following_count}}</h6></a>
 				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-envelope"></i> Email: {{email}}</h6>
