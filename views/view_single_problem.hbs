@@ -418,9 +418,7 @@
         var html = generate_comment_data();
         $(".comments").append(html);
 
-
-
-        function getSubmissionList(){
+        function getSubmissionListOld(){
             var dt_list = [];
             {{#each submission_history}}
                 var user_link = `<a href = "/profile/{{user_handle}}/" style="color: {{user_skill_color}}; font-weight:500; text-decoration: underline;"><b>{{user_handle}}</b></a>`
@@ -440,20 +438,57 @@
             return dt_list;
         }
 
+        function getSubmissionList(submission_data){
+            console.log('getSubmissionList called')
+            console.log(submission_data)
+            var sub_list = submission_data.submission_history
+            var dt_list = [];
+            var idx = 0
+            for(idx = 0;idx<sub_list.length;idx++){
+                var user_handle = sub_list[idx].user_handle
+                var user_skill_color = sub_list[idx].user_skill_color
+                var order = sub_list[idx].order
+                var user_link = `<a href = "/profile/${user_handle}/" style="color: ${user_skill_color}; font-weight:500; text-decoration: underline;"><b>${user_handle}</b></a>`
+                var submisson_stat = ''
+                var cnt = 0;
+                for(cnt = 0;cnt<sub_list[idx].submission_list.length;cnt++){
+                    if (cnt>0) {
+                        submisson_stat += ', '
+                    }
+                    var submission_link = sub_list[idx].submission_list[cnt].submission_link
+                    submisson_stat += `<a href = "${submission_link}" style="color: #3d87b9; font-weight:500; text-decoration: underline;">Code Link</a>`
+                    cnt += 1
+                }
+                var data = [order, user_link, 'SOLVED', submisson_stat];
+                dt_list.push(data)
+            }
+            return dt_list;
+        }
+
         function showProblemSubmissionTable(){
-            var dt_list = getSubmissionList();
             
             $("#problemSubmissionListTable").dataTable({
-                "aaData": dt_list,
-                paging: true,
-                searching: true,
                 ordering: false,
-                info: true,
+                "pageLength": 20,
                 destroy: true,
-                scrollCollapse: true,
-                responsive: true,
-                pageLength: 50,
-                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 100]]
+                ordering: false,
+                serverSide: true,
+                lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
+                ajax: {
+                    url: 'http://localhost:5056/api/problem/submission/history/dtsearch/' + '{{id}}',
+                    type: 'POST',
+                    "contentType": "application/json",
+                    "data": function ( d ) {
+                        var ajax_body = JSON.stringify( d );
+                        var ajax_json = JSON.parse(ajax_body)
+                        return JSON.stringify(ajax_json)
+                    },
+                    "dataSrc": function ( data ) {
+                        console.log('response received')
+                        console.log(data)
+                        return getSubmissionList(data.data);
+                    }
+                }
             });
         }
 
