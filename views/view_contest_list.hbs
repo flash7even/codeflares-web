@@ -9,7 +9,9 @@
     <br>
     <br>
 
+    <div class="contest-list">
     <ul style="width: 97%;">
+        {{#if contest_list}}
         {{#each contest_list}}
             <a href="/">
             <li class="contest-row">
@@ -41,5 +43,13 @@
             </a>
             <br>
         {{/each}}
+        {{else}}
+            <h6 style="text-align: center; padding: 20px;">No training contest is available to view right now.</h6>
+        {{/if}}
     </ul>
+    </div>
 </div>
+
+<script>
+
+</script>

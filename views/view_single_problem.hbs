@@ -146,7 +146,7 @@
     {{/if}}
     <div class="row" style="margin: 5px;">
         <div class="col-12">
-            <div class="comments">
+            <div class="comments" id = "comments">
             </div>
         </div>
     </div>
@@ -213,6 +213,7 @@
 <script>
 
     $(document).ready(function(){
+
         $(document).on('click' , 'button.comment-reply' , function(){
             var closestDiv = $(this).closest('div'); // also you can use $(this).parent()
             //closestDiv.fadeOut();
@@ -499,5 +500,11 @@
 	    {{#if resource-page}}
             showResourcesDTSearchTable();
         {{/if}}
+
+        var comment_count = {{comment_count}};
+        if(comment_count == 0){
+            var html = `<h6 style="text-align: center; padding: 20px;">Nobody has made any comment so far.</h6>`
+            $(".comments").append(html);
+        }
     });
 </script>

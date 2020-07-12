@@ -452,5 +452,11 @@
 	    {{#if resource-page}}
             showResourcesDTSearchTable();
         {{/if}}
+
+        var comment_count = {{comment_count}};
+        if(comment_count == 0){
+            var html = `<h6 style="text-align: center; padding: 20px;">Nobody has made any comment so far.</h6>`
+            $(".comments").append(html);
+        }
     });
 </script>

@@ -7,8 +7,12 @@
         <h5 style="text-align: center;"><b>Public Blogs</b></h5>
     </div>
     <br>
+    {{#if blog_list}}
     <div class="blogs">
     </div>
+    {{else}}
+        <h6 style="text-align: center; padding: 20px;">No blog post is available to view right now.</h6>
+    {{/if}}
 </div>
 
 
