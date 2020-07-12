@@ -35,21 +35,24 @@
     <div class="row">
         <div class="col-md-11">
             <div class="post-header">
-                <h3 style="color: rgb(23, 81, 104);" class="media-heading">Problem: <b>{{problem_name}} <a style="color: #accbe1;" href="{{source_link}}"><i class="fas fa-external-link-alt"></i></a> </b></h3>
+                <h4 style="color: rgb(23, 81, 104);" class="media-heading">
+                    Problem: <b>{{problem_name}}</b>
+                    <span style="color: #3d87b9; padding: 10px;"><a href="{{source_link}}"><i class="fas fa-external-link-alt"></i></a></span>
+                </h4>
                 <br>
-                <h5>Problem Difficulty: <b>{{problem_difficulty}}</b></h5>
-                <h5>Online Judge: <b>{{oj_name}}</b></h5>
-                <h5>Problem ID: <b>{{problem_id}}</b></h5>
-                <a style="color: #3d87b9;" href="/problem/submission/history/{{id}}/"><h5>User Solved: <span> <b>{{solve_count}}</b> </span></h5></a>
+                {{#if session.user_id}}
+                    {{#if SOLVED}}
+                    <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-angle-double-right"></i>User Status: <span style="color: rgb(9, 148, 44); font-weight: 500;">Solved</span></h6>
+                    {{else}}
+                    <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-angle-double-right"></i>User Status: <span style="color: rgb(145, 46, 0); font-weight: 500;">Unsolved</span></h6>
+                    {{/if}}
+                {{/if}}
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-angle-double-right"></i>Problem Difficulty: <span style="font-weight: 500;">{{problem_difficulty}}</span></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-angle-double-right"></i>Online Judge: <span style="font-weight: 500;">{{oj_name}}</span></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-angle-double-right"></i>Problem ID: <span style="font-weight: 500;">{{problem_id}}</span></h6>
+                <a href="/problem/submission/history/{{id}}/" style="color:#3d87b9;"><h6><i style="width: 30px;" class="fas fa-angle-double-right"></i>User Solved: <span style="color: rgb(13, 98, 155); font-weight: 500;">{{solve_count}}</span></h6></a>
             </div>
         </div>
-        {{#if SOLVED}}
-        <div class="col-md-1">
-            <br>
-            <br>
-            <h6 style="color: rgb(110, 224, 228); font-size:50px;" class="media-heading"><i class="fas fa-check-circle"></i></h6>
-        </div>
-        {{/if}}
     </div>
     <br>
     <div class="row post-foter">

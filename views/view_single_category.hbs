@@ -36,21 +36,17 @@
     <div class="row">
         <div class="col-md-8">
             <div class="post-header">
-                <h3 style="color: rgb(23, 81, 104);" class="media-heading">Category: <b>{{category_title}} </b></h3>
+                <h4 style="color: rgb(23, 81, 104);" class="media-heading">Category: <b>{{category_title}} </b></h4>
                 <br>
-                <h5>Category Difficulty: <b>{{category_difficulty}}</b></h5>
-                <h5>Category Root: <b>{{category_root_title}}</b></h5>
-                <h5>Problem Count: <span style="color: rgb(207, 161, 7);"> <b>{{problem_count}}</b> </span></h5>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-angle-double-right"></i>Category Difficulty: <span style="font-weight: 500;">{{category_difficulty}}</span></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-angle-double-right"></i>Category Root: <span style="font-weight: 500;">{{category_root_title}}</span></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-angle-double-right"></i>Problem Count: <span style="font-weight: 500;">{{problem_count}}</span></h6>
+                {{#if session.user_id}}
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-angle-double-right"></i>User Category Title: <span style="font-weight: 500;">{{skill_title}}</span></h6>
+                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-angle-double-right"></i>User Category Skill: <span style="font-weight: 500;">{{skill_value}}</span></h6>
+                {{/if}}
             </div>
         </div>
-        {{#if session.user_id}}
-        <div class="col-md-4">
-            <br>
-            <br>
-            <h4 style="color: rgb(173, 130, 48); text-align:center;" class="media-heading">{{skill_title}}</h4>
-            <h1 style="color: rgb(52, 156, 182); text-align:center;" class="media-heading">{{skill_value}}</h1>
-        </div>
-        {{/if}}
     </div>
     <div class="row post-foter">
         <div class="col-md-10">
