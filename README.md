@@ -1,4 +1,4 @@
-# Node-Handlebars
-1. Clone repo
-2. Run npm i
-3. Run node index.js
+# codeflares-web
+1. Clone repository
+2. npm install
+3. sudo node app.js
