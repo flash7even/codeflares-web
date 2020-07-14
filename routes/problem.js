@@ -9,8 +9,9 @@ var category_server = require('./servers/category_services.js');
 var jshelper = require('./servers/jshelper.js');
 
 
-router.addProblemForm = function(req, res, next) {
-  res.render('add_problem', {});
+router.addProblemForm = async function(req, res, next) {
+  let category_list = await category_server.getCategoryList(res, req, {});
+  res.render('add_problem', category_list);
 }
 
 router.addProblemResourceForm = async function(req, res, next) {
@@ -50,7 +51,7 @@ function update_problem_data(problem){
           var dependecy_val = dependency_factor + "@" + id;
           var edge = {
             "category_name": problem[key],
-            "factor": problem[dependecy_val],
+            "factor": parseFloat(problem[dependecy_val]),
           }
           category_dependency_list.push(edge);
       }
@@ -65,14 +66,26 @@ function update_problem_data(problem){
 }
 
 router.addProblemFormSubmit = async function(req, res, next) {
+  console.log('addProblemFormSubmit called')
   var problem = req.body
   problem = update_problem_data(problem)
+  problem['active_status'] = 'pending'
+  if (problem.problem_significance.length == 0){
+    problem.problem_significance = 1
+  }
+  if (problem.problem_description.length == 0){
+    problem.problem_description = 'NA'
+  }
+
+  console.log('problem data')
+  console.log(problem)
   await problem_server.postProblem(res, req, problem)
   jshelper.sleep(1000);
   res.redirect('/problem/list/')
 }
 
 router.viewProblemList = async function(req, res, next) {
+  console.log('Inside viewProblemList')
   var url = req.url
   var words = url.split("/");
   var category_name = words[words.length-2]
@@ -97,9 +110,13 @@ router.viewProblemList = async function(req, res, next) {
 }
 
 router.viewPendingProblemList = async function(req, res, next) {
+  console.log('Inside viewPendingProblemList')
   var url = req.url
+  console.log(url)
   var words = url.split("/");
   var category_name = words[words.length-2]
+  console.log('category_name')
+  console.log(category_name)
   var sess = req.session;
   var param = {}
   if(category_name != 'all'){
@@ -255,11 +272,22 @@ router.approveProblem = async function(req, res, next) {
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
-  var sess = req.session;
-  let problem_data = await problem_server.getProblemDetails(res, req, problem_id);
-  console.log(problem_data)
-  problem_data['resource-page'] = true
-  res.render('view_single_problem', problem_data);
+  var problem_data = {
+    'active_status': 'approved'
+  }
+  await problem_server.updateProblemData(res, req, problem_id, problem_data);
+  res.redirect('back')
+}
+
+router.disapproveProblem = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var problem_id = words[words.length-2]
+  var problem_data = {
+    'active_status': 'disapproved'
+  }
+  await problem_server.updateProblemData(res, req, problem_id, problem_data);
+  res.redirect('back')
 }
 
 module.exports = router;

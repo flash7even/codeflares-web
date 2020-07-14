@@ -83,7 +83,7 @@ module.exports = function(newApp) {
     newApp.get('/problem/view/*', problemController.viewSingleProblem);
     newApp.post('/problem/add/', problemController.addProblemFormSubmit);
     newApp.get('/problem/list/*', problemController.viewProblemList);
-    newApp.get('/problem/pending/list/', problemController.viewPendingProblemList);
+    newApp.get('/problem/pending/list/*', problemController.viewPendingProblemList);
     newApp.post('/problem/list/', problemController.viewProblemListAfterFormSubmit);
     newApp.get('/problem/user/status/flag/*', problemController.setProblemStatusFlag);
     newApp.get('/problem/user/status/remove/*', problemController.setProblemStatusRemove);
@@ -92,6 +92,7 @@ module.exports = function(newApp) {
     newApp.get('/problem/resource/history/*', problemController.getResourceHistory);
     newApp.get('/flagged/problem/list/', problemController.showFlaggedProblemList);
     newApp.get('/problem/active-status/approve/*', problemController.approveProblem);
+    newApp.get('/problem/active-status/disapprove/*', problemController.disapproveProblem);
 
 
     newApp.get('/problem/resource/add/*', problemController.addProblemResourceForm);

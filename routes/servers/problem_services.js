@@ -140,8 +140,8 @@ module.exports.getSubmissionHistory = async function(res, req, problem_id) {
     return response.data
 };
 
-module.exports.approveProblem = async function(res, req, problem_id, data) {
-    var post_url = user_problem_status_submit_url + problem_id
+module.exports.updateProblemData = async function(res, req, problem_id, data) {
+    var post_url = problem_submit_url + problem_id
     console.log("post_url: " + post_url)
     var sess = req.session;
     const auth_config = {

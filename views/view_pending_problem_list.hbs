@@ -1,6 +1,6 @@
 <head>
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/css/view-problem.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/view-problem.css">
 </head>
 
 <div class="cfs-table-wrapper-1" style="width: 100%; padding: 15px;">
@@ -31,7 +31,7 @@
                     <label>Maximum Difficulty</label>
                     <input type="text" id="maximum_difficulty" class="form-control form-control-sm" name="maximum_difficulty" value="{{params.maximum_difficulty}}">
                 </div>
-				<div class="form-group col-sm-1" style="width: 10px !important;">
+                <div class="form-group col-sm-1" style="width: 10px !important;">
                     <label for="pwd">Action</label>
                     <button title="Adjust" class="btn  form-control-sm update btn-block btn-sm" type="submit"><i class="fas fa-adjust"></i></button>
                 </div>
@@ -42,11 +42,12 @@
         <table id="problemListTable" class="table" style="text-align: center;">
             <thead>
                 <tr>
-                    <th>Project Name</th>
+                    <th>Name</th>
                     <th>Source</th>
-                    <th>Problem Difficulty</th>
+                    <th>Problem ID</th>
+                    <th>Difficulty</th>
                     <th>OJ Name</th>
-                    <th>Problem Category</th>
+                    <th>Category</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -79,15 +80,16 @@
             var category_dependency_list = problem.category_dependency_list;
             for(cidx=0;cidx<category_dependency_list.length;cidx++){
                 var dependency = category_dependency_list[cidx]
-                if(cidx>0) category_list += ",  ";
-                category_list += `<a href = "/category/view/${dependency.category_id}/" style="color: #3d87b9; font-weight:600;">${dependency.category_info.category_title}</a>`
+                if(cidx>0) category_list += "<br>";
+                var cat_data = `<a href = "/category/view/${dependency.category_id}/" style="color: #3d87b9; font-weight:600;">${dependency.category_info.category_title} , ${dependency.dependency_factor}</a>`
+                category_list += cat_data
             }
             var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
-
+            action_link += `<a href="/problem/update/${problem.id}/" title="Update" data-toggle="tooltip" style="color: #096889; padding: 5px;"><i class="fas fa-edit"></i></a>`
+            action_link += `<a href="/problem/active-status/approve/${problem.id}/" title="Approve" data-toggle="tooltip" style="color: #098916; padding: 5px;"><i class="fas fa-check-circle"></i></a>`
+            action_link += `<a href="/problem/active-status/disapprove/${problem.id}/" title="Disapprove" data-toggle="tooltip" style="color: rgb(180, 88, 1); padding: 5px;"><i class="fas fa-trash"></i></a>`
             action_link += "</div>"
-            action_link += '<a href="/problem/active-status/approve/{{id}}/" title="Confirm" data-toggle="tooltip" style="color: #5bc0de;"><i class="fas fa-check-circle"></i></a>'
-            action_link += '<a href="/problem/active-status/disapprove/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-trash"></i></a>'
-            var problem_data = [prbolem_link, source_link, problem.problem_difficulty, problem.oj_name, category_list, action_link];
+            var problem_data = [prbolem_link, source_link, problem.problem_id, problem.problem_difficulty, problem.oj_name, category_list, action_link];
             db_problem_list.push(problem_data)
         }
         return db_problem_list;
@@ -95,6 +97,7 @@
 
 
     function findCustomFilter(event) {
+        console.log("findCustomFilter called")
         var custom_param = {}
         var problem_name = '{{params.problem_name}}'
         if(problem_name.length > 0){
@@ -116,28 +119,26 @@
         if(maximum_difficulty.length > 0){
             custom_param['maximum_difficulty'] = maximum_difficulty
         }
+        custom_param['active_status'] = "pending"
         return custom_param
     }
 
     function showProblemsDTSearchTable(){
+        console.log("showProblemsDTSearchTable called")
         var custom_param = findCustomFilter()
+        console.log('custom_param received:')
+        console.log(custom_param)
         $("#problemListTable").dataTable({
             "pageLength": 50,
             destroy: true,
             ordering: true,
             serverSide: true,
-            "columnDefs": [
-                { "orderable": false, "targets": 1 },
-                { "orderable": false, "targets": 3 },
-                { "orderable": false, "targets": 4 },
-                { "orderable": false, "targets": 5 },
-                { "orderable": false, "targets": 6 }
-            ],
             ajax: {
                 url: 'http://localhost:5056/api/problem/dtsearch/heavy',
                 type: 'POST',
                 "contentType": "application/json",
                 "data": function ( d ) {
+                    console.log('Inside ajax before')
                     var ajax_body = JSON.stringify( d );
                     var ajax_json = JSON.parse(ajax_body)
                     if(ajax_json['order'].length > 0){
@@ -151,72 +152,75 @@
                             ajax_json['sort_order'] = oder_param.dir
                         }
                     }
-                    custom_param['active_status'] = "pending"
                     ajax_json['custom_param'] = custom_param
+                    console.log('ajax json')
+                    console.log(JSON.stringify(ajax_json))
                     return JSON.stringify(ajax_json)
                 },
                 "dataSrc": function ( data ) {
+                    console.log('Inside ajax after')
+                    console.log(data.data)
                     return getProblemList(data.data);
                 }
             }
         });
     }
 
-	function enableAutoCompleteCategory(){
-		$(".autocomplete_category").typeahead({
-			// data source
-			source: getAlgorithmList(),
-			// how many items to show
-			items: 8,
-			// default template
-			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
-			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
-			headerHtml: '<li class="dropdown-header"></li>',
-			headerDivider: '<li class="divider" role="separator"></li>',
-			itemContentSelector:'a',
-			// min length to trigger the suggestion list
-			minLength: 1,
-			// number of pixels the scrollable parent container scrolled down
-			scrollHeight: 0,
-			// auto selects the first item
-			autoSelect: true,
-			// callbacks
-			afterSelect: $.noop,
-			afterEmptySelect: $.noop,
-			// adds an item to the end of the list
-			addItem: false,
-			// delay between lookups
-			delay: 0,
-		});
-	}
+    function enableAutoCompleteCategory(){
+        $(".autocomplete_category").typeahead({
+            // data source
+            source: getAlgorithmList(),
+            // how many items to show
+            items: 8,
+            // default template
+            menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+            item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+            headerHtml: '<li class="dropdown-header"></li>',
+            headerDivider: '<li class="divider" role="separator"></li>',
+            itemContentSelector:'a',
+            // min length to trigger the suggestion list
+            minLength: 1,
+            // number of pixels the scrollable parent container scrolled down
+            scrollHeight: 0,
+            // auto selects the first item
+            autoSelect: true,
+            // callbacks
+            afterSelect: $.noop,
+            afterEmptySelect: $.noop,
+            // adds an item to the end of the list
+            addItem: false,
+            // delay between lookups
+            delay: 0,
+        });
+    }
 
-	function enableAutoCompleteRootCategory(){
-		$(".autocomplete_root_category").typeahead({
-			// data source
-			source: getRootAlgorithmList(),
-			// how many items to show
-			items: 8,
-			// default template
-			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
-			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
-			headerHtml: '<li class="dropdown-header"></li>',
-			headerDivider: '<li class="divider" role="separator"></li>',
-			itemContentSelector:'a',
-			// min length to trigger the suggestion list
-			minLength: 1,
-			// number of pixels the scrollable parent container scrolled down
-			scrollHeight: 0,
-			// auto selects the first item
-			autoSelect: true,
-			// callbacks
-			afterSelect: $.noop,
-			afterEmptySelect: $.noop,
-			// adds an item to the end of the list
-			addItem: false,
-			// delay between lookups
-			delay: 0,
-		});
-	}
+    function enableAutoCompleteRootCategory(){
+        $(".autocomplete_root_category").typeahead({
+            // data source
+            source: getRootAlgorithmList(),
+            // how many items to show
+            items: 8,
+            // default template
+            menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+            item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+            headerHtml: '<li class="dropdown-header"></li>',
+            headerDivider: '<li class="divider" role="separator"></li>',
+            itemContentSelector:'a',
+            // min length to trigger the suggestion list
+            minLength: 1,
+            // number of pixels the scrollable parent container scrolled down
+            scrollHeight: 0,
+            // auto selects the first item
+            autoSelect: true,
+            // callbacks
+            afterSelect: $.noop,
+            afterEmptySelect: $.noop,
+            // adds an item to the end of the list
+            addItem: false,
+            // delay between lookups
+            delay: 0,
+        });
+    }
 
     function getAlgorithmList(){
         var data_list = []
@@ -250,8 +254,8 @@
     }
 
     $(document).ready( function () {
-        enableAutoCompleteCategory();
-        enableAutoCompleteRootCategory();
+        //enableAutoCompleteCategory();
+        //enableAutoCompleteRootCategory();
         showProblemsDTSearchTable();
     } );
 
