@@ -96,6 +96,30 @@ router.viewProblemList = async function(req, res, next) {
   res.render('view_problem_list_server', problem_list);
 }
 
+router.viewPendingProblemList = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var category_name = words[words.length-2]
+  var sess = req.session;
+  var param = {}
+  if(category_name != 'all'){
+    param['category_name'] = category_name
+  }
+  if (sess.user_id){
+    param["user_id"] = sess.user_id
+  }
+
+  let problem_list = {}
+  if(category_name != 'all'){
+    problem_list['params'] = {'category_name': category_name}
+  }
+  let category_list = await category_server.getCategoryList(res, req, {});
+  problem_list['category_list'] = category_list['category_list']
+  let root_category_list = await category_server.getCategoryList(res, req, {"category_root": "root"});
+  problem_list['root_category_list'] = root_category_list['category_list']
+  res.render('view_pending_problem_list', problem_list);
+}
+
 router.viewProblemListFromServer = async function(req, res, next) {
   console.log('viewProblemListFromServer called')
   var params = req.body
@@ -225,6 +249,17 @@ router.showFlaggedProblemList = async function(req, res, next) {
   }
   var problem_list = await problem_server.viewFlaggedProblems(res, req, param, user_id)
   res.render('view_user_problem_task_list', problem_list);
+}
+
+router.approveProblem = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var problem_id = words[words.length-2]
+  var sess = req.session;
+  let problem_data = await problem_server.getProblemDetails(res, req, problem_id);
+  console.log(problem_data)
+  problem_data['resource-page'] = true
+  res.render('view_single_problem', problem_data);
 }
 
 module.exports = router;

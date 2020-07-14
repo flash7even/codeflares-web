@@ -140,3 +140,20 @@ module.exports.getSubmissionHistory = async function(res, req, problem_id) {
     return response.data
 };
 
+module.exports.approveProblem = async function(res, req, problem_id, data) {
+    var post_url = user_problem_status_submit_url + problem_id
+    console.log("post_url: " + post_url)
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.put(post_url, data, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+  
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+  };
