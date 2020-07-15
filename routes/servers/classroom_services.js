@@ -1,10 +1,10 @@
 var config = require('../../config.js');
 const axios = require('axios');
 
-var classroom_search_url = config.server_host + 'team/search/user/'
+var classroom_search_url = config.server_host + 'classroom/search/user/'
 var user_search_url = config.server_host + 'user/search/'
-var classroom_submit_url = config.server_host + 'team/'
-var classroom_member_delete_url = config.server_host + 'team/member/'
+var classroom_submit_url = config.server_host + 'classroom/'
+var classroom_member_delete_url = config.server_host + 'classroom/member/'
 var classroom_training_url = config.server_host + 'training/classroom/'
 var classroom_add_task_submit_url = config.server_host + 'classroom/task/'
 var classroom_add_class_submit_url = config.server_host + 'classroom/class/'

@@ -383,11 +383,12 @@
             </div>
         </div>
     </div>
-    <hr style="width: 100%;">
-    <br>
+    {{#if blog_list}}
     <div class="blogs" id="blogs">
-
     </div>
+    {{else}}
+        <h6 style="text-align: center; padding: 20px;">No blog post is available to view right now.</h6>
+    {{/if}}
 </div>
 {{/if}}
 
@@ -576,7 +577,7 @@
     function viewBlogInBlogs(){
         {{#each blog_list}}
             var html = `
-                <div class="blog-post-2">
+                <div class="blog-post-1">
                 <div class="post-header">
                     <a href="/blog/post/view/{{blog_id}}/"><h2 style="color: rgb(23, 81, 104);" class="media-heading"><b>{{blog_title}}</b></h2></a>
                 </div>
@@ -614,5 +615,4 @@
     showCategoryWiseSolveCountTable()
     showContestsDTSearchTable();
     viewBlogInBlogs();
-
 </script>
