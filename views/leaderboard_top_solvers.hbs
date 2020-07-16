@@ -55,7 +55,7 @@
                 { "orderable": false, "targets": 2 }
             ],
             ajax: {
-                url: 'http://localhost:5056/api/user/dtsearch',
+                url: config.server_host + 'user/dtsearch',
                 type: 'POST',
                 "contentType": "application/json",
                 "data": function ( d ) {

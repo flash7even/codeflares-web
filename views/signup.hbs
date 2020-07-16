@@ -89,7 +89,7 @@
 </div>
 
 <script>
-	var user_search_url = 'http://localhost:5056/api/user/search'
+	var user_search_url = config.server_host + 'user/search'
 	$('#confirm_password').on('keyup', function () {
 	if ($('#password').val() == $('#confirm_password').val()) {
 		$('#password_message').html('Password matched').css('color', 'green');

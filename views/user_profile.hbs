@@ -302,7 +302,7 @@
             serverSide: true,
             lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
             ajax: {
-                url: 'http://localhost:5056/api/problem/user/submission/history/dtsearch/' + '{{id}}',
+                url: config.server_host + 'problem/user/submission/history/dtsearch/' + '{{id}}',
                 type: 'POST',
                 "contentType": "application/json",
                 "data": function ( d ) {

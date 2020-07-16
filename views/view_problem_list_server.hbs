@@ -130,7 +130,7 @@
                 { "orderable": false, "targets": 6 }
             ],
             ajax: {
-                url: 'http://localhost:5056/api/problem/dtsearch/heavy',
+                url: config.server_host + 'problem/dtsearch/heavy',
                 type: 'POST',
                 "contentType": "application/json",
                 "data": function ( d ) {
