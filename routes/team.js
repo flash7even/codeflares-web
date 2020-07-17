@@ -111,6 +111,7 @@ router.viewTeam = async function(req, res, next) {
   }
   console.log(team_details)
   team_details = system_server.toast_update(req, team_details)
+  team_details['profile-page'] = true
   res.render('team_profile', team_details);
 }
 

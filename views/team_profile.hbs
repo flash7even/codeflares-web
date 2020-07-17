@@ -8,83 +8,130 @@
 </head>
 
 
-<div class="blog-post-2" style="margin-top: 30px;">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="post-header">
-                <h2 style="color: {{skill_color}};"><b>{{team_name}}</b></h2>
-				<h6 id="team_members"></h6>
-				<br>
-				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-layer-group"></i> <span style="color:{{skill_color}}; font-weight: 600; font-size:25px;">{{skill_title}}</span></h6>
-				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-poll-h"></i> Team Rating: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{skill_value}}</span></h6>
-				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-cheese"></i> Problem Solved: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{solve_count}}</span></h6>
-                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-secret"></i> Followers: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{follow_stat.follower_count}}</span></h6>
-                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-secret"></i> Following: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{follow_stat.following_count}}</span></h6>
-                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-tie"></i> Created By: <a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:500;">{{team_leader_handle}}</a></h6>
-				<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-university"></i> Institution Name: {{institution_name}}</h6>
-                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-info-circle"></i> Team Purpose: {{team_purpose}}</h6>
-                <h6><i style="color:#3d87b9; width: 30px;" class="fas fa-calendar-week"></i> Registered Since: {{created_at}}</h6>
-
-				{{#if own_profile}}
-				<h6 style="color: #3d87b9;"><i style="color:#3d87b9; width: 30px;" class="fas fa-user-edit"></i> <a href="/team/update/{{id}}/">Update Profile</a></h6>
-				{{/if}}
-            </div>
-			<br>
-			<br>
-
-			<div class="row">
-				{{#if following}}
-					<div class="col-md-2" style="padding-left: 0px;">
-						<a style="border-color: rgb(13, 98, 155); color:rgb(13, 98, 155);" href="/unfollow/{{id}}/" class="btn btn-block"> <span class="fas fa-user-friends"></span> </a>
-					</div>
-				{{/if}}
-				{{#if unfollowing}}
-					<div class="col-md-2" style="padding-left: 0px;">
-						<a style="border-color: rgb(145, 156, 160); color:rgb(145, 156, 160);" href="/follow/{{id}}/" class="btn btn-block"><span class="fas fa-user-friends"></span> </a>
-					</div>
-				{{/if}}
-				{{#if session.user_id}}
-				<div class="col-md-2" style="padding-left: 0px;">
-					<a style="border-color: rgb(13, 98, 155); color:rgb(13, 98, 155);" href="/team/sync/{{id}}/" class="btn btn-block"><span class="fas fa-sync"></span> </a>
-				</div>
-				{{/if}}
-				{{#if session.user_id}}
-				<div class="col-md-2" style="padding-left: 0px;">
-					<a style="border-color: rgb(13, 98, 155); color:rgb(13, 98, 155);" href="/training/team/{{id}}/training-plan/" class="btn btn-block"><span title="Training Plan" class="fas fa-tenge"></span></a>
-				</div>
-				{{/if}}
-			</div>
-        </div>
-        <div class="col-md-4" style="padding: 30px">
-			<div class="image-wrapper">
-				<img src="/img/profile-8.png" alt="image" height="360" width="300">
-			</div>
-        </div>
-    </div>
-</div>
-
-<div class="cfs-table-wrapper-1">
+<div class="profile-wrapper-1" style="width: 100%;  margin-right:1px auto;">
     <div class="cfs-title-1">
-        <h5 style="text-align: center;"><b>CodeFlares Team Rating History</b></h5>
+        <div class="row cfs-title-1-inside">
+            {{#if profile-page}}
+            <div class="selected-button">
+            <a style="color: #0f2436;" href="/team/view/{{id}}/" class="btn btn-sm" role="button"><b>{{team_name}}</b></a>
+            </div>
+            {{else}}
+            <a style="color: #0f2436;" href="/team/view/{{id}}/" class="btn btn-sm" role="button"><b>{{team_name}}</b></a>
+            {{/if}}
+            {{#if follower-page}}
+            <div class="selected-button">
+            <a style="color: #0f2436;" href="/team/followers/{{id}}/" class="btn btn-sm" role="button"><b>Followers</b></a>
+            </div>
+            {{else}}
+            <a style="color: #0f2436;" href="/team/followers/{{id}}/" class="btn btn-sm" role="button"><b>Followers</b></a>
+            {{/if}}
+        </div>
     </div>
-    <br>
-	<div id="team_rating_chart" style="height: 400px; width: 100%;"></div>
+
+
+	{{#if profile-page}}
+	<div style="padding: 30px; padding-left: 50px;">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post-header">
+					<h2 style="color: {{skill_color}};"><b>{{team_name}}</b></h2>
+					<h6 id="team_members"></h6>
+					<br>
+					<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-layer-group"></i> <span style="color:{{skill_color}}; font-weight: 600; font-size:25px;">{{skill_title}}</span></h6>
+					<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-poll-h"></i> Team Rating: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{skill_value}}</span></h6>
+					<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-cheese"></i> Problem Solved: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{solve_count}}</span></h6>
+					<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-secret"></i> Followers: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{follow_stat.follower_count}}</span></h6>
+					<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-secret"></i> Following: <span style="color:rgb(13, 98, 155); font-weight: 500;">{{follow_stat.following_count}}</span></h6>
+					<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-user-tie"></i> Created By: <a href = "/profile/{{team_leader_handle}}/" style="color: {{team_leader_skill_color}}; font-weight:500;">{{team_leader_handle}}</a></h6>
+					<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-university"></i> Institution Name: {{institution_name}}</h6>
+					<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-info-circle"></i> Team Purpose: {{team_purpose}}</h6>
+					<h6><i style="color:#3d87b9; width: 30px;" class="fas fa-calendar-week"></i> Registered Since: {{created_at}}</h6>
+
+					{{#if own_profile}}
+					<h6 style="color: #3d87b9;"><i style="color:#3d87b9; width: 30px;" class="fas fa-user-edit"></i> <a href="/team/update/{{id}}/">Update Profile</a></h6>
+					{{/if}}
+				</div>
+				<br>
+				<br>
+
+				<div class="row">
+					{{#if following}}
+						<div class="col-md-2" style="padding-left: 0px;">
+							<a style="border-color: rgb(13, 98, 155); color:rgb(13, 98, 155);" href="/unfollow/{{id}}/" class="btn btn-block"> <span class="fas fa-user-friends"></span> </a>
+						</div>
+					{{/if}}
+					{{#if unfollowing}}
+						<div class="col-md-2" style="padding-left: 0px;">
+							<a style="border-color: rgb(145, 156, 160); color:rgb(145, 156, 160);" href="/follow/{{id}}/" class="btn btn-block"><span class="fas fa-user-friends"></span> </a>
+						</div>
+					{{/if}}
+					{{#if session.user_id}}
+					<div class="col-md-2" style="padding-left: 0px;">
+						<a style="border-color: rgb(13, 98, 155); color:rgb(13, 98, 155);" href="/team/sync/{{id}}/" class="btn btn-block"><span class="fas fa-sync"></span> </a>
+					</div>
+					{{/if}}
+					{{#if session.user_id}}
+					<div class="col-md-2" style="padding-left: 0px;">
+						<a style="border-color: rgb(13, 98, 155); color:rgb(13, 98, 155);" href="/training/team/{{id}}/training-plan/" class="btn btn-block"><span title="Training Plan" class="fas fa-tenge"></span></a>
+					</div>
+					{{/if}}
+				</div>
+			</div>
+			<div class="col-md-4" style="padding: 30px">
+				<div class="image-wrapper">
+					<img src="/img/profile-8.png" alt="image" height="360" width="300">
+				</div>
+			</div>
+		</div>
+	</div>
+	{{/if}}
+	
+
+	{{#if follower-page}}
+    <div class="cfs-title-2" style="margin-top: 30px;">
+        <h5 style="text-align: center; font-size: large;"><b>User Follower List</b></h5>
+    </div>
+    <div class="cfs-table-1">
+        <table class="table cfs-table-data" id="userFollowerTable" style="text-align: center;">
+            <thead style="background-color: rgb(255, 255, 255);">
+                <tr>
+                    <td>#</th>
+                    <td>User Handle</td>
+                    <td>Skill Value</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>	
+	{{/if}}
 </div>
+
+
+{{#if profile-page}}
+	<div class="cfs-table-wrapper-1">
+		<div class="cfs-title-1">
+			<h5 style="text-align: center;"><b>CodeFlares Team Rating History</b></h5>
+		</div>
+		<br>
+		<div id="team_rating_chart" style="height: 400px; width: 100%;"></div>
+	</div>
+{{/if}}
 
 <script>
 
-window.onload = function () {
-	var member_list_items = "";
-	var mem_count = 0;
-	{{#each member_list}}
-		if(mem_count>0) member_list_items += ", ";
-    	member_list_items += '<b><a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; padding:2px;">{{user_handle}}</a></b>'
-		mem_count += 1
-	{{/each}}
+	function view_team_members(){
+		var member_list_items = "";
+		var mem_count = 0;
+		{{#each member_list}}
+			if(mem_count>0) member_list_items += ", ";
+			member_list_items += '<b><a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; padding:2px;">{{user_handle}}</a></b>'
+			mem_count += 1
+		{{/each}}
 
-	var team_members = document.getElementById('team_members');
-	team_members.innerHTML = member_list_items
-}
+		var team_members = document.getElementById('team_members');
+		team_members.innerHTML = member_list_items
+	}
 
 
 	//------ CodeFlares TEAM RATING HISTORY CHART -------//
@@ -115,6 +162,52 @@ window.onload = function () {
 	}
 	//------ CodeFlares TEAM RATING HISTORY ENDS -------//
 
-	show_codetrainer_team_rating();
+    function getFollowerList(){
+        var dt_list = [];
+        {{#each follower_list}}
+            var user_link = `<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:500;"><b>{{user_handle}}</b></a>`
+            var skill = `<span style="color: {{skill_color}};">{{skill_value}}</span>`
+            var data = ["{{order}}", user_link, skill];
+            dt_list.push(data)
+        {{/each}}
+        return dt_list;
+    }
+
+    function showFollowerTable(){
+        var dt_list = getFollowerList();
+        
+        $("#userFollowerTable").dataTable({
+            "aaData": dt_list,
+            paging: true,
+            searching: true,
+            ordering: false,
+            info: false,
+            destroy: true,
+            scrollCollapse: true,
+            responsive: true,
+            pageLength: 50,
+            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 100]]
+        });
+    }
+
+    function getFollowingList(){
+        var dt_list = [];
+        {{#each following_list}}
+            var user_link = `<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:500;"><b>{{user_handle}}</b></a>`
+            var skill = `<span style="color: {{skill_color}};">{{skill_value}}</span>`
+            var data = ["{{order}}", user_link, skill];
+            dt_list.push(data)
+        {{/each}}
+        return dt_list;
+    }
+
+	{{#if profile-page}}
+		view_team_members();
+		show_codetrainer_team_rating();
+	{{/if}}
+
+	{{#if follower-page}}
+		showFollowerTable();
+	{{/if}}
 
 </script>

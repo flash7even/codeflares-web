@@ -123,6 +123,8 @@ module.exports = function(newApp) {
     newApp.get('/team/confirm/*', teamController.confirmTeam);
     newApp.get('/team/reject/*', teamController.rejectTeam);
     newApp.get('/team/delete/*', teamController.deleteTeam);
+    newApp.get('/team/followers/*', followerController.showTeamFollowerList);
+    
 
     newApp.get('/classroom/add/', classroomController.addClassroomForm);
     newApp.post('/classroom/add/', classroomController.addClassroomFormSubmit);
