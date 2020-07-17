@@ -118,7 +118,7 @@ module.exports = function(newApp) {
     newApp.post('/team/add/', teamController.addTeamFormSubmit);
     newApp.get('/team/update/*', teamController.updateTeamForm);
     newApp.post('/team/update/*', teamController.updateTeamFormSubmit);
-    newApp.get('/team/list/', teamController.viewTeamList);
+    newApp.get('/team/list/*', teamController.viewTeamList);
     newApp.get('/team/view/*', teamController.viewTeam);
     newApp.get('/team/confirm/*', teamController.confirmTeam);
     newApp.get('/team/reject/*', teamController.rejectTeam);

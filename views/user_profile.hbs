@@ -24,6 +24,13 @@
             {{else}}
             <a style="color: #0f2436;" href="/user/submissions/{{username}}/" class="btn btn-sm" role="button"><b>Submissions</b></a>
             {{/if}}
+            {{#if view-teams-page}}
+            <div class="selected-button">
+            <a style="color: #0f2436;" href="/team/list/{{username}}/" class="btn btn-sm" role="button"><b>Teams</b></a>
+            </div>
+            {{else}}
+            <a style="color: #0f2436;" href="/team/list/{{username}}/" class="btn btn-sm" role="button"><b>Teams</b></a>
+            {{/if}}
 
             {{#if follower-page}}
             <div class="selected-button">
@@ -166,7 +173,34 @@
     </div>
 	{{/if}}
 
+    {{#if view-teams-page}}
 
+    <div class="cfs-title-2" style="margin-top: 30px;">
+        <h5 style="text-align: center;"><b>Your Teamlist</b></h5>
+    </div>
+    <div class="cfs-table-1">
+        {{#if team_list}}
+        <table id="teamListTable" class="table top-list-table">
+            <thead>
+                <tr style="display: none;">
+                    <th>Team Name</th>
+                    <th>Purpose</th>
+                    <th>Institution</th>
+                    <th>Members</th>
+                    <th>Training</th>
+                    <th>Contests</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        {{else}}
+            <h6 style="text-align: center; padding: 20px;">No team is available to view right now.</h6>
+        {{/if}}
+    </div>
+    {{/if}}
 </div>
 
 {{#if profile-page}}
@@ -375,6 +409,71 @@
             lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 100]]
         });
     }
+
+    function getTeamList(){
+        var current_user = "{{logged_in_user_id}}"
+        console.log("current_user")
+        console.log(current_user)
+
+        var db_team_list = [];
+
+        {{#each team_list}}
+            console.log("{{team_name}}")
+            var team_name = "{{team_name}}"
+            var member_list_items = "";
+            var mem_count = 0;
+            var my_status = "{{status}}"
+            {{#each member_list}}
+                if(mem_count>0) member_list_items += ",  ";
+                member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:700;">{{user_handle}} ({{status}})</a>'
+                mem_count += 1
+            {{/each}}
+            var team_link = '<a href = "/team/view/{{id}}/" style="color: {{skill_color}}; font-weight:700;">{{team_name}}</a>'
+
+            var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
+
+            if(my_status != "confirmed"){
+                action_link += '<a href="/team/confirm/{{id}}/" title="Confirm" data-toggle="tooltip" style="color: #5bc0de;"><i class="fas fa-check-circle"></i></a>'
+                action_link += "  "
+                action_link += '<a href="/team/reject/{{id}}/" title="Reject" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-times-circle"></i></a>'
+            }else{
+                var team_lead = "{{team_leader_id}}"
+                console.log("team_lead")
+                console.log(team_lead)
+                if(current_user == team_lead){
+                    action_link += '<a href="/team/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-trash"></i></a>'
+                }else{
+                    action_link += '<a href="/team/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-minus-circle"></i></a>'
+                }
+            }
+            
+            action_link += "</div>"
+            var training_link = `<a class="btn btn-sm btn-light" href="/training/team/{{id}}/training-plan/" role="button">Training Plan</a>`
+            var contest_link = `<a class="btn btn-sm btn-light" href="/training/team/{{id}}/contest/" role="button">Training Contests</a>`
+
+            var team_data = [team_link, "{{team_purpose}}", "{{institution_name}}", member_list_items, training_link, contest_link, action_link];
+            db_team_list.push(team_data)
+        {{/each}}
+
+        return db_team_list;
+    }
+
+    function showTeamsDTSearchTable(){
+        var dt_list = getTeamList();
+        
+        $("#teamListTable").dataTable({
+            "aaData": dt_list,
+            paging: false,
+            searching: false,
+            ordering: false,
+            info: false,
+            destroy: true,
+            scrollCollapse: true,
+            responsive: true,
+            pageLength: 10,
+            lengthMenu: [[3, 5, 10, -1], [3, 5, 10, 20]]
+        });
+    }
 	
     $(document).ready( function () {
 		{{#if profile-page}}
@@ -392,6 +491,10 @@
 
 		{{#if following-page}}
 			showFollowingTable();
+		{{/if}}
+
+		{{#if view-teams-page}}
+			showTeamsDTSearchTable();
 		{{/if}}
     } );
 </script>

@@ -81,12 +81,18 @@ router.addTeamFormSubmit = async function(req, res, next) {
 }
 
 router.viewTeamList = async function(req, res, next) {
+  var url = req.url
+  var words = url.split("/");
+  var user_handle = words[words.length-2]
   var sess = req.session;
-  let team_list = await team_server.getTeamList(res, req, sess.username, {"team_type": "team"});
+  let team_list = await team_server.getTeamList(res, req, user_handle, {"team_type": "team"});
   team_list['logged_in_user_id'] = sess.user_id
+
   console.log(team_list)
   team_list = system_server.toast_update(req, team_list)
-  res.render('view_team_list', team_list);
+  team_list['username'] = user_handle
+  team_list['view-teams-page'] = true
+  res.render('user_profile', team_list);
 }
 
 router.viewTeam = async function(req, res, next) {
