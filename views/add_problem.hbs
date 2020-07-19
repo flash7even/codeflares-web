@@ -5,7 +5,10 @@
 
 <div class="form-type-1" style="width: 80%;">	
 	<div class="cfs-title-1">
-		<h5 style="text-align: center;"><b>Add Problem Suggestion</b></h5>
+		<h5 style="text-align: center;">
+			<b>Add Problem Suggestion</b>
+			<atitle="Guideline" class='btn'  data-toggle="modal" data-target="#addProblemGuideline"><i class="fas fa-info-circle"></i></a>
+			</h5>
 	</div>
 	<br>
 	<br>
@@ -119,6 +122,81 @@
         </div>
 	</form>
 </div>
+
+
+<!-- Modal Section Starts -->
+<div class="modal fade" id="addProblemGuideline" tabindex="-1" role="dialog" aria-labelledby="addProblemGuidelineLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Problem Guideline</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+		<div class="modal-data">
+
+		<h5>Problem Name</h5>
+		<p>Should be exactly the same as it's written in the corresponding problem page.</p>
+		<br>
+
+		<h5>Problem ID</h5>
+		
+		Each problem in an website has an unique identification id.<br>
+		<p>1. For codeforcode, the id is {contest-id}/{problem-id}.</p>
+		<p>2. For other websites, the problem id is the problem code you see in the problem link.</p>
+		<br>
+
+		<h5>Problem Type</h5>
+		<p>Problem type can be of the following three types.</p>
+		<p>1. Classical: If the problem seems like a very classical type for any particular algorithm. Which means,
+		the problem is a direct application of the corresponding algorithm and doesn't require any
+		further knowledge other than the algorithm to solve it.</p>
+		<p>2. Regular: If the problem requires some common knowledge and regular practice.</p>
+		<p>3. Rare Knowledge: If the problem requires some knowledge which are very rare.</p>
+		<br>
+
+		<br>
+		<h5>Problem Significance</h5>
+		<p>Problem significance denotes how much the problem is important for each of the connected categories.</p>
+		<p>If all the linked categories are equally important then enter 1, otherwise enter 2</p>
+		<br>
+
+
+		<h5>Source Link</h5>
+		<p>Source link is the exact same link to visit the problem.</p>
+		<br>
+
+		<h5>Dependent Category</h5>
+		<p>Select the categories to which the problem belongs to from the auto complete search box</p>
+		<p>If the category doesn't exist, you have to first contact us to add the category. You can 
+			enter the dependent category only after we add the category in server.
+		</p>
+		<br>
+
+		<h5>Dependent Category Factor</h5>
+		<p>The factor denotes how much the category is important to learn to solve the problem</p>
+		<p>The value should be in range 1 to 10. 1 is for being least important, 10 is for most important.</p>
+		<br>
+		
+		<h5>Sample Example</h5>
+		<p>Sample Codeforces Problem: <a href="https://codeforces.com/problemset/problem/977/A">Wrong Subtraction</a></p>
+		<p>Problem Name: Wrong Subtraction</p>
+		<p>Online Judge: Codeforces</p>
+		<p>Difficulty: 1.5</p>
+		<p>Significance: 1</p>
+		<p>Source Link: <a href="https://codeforces.com/problemset/problem/977/A">https://codeforces.com/problemset/problem/977/A</a></p>
+		<p>Dependent Category 1: implementation</p>
+		<p>Dependent Factor 1: 9.5</p>
+		<p>Dependent Category 2: ad_hoc</p>
+		<p>Dependent Factor 2: 6.5</p>
+		</div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Section Ends -->
 
 <script type="text/javascript">
 	var cat_item = 1;

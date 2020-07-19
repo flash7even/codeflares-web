@@ -597,13 +597,6 @@ hr.light {
   font-weight: bolder;
 }
 
-.modal {
-    position: relative;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -100%);
-}
-
 
 .cfs-table-1 thead{
     font-weight: 700;
@@ -618,4 +611,42 @@ hr.light {
 
 .resourceTable tbody>tr>:nth-child(2){
     max-width: 500px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 30px;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  .modal {
+      margin-top: 50px;
+  }
+
+  .modal .modal-data {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+
+  .modal .modal-data a {
+    color: #3d87b9;
 }
