@@ -7,61 +7,72 @@
 		<h5 style="text-align: center;"><b>Add Category Suggestion</b></h5>
 	</div>
 	<br>
-	<br>
     <form action="/category/add/" method="post" style="padding: 10px;">
 		<div class="form-row">
 			<div class="form-group col-md-12">
+				<label><b>Category Name</b></label>
 				<div class="input-group">
-					<input type="text" id="category_name" class="form-control" name="category_name" placeholder="Category Name">
+					<input type="text" id="category_name" class="form-control" name="category_name" placeholder="Enter the category name">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label><b>Category Title</b></label>
+				<div class="input-group">
+					<input type="text" id="category_title" class="form-control" name="category_title" placeholder="Enter category title">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label><b>Category Root</b></label>
+				<div class="input-group">
+					<input type="text" autocomplete="off" id="category_root" class="form-control autocomplete-root" name="category_root" placeholder="Enter category root">
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
+				<label><b>Category Description</b></label>
 				<div class="input-group">
-					<input type="text" id="category_title" class="form-control" name="category_title" placeholder="Category Title">
+					<input type="text" id="category_description" class="form-control" name="category_description" placeholder="Category description">
 				</div>
 			</div>
 			<div class="form-group col-md-6">
+				<label><b>Category Difficulty</b></label>
 				<div class="input-group">
-					<input type="text" autocomplete="off" id="category_root" class="form-control autocomplete-root" name="category_root" placeholder="Category Root">
+					<input type="text" id="category_difficulty" class="form-control" name="category_difficulty" placeholder="Category difficulty (1-10)">
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
+				<label><b>Category Importance</b></label>
 				<div class="input-group">
-					<input type="text" id="category_description" class="form-control" name="category_description" placeholder="Description">
+					<input type="text" id="category_importance" class="form-control" name="category_importance" placeholder="Category importance value (1-10)">
 				</div>
 			</div>
 			<div class="form-group col-md-6">
+				<label><b>Category Rareness</b></label>
 				<div class="input-group">
-					<input type="text" id="category_difficulty" class="form-control" name="category_difficulty" placeholder="Difficulty">
+					<input type="text" id="category_rareness" class="form-control" name="category_rareness" placeholder="Category rareness value (1-10)">
 				</div>
 			</div>
 		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<div class="input-group">
-					<input type="text" id="category_importance" class="form-control" name="category_importance" placeholder="Importance">
-				</div>
-			</div>
-			<div class="form-group col-md-6">
-				<div class="input-group">
-					<input type="text" id="category_rareness" class="form-control" name="category_rareness" placeholder="Rareness">
-				</div>
-			</div>
-		</div>
+		
+		<label><b>Category Dependency List</b></label>
+
 		<div class="category-group">
 			<div class="form-row control-group">
 				<div class="form-group col-md-6">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="dependency_category@1" class="form-control autocomplete" name="dependency_category@1" placeholder="Dependent On Category">
+						<input type="text" autocomplete="off" id="dependency_category@1" class="form-control autocomplete" name="dependency_category@1" placeholder="Dependent on category">
 					</div>
 				</div>
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" id="dependency_factor@1" class="form-control" name="dependency_factor@1" placeholder="Factor">
+						<input type="text" id="dependency_factor@1" class="form-control" name="dependency_factor@1" placeholder="Dependency factor">
 					</div>
 				</div>
 				<div class="form-group col-sm-1" style="width: 10px !important;">
@@ -75,12 +86,12 @@
 			<div class="form-row control-group">
 				<div class="form-group col-md-6">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="dependency_category_tmp" class="form-control autocomplete" name="dependency_category_tmp" placeholder="Dependent On Category">
+						<input type="text" autocomplete="off" id="dependency_category_tmp" class="form-control autocomplete" name="dependency_category_tmp" placeholder="Dependent on category">
 					</div>
 				</div>
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" id="dependency_factor_tmp" class="form-control" name="dependency_factor_tmp" placeholder="Factor">
+						<input type="text" id="dependency_factor_tmp" class="form-control" name="dependency_factor_tmp" placeholder="Dependency factor">
 					</div>
 				</div>
 				<div class="form-group col-sm-1" style="width: 10px !important;">

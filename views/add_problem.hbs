@@ -3,14 +3,13 @@
 </head>
 
 
-<div class="form-type-1" style="width: 100%;">	
+<div class="form-type-1" style="width: 80%;">	
 	<div class="cfs-title-1">
 		<h5 style="text-align: center;">
 			<b>Add Problem Suggestion</b>
 			<a title="Guideline" class='btn' data-toggle="modal" data-target="#addProblemGuideline"><i class="fas fa-info-circle"></i></a>
-			</h5>
+		</h5>
 	</div>
-	<br>
 	<br>
     <form action="/problem/add/" method="post" style="padding: 10px;">
 		<div class="form-row">
@@ -69,15 +68,15 @@
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label><b>Problem Difficulty (0.1-10)</b></label>
+				<label><b>Problem Difficulty</b></label>
 				<div class="input-group">
-					<input type="number" id="problem_difficulty" class="form-control" name="problem_difficulty" placeholder="Enter problem difficulty" min="0.1" max="10" required>
+					<input type="number" id="problem_difficulty" class="form-control" name="problem_difficulty" placeholder="Enter problem difficulty (0.1-10)" min="0.1" max="10" required>
 				</div>
 			</div>
 			<div class="form-group col-md-6">
-				<label><b>Problem Significance for Categories (1-2)</b></label>
+				<label><b>Problem Significance for Categories</b></label>
 				<div class="input-group">
-					<input type="number" id="problem_significance" class="form-control" name="problem_significance" placeholder="Enter category significance value">
+					<input type="number" id="problem_significance" class="form-control" name="problem_significance" placeholder="Enter category significance value (1-2)">
 				</div>
 			</div>
 		</div>
