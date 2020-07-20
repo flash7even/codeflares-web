@@ -46,16 +46,26 @@ ul.CTAs a {
 .notification-box{
     right: 0px;
     top: 20px;
+    border-radius: 5px;
+    border: 1px solid #cecece;
     padding: 10px;
     padding-left: 10px;
-    border-bottom: 1px solid rgb(4, 39, 37);
+}
+
+.notification-box-2{
+    right: 0px;
+    top: 20px;
+    border-radius: 5px;
+    border: 1px solid #cecece;
+    padding: 10px;
+    padding-left: 10px;
 }
 
 .notif-box{
     top: 100%;
     right: 167px;
     left: unset;
-    width: 450px;
+    width: 550px;
     box-shadow: 0px 0px 0.3px 0px #565e61;
     padding-bottom: 0px;
     padding: 5px;
@@ -76,9 +86,9 @@ ul.CTAs a {
 
 @media (max-width: 640px) {
     .dropdown-menu{
-    top: 70px;
-    left: -16px;  
-    width: 290px;
+        top: 70px;
+        left: -16px;  
+        width: 290px;
     } 
     .nav{
     display: block;

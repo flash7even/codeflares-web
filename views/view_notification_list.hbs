@@ -8,16 +8,19 @@
 <div class="cfs-table-wrapper-1" style="width: 95%;">
     <div class="cfs-title-1" style="color:rgb(15, 9, 1); padding-bottom: 20px;">
         <div class="col-md-12" style="color: #000000;">
+            <h6>
             <span><b>Your Notifications ({{unread_length}})</b></span>
             <a href="/notification/read/all/" class="float-right text"><b>Mark all as read</b></a>
+            </h6>
         </div>
     </div>
+    <br>
     <div class="" style="margin:20px; margin-left:-20px; margin-top:0px;">
         <ul class="" style="width: 100%;">
             {{#each notification_list}}
 
             {{#if UNREAD}}
-                <li class="notification-box" style="background-color: rgba(212, 229, 248, 0.658);">
+                <li class="notification-box-2" style="background-color: rgba(223, 223, 223, 0.658); margin: 10px;">
                     <div class="row">
                     <div class="col-md-11">
                         <a href="{{redirect_url}}">
@@ -30,13 +33,13 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-1" style="top: 80%;">
+                    <div class="col-md-1" style="margin-top: 14px;">
                         <a href="/notification/read/single/{{id}}/" title="Mark as read" data-toggle="tooltip" style="color: #122f30;"><i class="fas fa-bullseye"></i></a>
                     </div>
                     </div>
                 </li>
             {{else}}
-                <li class="notification-box" style="background-color: #fff;">
+                <li class="notification-box" style="background-color: #fff; margin: 10px;">
                     <div class="row">
                     <div class="col-md-11">
                         <a href="{{redirect_url}}">
