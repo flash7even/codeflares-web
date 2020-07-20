@@ -55,10 +55,11 @@ body {
 }
 .form-type-1 .submit-btn {
     margin-top: 20px;
-    background: #ececec;
-    color: #000000;
+    background: rgb(128, 162, 185);
+    color: #fff;
+    font-size: larger;
+    font-weight: bold;
     border: 1px solid #e4e4e4;
-    width: 20%;
     height: 40px;
 }
 .form-type-1 .submit-btn-div {        
@@ -66,8 +67,7 @@ body {
     justify-content: center;
 }
 .form-type-1 .submit-btn:hover, .form-type-1 .submit-btn:focus {
-    background: #dcdee0;
-    border-bottom: 2px solid #79a2c4;
+    background: rgb(151, 188, 212);
 }
 
 .form-type-1 .control-btn {        
@@ -540,8 +540,8 @@ hr.light {
 
 .cfs-title-1 {
     border-radius: 1px;
-    background: #FAFAFA;
-    border-bottom: 1px solid #e4e7eb;
+    background: #ebebeb;
+    border-bottom: 1px solid #c9c9c9;
     color: #000000;	
     padding: 8px;
     padding-top: 10px;
