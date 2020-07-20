@@ -8,6 +8,8 @@
             <h5 style="text-align: center;"><b>Flagged Problems</b></h5>
         </div>
         <div class="cfs-table-1">
+
+        {{#if problem_list}}
         <table class="table" style="text-align: center;">
             <thead style="background-color: rgb(255, 255, 255);">
                 <tr>
@@ -28,9 +30,12 @@
                         <a style="color: rgb(52, 180, 212);" href="/problem/user/status/clear/{{id}}/" class="update" title="Remove from flagged list" data-toggle="tooltip"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
-                 {{/each}}
+                    {{/each}}
 
             </tbody>
         </table>
+        {{else}}
+            <h6 style="text-align: center; padding: 20px;">You don't have any flagged problems yet.</h6>
+        {{/if}}
     </div>
 </div>

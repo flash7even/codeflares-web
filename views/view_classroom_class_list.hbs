@@ -5,11 +5,12 @@
 </head>
 
 
-<div class="table-wrapper" style="width: 100%%;  margin-right:1px auto">
+<div class="cfs-table-wrapper-1" style="width: 100%%;  margin-right:1px auto">
     <div class="cfs-title-1">
-        <h5 style="text-align: center;"><b>All Class List [Classroom: <a href = "/classroom/training/{{id}}/" style="color: #3348a7; font-weight:700;">{{team_name}}</a>]</b></h5>
+        <h5 style="text-align: center;"><b><a href = "/classroom/training/{{id}}/contest/" style="color: #3d87b9; font-weight:700;">{{team_name}}</a> - Class List</b></h5>
     </div>
-    <table class="table table-striped">
+    {{#if class_list}}
+    <table class="table">
         <thead>
             <tr>
                 <th style="width: 15%;">Class Title</th>
@@ -31,17 +32,15 @@
                 <td>{{class_duration}}</td>
                 <td>{{resource_link}}</td>
                 <td>
-                    <a href="/classroom/class/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3;"><i class="fas fa-edit"></i></a>
-                    <a href="/classroom/class/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(255, 124, 2);"><i class="fas fa-trash"></i></a>
+                    <a href="/classroom/class/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bc0de;"><i class="fas fa-edit"></i></a>
+                    <a href="/classroom/class/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
                 {{/each}}
 
         </tbody>
     </table>
-    <div class="add-task">
-        <div>
-            <a style="background-color: #8FC1e3;" title="Add new class" class='btn' href="/classroom/class/add/{{id}}/"><i class="fas fa-plus"></i></a>
-        </div>
-    </div>
+    {{else}}
+        <h6 style="text-align: center; padding: 20px;">No class has been added yet.</h6>
+    {{/if}}
 </div>
