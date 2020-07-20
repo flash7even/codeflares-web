@@ -653,3 +653,13 @@ hr.light {
   .modal .modal-data a {
     color: #3d87b9;
 }
+
+.page-item.active .page-link {
+    background-color: rgb(128, 162, 185) !important;
+    border: 1px solid #e4e4e4;
+    color: #fff !important;
+}
+
+.page-link {
+    color: black !important;
+}
