@@ -36,7 +36,9 @@ body {
 }
 .form-type-1 label {
     font-weight: normal;
-    font-size: 13px;
+    font-size: 16px;
+    padding-left: 10px;
+    
 }
 .form-type-1 .form-control {
     min-height: 38px;

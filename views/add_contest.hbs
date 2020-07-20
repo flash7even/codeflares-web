@@ -16,6 +16,7 @@
 
 		<div class="form-row">
 			<div class="form-group col-md-12">
+				<label><b>Contest Name</b></label>
 				<div class="input-group">
 					<input type="text" id="contest_name" class="form-control" name="contest_name" placeholder="Contest Name">
 				</div>
@@ -24,27 +25,30 @@
 
 		<div class="form-row">
 			<div class="form-group col-md-3">
+				<label><b>Description</b></label>
 				<div class="input-group">
 					<input type="text" id="description" class="form-control" name="description" placeholder="Description">
 				</div>
 			</div>
 			<div class="form-group col-md-3">
+				<label><b>Contest Level</b></label>
 				<div class="input-group">
-                        <select class="form-control" id="contest_level" name="contest_level">
-                            <option value="1">Level 01</option>
-                            <option value="2">Level 02</option>
-                            <option value="3">Level 03</option>
-                            <option value="4">Level 04</option>
-                            <option value="5">Level 05</option>
-                            <option value="6">Level 06</option>
-                            <option value="7">Level 07</option>
-                            <option value="8">Level 08</option>
-                            <option value="9">Level 09</option>
-                            <option value="10">Level 10</option>
-                        </select>
+					<select class="form-control" id="contest_level" name="contest_level">
+						<option value="1">Level 01</option>
+						<option value="2">Level 02</option>
+						<option value="3">Level 03</option>
+						<option value="4">Level 04</option>
+						<option value="5">Level 05</option>
+						<option value="6">Level 06</option>
+						<option value="7">Level 07</option>
+						<option value="8">Level 08</option>
+						<option value="9">Level 09</option>
+						<option value="10">Level 10</option>
+					</select>
 				</div>
 			</div>
 			<div class="form-group col-md-3">
+				<label><b>Participants</b></label>
 				<div class="input-group">
 					<select class="form-control" title="Target Audience" id="contest_type" name="contest_type" onchange="JavaScript:updateTargetAudience(event)">
 						<option value="individual">Individual</option>
@@ -54,6 +58,7 @@
 				</div>
 			</div>
 			<div class="form-group col-md-3">
+				<label><b>Moderator</b></label>
 				<div class="input-group">
 					<select class="form-control" title="Select Audience" id="contest_ref_id" name="contest_ref_id">
 						<option value="{{session.user_id}}">{{session.username}}</option>
@@ -63,11 +68,13 @@
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-3">
+				<label><b>Problem Count</b></label>
 				<div class="input-group">
 					<input type="number" id="problem_count" class="form-control" name="problem_count"  min="5" max="30" placeholder="Problem Count">
 				</div>
 			</div>
 			<div class="form-group col-md-3">
+				<label><b>Contest Access</b></label>
 				<div class="input-group">
 					<select class="form-control" title="Access Level" id="contest_access" name="contest_access">
 						<option value="private">Private</option>
@@ -76,13 +83,15 @@
 				</div>
 			</div>
 			<div class="form-group col-md-3">
+				<label><b>Start Date</b></label>
 				<div class="input-group">
-					<input type="date" id="start_date" class="form-control" name="start_date" placeholder="Start Date">
+					<input type="datetime-local" id="start_date" class="form-control" name="start_date">
 				</div>
 			</div>
 			<div class="form-group col-md-3">
+				<label><b>End Date</b></label>
 				<div class="input-group">
-					<input type="date" id="end_date" class="form-control" name="end_date" placeholder="End Date">
+					<input type="datetime-local" id="end_date" class="form-control" name="end_date">
 				</div>
 			</div>
 		</div>

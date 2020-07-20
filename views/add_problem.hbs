@@ -3,11 +3,11 @@
 </head>
 
 
-<div class="form-type-1" style="width: 80%;">	
+<div class="form-type-1" style="width: 100%;">	
 	<div class="cfs-title-1">
 		<h5 style="text-align: center;">
 			<b>Add Problem Suggestion</b>
-			<atitle="Guideline" class='btn'  data-toggle="modal" data-target="#addProblemGuideline"><i class="fas fa-info-circle"></i></a>
+			<a title="Guideline" class='btn' data-toggle="modal" data-target="#addProblemGuideline"><i class="fas fa-info-circle"></i></a>
 			</h5>
 	</div>
 	<br>
@@ -15,78 +15,83 @@
     <form action="/problem/add/" method="post" style="padding: 10px;">
 		<div class="form-row">
 			<div class="form-group col-md-12">
+				<label><b>Problem Name</b></label>
 				<div class="input-group">
-					<input type="text" id="problem_name" class="form-control" name="problem_name" placeholder="Problem Name">
+					<input type="text" id="problem_name" class="form-control" name="problem_name" placeholder="Enter the problem name" required>
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-12">
+				<label><b>Problem Link</b></label>
 				<div class="input-group">
-					<input type="text" id="problem_id" class="form-control" name="problem_id" placeholder="Problem ID">
+					<input type="text" id="source_link" class="form-control" name="source_link" placeholder="Enter the problem source link" required>
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-6">
+				<label><b>Problem ID</b></label>
+				<div class="input-group">
+					<input type="text" id="problem_id" class="form-control" name="problem_id" placeholder="Enter the problem id or unique identification code" required>
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<label><b>Problem Type</b></label>
 				<div class="input-group">
 					<select class="form-control" id="problem_type">
-						<option value="classical">Classical</option>
 						<option value="regular">Regular</option>
+						<option value="classical">Classical</option>
 						<option value="rare_knowledge">Rare Knowledge</option>
 					</select>
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-6">
+				<label><b>Online Judge Name</b></label>
 				<div class="input-group">
-					<input type="text" id="problem_description" class="form-control" name="problem_description" placeholder="Remarks">
+					<select class="form-control" id="oj_name" name="oj_name">
+						<option value="codeforces">Codeforces</option>
+						<option value="codechef">Codechef</option>
+						<option value="lightoj">Light OJ</option>
+						<option value="spoj">SPOJ</option>
+						<option value="uva">UVA</option>
+					</select>
 				</div>
 			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-6">
+				<label><b>Problem Remarks</b></label>
 				<div class="input-group">
-                        <select class="form-control" id="oj_name" name="oj_name">
-                            <option value="codeforces">Codeforces</option>
-                            <option value="codechef">Codechef</option>
-                            <option value="lightoj">Light OJ</option>
-                            <option value="spoj">SPOJ</option>
-                            <option value="uva">UVA</option>
-                        </select>
+					<input type="text" id="problem_description" class="form-control" name="problem_description" placeholder="Enter additional information">
 				</div>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
+				<label><b>Problem Difficulty (0.1-10)</b></label>
 				<div class="input-group">
-					<input type="text" id="problem_difficulty" class="form-control" name="problem_difficulty" placeholder="Difficulty">
+					<input type="number" id="problem_difficulty" class="form-control" name="problem_difficulty" placeholder="Enter problem difficulty" min="0.1" max="10" required>
 				</div>
 			</div>
 			<div class="form-group col-md-6">
+				<label><b>Problem Significance for Categories (1-2)</b></label>
 				<div class="input-group">
-					<input type="text" id="problem_significance" class="form-control" name="problem_significance" placeholder="Significance">
+					<input type="number" id="problem_significance" class="form-control" name="problem_significance" placeholder="Enter category significance value">
 				</div>
 			</div>
 		</div>
-		<div class="form-row">
-			<div class="form-group col-md-12">
-				<div class="input-group">
-					<input type="text" id="source_link" class="form-control" name="source_link" placeholder="Source Link">
-				</div>
-			</div>
-		</div>
+		<label><b>Category Dependency List</b></label>
 		<div class="category-group">
 			<div class="form-row control-group">
 				<div class="form-group col-md-6">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="problem_category@1" class="form-control autocomplete" name="problem_category@1" placeholder="Category">
+						<input type="text" autocomplete="off" id="problem_category@1" class="form-control autocomplete" name="problem_category@1" placeholder="Enter the category name" required>
 					</div>
 				</div>
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" id="dependency_factor@1" class="form-control" name="dependency_factor@1" placeholder="Factor">
+						<input type="number" id="dependency_factor@1" class="form-control" name="dependency_factor@1" placeholder="Enter the dependent factor (1-10)" min="0" max="10" required>
 					</div>
 				</div>
 				<div class="form-group col-sm-1" style="width: 10px !important;">
@@ -100,12 +105,12 @@
 			<div class="form-row control-group">
 				<div class="form-group col-md-6">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="problem_category_tmp" class="form-control autocomplete" name="problem_category_tmp" placeholder="Category">
+						<input type="text" autocomplete="off" id="problem_category_tmp" class="form-control autocomplete" name="problem_category_tmp" placeholder="Enter the category name" required>
 					</div>
 				</div>
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" id="dependency_factor_tmp" class="form-control" name="dependency_factor_tmp" placeholder="Factor">
+						<input type="number" id="dependency_factor_tmp" class="form-control" name="dependency_factor_tmp" placeholder="Enter the dependent factor (1-10)" min="0" max="10" required>
 					</div>
 				</div>
 				<div class="form-group col-sm-1" style="width: 10px !important;">
@@ -113,10 +118,6 @@
 				</div>
 			</div>
 		</div>
-
-		<br>
-		<br>
-		<br>
 		<div class="form-group submit-btn-div">
             <button type="submit" class="btn submit-btn btn-light btn-block btn">Submit</button>
         </div>
@@ -143,7 +144,7 @@
 
 		<h5>Problem ID</h5>
 		
-		Each problem in an website has an unique identification id.<br>
+		<p>Each problem in an website has an unique identification id.</p>
 		<p>1. For codeforcode, the id is {contest-id}/{problem-id}.</p>
 		<p>2. For other websites, the problem id is the problem code you see in the problem link.</p>
 		<br>
@@ -157,7 +158,6 @@
 		<p>3. Rare Knowledge: If the problem requires some knowledge which are very rare.</p>
 		<br>
 
-		<br>
 		<h5>Problem Significance</h5>
 		<p>Problem significance denotes how much the problem is important for each of the connected categories.</p>
 		<p>If all the linked categories are equally important then enter 1, otherwise enter 2</p>
@@ -183,6 +183,7 @@
 		<h5>Sample Example</h5>
 		<p>Sample Codeforces Problem: <a href="https://codeforces.com/problemset/problem/977/A">Wrong Subtraction</a></p>
 		<p>Problem Name: Wrong Subtraction</p>
+		<p>Problem ID: 977/A</p>
 		<p>Online Judge: Codeforces</p>
 		<p>Difficulty: 1.5</p>
 		<p>Significance: 1</p>
