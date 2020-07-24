@@ -7,6 +7,16 @@ var bodyParser = require('body-parser');
 
 var session  = require('express-session'); //
 var flash      = require('req-flash'); //
+
+// https configuration
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+var privateKey  = fs.readFileSync('sslcert/private.key', 'utf8');
+var certificate = fs.readFileSync('sslcert/certificate.crt', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+// https configuration ends
+
 var expressHbs = require('express-handlebars'), Handlebars = require('handlebars');
 const app = require("express")();
 
@@ -87,8 +97,14 @@ app.use(userSettingsSetter)
 
 require('./routes/index')(app); // getting access of index.js
 
-app.listen(80, function () {
-	console.log('Example app listening on port 80!')
-})
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(80);
+httpsServer.listen(443);
+
+//app.listen(80, function () {
+//	console.log('Example app listening on port 80!')
+//})
 
 module.exports = app;
