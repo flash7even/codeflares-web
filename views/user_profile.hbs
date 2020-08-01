@@ -337,7 +337,7 @@
             serverSide: true,
             lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
             ajax: {
-                url: config.server_host + 'problem/user/submission/history/dtsearch/' + '{{id}}',
+                url: config.server_host + 'user/submission/' + '{{id}}',
                 type: 'POST',
                 "contentType": "application/json",
                 "data": function ( d ) {

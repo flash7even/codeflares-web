@@ -12,9 +12,9 @@ var blogController = require('./blog.js');
 var commentController = require('./comment.js');
 var voteController = require('./vote.js');
 var followerController = require('./follower.js');
+var apiController = require('./api.js');
 
 module.exports = function(newApp) {
-    /* GET home page. */
     newApp.get('/', homeController.showHome);
     newApp.get('/login/', homeController.showLogIn);
     newApp.get('/change/password/', homeController.changePassword);
@@ -166,4 +166,12 @@ module.exports = function(newApp) {
     newApp.post('/contest/confirm/*', contestController.confirmContestFormSubmit);
     newApp.get('/contest/announcements/*', contestController.viewContestAnnouncements);
     newApp.post('/contest/entry/announcement/*', contestController.addContestAnnouncementSubmit);
+
+
+
+    newApp.post('/api/database/problem/', apiController.getProblems);
+    newApp.post('/api/leaderboard/', apiController.getLeaderboard);
+    newApp.post('/api/user/submission/*', apiController.getUserSubmission);
+    newApp.post('/api/problem/submission/*', apiController.getProblemSubmission);
+
 }
