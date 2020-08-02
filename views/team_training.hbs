@@ -96,6 +96,8 @@
     <div class="cfs-title-1">
         <h5 style="text-align: center;">Next Problems To Solve</h5>
     </div>
+
+    {{#if problem_stat}}
     <table class="table" style="text-align: center;">
         <thead>
             <tr>
@@ -107,7 +109,6 @@
             </tr>
         </thead>
         <tbody>
-
             {{#each problem_stat}}
             <tr>
                 <td style="color: #2b3a47;"><b>{{rank}}</b></td>
@@ -120,15 +121,18 @@
                 </td>
             </tr>
                 {{/each}}
-
         </tbody>
     </table>
+    {{else}}
+        <h6 style="text-align: center; padding: 20px;">No data available to show.</h6>
+    {{/if}}
 </div>
 
 <div class="cfs-table-wrapper-1" style="width: 100%%;  margin-right:1px auto">
     <div class="cfs-title-1">
         <h5 style="text-align: center;">Next Algorithms To Learn</h5>
     </div>
+    {{#if category_stat}}
     <table class="table" style="text-align: center; width: 100%; table-layout: fixed;">
         <thead>
             <tr>
@@ -153,6 +157,9 @@
 
         </tbody>
     </table>
+    {{else}}
+        <h6 style="text-align: center; padding: 20px;">No data available to show.</h6>
+    {{/if}}
 </div>
 {{/if}}
 
@@ -185,6 +192,7 @@
         <h5 style="text-align: center;">Overall Algorithm Skills</h5>
     </div>
     <div style="padding: 10px;">
+    {{#if category_skill_list}}
     <table id="categorySkillListTable" class="table category-list-table" style="text-align: center;">
         <thead>
             <tr>
@@ -199,6 +207,9 @@
         <tbody>
         </tbody>
     </table>
+    {{else}}
+        <h6 style="text-align: center; padding: 20px;">No data available to show.</h6>
+    {{/if}}
     </div>
 </div>
 {{/if}}
@@ -218,6 +229,8 @@
         </div>
     </div>
     <div style="padding: 10px;">
+    
+    {{#if contest_list}}
     <table id="contestListTable" class="table" style="text-align: center;">
         <thead>
             <tr>
@@ -233,6 +246,9 @@
         <tbody>
         </tbody>
     </table>
+    {{else}}
+        <h6 style="text-align: center; padding: 20px;">No data available to show.</h6>
+    {{/if}}
     </div>
 </div>
 {{/if}}

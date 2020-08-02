@@ -6,6 +6,8 @@ var router = express.Router();
 const axios = require('axios');
 var classroom_task_list_view_all = config.server_host + 'classroom/task/search'
 var classroom_class_list_view_all = config.server_host + 'classroom/class/search'
+var classroom_add_task_submit_url = config.server_host + 'classroom/task/'
+var classroom_add_class_submit_url = config.server_host + 'classroom/class/'
 
 var blog_server = require('./servers/blog_services.js');
 var classroom_server = require('./servers/classroom_services.js');
@@ -220,7 +222,7 @@ router.deleteClassroomTask = async function(req, res, next) {
   var delete_url = classroom_add_task_submit_url + classroom_task_id
   console.log('delete url: ' + delete_url)
   const auth_config = { headers: { Authorization: `Bearer ${sess.access_token}` }};
-  let response = await classroom_server.axios.delete(delete_url, auth_config)
+  let response = await axios.delete(delete_url, auth_config)
   .catch(error => {
       res.render('error_page', {});
   })
@@ -303,10 +305,11 @@ router.deleteClassroomClass = async function(req, res, next) {
   var words = url.split("/");
   var classroom_class_id = words[words.length-2]
   var sess = req.session;
+
   var delete_url = classroom_add_class_submit_url + classroom_class_id
   console.log('delete url: ' + delete_url)
   const auth_config = { headers: { Authorization: `Bearer ${sess.access_token}` }};
-  let response = await classroom_server.axios.delete(delete_url, auth_config)
+  let response = await axios.delete(delete_url, auth_config)
   .catch(error => {
       res.render('error_page', {});
   })

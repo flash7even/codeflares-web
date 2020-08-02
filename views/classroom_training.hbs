@@ -124,6 +124,7 @@
             <div class="cfs-title-1">
                 <h5 style="text-align: center;"><b>Task List</b></h5>
             </div>
+            {{#if task_list}}
             <table class="table" style="text-align: center;">
                 <thead>
                     <tr>
@@ -148,6 +149,9 @@
 
                 </tbody>
             </table>
+            {{else}}
+                <h6 style="text-align: center; padding: 20px;">No data available to show.</h6>
+            {{/if}}
             <div class="add-task row" style="padding: 5px;">
                 <div style="margin-right: 5px; margin-left:15px;">
                     <a style="border-color: #3d87b9;" title="Add new task" class='btn'  data-toggle="modal" data-target="#addTaskModal"><i class="fas fa-plus"></i></a>
@@ -162,6 +166,7 @@
             <div class="cfs-title-1">
                 <h5 style="text-align: center;"><b>Class List</b></h5>
             </div>
+            {{#if class_list}}
             <table class="table" style="text-align: center;">
                 <thead>
                     <tr>
@@ -186,6 +191,9 @@
 
                 </tbody>
             </table>
+            {{else}}
+                <h6 style="text-align: center; padding: 20px;">No data available to show.</h6>
+            {{/if}}
             <div class="add-task row" style="padding: 5px;">
                 <div style="margin-right: 5px; margin-left:15px;">
                     <a style="border-color: #3d87b9;" title="Add new class" class='btn'  data-toggle="modal" data-target="#addClassModal"><i class="fas fa-plus"></i></a>
@@ -205,7 +213,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold">Add Your Task</h4>
+            <h5 class="modal-title w-100 font-weight-bold">Add Your Task</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -213,22 +221,25 @@
         <form action="/classroom/task/add/{{id}}/" method="post" style="padding: 10px;">
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Task Title</b></label>
                     <div class="input-group">
-                        <input type="text" id="task_title" class="form-control" name="task_title" placeholder="Task Name" required>
+                        <input type="text" id="task_title" class="form-control" name="task_title" placeholder="Enter the task name" required>
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Task Description</b></label>
                     <div class="input-group">
-                        <input type="text" id="task_description" class="form-control" name="task_description" placeholder="Task Details">
+                        <input type="text" id="task_description" class="form-control" name="task_description" placeholder="Provide more details about the task">
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Deadline</b></label>
                     <div class="input-group">
-                        <input type="datetime-local" title="Deadline" id="deadline" class="form-control" name="deadline" placeholder="Deadline">
+                        <input type="datetime-local" title="Deadline" id="deadline" class="form-control" name="deadline" placeholder="Enter the deadline of completion">
                     </div>
                 </div>
             </div>
@@ -254,20 +265,23 @@
         <form action="/classroom/class/add/{{id}}/" method="post" style="padding: 10px;">
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Class Title</b></label>
                     <div class="input-group">
-                        <input type="text" id="class_title" class="form-control" name="class_title" placeholder="Class Name" required>
+                        <input type="text" id="class_title" class="form-control" name="class_title" placeholder="Enter The Class Title" required>
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Class Description & Topics</b></label>
                     <div class="input-group">
-                        <input type="text" id="class_description" class="form-control" name="class_description" placeholder="Details">
+                        <input type="text" id="class_description" class="form-control" name="class_description" placeholder="Provide some description and topics about the class">
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Class Time</b></label>
                     <div class="input-group">
                         <input type="datetime-local" title="Class Time" id="class_time" class="form-control" name="class_time">
                     </div>
@@ -275,15 +289,17 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Class Duration</b></label>
                     <div class="input-group">
-                        <input type="text" title="Duration" id="class_duration" class="form-control" name="class_duration" placeholder="Duration">
+                        <input type="text" title="Duration" id="class_duration" class="form-control" name="class_duration" placeholder="Enter the duration">
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Resource Link</b></label>
                     <div class="input-group">
-                        <input type="text" id="resource_link" class="form-control" name="resource_link" placeholder="Resources">
+                        <input type="text" id="resource_link" class="form-control" name="resource_link" placeholder="Provide resource link if available">
                     </div>
                 </div>
             </div>
@@ -351,6 +367,7 @@
             </div>
         </div>
     </div>
+    {{#if contest_list}}
     <table id="contestListTable" class="table" style="text-align: center; padding: 5px;">
         <thead>
             <tr>
@@ -366,6 +383,9 @@
         <tbody>
         </tbody>
     </table>
+    {{else}}
+        <h6 style="text-align: center; padding: 20px;">No data available to show.</h6>
+    {{/if}}
 </div>
 {{/if}}
 

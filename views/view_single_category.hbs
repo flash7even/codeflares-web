@@ -122,7 +122,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold">Add Resource</h4>
+            <h5 class="modal-title w-100 font-weight-bold">Add Resource</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -130,36 +130,41 @@
         <form action="/category/resource/add/{{category_id}}/" method="post" style="padding: 10px;">
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Resource Name</b></label>
                     <div class="input-group">
-                        <input type="text" id="resource_title" class="form-control" name="resource_title" placeholder="Resource Name" required>
+                        <input type="text" id="resource_title" class="form-control" name="resource_title" placeholder="Enter the resource name" required>
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Resource Body</b></label>
                     <div class="input-group">
-                        <textarea type="text" id="resource_body" class="form-control blog-post-text-box" name="resource_body" placeholder="Resource details"></textarea>
+                        <textarea type="text" id="resource_body" class="form-control blog-post-text-box" name="resource_body" placeholder="Provide all the details about the resource"></textarea>
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Resource Type</b></label>
                     <div class="input-group">
-                        <input type="text" title="resource_type" id="resource_type" class="form-control" name="resource_type" placeholder="Resource Type">
+                        <input type="text" title="resource_type" id="resource_type" class="form-control" name="resource_type" placeholder="Enter the resource type">
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Resource Credit</b></label>
                     <div class="input-group">
-                        <input type="text" title="resource_owner" id="resource_owner" class="form-control" name="resource_owner" placeholder="Resource Credit">
+                        <input type="text" title="resource_owner" id="resource_owner" class="form-control" name="resource_owner" placeholder="Enter the name of the owner or author">
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Resource Link</b></label>
                     <div class="input-group">
-                        <input type="text" id="resource_ref_id" class="form-control" name="resource_ref_id" placeholder="Resource Link">
+                        <input type="text" id="resource_ref_id" class="form-control" name="resource_ref_id" placeholder="Provide any link if available">
                     </div>
                 </div>
             </div>

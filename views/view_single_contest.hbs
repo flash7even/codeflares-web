@@ -186,7 +186,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold">Add Announcement</h4>
+            <h5 class="modal-title w-100 font-weight-bold">Add Announcement</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -194,15 +194,17 @@
         <form action="/contest/entry/announcement/{{id}}/" method="post" style="padding: 10px;">
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Announcement Reference</b></label>
                     <div class="input-group">
-                        <input type="text" id="announcement_ref" class="form-control" name="announcement_ref" placeholder="Announcement Reference" required>
+                        <input type="text" id="announcement_ref" class="form-control" name="announcement_ref" placeholder="Provide the reference for this announcement" required>
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
+				    <label><b>Announcement Body</b></label>
                     <div class="input-group">
-                        <input type="text" id="announcement" class="form-control" name="announcement" placeholder="Announcement Details">
+                        <input type="text" id="announcement" class="form-control" name="announcement" placeholder="Provide the announcement details">
                     </div>
                 </div>
             </div>
