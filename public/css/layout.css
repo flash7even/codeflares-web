@@ -34,7 +34,8 @@ ul.CTAs a {
     padding-top: 8px;
     text-align: center;
     background-color: rgb(240, 240, 240);
-    height: 30px;
+    border: 1px solid #d1d1d1;
+    height: 2.313rem;
     font-size: 12px;
     border-radius: 0px;
 }
