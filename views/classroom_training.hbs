@@ -415,6 +415,13 @@
 
 
 <script type="text/javascript">
+    function getCategoryLength(){
+        var len = 0
+        {{#each category_list}}
+            len += 1
+        {{/each}}
+        return len
+    }
 
     function getMemberTableList(){
         var data_list = [];
@@ -448,6 +455,7 @@
     }
 
     function getCategoryWiseSkillList(){
+        var category_len = getCategoryLength();
         var data_list = [];
         {{#each member_stat}}
             var user_profile = '<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:700; padding:3px;">{{user_handle}}</a>'
@@ -458,6 +466,10 @@
                 var val = `<span style="">${skill_value_final}</span>`
                 cur_member_data.push(val)
             {{/each}}
+            while(cur_member_data.length <= category_len){
+                var val = `<span style="">0</span>`
+                cur_member_data.push(val)
+            }
             console.log(cur_member_data)
             data_list.push(cur_member_data)
         {{/each}}
@@ -466,6 +478,7 @@
 
     function getCategoryWiseSolveCountList(){
         var data_list = [];
+        var category_len = getCategoryLength();
         {{#each member_stat}}
             var user_profile = '<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:700; padding:3px;">{{user_handle}}</a>'
             var cur_member_data = [user_profile]
@@ -474,6 +487,10 @@
                 var val = `<span style="">${solve_count}</span>`
                 cur_member_data.push(val)
             {{/each}}
+            while(cur_member_data.length <= category_len){
+                var val = `<span style="">0</span>`
+                cur_member_data.push(val)
+            }
             console.log(cur_member_data)
             data_list.push(cur_member_data)
         {{/each}}
