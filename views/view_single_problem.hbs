@@ -202,7 +202,7 @@
                 <div class="form-group col-md-12">
 				    <label><b>Resource Link</b></label>
                     <div class="input-group">
-                        <input type="text" id="resource_ref_id" class="form-control" name="resource_ref_id" placeholder="Provide any link if available">
+                        <input type="text" id="resource_link" class="form-control" name="resource_link" placeholder="Provide any link if available">
                     </div>
                 </div>
             </div>
@@ -394,9 +394,9 @@
                 var resource_writer = '<a href = "/profile/{{resource_writer_handle}}/" style="color: {{resource_writer_skill_color}}; font-weight:700;">{{resource_writer_handle}}</a>'
                 var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
                 action_link += "</div>"
-                var resource_link = `<a style="color: #3d87b9;" href="{{resource_ref_id}}"><i class="fas fa-external-link-alt"></i></a>`
+                var resource_link = `<a style="color: #3d87b9;" href="{{resource_link}}"><i class="fas fa-external-link-alt"></i></a>`
                 var resource_body = `<pre ng-show = "textFile.isPresent"><span>{{resource_body}}</span></pre>`
-                var data = ["{{resource_title}}", resource_body, resource_writer, "{{resource_owner}}", "{{updated_at}}", resource_link];
+                var data = ["{{resource_title}}", {{resource_body}}, resource_writer, "{{resource_owner}}", "{{updated_at}}", resource_link];
                 dt_list.push(data)
             {{/each}}
 
