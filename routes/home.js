@@ -132,8 +132,16 @@ router.logInSubmit = async function(req, res, next) {
     res.redirect('/');
 }
 
-router.showSignUp = function(req, res, next) {
+router.showSignUp = async function(req, res, next) {
+    var university_list = await user_server.universityList(res, req)
+    console.log('university_list:')
+    console.log(university_list)
+    var country_list = await user_server.countryList(res, req)
+    console.log('country_list:')
+    console.log(country_list)
     var data = system_server.toast_update(req, {})
+    data['university_list'] = university_list.university_list
+    data['country_list'] = country_list.country_list
     res.render('signup', data);
 }
 

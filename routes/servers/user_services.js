@@ -215,7 +215,6 @@ module.exports.postUser = async function(res, req, user_data) {
     return response.data
 };
 
-
 module.exports.syncUser = async function(res, req, user_id) {
     var url = user_submit_url + 'sync' + '/' + user_id
     console.log("url: " + url)
@@ -246,7 +245,6 @@ module.exports.activate_user_account = async function(res, req, token) {
     }
     return response.data
 };
-
 
 module.exports.forgot_password_request = async function(res, req, data) {
     var url = forgot_pass_url
@@ -300,8 +298,6 @@ module.exports.change_password = async function(res, req, user_id, data) {
     return response.data
 };
 
-
-
 module.exports.userSubmissionHistory = async function(res, req, user_id) {
     console.log('followStatus called');
     var url = config.server_host + 'problem/user/submission/history/' + user_id + '/0'
@@ -319,5 +315,35 @@ module.exports.userSubmissionHistory = async function(res, req, user_id) {
         res.render('error_page', {});
     }
     console.log('followStatus done');
+    return response.data
+};
+
+module.exports.universityList = async function(res, req) {
+    console.log('universityList called');
+    var url = config.server_host + 'support/university'
+    console.log("url: " + url)
+    let response = await axios.get(url)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    console.log('universityList done');
+    return response.data
+};
+
+module.exports.countryList = async function(res, req) {
+    console.log('countryList called');
+    var url = config.server_host + 'support/country'
+    console.log("url: " + url)
+    let response = await axios.get(url)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    console.log('countryList done');
     return response.data
 };

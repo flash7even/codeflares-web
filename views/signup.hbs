@@ -7,35 +7,35 @@
 <div class="signup-form">	
     <form action="/signup/" method="post">
 		<h2>Create Account</h2>
-			<div class="form-group">
-				<div class="input-group">
-					<span style="padding-right: 10px;" class="input-group-addon"><i class="fa fa-user"></i></span>
-					<input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required">
-				</div>
-			<span style="padding-left: 30px;" id='username_message'></span>
+		<div class="form-group">
+			<div class="input-group">
+				<span style="padding-right: 10px; padding-top: 10px; width: 50px;" class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required">
 			</div>
-			<div class="form-group">
-				<div class="input-group">
-					<span style="padding-right: 10px;" class="input-group-addon"><i class="fas fa-user-tag"></i></span>
-					<input type="text" id="full_name" class="form-control" name="full_name" placeholder="Full Name" required="required">
-				</div>
+		<span style="padding-left: 30px;" id='username_message'></span>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span style="padding-right: 10px; padding-top: 10px; width: 50px;" class="input-group-addon"><i class="fas fa-user-tag"></i></span>
+				<input type="text" id="full_name" class="form-control" name="full_name" placeholder="Full Name" required="required">
 			</div>
+		</div>
         <div class="form-group">
 			<div class="input-group">
-				<span style="padding-right: 10px;" class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+				<span style="padding-right: 10px; padding-top: 10px; width: 50px;" class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
 				<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required="required">
 			</div>
 			<span style="padding-left: 30px;" id='email_message'></span>
         </div>
 		<div class="form-group">
 			<div class="input-group">
-				<span style="padding-right: 10px;" class="input-group-addon"><i class="fa fa-lock"></i></span>
+				<span style="padding-right: 10px; padding-top: 10px; width: 50px;" class="input-group-addon"><i class="fa fa-lock"></i></span>
 				<input type="password" class="form-control" id="password" name="password" placeholder="Password" required="required">
 			</div>
         </div>
 		<div class="form-group">
 			<div class="input-group">
-				<span style="padding-right: 10px;" class="input-group-addon">
+				<span style="padding-right: 10px; padding-top: 10px; width: 50px;" class="input-group-addon">
 					<i class="fa fa-lock"></i>
 					<i class="fa fa-check"></i>
 				</span>
@@ -43,6 +43,22 @@
 			</div>
 			<span style="padding-left: 30px;" id='password_message'></span>
         </div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+					<span style="padding-right: 10px; padding-top: 10px; width: 50px;" class="input-group-addon"><i class="fa fa-flag"></i></span>
+					<input type="text" autocomplete="off" class="form-control autocomplete-country" id="country" name="country" placeholder="Country Name">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<div class="input-group">
+					<span style="padding-right: 10px; padding-top: 10px; width: 50px;" class="input-group-addon"><i class="fa fa-university"></i></span>
+					<input type="text" autocomplete="off" class="form-control autocomplete-university" id="university" name="university" placeholder="University Name">
+				</div>
+			</div>
+		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<div class="input-group">
@@ -91,13 +107,18 @@
 </div>
 
 <script>
-	var user_search_url = config.server_host + 'user/search'
+	var user_search_url = config.flask_host + 'user/search'
+	console.log('user_search_url')
+	console.log(user_search_url)
+
 	$('#confirm_password').on('keyup', function () {
-	if ($('#password').val() == $('#confirm_password').val()) {
-		$('#password_message').html('Password matched').css('color', 'green');
-	} else 
-		$('#password_message').html('Password does not match').css('color', 'red');
+		if ($('#password').val() == $('#confirm_password').val()) {
+			$('#password_message').html('Password matched').css('color', 'green');
+		} else {
+			$('#password_message').html('Password does not match').css('color', 'red');
+		}
 	});
+
 	$('#username').on('keyup', function () {
 		var username = $('#username').val();
 		$.ajax({
@@ -111,6 +132,8 @@
 				var resp_str = JSON.stringify( data );
 				var resp = JSON.parse(resp_str)
 				var len = resp.user_list.length
+				console.log('resp_str')
+				console.log(resp_str)
 				if(len != 0){
 					$('#username_message').html('Username already exists.').css('color', 'red');
 				}else{
@@ -118,10 +141,12 @@
 				}
 			},
 			error: function( jqXhr, textStatus, errorThrown ){
+				console.log( 'errorThrown' );
 				console.log( errorThrown );
 			}
 		});
 	})
+
 	$('#email').on('keyup', function () {
 		var email = $('#email').val();
 		$.ajax({
@@ -146,4 +171,110 @@
 			}
 		});
 	})
+
+    function getUniversityList(){
+        var data_list = []
+        {{#each university_list}}
+            var data = {
+                "name": "{{name}}",
+                "code": "{{name}}"
+            }
+            data_list.push(data)
+        {{/each}}
+        console.log('data_list: ')
+        console.log(data_list)
+        return data_list
+    }
+
+	function enableAutoCompleteUniversity(){
+		$(".autocomplete-university").typeahead({
+			// data source
+			source: getUniversityList(),
+
+			// how many items to show
+			items: 8,
+
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			
+			itemContentSelector:'a',
+
+			// min length to trigger the suggestion list
+			minLength: 1,
+
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+
+			// auto selects the first item
+			autoSelect: true,
+
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+
+			// adds an item to the end of the list
+			addItem: false,
+
+			// delay between lookups
+			delay: 0,
+		});
+	}
+
+    function getCountryList(){
+        var data_list = []
+        {{#each country_list}}
+            var data = {
+                "name": "{{name}}",
+                "code": "{{name}}"
+            }
+            data_list.push(data)
+        {{/each}}
+        console.log('data_list: ')
+        console.log(data_list)
+        return data_list
+    }
+
+	function enableAutoCompleteCountry(){
+		$(".autocomplete-country").typeahead({
+			// data source
+			source: getCountryList(),
+
+			// how many items to show
+			items: 8,
+
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			
+			itemContentSelector:'a',
+
+			// min length to trigger the suggestion list
+			minLength: 1,
+
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+
+			// auto selects the first item
+			autoSelect: true,
+
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+
+			// adds an item to the end of the list
+			addItem: false,
+
+			// delay between lookups
+			delay: 0,
+		});
+	}
+
+	enableAutoCompleteUniversity();
+	enableAutoCompleteCountry();
 </script>
+
