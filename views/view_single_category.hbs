@@ -8,10 +8,10 @@
         <div class="row cfs-title-1-inside">
             {{#if category-page}}
             <div class="selected-button">
-            <a style="color: #0f2436;" href="/category/view/{{category_id}}/" class="btn btn-sm" role="button"><b>Category</b></a>
+            <a style="color: #0f2436;" href="/category/view/{{category_id}}/" class="btn btn-sm" role="button"><b>{{category_id}}</b></a>
             </div>
             {{else}}
-            <a style="color: #0f2436;" href="/category/view/{{category_id}}/" class="btn btn-sm" role="button"><b>Category</b></a>
+            <a style="color: #0f2436;" href="/category/view/{{category_id}}/" class="btn btn-sm" role="button"><b>{{category_id}}</b></a>
             {{/if}}
             {{#if toppers-page}}
             <div class="selected-button">
@@ -96,7 +96,7 @@
         </div>
     </div>
     <div class="cfs-table-1">
-        <table class="resourceTable table table-bordered" id="resourceListTable">
+        <table class="resourceTable table" id="resourceListTable">
             <thead>
                 <tr>
                     <td>Title</td>

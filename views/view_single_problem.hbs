@@ -7,10 +7,10 @@
         <div class="row cfs-title-1-inside">
             {{#if problem-page}}
             <div class="selected-button">
-            <a style="color: #0f2436;" href="/problem/view/{{id}}/" class="btn btn-sm" role="button"><b>Problem</b></a>
+            <a style="color: #0f2436;" href="/problem/view/{{id}}/" class="btn btn-sm" role="button"><b>{{id}}</b></a>
             </div>
             {{else}}
-            <a style="color: #0f2436;" href="/problem/view/{{id}}/" class="btn btn-sm" role="button"><b>Problem</b></a>
+            <a style="color: #0f2436;" href="/problem/view/{{id}}/" class="btn btn-sm" role="button"><b>{{id}}</b></a>
             {{/if}}
             {{#if submission-page}}
             <div class="selected-button">
@@ -104,8 +104,8 @@
             </div>
         </div>
         <div class="cfs-table-1">
-            <table class="resourceTable table table-bordered" id="resourceListTable">
-                <thead>
+            <table class="resourceTable table cfs-table-data" id="resourceListTable">
+                <thead style="background-color: rgb(255, 255, 255);">
                     <tr>
                         <td>Title</td>
                         <td style="width: 30%;">Description</td>
@@ -410,9 +410,9 @@
             
             $("#resourceListTable").dataTable({
                 "aaData": dt_list,
-                paging: false,
-                searching: false,
-                info: false,
+                paging: true,
+                searching: true,
+                info: true,
                 ordering: false,
                 destroy: true,
                 scrollCollapse: true,

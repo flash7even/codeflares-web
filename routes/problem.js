@@ -170,7 +170,6 @@ router.getResourceHistory = async function(req, res, next) {
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
-  var sess = req.session;
   let problem_data = await problem_server.getProblemDetails(res, req, problem_id);
   console.log(problem_data)
   problem_data['resource-page'] = true
@@ -181,11 +180,12 @@ router.getSubmissionHistory = async function(req, res, next) {
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
-  var data_list = {}
-  data_list['problem_id'] = problem_id
-  data_list['id'] = problem_id
-  data_list['submission-page'] = true
-  res.render('view_single_problem', data_list);
+  let problem_data = await problem_server.getProblemDetails(res, req, problem_id);
+  console.log(problem_data)
+  problem_data['problem_id'] = problem_id
+  problem_data['id'] = problem_id
+  problem_data['submission-page'] = true
+  res.render('view_single_problem', problem_data);
 }
 
 router.viewProblemListAfterFormSubmit = async function(req, res, next) {
