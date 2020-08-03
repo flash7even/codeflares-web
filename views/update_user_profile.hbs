@@ -9,27 +9,36 @@
 	</div>
 	<br>
     <form action="/update/profile/" method="post" style="padding: 10px;">
-			<div class="form-group">
-				<label for="email"> <b>Username</b> </label>
-				<div class="input-group">
-					<input type="text" class="form-control" name="username" value="{{username}}" readonly>
-				</div>
+		<div class="form-group">
+			<label for="email"> <b>Username</b> </label>
+			<div class="input-group">
+				<input type="text" class="form-control" name="username" value="{{username}}" readonly>
 			</div>
-			<br>
-			<div class="form-group">
-				<label for="email"> <b>Full Name</b> </label>
-				<div class="input-group">
-					<input type="text" id="full_name" class="form-control" name="full_name" value="{{full_name}}">
-				</div>
+		</div>
+		<div class="form-group">
+			<label for="email"> <b>Full Name</b> </label>
+			<div class="input-group">
+				<input type="text" id="full_name" class="form-control" name="full_name" value="{{full_name}}">
 			</div>
-			<br>
+		</div>
         <div class="form-group">
 			<label for="email"> <b>Email</b> </label>
 			<div class="input-group">
 				<input type="email" class="form-control" name="email" value="{{email}}" readonly>
 			</div>
         </div>
-		<br>
+		<div class="form-group">
+			<label for="email"> <b>Country Name</b> </label>
+			<div class="input-group">
+				<input type="text" id="country" class="form-control autocomplete-country" name="country" value="{{country}}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email"> <b>University Name</b> </label>
+			<div class="input-group">
+				<input type="text" id="university" class="form-control autocomplete-university" name="university" value="{{university}}">
+			</div>
+		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="email"> <b>Codeforces Handle</b> </label>
@@ -44,7 +53,6 @@
 				</div>
 			</div>
 		</div>
-		<br>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="email"> <b>SPOJ Handle</b> </label>
@@ -59,7 +67,6 @@
 				</div>
 			</div>
 		</div>
-		<br>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="email"> <b>Atcoder Handle</b> </label>
@@ -79,3 +86,112 @@
         </div>
 	</form>
 </div>
+
+<script>
+
+
+    function getUniversityList(){
+        var data_list = []
+        {{#each university_list}}
+            var data = {
+                "name": "{{name}}",
+                "code": "{{name}}"
+            }
+            data_list.push(data)
+        {{/each}}
+        console.log('data_list: ')
+        console.log(data_list)
+        return data_list
+    }
+
+	function enableAutoCompleteUniversity(){
+		$(".autocomplete-university").typeahead({
+			// data source
+			source: getUniversityList(),
+
+			// how many items to show
+			items: 8,
+
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			
+			itemContentSelector:'a',
+
+			// min length to trigger the suggestion list
+			minLength: 1,
+
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+
+			// auto selects the first item
+			autoSelect: true,
+
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+
+			// adds an item to the end of the list
+			addItem: false,
+
+			// delay between lookups
+			delay: 0,
+		});
+	}
+
+    function getCountryList(){
+        var data_list = []
+        {{#each country_list}}
+            var data = {
+                "name": "{{name}}",
+                "code": "{{name}}"
+            }
+            data_list.push(data)
+        {{/each}}
+        console.log('data_list: ')
+        console.log(data_list)
+        return data_list
+    }
+
+	function enableAutoCompleteCountry(){
+		$(".autocomplete-country").typeahead({
+			// data source
+			source: getCountryList(),
+
+			// how many items to show
+			items: 8,
+
+			// default template
+			menu: '<ul class="typeahead dropdown-menu" role="listbox"></ul>',
+			item: '<li><a class="dropdown-item" href="#" role="option"></a></li>',
+			headerHtml: '<li class="dropdown-header"></li>',
+			headerDivider: '<li class="divider" role="separator"></li>',
+			
+			itemContentSelector:'a',
+
+			// min length to trigger the suggestion list
+			minLength: 1,
+
+			// number of pixels the scrollable parent container scrolled down
+			scrollHeight: 0,
+
+			// auto selects the first item
+			autoSelect: true,
+
+			// callbacks
+			afterSelect: $.noop,
+			afterEmptySelect: $.noop,
+
+			// adds an item to the end of the list
+			addItem: false,
+
+			// delay between lookups
+			delay: 0,
+		});
+	}
+
+	enableAutoCompleteUniversity();
+	enableAutoCompleteCountry();
+</script>

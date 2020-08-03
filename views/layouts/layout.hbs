@@ -59,7 +59,7 @@
 
                                 {{#if session.email}}
                                 <li>
-                                    <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-user" aria-hidden="true"></i>Profile</a>
+                                    <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-user" aria-hidden="true"></i>{{session.username}}</a>
                                     <ul class="list-unstyled list-hidden dropdown">
                                         <li> <a class="list-link" href="/profile/{{session.username}}/">Profile</a> </li>
                                         <li> <a class="list-link" href="/update/profile/">Edit Profile</a> </li>

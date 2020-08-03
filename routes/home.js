@@ -134,11 +134,7 @@ router.logInSubmit = async function(req, res, next) {
 
 router.showSignUp = async function(req, res, next) {
     var university_list = await user_server.universityList(res, req)
-    console.log('university_list:')
-    console.log(university_list)
     var country_list = await user_server.countryList(res, req)
-    console.log('country_list:')
-    console.log(country_list)
     var data = system_server.toast_update(req, {})
     data['university_list'] = university_list.university_list
     data['country_list'] = country_list.country_list
@@ -257,7 +253,12 @@ router.updateUserProfile = async function(req, res, next) {
     console.log('updateUserProfile controller')
     var user_details = await user_server.getUserDetails(res, req, sess.user_id)
     console.log(user_details)
+    var university_list = await user_server.universityList(res, req)
+    var country_list = await user_server.countryList(res, req)
+    user_details['university_list'] = university_list.university_list
+    user_details['country_list'] = country_list.country_list
     res.render('update_user_profile', user_details);
+    
 }
 
 router.updateUserProfileSubmit = async function(req, res, next) {
