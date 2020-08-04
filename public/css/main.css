@@ -171,6 +171,20 @@ body {
     padding-top: 20px;
     padding-left: 20px;
 }
+
+.resource-row {
+    min-height: 80px;
+    border-top: 1px solid rgb(214, 214, 214);
+    padding: 10px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.resourceTable pre{
+    white-space:pre-wrap;
+    word-wrap:break-word;
+}
+
 .rich-data-table {
     color: black;
     margin: 30px auto;

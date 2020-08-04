@@ -31,7 +31,7 @@ router.addProblemResourceFormSubmit = async function(req, res, next) {
   var res_body = req.body
   res_body['resource_writer'] = sess.user_id
   res_body['resource_ref_id'] = problem_id
-  res_body['resource_body'] = res_body['resource_body'].replace("\r\n", "\\r\\n")
+  //res_body['resource_body'] = res_body['resource_body'].replace("\r\n", "\\r\\n")
   await problem_server.postProblemResource(res, req, res_body)
   jshelper.sleep(1000)
   res.redirect('back');

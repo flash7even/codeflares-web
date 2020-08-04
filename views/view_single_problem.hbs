@@ -89,36 +89,36 @@
 	{{/if}}
 
 	{{#if resource-page}}
-        <div class="cfs-title-2" style="margin-top: 30px;">
-            <div class="row">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8" style="padding-top: 3px;">
-                    <h5 style="text-align: center;"><b>Problem Resources</b></h5>
-                </div>
-                {{#if session.user_id}}
-                <div class="col-md-2" style="float: right;">
-                    <a title="Add new post" class="btn btn-sm btn-light" role="button" type="button" style="border-color: #9fb6c5;"  data-toggle="modal" data-target="#addResourceModal"> <span style="color: #aab4bb;"><i class="fas fa-plus"></i></span> Add Resource</a>
-                </div>
-                {{/if}}
+    <div class="cfs-title-2" style="margin-top: 30px;">
+        <div class="row">
+            <div class="col-md-2">
             </div>
+            <div class="col-md-8" style="padding-top: 3px;">
+                <h5 style="text-align: center;"><b>Problem Resources</b></h5>
+            </div>
+            {{#if session.user_id}}
+            <div class="col-md-2" style="float: right;">
+                <a title="Add new post" class="btn btn-sm btn-light" role="button" type="button" style="border-color: #9fb6c5;"  data-toggle="modal" data-target="#addResourceModal"> <span style="color: #aab4bb;"><i class="fas fa-plus"></i></span> Add Resource</a>
+            </div>
+            {{/if}}
         </div>
-        <div class="cfs-table-1">
-            <table class="resourceTable table cfs-table-data" id="resourceListTable">
-                <thead style="background-color: rgb(255, 255, 255);">
-                    <tr>
-                        <td>Title</td>
-                        <td style="width: 30%;">Description</td>
-                        <td>Added By</td>
-                        <td>Credit</td>
-                        <td>Date</td>
-                        <td>Source</td>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
+    </div>
+    <div class="cfs-table-1">
+        <table class="resourceTable table cfs-table-data table-bordered" id="resourceListTable">
+            <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>Description</td>
+                    <td>Credit</td>
+                    <td>Author</td>
+                    <td>Date</td>
+                    <td>Source</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 	{{/if}}
 
 </div>
@@ -396,7 +396,7 @@
                 action_link += "</div>"
                 var resource_link = `<a style="color: #3d87b9;" href="{{resource_link}}"><i class="fas fa-external-link-alt"></i></a>`
                 var resource_body = `<pre ng-show = "textFile.isPresent"><span>{{resource_body}}</span></pre>`
-                var data = ["{{resource_title}}", {{resource_body}}, resource_writer, "{{resource_owner}}", "{{updated_at}}", resource_link];
+                var data = ["{{resource_title}}", resource_body, resource_writer, "{{resource_owner}}", "{{updated_at}}", resource_link];
                 dt_list.push(data)
             {{/each}}
 
@@ -410,15 +410,15 @@
             
             $("#resourceListTable").dataTable({
                 "aaData": dt_list,
-                paging: true,
-                searching: true,
+                paging: false,
+                searching: false,
                 info: true,
                 ordering: false,
                 destroy: true,
                 scrollCollapse: true,
                 responsive: true,
                 pageLength: 10,
-                lengthMenu: [[3, 5, 10, -1], [3, 5, 10, 20]]
+                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, 100]]
             });
         }
 
