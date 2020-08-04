@@ -13,6 +13,7 @@ var commentController = require('./comment.js');
 var voteController = require('./vote.js');
 var followerController = require('./follower.js');
 var apiController = require('./api.js');
+var cpanelController = require('./cpanel.js');
 
 module.exports = function(newApp) {
     newApp.get('/', homeController.showHome);
@@ -168,6 +169,9 @@ module.exports = function(newApp) {
     newApp.post('/contest/entry/announcement/*', contestController.addContestAnnouncementSubmit);
 
 
+    newApp.get('/control/panel/user/', cpanelController.showUserControl);
+    newApp.get('/control/user/update/*', cpanelController.updateUserControl);
+    newApp.post('/control/user/update/*', cpanelController.updateUserControlSubmit);
 
     newApp.post('/api/database/problem/', apiController.getProblems);
     newApp.post('/api/leaderboard/', apiController.getLeaderboard);

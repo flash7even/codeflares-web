@@ -196,6 +196,26 @@ module.exports.updateUser = async function(res, req, user_data, user_id) {
     return response.data
 };
 
+module.exports.updateUserControl = async function(res, req, user_data, user_id) {
+    console.log('updateUserControl called')
+    var url = config.server_host + 'user/admin/action/' + user_id
+    console.log("url: " + url)
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    let response = await axios.put(url, user_data, auth_config)
+    .catch(error => {
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+};
+
 module.exports.postUser = async function(res, req, user_data) {
     var post_url = user_submit_url + 'register'
     console.log("post_url: " + post_url)

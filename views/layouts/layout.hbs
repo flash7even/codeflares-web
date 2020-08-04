@@ -56,7 +56,6 @@
                                 <li>
                                     <a href="/" class="list-link"><i style="width: 17px;" class="fa fa-home" aria-hidden="true"></i>Home</a>
                                 </li>
-
                                 {{#if session.email}}
                                 <li>
                                     <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-user" aria-hidden="true"></i>{{session.username}}</a>
@@ -64,6 +63,10 @@
                                         <li> <a class="list-link" href="/profile/{{session.username}}/">Profile</a> </li>
                                         <li> <a class="list-link" href="/update/profile/">Edit Profile</a> </li>
                                         <li> <a class="list-link" href="/settings/update/">Settings</a> </li>
+
+                                        {{#userAccess session.user_role "admin"}}
+                                        <li> <a class="list-link" href="/control/panel/user/">Control Panel</a> </li>
+                                        {{/userAccess}}
                                     </ul>
                                 </li>
                                 {{/if}}
@@ -157,8 +160,12 @@
                                     <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-language" aria-hidden="true"></i>Advise</a>
                                     <ul class="list-unstyled list-hidden dropdown">
                                         <li> <a class="list-link" href="/problem/add/">Add Problem</a> </li>
+                                        {{#userAccess session.user_role "moderator"}}
                                         <li> <a class="list-link" href="/problem/pending/list/all/">Verify Problems</a> </li>
+                                        {{/userAccess}}
+                                        {{#userAccess session.user_role "admin"}}
                                         <li> <a class="list-link" href="/category/add/">Add Category</a> </li>
+                                        {{/userAccess}}
                                     </ul>
                                 </li>
                                 {{/if}}

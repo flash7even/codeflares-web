@@ -88,11 +88,12 @@
             <div class="col-md-8" style="padding-top: 3px;">
                 <h5 style="text-align: center;"><b>Category Resources</b></h5>
             </div>
-            {{#if session.user_id}}
+            
+            {{#userAccess session.user_role "moderator"}}
             <div class="col-md-2" style="float: right;">
                 <a title="Add new post" class="btn btn-sm btn-light" role="button" type="button" style="border-color: #9fb6c5;"  data-toggle="modal" data-target="#addResourceModal"> <span style="color: #aab4bb;"><i class="fas fa-plus"></i></span> Add Resource</a>
             </div>
-            {{/if}}
+            {{/userAccess}}
         </div>
     </div>
     <div class="cfs-table-1" style="margin: 15px;">

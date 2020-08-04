@@ -1,0 +1,78 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+
+<div class="cfs-table-wrapper-1">
+    <div class="cfs-title-1">
+        <h5 style="text-align: center;"><b>User Database</b></h5>
+    </div>
+    <div class="cfs-table-1">
+        <table id="memberTable" class="leaderboard table" style="text-align: center;">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>User</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function getUserList(user_list){
+        console.log('user_list:')
+        console.log(user_list)
+        var dt_list = [];
+        var idx = 0
+        for(idx = 0;idx<user_list.length;idx++){
+            var user = user_list[idx]
+            var user_link = `<a href = "/profile/${user.username}/" style="color: ${user.skill_color}; font-weight:700;">${user.username}</a>`
+            var action = `<a href="/control/user/update/${user.id}/" title="Update user" data-toggle="tooltip" style="color: rgb(42, 97, 92);"><i class="fas fa-user-edit"></i></a>`
+            var data = [user.rank, user_link, action];
+            dt_list.push(data)
+        }
+        console.log(dt_list)
+        return dt_list;
+    }
+
+
+    function showUsersDTSearchTable(){
+        $("#memberTable").dataTable({
+            "pageLength": 100,
+            destroy: true,
+            ordering: false,
+            serverSide: true,
+            "columnDefs": [
+                { "orderable": false, "targets": 0 },
+                { "orderable": false, "targets": 1 },
+                { "orderable": false, "targets": 2 }
+            ],
+            ajax: {
+                url: config.server_host + 'leaderboard/',
+                type: 'POST',
+                "contentType": "application/json",
+                "data": function ( d ) {
+                    var ajax_body = JSON.stringify( d );
+                    var ajax_json = JSON.parse(ajax_body)
+                    ajax_json['sort_by'] = 'skill_value'
+                    ajax_json['sort_order'] = 'desc'
+                    return JSON.stringify(ajax_json)
+                },
+                "dataSrc": function ( data ) {
+                    return getUserList(data.data);
+                }
+            }
+        });
+    }
+
+    $(document).ready( function () {
+        showUsersDTSearchTable();
+    } );
+
+</script>

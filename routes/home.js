@@ -258,7 +258,6 @@ router.updateUserProfile = async function(req, res, next) {
     user_details['university_list'] = university_list.university_list
     user_details['country_list'] = country_list.country_list
     res.render('update_user_profile', user_details);
-    
 }
 
 router.updateUserProfileSubmit = async function(req, res, next) {

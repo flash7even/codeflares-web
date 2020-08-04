@@ -21,6 +21,24 @@ app.engine('.hbs', expressHbs(
 				var reversedWord = value.split("").reverse().join("");
   				return reversedWord;
 			},
+			userAccess: function (user_role, required_role, options) {
+				var role_levels = ['contestant', 'service', 'moderator', 'manager', 'admin', 'root']
+				var role_order = {
+					'contestant': 1,
+					'service': 2,
+					'moderator': 3,
+					'manager': 4,
+					'admin': 8,
+					'root': 10,
+				}
+				var user_role_order = role_order[user_role]
+				var required_role_order = role_order[required_role]
+				if(user_role_order >= required_role_order){
+					return options.fn(this)
+				}else{
+					return options.inverse(this);
+				}
+			},
 			markdown: require('helper-markdown'),
 			showdown_helper: function (text) {
 				var showdown  = require('showdown'),

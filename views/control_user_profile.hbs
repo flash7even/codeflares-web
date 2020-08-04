@@ -1,0 +1,87 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="form-type-1" style="width: 80%;">	
+	<div class="cfs-title-1">
+		<h5 style="text-align: center;"><b>Control User Profile</b></h5>
+	</div>
+	<br>
+    <form action="/control/user/update/{{id}}/" method="post" style="padding: 10px;">
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Full Name</b> </label>
+				<div class="input-group">
+					<input type="text" id="full_name" class="form-control" name="full_name" value="{{full_name}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Username</b> </label>
+				<div class="input-group">
+					<input type="text" class="form-control" name="username" value="{{username}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>Email</b> </label>
+				<div class="input-group">
+					<input type="email" class="form-control" name="email" value="{{email}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label for="email"> <b>User Role</b> </label>
+				<select class="form-control" id="user_role" name="user_role">
+				</select>
+			</div>
+		</div>
+		<div class="form-group submit-btn-div">
+            <button type="submit" class="btn submit-btn btn-primary btn-block btn">Submit</button>
+        </div>
+
+	</form>
+</div>
+
+<script type="text/javascript">
+
+	function viewRolesInForm() {
+		var role_levels = ['contestant', 'service', 'moderator', 'manager', 'admin', 'root']
+		var role_order = {
+			'contestant': 1,
+			'service': 2,
+			'moderator': 3,
+			'manager': 4,
+			'admin': 8,
+			'root': 10,
+		}
+		var controller_role = "{{session.user_role}}"
+		var controller_role_order = role_order[controller_role]
+		var user_role = "{{user_role}}"
+		var user_role_order = role_order[user_role]
+		var html = ''
+
+		if(controller_role_order <= user_role_order){
+			html = `<option value="${user_role}" selected>${user_role}</option>`
+		}else{
+			var idx = 0
+			for(idx = 0;idx<role_levels.length;idx++){
+				var cur_role_name = role_levels[idx]
+				var cur_role_order = role_order[cur_role_name]
+				if(cur_role_order > controller_role_order) continue;
+				if(cur_role_name == user_role){
+					html += `<option value="${cur_role_name}" selected>${cur_role_name}</option>`
+				}else{
+					html += `<option value="${cur_role_name}">${cur_role_name}</option>`
+				}
+			}
+		}
+		var user_role_id = document.getElementById('user_role')
+		user_role_id.innerHTML = html
+	}
+	viewRolesInForm();
+</script>
+
