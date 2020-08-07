@@ -75,7 +75,6 @@ var requestAuthenticate = async function (req, res, next) {
 	console.log('REQ_AUTH - ip_address: ' + ip_address + ' hit: ' + url)
 	next()
 }
-
 app.use(requestAuthenticate)
 
 // Notification middleware
@@ -86,12 +85,9 @@ var notificationSetter = async function (req, res, next) {
 	if (sess.user_id){
 		notification_data = await user_server.getAllNotification(res, req, {"size": 5}, sess.user_id)
 	}
-    //console.log('notification_data: ')
-	//console.log(notification_data)
 	sess.notification_data = notification_data
 	next()
 }
-
 app.use(notificationSetter)
 
 // User Settings middleware
@@ -107,8 +103,6 @@ var userSettingsSetter = async function (req, res, next) {
 	sess.user_settings = user_details.settings
 	next()
 }
-
-app.use(notificationSetter)
 app.use(userSettingsSetter)
 
 require('./routes/index')(app); // getting access of index.js
