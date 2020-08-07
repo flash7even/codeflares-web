@@ -13,23 +13,24 @@ var system_server = require('./servers/system_services.js');
 
 
 router.addTeamForm = async function(req, res, next) {
+  console.log('addTeamForm called')
   let user_list = await team_server.getUserList(res, req, {});
-  console.log(user_list)
   res.render('add_team', user_list);
 }
 
 router.updateTeamForm = async function(req, res, next) {
+  console.log('updateTeamForm called')
   var url = req.url
   var words = url.split("/");
   var team_id = words[words.length-2]
   let user_list = await team_server.getUserList(res, req, {});
   var team_details = await team_server.teamDetails(res, req, team_id)
   team_details['user_list'] = user_list['user_list']
-  console.log(team_details)
   res.render('update_team', team_details);
 }
 
 router.updateTeamFormSubmit = async function(req, res, next) {
+  console.log('updateTeamFormSubmit called')
   var url = req.url
   var words = url.split("/");
   var team_id = words[words.length-2]
@@ -42,12 +43,12 @@ router.updateTeamFormSubmit = async function(req, res, next) {
 }
 
 function update_team_data(team){
+  console.log('update_team_data called')
   var data = {}
   var user_handle = "user_handle"
   var remarks = "remarks"
   var member_list = []
   for (var key in team) {
-    console.log(key + " -> " + team[key]);
     if(key.startsWith(user_handle)){
         var res = key.split('@')
         if (res.length == 2){
@@ -73,7 +74,6 @@ router.addTeamFormSubmit = async function(req, res, next) {
   console.log('addTeamFormSubmit called')
   var team = req.body
   team['team_type'] = 'team';
-  console.log(team)
   team = update_team_data(team)
   await team_server.postTeam(res, req, team)
   jshelper.sleep(1000);
@@ -82,14 +82,13 @@ router.addTeamFormSubmit = async function(req, res, next) {
 }
 
 router.viewTeamList = async function(req, res, next) {
+  console.log('viewTeamList called')
   var url = req.url
   var words = url.split("/");
   var user_handle = words[words.length-2]
   var sess = req.session;
   let team_list = await team_server.getTeamList(res, req, user_handle, {"team_type": "team"});
   team_list['logged_in_user_id'] = sess.user_id
-
-  console.log(team_list)
   team_list = system_server.toast_update(req, team_list)
   team_list['username'] = user_handle
   team_list['view-teams-page'] = true
@@ -98,11 +97,8 @@ router.viewTeamList = async function(req, res, next) {
 
 router.viewTeam = async function(req, res, next) {
   var url = req.url
-  console.log(req.url)
-  console.log(url)
   var words = url.split("/");
   var team_id = words[words.length-2]
-  console.log(team_id)
   var team_details = await team_server.teamDetails(res, req, team_id)
   var sess = req.session;
   if(sess.user_id){
@@ -116,13 +112,13 @@ router.viewTeam = async function(req, res, next) {
   if(sess.user_id == team_details.team_leader_id){
     team_details['own_profile'] = true;
   }
-  console.log(team_details)
   team_details = system_server.toast_update(req, team_details)
   team_details['profile-page'] = true
   res.render('team_profile', team_details);
 }
 
 router.confirmTeam = async function(req, res, next) {
+  console.log('confirmTeam called')
   var url = req.url
   var words = url.split("/");
   var team_id = words[words.length-2]
@@ -139,6 +135,7 @@ router.confirmTeam = async function(req, res, next) {
 }
 
 router.rejectTeam = async function(req, res, next) {
+  console.log('rejectTeam called')
   var url = req.url
   var words = url.split("/");
   var team_id = words[words.length-2]
@@ -155,6 +152,7 @@ router.rejectTeam = async function(req, res, next) {
 }
 
 router.deleteTeam = async function(req, res, next) {
+  console.log('deleteTeam called')
   var url = req.url
   var words = url.split("/");
   var team_id = words[words.length-2]
@@ -164,11 +162,9 @@ router.deleteTeam = async function(req, res, next) {
   res.redirect('/team/list/');
 }
 
-
 router.syncTeamData = async function(req, res, next) {
-  console.log('syncUserData')
+  console.log('syncTeamData called')
   var url = req.url
-  console.log(url)
   var words = url.split("/");
   var team_id = words[words.length-2]
   var response = await team_server.syncTeam(res, req, team_id);

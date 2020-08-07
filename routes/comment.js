@@ -10,15 +10,17 @@ var jshelper = require('./servers/jshelper.js');
 
 
 router.addCommentForm = function(req, res, next) {
+  console.log('addCommentForm called')
   res.render('add_comment_post', {});
 }
 
 router.viewCommentPost = function(req, res, next) {
+  console.log('viewCommentPost called')
   res.render('add_comment_post', {});
 }
 
 router.addCommentForBlogPost = async function(req, res, next) {
-  console.log('addComment called')
+  console.log('addCommentForBlogPost called')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
@@ -54,8 +56,6 @@ router.addCommentForProblem = async function(req, res, next) {
 router.addCommentForCategory = async function(req, res, next) {
   console.log('addCommentForCategory called')
   var url = req.url
-  console.log('url: ');
-  console.log(url)
   var words = url.split("/");
   var category_id = words[words.length-2]
   var sess = req.session;
@@ -73,7 +73,6 @@ router.addCommentForCategory = async function(req, res, next) {
 router.addReplyForBlogPost = async function(req, res, next) {
   console.log('addReplyForBlogPost called')
   var url = req.url
-  console.log('URL: ' + url)
   var words = url.split("/");
   var blog_id = words[words.length-3]
   var parent_id = words[words.length-2]
@@ -84,8 +83,6 @@ router.addReplyForBlogPost = async function(req, res, next) {
   comment['comment_parent_id'] = parent_id
   comment['comment_type'] = 'blog_post_reply'
   comment['comment_text'] = comment['comment_text'].replace("\r\n", "\\r\\n")
-  console.log('comment to post: ')
-  console.log(comment)
   await comment_server.postComment(res, req, comment)
   jshelper.sleep(1000);
   res.redirect('back')
@@ -94,7 +91,6 @@ router.addReplyForBlogPost = async function(req, res, next) {
 router.addReplyForProblem = async function(req, res, next) {
   console.log('addReplyForProblem called')
   var url = req.url
-  console.log('URL: ' + url)
   var words = url.split("/");
   var problem_id = words[words.length-3]
   var parent_id = words[words.length-2]
@@ -105,8 +101,6 @@ router.addReplyForProblem = async function(req, res, next) {
   comment['comment_parent_id'] = parent_id
   comment['comment_type'] = 'problem_comment'
   comment['comment_text'] = comment['comment_text'].replace("\r\n", "\\r\\n")
-  console.log('comment to post: ')
-  console.log(comment)
   await comment_server.postComment(res, req, comment)
   jshelper.sleep(1000);
   res.redirect('back')
@@ -115,7 +109,6 @@ router.addReplyForProblem = async function(req, res, next) {
 router.addReplyForCategory = async function(req, res, next) {
   console.log('addReplyForCategory called')
   var url = req.url
-  console.log('URL: ' + url)
   var words = url.split("/");
   var category_id = words[words.length-3]
   var parent_id = words[words.length-2]
@@ -126,21 +119,19 @@ router.addReplyForCategory = async function(req, res, next) {
   comment['comment_parent_id'] = parent_id
   comment['comment_type'] = 'category_comment'
   comment['comment_text'] = comment['comment_text'].replace("\r\n", "\\r\\n")
-  console.log('comment to post: ')
-  console.log(comment)
   await comment_server.postComment(res, req, comment)
   jshelper.sleep(1000);
   res.redirect('back')
 }
 
 router.viewCommentList = async function(req, res, next) {
+  console.log('viewCommentList called')
   let comment_list = await comment_server.getCommentList(res, req, {});
-  console.log('comment_list: ')
-  console.log(comment_list)
   res.render('view_comment_list', comment_list);
 }
 
 router.viewCommentListAfterFormSubmit = async function(req, res, next) {
+  console.log('viewCommentListAfterFormSubmit called')
   var search_body = req.body
   var sess = req.session;
   if (sess.user_id){
@@ -151,14 +142,12 @@ router.viewCommentListAfterFormSubmit = async function(req, res, next) {
   res.render('view_comment_list', comment_list);
 }
 
-
 router.viewCommentPost = async function(req, res, next) {
+  console.log('viewCommentPost called')
   var url = req.url
   var words = url.split("/");
   var comment_id = words[words.length-2]
   let comment_details = await comment_server.commentDetails(res, req, comment_id);
-  console.log('comment_details: ')
-  console.log(comment_details)
   res.render('view_comment_post', comment_details);
 }
 

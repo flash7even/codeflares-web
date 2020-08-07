@@ -9,7 +9,6 @@ var contest_submit_url = config.server_host + 'contest/'
 
 module.exports.getContestList = async function(res, req, search_param) {
     console.log('getContestList called');
-    console.log(search_param)
     var sess = req.session;
     var url = contest_search_public_url
     if(sess.user_id){
@@ -19,16 +18,15 @@ module.exports.getContestList = async function(res, req, search_param) {
     const auth_config = {
         headers: { Authorization: `Bearer ${access_token}` }
     };
-    console.log("url: " + url)
     let response = await axios.post(url, search_param, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     if(response.status != 200 && response.status != 201){
         res.render('error_page', {});
     }
     console.log('getContestList done');
-    console.log(response.data)
     return response.data
 };
 
@@ -41,6 +39,7 @@ module.exports.getContestDetails = async function(res, req, contest_id) {
     var url = contest_submit_url + contest_id
     let response = await axios.get(url, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     if(response.status != 200 && response.status != 201){
@@ -59,6 +58,7 @@ module.exports.getContestStandings = async function(res, req, contest_id) {
     var url = contest_submit_url + 'standings/' + contest_id
     let response = await axios.get(url, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     if(response.status != 200 && response.status != 201){
@@ -77,6 +77,7 @@ module.exports.getContestStandingsForUser = async function(res, req, contest_id,
     var url = contest_submit_url + 'standings/' + contest_id + '/' + user_id
     let response = await axios.get(url, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     if(response.status != 200 && response.status != 201){
@@ -87,27 +88,26 @@ module.exports.getContestStandingsForUser = async function(res, req, contest_id,
 };
 
 module.exports.postContest = async function(res, req, contest_data) {
-  var post_url = contest_submit_url
-  console.log("post_url: " + post_url)
-  var sess = req.session;
-  var access_token = sess.access_token
-  const auth_config = {
-      headers: { Authorization: `Bearer ${access_token}` }
-  };
-  let response = await axios.post(post_url, contest_data, auth_config)
-  .catch(error => {
-      res.render('error_page', {});
-  })
+    var post_url = contest_submit_url
+    var sess = req.session;
+    var access_token = sess.access_token
+    const auth_config = {
+        headers: { Authorization: `Bearer ${access_token}` }
+    };
+    let response = await axios.post(post_url, contest_data, auth_config)
+    .catch(error => {
+        console.error(error)
+        res.render('error_page', {});
+    })
 
-  if(response.status != 200 && response.status != 201){
-      res.render('error_page', {});
-  }
-  return response.data
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
 };
 
 module.exports.updateContest = async function(res, req, contest_id, contest_data) {
     var post_url = contest_submit_url + contest_id
-    console.log("post_url: " + post_url)
     var sess = req.session;
     var access_token = sess.access_token
     const auth_config = {
@@ -115,6 +115,7 @@ module.exports.updateContest = async function(res, req, contest_id, contest_data
     };
     let response = await axios.put(post_url, contest_data, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
   
@@ -127,7 +128,6 @@ module.exports.updateContest = async function(res, req, contest_id, contest_data
 
   module.exports.postAnnouncement = async function(res, req, data) {
     var url = config.server_host + 'contest/announcement/'
-    console.log("url: " + url)
     var sess = req.session;
     var access_token = sess.access_token
     const auth_config = {
@@ -135,6 +135,7 @@ module.exports.updateContest = async function(res, req, contest_id, contest_data
     };
     let response = await axios.post(url, data, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
   
@@ -146,7 +147,6 @@ module.exports.updateContest = async function(res, req, contest_id, contest_data
 
   module.exports.getAnnouncements = async function(res, req, contest_id) {
     var url = config.server_host + 'contest/announcement/search/' + contest_id
-    console.log("url: " + url)
     var sess = req.session;
     var access_token = sess.access_token
     const auth_config = {
@@ -154,6 +154,7 @@ module.exports.updateContest = async function(res, req, contest_id, contest_data
     };
     let response = await axios.get(url, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
   

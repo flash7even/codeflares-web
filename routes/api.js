@@ -6,11 +6,9 @@ var config = require('../config.js');
 const axios = require('axios');
 require('log-timestamp');
 
+
 router.getLeaderboard = async function(req, res, next) {
-    console.log('Request received');
-    console.log('Requested data:');
-    console.log(req.body)
-    
+    console.log('getLeaderboard called');
     var url = config.server_host + 'user/dtsearch'
     let response = await axios.post(url, req.body)
     .catch(error => {
@@ -20,8 +18,6 @@ router.getLeaderboard = async function(req, res, next) {
         res.render('error_page', {});
     }
     var result = response.data
-    console.log('result')
-    console.log(result)
 
     res.writeHead(200, { 
         'Content-Type': 'text/plain',
@@ -31,9 +27,7 @@ router.getLeaderboard = async function(req, res, next) {
 }
 
 router.getUserSubmission = async function(req, res, next) {
-    console.log('Request received');
-    console.log('Requested data:');
-    console.log(req.body)
+    console.log('getUserSubmission called');
 
     var url = req.url
     var words = url.split("/");
@@ -47,8 +41,6 @@ router.getUserSubmission = async function(req, res, next) {
         res.render('error_page', {});
     }
     var result = response.data
-    console.log('result')
-    console.log(result)
 
     res.writeHead(200, { 
         'Content-Type': 'text/plain',
@@ -58,9 +50,7 @@ router.getUserSubmission = async function(req, res, next) {
 }
 
 router.getProblemSubmission = async function(req, res, next) {
-    console.log('Request received');
-    console.log('Requested data:');
-    console.log(req.body)
+    console.log('getProblemSubmission called');
 
     var url = req.url
     var words = url.split("/");
@@ -74,8 +64,6 @@ router.getProblemSubmission = async function(req, res, next) {
         res.render('error_page', {});
     }
     var result = response.data
-    console.log('result')
-    console.log(result)
 
     res.writeHead(200, { 
         'Content-Type': 'text/plain',
@@ -85,9 +73,7 @@ router.getProblemSubmission = async function(req, res, next) {
 }
 
 router.getProblems = async function(req, res, next) {
-    console.log('Request received');
-    console.log('Requested data:');
-    console.log(req.body)
+    console.log('getProblems called');
 
     var url = req.url
     var words = url.split("/");
@@ -101,8 +87,6 @@ router.getProblems = async function(req, res, next) {
         res.render('error_page', {});
     }
     var result = response.data
-    console.log('result')
-    console.log(result)
 
     res.writeHead(200, { 
         'Content-Type': 'text/plain',

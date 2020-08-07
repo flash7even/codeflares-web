@@ -10,14 +10,14 @@ var jshelper = require('./servers/jshelper.js');
 
 
 router.viewNotificationPage = async function(req, res, next) {
+    console.log('viewNotificationPage called')
     var sess = req.session;
     var notification_list = await notification_server.getAllNotification(res, req, {"size": 100}, sess.user_id)
-    console.log('notification_list: ')
-    console.log(notification_list)
     res.render('view_notification_list', notification_list);
 }
 
 router.readAllNotification = async function(req, res, next) {
+    console.log('readAllNotification called')
     var sess = req.session;
     await notification_server.markReadAllNotification(res, req, sess.user_id)
     jshelper.sleep(1000);
@@ -25,6 +25,7 @@ router.readAllNotification = async function(req, res, next) {
 }
 
 router.readSingleNotification = async function(req, res, next) {
+    console.log('readSingleNotification called')
     var url = req.url
     var words = url.split("/");
     var notification_id = words[words.length-2]

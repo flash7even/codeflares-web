@@ -7,7 +7,6 @@ const axios = require('axios');
 require('log-timestamp');
 
 var logout_url = config.server_host + 'auth/logout/at'
-
 var blog_server = require('./servers/blog_services.js');
 var user_server = require('./servers/user_services.js');
 var follower_server = require('./servers/follower_services.js');
@@ -17,22 +16,22 @@ var system_server = require('./servers/system_services.js');
 
 
 router.showUserControl = async function(req, res, next) {
+    console.log('showUserControl called')
     var data = system_server.toast_update(req, {})
     res.render('control_user', data);
 }
 
 router.updateUserControl = async function(req, res, next) {
-    console.log('updateUserControl controller')
+    console.log('updateUserControl called')
     var url = req.url
     var words = url.split("/");
     var user_id = words[words.length-2]
     var user_details = await user_server.getUserDetails(res, req, user_id)
-    console.log(user_details)
     res.render('control_user_profile', user_details);
 }
 
 router.updateUserControlSubmit = async function(req, res, next) {
-    console.log('updateUserControlSubmit controller')
+    console.log('updateUserControlSubmit called')
     var url = req.url
     var words = url.split("/");
     var user_id = words[words.length-2]

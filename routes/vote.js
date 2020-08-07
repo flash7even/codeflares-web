@@ -13,7 +13,6 @@ router.addVote = async function(req, res, next) {
   console.log('addReplyForBlogPost called')
   var sess = req.session;
   var url = req.url
-  console.log('URL: ' + url)
   var words = url.split("/");
   var vote_topic = words[words.length-4]
   var vote_type = words[words.length-3]

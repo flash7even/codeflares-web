@@ -23,13 +23,13 @@ var system_server = require('./system_services.js');
 module.exports.getAllNotification = async function(res, req, param, user_id) {
     console.log('getAllNotification called');
     var url = serach_all_notification + user_id
-    console.log("url: " + url)
     var sess = req.session;
     const auth_config = {
         headers: { Authorization: `Bearer ${sess.access_token}` }
     };
     let response = await axios.post(url, param, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
   
@@ -43,7 +43,6 @@ module.exports.getAllNotification = async function(res, req, param, user_id) {
 module.exports.getTeamList = async function(res, req, username, search_param) {
     console.log('getTeamList called');
     var post_url = team_search_url + username
-    console.log("post_url: " + post_url)
     var sess = req.session;
     var access_token = sess.access_token
     const auth_config = {
@@ -51,6 +50,7 @@ module.exports.getTeamList = async function(res, req, username, search_param) {
     };
     let response = await axios.post(post_url, search_param, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
 
@@ -69,9 +69,9 @@ module.exports.searchUser = async function(res, req, user_data) {
     const auth_config = {
         headers: { Authorization: `Bearer ${access_token}` }
     };
-    console.log("post_url: " + user_search_url)
     let response = await axios.post(user_search_url, user_data, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
 
@@ -90,9 +90,9 @@ module.exports.topRatedUsers = async function(res, req, user_data) {
     const auth_config = {
         headers: { Authorization: `Bearer ${access_token}` }
     };
-    console.log("post_url: " + user_search_url_skilled)
     let response = await axios.post(user_search_url_skilled, user_data, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
 
@@ -111,9 +111,9 @@ module.exports.topSolverUsers = async function(res, req, user_data) {
     const auth_config = {
         headers: { Authorization: `Bearer ${access_token}` }
     };
-    console.log("post_url: " + user_search_url_solver)
     let response = await axios.post(user_search_url_solver, user_data, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
 
@@ -132,9 +132,9 @@ module.exports.topContributors = async function(res, req, user_data) {
     const auth_config = {
         headers: { Authorization: `Bearer ${access_token}` }
     };
-    console.log("post_url: " + user_search_url_contributor)
     let response = await axios.post(user_search_url_contributor, user_data, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
 
@@ -153,6 +153,7 @@ module.exports.getUserDetails = async function(res, req, user_id) {
     var url = user_submit_url + user_id
     let response = await axios.get(url, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     console.log('getUserDetails completed')
@@ -161,9 +162,9 @@ module.exports.getUserDetails = async function(res, req, user_id) {
 
 module.exports.logIn = async function(res, req, data) {
     console.log('logIn called');
-    console.log('Log in call to server')
     let response = await axios.post(login_url, data)
     .catch(error => {
+        console.error(error)
         system_server.add_toast(req, "Login unsuccessful! Username or password is incorrect.", 'warning')
         res.redirect('back')
     })
@@ -180,7 +181,6 @@ module.exports.logIn = async function(res, req, data) {
 module.exports.updateUser = async function(res, req, user_data, user_id) {
     console.log('updateUser called')
     var url = user_submit_url + user_id
-    console.log("url: " + url)
     var sess = req.session;
     var access_token = sess.access_token
     const auth_config = {
@@ -188,6 +188,7 @@ module.exports.updateUser = async function(res, req, user_data, user_id) {
     };
     let response = await axios.put(url, user_data, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
 
@@ -200,7 +201,6 @@ module.exports.updateUser = async function(res, req, user_data, user_id) {
 module.exports.updateUserControl = async function(res, req, user_data, user_id) {
     console.log('updateUserControl called')
     var url = config.server_host + 'user/admin/action/' + user_id
-    console.log("url: " + url)
     var sess = req.session;
     var access_token = sess.access_token
     const auth_config = {
@@ -208,6 +208,7 @@ module.exports.updateUserControl = async function(res, req, user_data, user_id) 
     };
     let response = await axios.put(url, user_data, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
 
@@ -219,7 +220,6 @@ module.exports.updateUserControl = async function(res, req, user_data, user_id) 
 
 module.exports.postUser = async function(res, req, user_data) {
     var post_url = user_submit_url + 'register'
-    console.log("post_url: " + post_url)
     var sess = req.session;
     var access_token = sess.access_token
     const auth_config = {
@@ -227,6 +227,7 @@ module.exports.postUser = async function(res, req, user_data) {
     };
     let response = await axios.post(post_url, user_data, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
 
@@ -238,14 +239,13 @@ module.exports.postUser = async function(res, req, user_data) {
 
 module.exports.syncUser = async function(res, req, user_id) {
     var url = user_submit_url + 'sync' + '/' + user_id
-    console.log("url: " + url)
-    console.log("user_id: " + user_id)
     var sess = req.session;
     const auth_config = {
         headers: { Authorization: `Bearer ${sess.access_token}` }
     };
     let response = await axios.put(url, {}, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
 
@@ -259,6 +259,7 @@ module.exports.activate_user_account = async function(res, req, token) {
     var url = user_activate_url + token
     let response = await axios.post(url, {})
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     if(response.status != 200 && response.status != 201){
@@ -271,6 +272,7 @@ module.exports.forgot_password_request = async function(res, req, data) {
     var url = forgot_pass_url
     let response = await axios.post(url, data)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     if(response.status != 200 && response.status != 201){
@@ -283,6 +285,7 @@ module.exports.forgot_password_token_confirm = async function(res, req, token) {
     var url = forgot_pass_confirm_url + token
     let response = await axios.post(url, {})
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     if(response.status != 200 && response.status != 201){
@@ -295,6 +298,7 @@ module.exports.forgot_password_reset = async function(res, req, user_id, data, t
     var url = forgot_pass_reset_url + user_id + '/' + token
     let response = await axios.put(url, data)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     if(response.status != 200 && response.status != 201){
@@ -311,6 +315,7 @@ module.exports.change_password = async function(res, req, user_id, data) {
     };
     let response = await axios.put(url, data, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     if(response.status != 200 && response.status != 201){
@@ -322,13 +327,13 @@ module.exports.change_password = async function(res, req, user_id, data) {
 module.exports.userSubmissionHistory = async function(res, req, user_id) {
     console.log('followStatus called');
     var url = config.server_host + 'problem/user/submission/history/' + user_id + '/0'
-    console.log("url: " + url)
     var sess = req.session;
     const auth_config = {
         headers: { Authorization: `Bearer ${sess.access_token}` }
     };
     let response = await axios.get(url, auth_config)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     
@@ -342,9 +347,9 @@ module.exports.userSubmissionHistory = async function(res, req, user_id) {
 module.exports.universityList = async function(res, req) {
     console.log('universityList called');
     var url = config.server_host + 'support/university'
-    console.log("url: " + url)
     let response = await axios.get(url)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     if(response.status != 200 && response.status != 201){
@@ -357,9 +362,9 @@ module.exports.universityList = async function(res, req) {
 module.exports.countryList = async function(res, req) {
     console.log('countryList called');
     var url = config.server_host + 'support/country'
-    console.log("url: " + url)
     let response = await axios.get(url)
     .catch(error => {
+        console.error(error)
         res.render('error_page', {});
     })
     if(response.status != 200 && response.status != 201){

@@ -68,6 +68,16 @@ app.use(function (req, res, next) {
 	next();
 });
 
+// Request authenticate middleware
+var requestAuthenticate = async function (req, res, next) {
+	var ip_address = req.connection.remoteAddress
+	var url = req.url
+	console.log('REQ_AUTH - ip_address: ' + ip_address + ' hit: ' + url)
+	next()
+}
+
+app.use(requestAuthenticate)
+
 // Notification middleware
 var notificationSetter = async function (req, res, next) {
 	var user_server = require('./routes/servers/user_services.js');

@@ -15,13 +15,9 @@ router.viewIndividualTraining = async function(req, res, next) {
     console.log('viewIndividualTraining called')
     var sess = req.session;
     var url = req.url
-    console.log(req.url)
-    console.log(url)
     var words = url.split("/");
     var user_name = words[words.length-3]
     var page_name = words[words.length-2]
-    console.log(user_name)
-    console.log(page_name)
     var param = {
         'username': user_name
     }
@@ -52,6 +48,7 @@ router.viewIndividualTraining = async function(req, res, next) {
 
 
 router.viewTeamTraining = async function(req, res, next) {
+    console.log('viewTeamTraining called')
     var url = req.url
     var words = url.split("/");
     var team_id = words[words.length-3]
@@ -89,9 +86,6 @@ router.viewTeamTraining = async function(req, res, next) {
         training_data['codeflares_history'] = team_cfs_history
         training_data['rating-comparison'] = true
     }
-
-    console.log(training_data)
-    console.log(req.session)
     res.render('team_training', training_data);
 }
 

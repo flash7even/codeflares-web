@@ -11,11 +11,13 @@ var jshelper = require('./servers/jshelper.js');
 
 
 router.addProblemForm = async function(req, res, next) {
+  console.log('addProblemForm called')
   let category_list = await category_server.getCategoryList(res, req, {});
   res.render('add_problem', category_list);
 }
 
 router.addProblemResourceForm = async function(req, res, next) {
+  console.log('addProblemResourceForm called')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -24,6 +26,7 @@ router.addProblemResourceForm = async function(req, res, next) {
 }
 
 router.addProblemResourceFormSubmit = async function(req, res, next) {
+  console.log('addProblemResourceFormSubmit called')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -39,12 +42,12 @@ router.addProblemResourceFormSubmit = async function(req, res, next) {
 }
 
 function update_problem_data(problem){
+  console.log('update_problem_data called')
   var data = {}
   var problem_category = "problem_category"
   var dependency_factor = "dependency_factor"
   var category_dependency_list = []
   for (var key in problem) {
-    console.log(key + " -> " + problem[key]);
     if(key.startsWith(problem_category)){
         var res = key.split('@')
         if (res.length == 2){
@@ -77,16 +80,13 @@ router.addProblemFormSubmit = async function(req, res, next) {
   if (problem.problem_description.length == 0){
     problem.problem_description = 'NA'
   }
-
-  console.log('problem data')
-  console.log(problem)
   await problem_server.postProblem(res, req, problem)
   jshelper.sleep(1000);
   res.redirect('/problem/list/')
 }
 
 router.viewProblemList = async function(req, res, next) {
-  console.log('Inside viewProblemList')
+  console.log('viewProblemList called')
   var url = req.url
   var words = url.split("/");
   var category_name = words[words.length-2]
@@ -111,13 +111,10 @@ router.viewProblemList = async function(req, res, next) {
 }
 
 router.viewPendingProblemList = async function(req, res, next) {
-  console.log('Inside viewPendingProblemList')
+  console.log('viewPendingProblemList called')
   var url = req.url
-  console.log(url)
   var words = url.split("/");
   var category_name = words[words.length-2]
-  console.log('category_name')
-  console.log(category_name)
   var sess = req.session;
   var param = {}
   if(category_name != 'all'){
@@ -141,13 +138,11 @@ router.viewPendingProblemList = async function(req, res, next) {
 router.viewProblemListFromServer = async function(req, res, next) {
   console.log('viewProblemListFromServer called')
   var params = req.body
-  console.log('params: ')
-  console.log(params)
-  console.log('viewProblemListFromServer dome')
   res.redirect('back')
 }
 
 router.viewSingleProblem = async function(req, res, next) {
+  console.log('viewSingleProblem called')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -161,28 +156,26 @@ router.viewSingleProblem = async function(req, res, next) {
   }else{
     problem_data = await problem_server.getProblemDetails(res, req, problem_id);
   }
-
-  console.log(problem_data)
   problem_data['problem-page'] = true
   res.render('view_single_problem', problem_data);
 }
 
 router.getResourceHistory = async function(req, res, next) {
+  console.log('getResourceHistory called')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
   let problem_data = await problem_server.getProblemDetails(res, req, problem_id);
-  console.log(problem_data)
   problem_data['resource-page'] = true
   res.render('view_single_problem', problem_data);
 }
 
 router.getSubmissionHistory = async function(req, res, next) {
+  console.log('getSubmissionHistory called')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
   let problem_data = await problem_server.getProblemDetails(res, req, problem_id);
-  console.log(problem_data)
   problem_data['problem_id'] = problem_id
   problem_data['id'] = problem_id
   problem_data['submission-page'] = true
@@ -190,6 +183,7 @@ router.getSubmissionHistory = async function(req, res, next) {
 }
 
 router.viewProblemListAfterFormSubmit = async function(req, res, next) {
+  console.log('viewProblemListAfterFormSubmit called')
   var search_body = req.body
   var sess = req.session;
   if (sess.user_id){
@@ -207,6 +201,7 @@ router.viewProblemListAfterFormSubmit = async function(req, res, next) {
 }
 
 router.setProblemStatusFlag = async function(req, res, next) {
+  console.log('setProblemStatusFlag called')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -224,6 +219,7 @@ router.setProblemStatusFlag = async function(req, res, next) {
 }
 
 router.setProblemStatusRemove = async function(req, res, next) {
+  console.log('setProblemStatusRemove called')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -252,14 +248,13 @@ router.setProblemStatusClear = async function(req, res, next) {
     "user_id": user_id,
     "status": "UNSOLVED",
   }
-  console.log('update post data with: ')
-  console.log(post_data)
   await problem_server.addUserProblemStatus(res, req, post_data)
   jshelper.sleep(1000);
   res.redirect('back')
 }
 
 router.showFlaggedProblemList = async function(req, res, next) {
+  console.log('showFlaggedProblemList called')
   var sess = req.session;
   var user_id = sess.user_id
   var param ={
@@ -270,6 +265,7 @@ router.showFlaggedProblemList = async function(req, res, next) {
 }
 
 router.approveProblem = async function(req, res, next) {
+  console.log('approveProblem called')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -281,6 +277,7 @@ router.approveProblem = async function(req, res, next) {
 }
 
 router.disapproveProblem = async function(req, res, next) {
+  console.log('disapproveProblem called')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]

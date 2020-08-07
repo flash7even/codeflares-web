@@ -13,6 +13,7 @@ var user_server = require('./servers/user_services.js');
 
 
 router.addBlogForm = async function(req, res, next) {
+  console.log('addBlogForm called');
   var url = req.url
   var words = url.split("/");
   var blog_ref_id = words[words.length-2]
@@ -55,6 +56,7 @@ router.addBlogFormSubmit = async function(req, res, next) {
 
 
 router.viewBlogList = async function(req, res, next) {
+  console.log('viewBlogList called')
   var url = req.url
   var words = url.split("/");
   var blog_ref_id = words[words.length-2]
@@ -66,25 +68,23 @@ router.viewBlogList = async function(req, res, next) {
     param['blog_ref_id'] = blog_ref_id
   }
   let blog_list = await blog_server.getBlogList(res, req, param);
-  console.log('blog_list: ')
-  console.log(blog_list)
   blog_list = system_server.toast_update(req, blog_list)
   res.render('view_blog_list', blog_list);
 }
 
 router.viewOwnBlogList = async function(req, res, next) {
+  console.log('viewOwnBlogList called')
   var sess = req.session;
   var param = {
     'blog_writer': sess.user_id
   }
   let blog_list = await blog_server.getBlogList(res, req, param);
-  console.log('blog_list: ')
-  console.log(blog_list)
   blog_list = system_server.toast_update(req, blog_list)
   res.render('view_blog_list', blog_list);
 }
 
 router.viewBlogListAfterFormSubmit = async function(req, res, next) {
+  console.log('viewBlogListAfterFormSubmit called')
   var search_body = req.body
   var sess = req.session;
   if (sess.user_id){
@@ -97,6 +97,7 @@ router.viewBlogListAfterFormSubmit = async function(req, res, next) {
 
 
 router.viewBlogPost = async function(req, res, next) {
+  console.log('viewBlogPost called')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
@@ -121,12 +122,11 @@ router.viewBlogPost = async function(req, res, next) {
   if(blog_details.status == 'homepage'){
     blog_details['homepage_mark'] = true
   }
-  console.log('blog_details: ')
-  console.log(blog_details)
   res.render('view_blog_post', blog_details);
 }
 
 router.deleteBlogPost = async function(req, res, next) {
+  console.log('deleteBlogPost called')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
@@ -136,6 +136,7 @@ router.deleteBlogPost = async function(req, res, next) {
 }
 
 router.updateBlogPost = async function(req, res, next) {
+  console.log('updateBlogPost called')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
@@ -148,17 +149,15 @@ router.updateBlogPostSubmit = async function(req, res, next) {
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
-  console.log('blog id:  ' + blog_id)
   var blog_data = req.body
-  console.log(blog_data)
   delete blog_data['blog_text_tmp'];
-  console.log(blog_data)
   await blog_server.updateBlog(res, req, blog_data, blog_id);
   system_server.add_toast(req, 'Blog updated!')
   res.redirect('/blog/post/view/' + blog_id + '/');
 }
 
 router.markBlogPost = async function(req, res, next) {
+  console.log('markBlogPost called')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
@@ -171,6 +170,7 @@ router.markBlogPost = async function(req, res, next) {
 }
 
 router.unmarkBlogPost = async function(req, res, next) {
+  console.log('unmarkBlogPost called')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]

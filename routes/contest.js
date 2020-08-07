@@ -13,7 +13,7 @@ var system_server = require('./servers/system_services.js');
 
 
 router.addContestForm = async function(req, res, next) {
-  console.log('addContestForm in route')
+  console.log('addContestForm called')
   var sess = req.session;
   var team_data = await team_server.getTeamList(res, req, sess.username, {"team_type": "team"})
   var classroom_data = await classroom_server.getClassroomList(res, req, sess.username, {"team_type": "classroom"})
@@ -21,13 +21,11 @@ router.addContestForm = async function(req, res, next) {
     'team_list': team_data['team_list'],
     'classroom_list': classroom_data['team_list'],
   }
-  console.log('user_data: ')
-  console.log(user_data)
   res.render('add_contest', user_data);
 }
 
-
 function update_contest_data(contest){
+  console.log('update_contest_data called')
   var data = {}
   var category_name = "category_name"
   var param_list = []
@@ -62,6 +60,7 @@ function update_contest_data(contest){
 }
 
 function update_confirmed_problem_set(contest_data){
+  console.log('update_confirmed_problem_set called')
   var problem_name = "problem_name"
   var problem_list = []
   for (var key in contest_data) {
@@ -81,36 +80,28 @@ function update_confirmed_problem_set(contest_data){
   var data = {
     "problem_list": problem_list
   }
-  console.log('Updated problem set data')
-  console.log(data)
   return data
 }
 
 router.addContestFormSubmit = async function(req, res, next) {
-  console.log('addContestFormSubmit in route')
+  console.log('addContestFormSubmit called')
   var sess = req.session;
   var contest_data = req.body;
-  console.log('Before update')
-  console.log(contest_data)
   contest_data['setter_id'] = sess.user_id
   contest_data = update_contest_data(contest_data)
   var contest_id = await contest_server.postContest(res, req, contest_data)
   jshelper.sleep(2000)
   var contest_details = await contest_server.getContestDetails(res, req, contest_id);
-  console.log('contest_details: ')
-  console.log(contest_details)
   res.render('view_contest_confirmation', contest_details);
 }
 
 router.confirmContestFormSubmit = async function(req, res, next) {
-  console.log('confirmContestFormSubmit in route')
+  console.log('confirmContestFormSubmit called')
   var url = req.url
   var words = url.split("/");
   var contest_id = words[words.length-2]
   var sess = req.session;
   var contest_data = req.body;
-  console.log('Confirmed Contest Data: ')
-  console.log(contest_data)
   contest_data = update_confirmed_problem_set(contest_data)
   contest_data['status'] = 'confirmed'
   await contest_server.updateContest(res, req, contest_id, contest_data)
@@ -119,42 +110,37 @@ router.confirmContestFormSubmit = async function(req, res, next) {
 }
 
 router.viewContest = async function(req, res, next) {
-  console.log('viewContest in route')
+  console.log('viewContest called')
   var url = req.url
   var words = url.split("/");
   var contest_id = words[words.length-2]
   var contest_details = await contest_server.getContestDetails(res, req, contest_id);
-  console.log('contest_details: ')
-  console.log(contest_details)
   contest_details = system_server.toast_update(req, contest_details)
   contest_details['problem-set-page'] = true
   res.render('view_single_contest', contest_details);
 }
 
 router.viewContestStandings = async function(req, res, next) {
-  console.log('viewContestStandings in route')
+  console.log('viewContestStandings called')
   var url = req.url
   var words = url.split("/");
   var contest_id = words[words.length-2]
   var contest_details = await contest_server.getContestDetails(res, req, contest_id);
   var contest_standings = await contest_server.getContestStandings(res, req, contest_id);
   contest_details['standings'] = contest_standings['standings']
-  console.log('contest_details: ')
-  console.log(contest_details)
   contest_details = system_server.toast_update(req, contest_details)
   contest_details['standings-page'] = true
   res.render('view_single_contest', contest_details);
 }
 
 router.viewContestStandingsAfterUpdate = async function(req, res, next) {
-  console.log('viewContestStandingsAfterUpdate in route')
+  console.log('viewContestStandingsAfterUpdate called')
   var url = req.url
   var words = url.split("/");
   var contest_id = words[words.length-2]
   var sess = req.session;
   var user_id = sess.user_id
   var include_friends = req.body.include_friends
-  console.log('include_friends: ' + include_friends)
   var contest_details = await contest_server.getContestDetails(res, req, contest_id);
   var contest_standings;
 
@@ -171,43 +157,34 @@ router.viewContestStandingsAfterUpdate = async function(req, res, next) {
 }
 
 router.viewContestAnnouncements = async function(req, res, next) {
-  console.log('viewContestAnnouncements in route')
+  console.log('viewContestAnnouncements called')
   var url = req.url
   var words = url.split("/");
   var contest_id = words[words.length-2]
-  console.log('contest_id')
-  console.log(contest_id)
   var contest_details = await contest_server.getContestDetails(res, req, contest_id);
   var announcement_data = await contest_server.getAnnouncements(res, req, contest_id);
   contest_details['announcement_list'] = announcement_data.announcement_list
-  console.log('contest_details: ')
-  console.log(contest_details)
   contest_details = system_server.toast_update(req, contest_details)
   contest_details['announcement-page'] = true
   res.render('view_single_contest', contest_details);
 }
 
 router.addContestAnnouncementSubmit = async function(req, res, next) {
-  console.log('addContestAnnouncementSubmit in route')
+  console.log('addContestAnnouncementSubmit called')
   var url = req.url
   var words = url.split("/");
   var contest_id = words[words.length-2]
-  console.log('contest_id')
-  console.log(contest_id)
   var data = req.body;
   data['contest_id'] = contest_id
   await contest_server.postAnnouncement(res, req, data);
-  console.log('Announcement added')
   system_server.add_toast(req, 'Announcement created')
   jshelper.sleep(1000)
   res.redirect('back');
 }
 
 router.viewAllContest = async function(req, res, next) {
-  console.log('viewContest in route')
+  console.log('viewAllContest called')
   var contest_list = await contest_server.getContestList(res, req, {});
-  console.log('contest_list: ')
-  console.log(contest_list)
   contest_list = system_server.toast_update(req, contest_list)
   res.render('view_contest_list', contest_list);
 }

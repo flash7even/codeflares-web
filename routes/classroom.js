@@ -19,25 +19,25 @@ var system_server = require('./servers/system_services.js');
 
 
 router.addClassroomForm = async function(req, res, next) {
+  console.log('addClassroomForm called')
   let user_list = await classroom_server.getUserList(res, req, {});
-  console.log(user_list)
   res.render('add_classroom', user_list);
 }
 
-
 router.updateClassroomForm = async function(req, res, next) {
+  console.log('updateClassroomForm called')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
   let user_list = await classroom_server.getUserList(res, req, {});
   var classroom_details = await classroom_server.classroomDetails(res, req, classroom_id)
   classroom_details['user_list'] = user_list['user_list']
-  console.log(classroom_details)
   res.render('update_classroom', classroom_details);
 }
 
 
 router.updateClassroomFormSubmit = async function(req, res, next) {
+  console.log('updateClassroomFormSubmit called')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -50,12 +50,12 @@ router.updateClassroomFormSubmit = async function(req, res, next) {
 }
 
 function update_classroom_data(classroom){
+  console.log('update_classroom_data called')
   var data = {}
   var user_handle = "user_handle"
   var remarks = "remarks"
   var member_list = []
   for (var key in classroom) {
-    console.log(key + " -> " + classroom[key]);
     if(key.startsWith(user_handle)){
         var res = key.split('@')
         if (res.length == 2){
@@ -81,7 +81,6 @@ router.addClassroomFormSubmit = async function(req, res, next) {
   console.log('addClassroomFormSubmit called')
   var classroom = req.body
   classroom['team_type'] = 'classroom';
-  console.log(classroom)
   classroom = update_classroom_data(classroom)
   await classroom_server.postClassroom(res, req, classroom)
   jshelper.sleep(1000);
@@ -93,7 +92,6 @@ router.viewClassroomList = async function(req, res, next) {
   var sess = req.session;
   let classroom_list = await classroom_server.getClassroomList(res, req, sess.username, {"team_type": "classroom"});
   classroom_list['logged_in_user_id'] = sess.user_id
-  console.log(classroom_list)
   classroom_list = system_server.toast_update(req, classroom_list)
   res.render('view_classroom_list', classroom_list);
 }
@@ -101,16 +99,11 @@ router.viewClassroomList = async function(req, res, next) {
 router.trainingClassroom = async function(req, res, next) {
   console.log('trainingClassroom called')
   var url = req.url
-  console.log(req.url)
-  console.log(url)
   var words = url.split("/");
   var classroom_id = words[words.length-3]
   var classroom_page_title = words[words.length-2]
-  console.log(classroom_id)
   var sess = req.session;
   var classroom_details = await classroom_server.classroomDetails(res, req, classroom_id)
-  console.log('classroom_details')
-  console.log(classroom_details)
   if(sess.user_id == classroom_details.team_leader_id){
     classroom_details['own_profile'] = true;
   }
@@ -133,6 +126,7 @@ router.trainingClassroom = async function(req, res, next) {
 }
 
 router.confirmClassroom = async function(req, res, next) {
+  console.log('confirmClassroom called')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -149,6 +143,7 @@ router.confirmClassroom = async function(req, res, next) {
 }
 
 router.rejectClassroom = async function(req, res, next) {
+  console.log('rejectClassroom called')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -165,6 +160,7 @@ router.rejectClassroom = async function(req, res, next) {
 }
 
 router.deleteClassroom = async function(req, res, next) {
+  console.log('deleteClassroom called')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -175,12 +171,11 @@ router.deleteClassroom = async function(req, res, next) {
 }
 
 router.deleteClassroomMember = async function(req, res, next) {
+  console.log('deleteClassroomMember called')
   var url = req.url
   var words = url.split("/");
   var user_handle = words[words.length-2]
   var classroom_id = words[words.length-3]
-  console.log('user_handle: ' + user_handle)
-  console.log('classroom_id: ' + classroom_id)
   await classroom_server.deleteClassroomMember(res, req, classroom_id, user_handle)
   jshelper.sleep(1000);
   system_server.add_toast(req, 'Member removed!')
@@ -188,20 +183,18 @@ router.deleteClassroomMember = async function(req, res, next) {
 }
 
 
-
-
-
 //---------- Classroom Task Controllers -----------//
 router.addClassroomTaskForm = async function(req, res, next) {
+  console.log('addClassroomTaskForm called')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
   var classroom_details = await classroom_server.classroomDetails(res, req, classroom_id)
-  console.log(classroom_details)
   res.render('add_classroom_task', classroom_details);
 }
 
 router.addClassroomTaskFormSubmit = async function(req, res, next) {
+  console.log('addClassroomTaskFormSubmit called')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -209,7 +202,6 @@ router.addClassroomTaskFormSubmit = async function(req, res, next) {
   var sess = req.session;
   classroom_task_data["task_added_by"] = sess.user_id
   classroom_task_data["classroom_id"] = classroom_id
-  console.log(classroom_task_data)
   await classroom_server.postClassroomTask(res, req, classroom_task_data)
   jshelper.sleep(1000);
   system_server.add_toast(req, 'Task added successfully!')
@@ -217,12 +209,12 @@ router.addClassroomTaskFormSubmit = async function(req, res, next) {
 }
 
 router.deleteClassroomTask = async function(req, res, next) {
+  console.log('deleteClassroomTask called')
   var url = req.url
   var words = url.split("/");
   var classroom_task_id = words[words.length-2]
   var sess = req.session;
   var delete_url = classroom_add_task_submit_url + classroom_task_id
-  console.log('delete url: ' + delete_url)
   const auth_config = { headers: { Authorization: `Bearer ${sess.access_token}` }};
   let response = await axios.delete(delete_url, auth_config)
   .catch(error => {
@@ -234,16 +226,16 @@ router.deleteClassroomTask = async function(req, res, next) {
 }
 
 router.updateClassroomTask = async function(req, res, next) {
+  console.log('updateClassroomTask called')
   var url = req.url
   var words = url.split("/");
   var task_id = words[words.length-2]
   var task_details = await classroom_server.getClassroomTaskDetails(res, req, task_id)
-  console.log('task_details found')
-  console.log(task_details)
   res.render('update_classroom_task', task_details);
 }
 
 router.updateClassroomTaskSubmit = async function(req, res, next) {
+  console.log('updateClassroomTaskSubmit called')
   var url = req.url
   var words = url.split("/");
   var task_id = words[words.length-2]
@@ -254,6 +246,7 @@ router.updateClassroomTaskSubmit = async function(req, res, next) {
 }
 
 router.viewClassroomTaskList = async function(req, res, next) {
+  console.log('viewClassroomTaskList called')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -263,31 +256,28 @@ router.viewClassroomTaskList = async function(req, res, next) {
   var tasklist_url = classroom_task_list_view_all
   let response = await axios.post(tasklist_url, { 'classroom_id': classroom_id }, auth_config)
   .catch(error => {
-      console.log(error)
+      console.error(error)
       res.render('error_page', {});
   })
   var response_data = response.data
   classroom_details['task_list'] = response_data['task_list']
-  console.log(classroom_details)
   classroom_details = system_server.toast_update(req, classroom_details)
   res.render('view_classroom_task_list', classroom_details);
 }
 
 
-
-
-
 //---------- Classroom Class Controllers -----------//
 router.addClassroomClassForm = async function(req, res, next) {
+  console.log('addClassroomClassForm called')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
   var classroom_details = await classroom_server.classroomDetails(res, req, classroom_id)
-  console.log(classroom_details)
   res.render('add_classroom_class', classroom_details);
 }
 
 router.addClassroomClassFormSubmit = async function(req, res, next) {
+  console.log('addClassroomClassFormSubmit called')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -295,7 +285,6 @@ router.addClassroomClassFormSubmit = async function(req, res, next) {
   var sess = req.session;
   classroom_class_data["class_moderator_id"] = sess.user_id
   classroom_class_data["classroom_id"] = classroom_id
-  console.log(classroom_class_data)
   await classroom_server.postClassroomClass(res, req, classroom_class_data)
   jshelper.sleep(1000);
   system_server.add_toast(req, 'Class schedule added!')
@@ -303,13 +292,12 @@ router.addClassroomClassFormSubmit = async function(req, res, next) {
 }
 
 router.deleteClassroomClass = async function(req, res, next) {
+  console.log('deleteClassroomClass called')
   var url = req.url
   var words = url.split("/");
   var classroom_class_id = words[words.length-2]
   var sess = req.session;
-
   var delete_url = classroom_add_class_submit_url + classroom_class_id
-  console.log('delete url: ' + delete_url)
   const auth_config = { headers: { Authorization: `Bearer ${sess.access_token}` }};
   let response = await axios.delete(delete_url, auth_config)
   .catch(error => {
@@ -321,6 +309,7 @@ router.deleteClassroomClass = async function(req, res, next) {
 }
 
 router.viewClassroomClassList = async function(req, res, next) {
+  console.log('viewClassroomClassList called')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -330,28 +319,27 @@ router.viewClassroomClassList = async function(req, res, next) {
   var classlist_url = classroom_class_list_view_all
   let response = await axios.post(classlist_url, { 'classroom_id': classroom_id }, auth_config)
   .catch(error => {
-      console.log(error)
+      console.error(error)
       res.render('error_page', {});
   })
   var response_data = response.data
   classroom_details['class_list'] = response_data['class_list']
-  console.log(classroom_details)
   classroom_details = system_server.toast_update(req, classroom_details)
   res.render('view_classroom_class_list', classroom_details);
 }
 
 router.updateClassroomClass = async function(req, res, next) {
+  console.log('updateClassroomClass called')
   var url = req.url
   var words = url.split("/");
   var class_id = words[words.length-2]
   var class_details = await classroom_server.getClassroomClassDetails(res, req, class_id)
-  console.log('class_details found')
-  console.log(class_details)
   jshelper.sleep(1000);
   res.render('update_classroom_class', class_details);
 }
 
 router.updateClassroomClassSubmit = async function(req, res, next) {
+  console.log('updateClassroomClassSubmit called')
   var url = req.url
   var words = url.split("/");
   var class_id = words[words.length-2]

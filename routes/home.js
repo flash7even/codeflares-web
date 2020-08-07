@@ -17,6 +17,7 @@ var system_server = require('./servers/system_services.js');
 
 
 router.showHome = async function(req, res, next) {
+    console.log('showHome called')
     let data = await blog_server.getBlogList(res, req, {'status': 'homepage'});
     let top_rated_users = await user_server.topRatedUsers(res, req, {'size': 10})
     let top_solved_users = await user_server.topSolverUsers(res, req, {'size': 10})
@@ -25,35 +26,38 @@ router.showHome = async function(req, res, next) {
     data['top_solved_users'] = top_solved_users.user_list
     data['top_contributors'] = top_contributors.user_list
     data = system_server.toast_update(req, data)
-    console.log(data)
     //data['alert_list'] = system_server.clean_session_alert(req)
     res.render('index', data);
 }
 
 router.leaderboard = async function(req, res, next) {
+    console.log('leaderboard called')
     res.render('leaderboard', {});
 }
 
 router.contributorsList = async function(req, res, next) {
+    console.log('contributorsList called')
     res.render('leaderboard_contributors', {});
 }
 
 router.topSolverList = async function(req, res, next) {
+    console.log('topSolverList called')
     res.render('leaderboard_top_solvers', {});
 }
 
 router.showLogIn = async function(req, res, next) {
-    console.log('Inside showLogIn')
-    console.log(req.body)
+    console.log('showLogIn called')
     var data = system_server.toast_update(req, {})
     res.render('login', data);
 }
 
 router.changePassword = async function(req, res, next) {
+    console.log('changePassword called')
     res.render('change_password', {});
 }
 
 router.changePasswordSubmit = async function(req, res, next) {
+    console.log('changePasswordSubmit called')
     var sess = req.session;
     await user_server.change_password(res, req, sess.user_id, req.body)
     system_server.add_toast(req, "Your password has been updated.")
@@ -61,10 +65,12 @@ router.changePasswordSubmit = async function(req, res, next) {
 }
 
 router.showForgotPassword = async function(req, res, next) {
+    console.log('showForgotPassword called')
     res.render('forgot_password', {});
 }
 
 router.showForgotPasswordSubmit = async function(req, res, next) {
+    console.log('showForgotPasswordSubmit called')
     var data = req.body
     await user_server.forgot_password_request(res, req, data)
     data = {}
@@ -76,6 +82,7 @@ router.showForgotPasswordSubmit = async function(req, res, next) {
 }
 
 router.ActivateUserAccountClicked = async function(req, res, next) {
+    console.log('ActivateUserAccountClicked called')
     var url = req.url
     var words = url.split("/");
     var token = words[words.length-1]
@@ -89,6 +96,7 @@ router.ActivateUserAccountClicked = async function(req, res, next) {
 }
 
 router.ForgotPasswordClicked = async function(req, res, next) {
+    console.log('ForgotPasswordClicked called')
     var url = req.url
     var words = url.split("/");
     var token = words[words.length-1]
@@ -101,6 +109,7 @@ router.ForgotPasswordClicked = async function(req, res, next) {
 }
 
 router.ForgotPasswordConfirm = async function(req, res, next) {
+    console.log('ForgotPasswordConfirm called')
     var url = req.url
     var words = url.split("/");
     var token = words[words.length-1]
@@ -116,9 +125,9 @@ router.ForgotPasswordConfirm = async function(req, res, next) {
 }
 
 router.logInSubmit = async function(req, res, next) {
+    console.log('logInSubmit called')
     var user_data = req.body
     var login_data = await user_server.logIn(res, req, user_data)
-    console.log(login_data)
 
     var sess = req.session;
     sess.username = login_data.username
@@ -134,6 +143,7 @@ router.logInSubmit = async function(req, res, next) {
 }
 
 router.showSignUp = async function(req, res, next) {
+    console.log('showSignUp called')
     var university_list = await user_server.universityList(res, req)
     var country_list = await user_server.countryList(res, req)
     var data = system_server.toast_update(req, {})
@@ -143,18 +153,14 @@ router.showSignUp = async function(req, res, next) {
 }
 
 router.logOutSubmit = async function(req, res, next) {
+    console.log('logOutSubmit called')
     try{
-        console.log('log out called')
         var sess = req.session;
         if(sess.access_token){
             var access_token = sess.access_token
-            console.log(access_token);
             const config = {
                 headers: { Authorization: `Bearer ${access_token}` }
             };
-            console.log(config)
-            console.log("logout_url")
-            console.log(logout_url)
             var response = await axios.post(logout_url, {}, config)
             .catch(error => {
                 res.render('error_page', {});
@@ -168,6 +174,7 @@ router.logOutSubmit = async function(req, res, next) {
 }
 
 router.signUpSubmit = async function(req, res, next) {
+    console.log('signUpSubmit called')
     var user_data = req.body
     user_data['user_role'] = 'contestant'
     delete user_data['confirm_password']
@@ -182,6 +189,7 @@ router.signUpSubmit = async function(req, res, next) {
 }
 
 router.showUserProfile = async function(req, res, next) {
+    console.log('showUserProfile called')
     var url = req.url
     var words = url.split("/");
     var user_name = words[words.length-2]
@@ -208,6 +216,7 @@ router.showUserProfile = async function(req, res, next) {
 }
 
 router.showUserSubmissionHistory = async function(req, res, next) {
+    console.log('showUserSubmissionHistory called')
     var url = req.url
     var words = url.split("/");
     var user_handle = words[words.length-2]
@@ -228,6 +237,7 @@ router.showUserSubmissionHistory = async function(req, res, next) {
 }
 
 router.updateUserSettings = async function(req, res, next) {
+    console.log('updateUserSettings called')
     var sess = req.session;
     var param = {
         "status": "confirmed",
@@ -238,10 +248,10 @@ router.updateUserSettings = async function(req, res, next) {
 }
 
 router.updateUserSettingsSubmit = async function(req, res, next) {
+    console.log('updateUserSettingsSubmit called')
     var settings_data = {
         'settings': req.body
     }
-    console.log(settings_data)
     var sess = req.session;
     var user_id = sess.user_id
     await user_server.updateUser(res, req, settings_data, user_id);
@@ -250,10 +260,9 @@ router.updateUserSettingsSubmit = async function(req, res, next) {
 }
 
 router.updateUserProfile = async function(req, res, next) {
+    console.log('updateUserProfile called')
     var sess = req.session;
-    console.log('updateUserProfile controller')
     var user_details = await user_server.getUserDetails(res, req, sess.user_id)
-    console.log(user_details)
     var university_list = await user_server.universityList(res, req)
     var country_list = await user_server.countryList(res, req)
     user_details['university_list'] = university_list.university_list
@@ -262,6 +271,7 @@ router.updateUserProfile = async function(req, res, next) {
 }
 
 router.updateUserProfileSubmit = async function(req, res, next) {
+    console.log('updateUserProfileSubmit called')
     var sess = req.session;
     await user_server.updateUser(res, req, req.body, sess.user_id);
     system_server.add_toast(req, "Your profile has been updated.")
@@ -270,9 +280,8 @@ router.updateUserProfileSubmit = async function(req, res, next) {
 
 
 router.syncUserData = async function(req, res, next) {
-    console.log('syncUserData')
+    console.log('updateUserProfileSubmit called')
     var url = req.url
-    console.log(url)
     var words = url.split("/");
     var user_id = words[words.length-2]
     var response = await user_server.syncUser(res, req, user_id);
@@ -283,6 +292,7 @@ router.syncUserData = async function(req, res, next) {
 
 
 router.contactUs = async function(req, res, next) {
+    console.log('contactUs called')
     var sess = req.session;
     var user_details = {}
     if(sess.user_id){
@@ -293,12 +303,14 @@ router.contactUs = async function(req, res, next) {
 
 
 router.contactUsSubmit = async function(req, res, next) {
+    console.log('contactUsSubmit called')
     await contact_server.postContactUs(res, req, req.body)
     res.redirect('/');
 }
 
 
 router.aboutUs = async function(req, res, next) {
+    console.log('aboutUs called')
     res.render('about_us', {});
 }
 
