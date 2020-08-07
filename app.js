@@ -4,9 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var session  = require('express-session'); //
 var flash      = require('req-flash'); //
+require('log-timestamp');
 var expressHbs = require('express-handlebars'), Handlebars = require('handlebars');
 const app = require("express")();
 
@@ -94,8 +94,6 @@ var userSettingsSetter = async function (req, res, next) {
 	if (sess.user_id){
 		user_details = await user_server.getUserDetails(res, req, sess.user_id)
 	}
-    //console.log('user_details: ')
-	//console.log(user_details)
 	sess.user_settings = user_details.settings
 	next()
 }

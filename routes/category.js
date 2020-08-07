@@ -2,6 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
+require('log-timestamp');
 
 var category_server = require('./servers/category_services.js');
 var jshelper = require('./servers/jshelper.js');

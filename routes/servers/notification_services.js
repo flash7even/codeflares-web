@@ -1,5 +1,7 @@
 var config = require('../../config.js');
 const axios = require('axios');
+require('log-timestamp');
+
 var serach_all_notification_url = config.server_host + 'notification/search/'
 var read_all_notification_url = config.server_host + 'notification/read/all/'
 var read_single_notification_url = config.server_host + 'notification/read/single/'

@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../config.js');
 const axios = require('axios');
+require('log-timestamp');
 
 router.getLeaderboard = async function(req, res, next) {
     console.log('Request received');

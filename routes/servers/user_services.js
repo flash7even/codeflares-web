@@ -1,5 +1,6 @@
 var config = require('../../config.js');
 const axios = require('axios');
+require('log-timestamp');
 
 
 var user_search_url = config.server_host + 'user/search'

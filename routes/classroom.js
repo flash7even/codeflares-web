@@ -4,6 +4,8 @@ var express = require('express');
 var config = require('../config');
 var router = express.Router();
 const axios = require('axios');
+require('log-timestamp');
+
 var classroom_task_list_view_all = config.server_host + 'classroom/task/search'
 var classroom_class_list_view_all = config.server_host + 'classroom/class/search'
 var classroom_add_task_submit_url = config.server_host + 'classroom/task/'

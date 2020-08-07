@@ -1,5 +1,6 @@
 var config = require('../../config.js');
 const axios = require('axios');
+require('log-timestamp');
 
 var individual_training_url = config.server_host + 'training/individual'
 var team_training_url = config.server_host + 'training/team/'

@@ -4,6 +4,7 @@ var express = require('express');
 var config = require('../config');
 var router = express.Router();
 const axios = require('axios');
+require('log-timestamp');
 
 var team_server = require('./servers/team_services.js');
 var follower_server = require('./servers/follower_services.js');

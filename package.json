@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
+    "console-stamp": "^0.2.9",
     "cookie-parser": "^1.4.5",
     "debug": "^4.1.1",
     "editor.md": "^1.5.0",
@@ -21,6 +22,7 @@
     "handlebars-helpers": "^0.10.0",
     "hbs": "^4.1.1",
     "helper-markdown": "^1.0.0",
+    "log-timestamp": "^0.3.0",
     "morgan": "^1.10.0",
     "req-flash": "0.0.3",
     "request": "^2.88.2",

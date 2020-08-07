@@ -3,6 +3,7 @@
 var express = require('express');
 var config = require('../config');
 var router = express.Router();
+require('log-timestamp');
 
 var blog_server = require('./servers/blog_services.js');
 var jshelper = require('./servers/jshelper.js');

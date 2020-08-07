@@ -1,0 +1,1810 @@
+[2020-08-07T20:46:28.119Z] Example app listening on port 80!
+[2020-08-07T20:46:30.787Z] getProblemDetails
+[2020-08-07T20:46:30.787Z] post_url: http://localhost:5056/api/problem/uva-623
+[2020-08-07T20:46:30.834Z] {
+  problem_name: '500!',
+  problem_type: 'classical',
+  problem_difficulty: 1,
+  problem_significance: 1,
+  source_link: 'https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=564',
+  problem_id: '623',
+  oj_name: 'uva',
+  active_status: 'approved',
+  categories: [
+    {
+      category_id: 'factorial',
+      dependency_factor: '6',
+      category_root: 'number_theory',
+      category_name: 'factorial'
+    }
+  ],
+  created_at: 1594714255,
+  updated_at: 1594714255,
+  id: 'uva-623',
+  comment_list: [],
+  vote_count: { like_count: 0, dislike_count: 0 },
+  solve_count: 2,
+  comment_count: 0,
+  resource_list: []
+}
+[2020-08-07T20:46:30.835Z] {
+  problem_name: '500!',
+  problem_type: 'classical',
+  problem_difficulty: 1,
+  problem_significance: 1,
+  source_link: 'https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=564',
+  problem_id: '623',
+  oj_name: 'uva',
+  active_status: 'approved',
+  categories: [
+    {
+      category_id: 'factorial',
+      dependency_factor: '6',
+      category_root: 'number_theory',
+      category_name: 'factorial'
+    }
+  ],
+  created_at: 1594714255,
+  updated_at: 1594714255,
+  id: 'uva-623',
+  comment_list: [],
+  vote_count: { like_count: 0, dislike_count: 0 },
+  solve_count: 2,
+  comment_count: 0,
+  resource_list: []
+}
+[0mGET /problem/submission/history/uva-623/ [36m304[0m 116.724 ms - -[0m
+[0mGET /css/simplemde.min.css [36m304[0m 2.020 ms - -[0m
+[0mGET /css/css-font-awesome.css [36m304[0m 1.291 ms - -[0m
+[0mGET /css/open-sans-fontface-open-sans.css [36m304[0m 1.361 ms - -[0m
+[0mGET /css/css-perfect-scrollbar.css [36m304[0m 0.716 ms - -[0m
+[0mGET /css/css-sidebar.css [36m304[0m 0.811 ms - -[0m
+[0mGET /css/layout.css [36m304[0m 0.351 ms - -[0m
+[0mGET /css/main.css [36m304[0m 0.726 ms - -[0m
+[0mGET /js/bootstrap3-typeahead.js [36m304[0m 0.829 ms - -[0m
+[0mGET /js/simplemde.min.js [36m304[0m 0.380 ms - -[0m
+[0mGET /js/js-bootstrap.bundle.js [36m304[0m 0.631 ms - -[0m
+[0mGET /js/dist-perfect-scrollbar.js [36m304[0m 1.039 ms - -[0m
+[0mGET /js/nanobar-nanobar.js [36m304[0m 0.270 ms - -[0m
+[0mGET /js/config.js [36m304[0m 0.476 ms - -[0m
+[0mGET /js/8518-js-sidebar.menu.js [36m304[0m 0.588 ms - -[0m
+[2020-08-07T20:46:31.215Z] Request received
+[2020-08-07T20:46:31.215Z] Requested data:
+[2020-08-07T20:46:31.215Z] {
+  draw: 1,
+  columns: [
+    {
+      data: 0,
+      name: '',
+      searchable: true,
+      orderable: false,
+      search: [Object]
+    },
+    {
+      data: 1,
+      name: '',
+      searchable: true,
+      orderable: false,
+      search: [Object]
+    },
+    {
+      data: 2,
+      name: '',
+      searchable: true,
+      orderable: false,
+      search: [Object]
+    },
+    {
+      data: 3,
+      name: '',
+      searchable: true,
+      orderable: false,
+      search: [Object]
+    }
+  ],
+  order: [],
+  start: 0,
+  length: 20,
+  search: { value: '', regex: false }
+}
+[2020-08-07T20:46:31.271Z] result
+[2020-08-07T20:46:31.271Z] {
+  draw: 1,
+  recordsTotal: 2,
+  recordsFiltered: 2,
+  data: { submission_history: [ [Object], [Object] ] }
+}
+[0mPOST /api/problem/submission/uva-623 [32m200[0m 72.401 ms - -[0m
+[0mGET /img/favicon.png [32m200[0m 2.437 ms - 110906[0m
+[2020-08-07T20:46:32.084Z] getProblemDetails
+[2020-08-07T20:46:32.084Z] post_url: http://localhost:5056/api/problem/uva-623
+[2020-08-07T20:46:32.118Z] {
+  problem_name: '500!',
+  problem_type: 'classical',
+  problem_difficulty: 1,
+  problem_significance: 1,
+  source_link: 'https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=564',
+  problem_id: '623',
+  oj_name: 'uva',
+  active_status: 'approved',
+  categories: [
+    {
+      category_id: 'factorial',
+      dependency_factor: '6',
+      category_root: 'number_theory',
+      category_name: 'factorial'
+    }
+  ],
+  created_at: 1594714255,
+  updated_at: 1594714255,
+  id: 'uva-623',
+  comment_list: [],
+  vote_count: { like_count: 0, dislike_count: 0 },
+  solve_count: 2,
+  comment_count: 0,
+  resource_list: []
+}
+[2020-08-07T20:46:32.118Z] {
+  problem_name: '500!',
+  problem_type: 'classical',
+  problem_difficulty: 1,
+  problem_significance: 1,
+  source_link: 'https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=564',
+  problem_id: '623',
+  oj_name: 'uva',
+  active_status: 'approved',
+  categories: [
+    {
+      category_id: 'factorial',
+      dependency_factor: '6',
+      category_root: 'number_theory',
+      category_name: 'factorial'
+    }
+  ],
+  created_at: 1594714255,
+  updated_at: 1594714255,
+  id: 'uva-623',
+  comment_list: [],
+  vote_count: { like_count: 0, dislike_count: 0 },
+  solve_count: 2,
+  comment_count: 0,
+  resource_list: []
+}
+[0mGET /problem/resource/history/uva-623/ [36m304[0m 66.138 ms - -[0m
+[0mGET /css/simplemde.min.css [36m304[0m 0.778 ms - -[0m
+[0mGET /css/css-font-awesome.css [36m304[0m 0.781 ms - -[0m
+[0mGET /css/open-sans-fontface-open-sans.css [36m304[0m 1.051 ms - -[0m
+[0mGET /css/css-sidebar.css [36m304[0m 0.520 ms - -[0m
+[0mGET /css/layout.css [36m304[0m 0.680 ms - -[0m
+[0mGET /css/css-perfect-scrollbar.css [36m304[0m 1.751 ms - -[0m
+[0mGET /js/simplemde.min.js [36m304[0m 0.754 ms - -[0m
+[0mGET /js/config.js [36m304[0m 0.746 ms - -[0m
+[0mGET /js/bootstrap3-typeahead.js [36m304[0m 1.694 ms - -[0m
+[0mGET /css/main.css [36m304[0m 1.088 ms - -[0m
+[0mGET /js/dist-perfect-scrollbar.js [36m304[0m 0.761 ms - -[0m
+[0mGET /js/js-bootstrap.bundle.js [36m304[0m 1.489 ms - -[0m
+[0mGET /js/nanobar-nanobar.js [36m304[0m 0.258 ms - -[0m
+[0mGET /js/8518-js-sidebar.menu.js [36m304[0m 0.386 ms - -[0m
+[2020-08-07T20:46:33.368Z] getProblemDetails
+[2020-08-07T20:46:33.368Z] post_url: http://localhost:5056/api/problem/uva-623
+[2020-08-07T20:46:33.402Z] {
+  problem_name: '500!',
+  problem_type: 'classical',
+  problem_difficulty: 1,
+  problem_significance: 1,
+  source_link: 'https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=564',
+  problem_id: '623',
+  oj_name: 'uva',
+  active_status: 'approved',
+  categories: [
+    {
+      category_id: 'factorial',
+      dependency_factor: '6',
+      category_root: 'number_theory',
+      category_name: 'factorial'
+    }
+  ],
+  created_at: 1594714255,
+  updated_at: 1594714255,
+  id: 'uva-623',
+  comment_list: [],
+  vote_count: { like_count: 0, dislike_count: 0 },
+  solve_count: 2,
+  comment_count: 0,
+  resource_list: []
+}
+[2020-08-07T20:46:33.402Z] {
+  problem_name: '500!',
+  problem_type: 'classical',
+  problem_difficulty: 1,
+  problem_significance: 1,
+  source_link: 'https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=564',
+  problem_id: '623',
+  oj_name: 'uva',
+  active_status: 'approved',
+  categories: [
+    {
+      category_id: 'factorial',
+      dependency_factor: '6',
+      category_root: 'number_theory',
+      category_name: 'factorial'
+    }
+  ],
+  created_at: 1594714255,
+  updated_at: 1594714255,
+  id: 'uva-623',
+  comment_list: [],
+  vote_count: { like_count: 0, dislike_count: 0 },
+  solve_count: 2,
+  comment_count: 0,
+  resource_list: []
+}
+[0mGET /problem/view/uva-623/ [36m304[0m 59.164 ms - -[0m
+[0mGET /css/simplemde.min.css [36m304[0m 0.521 ms - -[0m
+[0mGET /css/css-font-awesome.css [36m304[0m 0.477 ms - -[0m
+[0mGET /css/open-sans-fontface-open-sans.css [36m304[0m 1.092 ms - -[0m
+[0mGET /css/css-perfect-scrollbar.css [36m304[0m 0.591 ms - -[0m
+[0mGET /css/css-sidebar.css [36m304[0m 0.401 ms - -[0m
+[0mGET /css/layout.css [36m304[0m 0.717 ms - -[0m
+[0mGET /js/bootstrap3-typeahead.js [36m304[0m 0.813 ms - -[0m
+[0mGET /css/main.css [36m304[0m 0.432 ms - -[0m
+[0mGET /js/simplemde.min.js [36m304[0m 0.840 ms - -[0m
+[0mGET /js/config.js [36m304[0m 0.709 ms - -[0m
+[0mGET /js/js-bootstrap.bundle.js [36m304[0m 0.454 ms - -[0m
+[0mGET /js/dist-perfect-scrollbar.js [36m304[0m 0.583 ms - -[0m
+[0mGET /js/nanobar-nanobar.js [36m304[0m 0.616 ms - -[0m
+[0mGET /js/8518-js-sidebar.menu.js [36m304[0m 0.232 ms - -[0m
+[2020-08-07T20:46:35.962Z] Inside viewProblemList
+[2020-08-07T20:46:35.962Z] getCategoryList called
+[2020-08-07T20:46:35.962Z] post_url: http://localhost:5056/api/category/search/0
+[2020-08-07T20:46:36.455Z] getCategoryList done
+[2020-08-07T20:46:36.455Z] getCategoryList called
+[2020-08-07T20:46:36.455Z] post_url: http://localhost:5056/api/category/search/0
+[2020-08-07T20:46:36.503Z] getCategoryList done
+[0mGET /problem/list/all/ [36m304[0m 566.110 ms - -[0m
+[0mGET /css/simplemde.min.css [36m304[0m 0.891 ms - -[0m
+[0mGET /css/css-font-awesome.css [36m304[0m 0.844 ms - -[0m
+[0mGET /css/open-sans-fontface-open-sans.css [36m304[0m 0.871 ms - -[0m
+[0mGET /css/css-perfect-scrollbar.css [36m304[0m 0.786 ms - -[0m
+[0mGET /css/css-sidebar.css [36m304[0m 0.248 ms - -[0m
+[0mGET /css/main.css [36m304[0m 1.176 ms - -[0m
+[0mGET /css/layout.css [36m304[0m 1.663 ms - -[0m
+[0mGET /js/simplemde.min.js [36m304[0m 1.315 ms - -[0m
+[0mGET /js/bootstrap3-typeahead.js [36m304[0m 1.827 ms - -[0m
+[0mGET /js/config.js [36m304[0m 1.764 ms - -[0m
+[0mGET /css/view-problem.css [36m304[0m 1.676 ms - -[0m
+[0mGET /js/js-bootstrap.bundle.js [36m304[0m 0.524 ms - -[0m
+[0mGET /js/dist-perfect-scrollbar.js [36m304[0m 0.558 ms - -[0m
+[0mGET /js/nanobar-nanobar.js [36m304[0m 0.625 ms - -[0m
+[0mGET /js/8518-js-sidebar.menu.js [36m304[0m 0.673 ms - -[0m
+[2020-08-07T20:46:36.898Z] Request received
+[2020-08-07T20:46:36.898Z] Requested data:
+[2020-08-07T20:46:36.898Z] {
+  draw: 1,
+  columns: [
+    {
+      data: 0,
+      name: '',
+      searchable: true,
+      orderable: true,
+      search: [Object]
+    },
+    {
+      data: 1,
+      name: '',
+      searchable: true,
+      orderable: false,
+      search: [Object]
+    },
+    {
+      data: 2,
+      name: '',
+      searchable: true,
+      orderable: true,
+      search: [Object]
+    },
+    {
+      data: 3,
+      name: '',
+      searchable: true,
+      orderable: false,
+      search: [Object]
+    },
+    {
+      data: 4,
+      name: '',
+      searchable: true,
+      orderable: false,
+      search: [Object]
+    },
+    {
+      data: 5,
+      name: '',
+      searchable: true,
+      orderable: false,
+      search: [Object]
+    },
+    {
+      data: 6,
+      name: '',
+      searchable: true,
+      orderable: false,
+      search: [Object]
+    }
+  ],
+  order: [ { column: 0, dir: 'asc' } ],
+  start: 0,
+  length: 50,
+  search: { value: '', regex: false },
+  sort_by: 'problem_name',
+  sort_order: 'asc',
+  custom_param: {}
+}
+[2020-08-07T20:46:38.666Z] result
+[2020-08-07T20:46:38.666Z] {
+  draw: 1,
+  recordsTotal: 1305,
+  recordsFiltered: 1305,
+  data: [
+    {
+      problem_name: '"Center" of perimeter midpoints',
+      problem_type: 'None',
+      problem_difficulty: 5.5,
+      problem_significance: 2,
+      source_link: 'https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4001',
+      problem_id: '12556',
+      oj_name: 'uva',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714212,
+      updated_at: 1594714212,
+      id: 'uva-12556',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: '"strcmp()" Anyone?',
+      problem_type: 'None',
+      problem_difficulty: 6,
+      problem_significance: 1,
+      source_link: 'https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=2832',
+      problem_id: '11732',
+      oj_name: 'uva',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714174,
+      updated_at: 1594714174,
+      id: 'uva-11732',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: '10:06:02',
+      problem_type: 'None',
+      problem_difficulty: 2.5,
+      problem_significance: 2,
+      source_link: 'http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4023',
+      problem_id: '12578',
+      oj_name: 'uva',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714207,
+      updated_at: 1594714207,
+      id: 'uva-12578',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 2,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: '2D-SORT',
+      problem_type: 'None',
+      problem_difficulty: 2.5,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/SORT2D/en/',
+      problem_id: 'SORT2D',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714141,
+      updated_at: 1594714141,
+      id: 'spoj-SORT2D',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: '3-cycles',
+      problem_type: 'None',
+      problem_difficulty: 5,
+      problem_significance: 1,
+      source_link: 'https://codeforces.com/contest/41/problem/E',
+      problem_id: '41/E',
+      oj_name: 'codeforces',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714228,
+      updated_at: 1594714228,
+      id: 'codeforces-41-E',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: '500!',
+      problem_type: 'classical',
+      problem_difficulty: 1,
+      problem_significance: 1,
+      source_link: 'https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=564',
+      problem_id: '623',
+      oj_name: 'uva',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714255,
+      updated_at: 1594714255,
+      id: 'uva-623',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 2,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Childhood Game',
+      problem_type: 'None',
+      problem_difficulty: 3.24,
+      problem_significance: 6.76,
+      source_link: 'http://lightoj.com/volume_showproblem.php?problem=1020',
+      problem_id: '1020',
+      oj_name: 'lightoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714184,
+      updated_at: 1594714184,
+      id: 'lightoj-1020',
+      comment_list: [Array],
+      vote_count: [Object],
+      solve_count: 2,
+      comment_count: 1,
+      resource_list: [Array],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Dangerous Maze',
+      problem_type: 'None',
+      problem_difficulty: 3.63,
+      problem_significance: 6.37,
+      source_link: 'http://lightoj.com/volume_showproblem.php?problem=1027',
+      problem_id: '1027',
+      oj_name: 'lightoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714164,
+      updated_at: 1594714164,
+      id: 'lightoj-1027',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 2,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Determined Cleanup',
+      problem_type: 'None',
+      problem_difficulty: 4,
+      problem_significance: 1,
+      source_link: 'https://codeforces.com/contest/934/problem/D',
+      problem_id: '934/D',
+      oj_name: 'codeforces',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714161,
+      updated_at: 1594714161,
+      id: 'codeforces-934-D',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Different Kind of Sorting',
+      problem_type: 'None',
+      problem_difficulty: 3,
+      problem_significance: 1,
+      source_link: 'https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=2338',
+      problem_id: '11353',
+      oj_name: 'uva',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714161,
+      updated_at: 1594714161,
+      id: 'uva-11353',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 1,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Famous Grid',
+      problem_type: 'None',
+      problem_difficulty: 4,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/SPIRALGR/',
+      problem_id: 'SPIRALGR',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714177,
+      updated_at: 1594714177,
+      id: 'spoj-SPIRALGR',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Famous Stone Collector',
+      problem_type: 'None',
+      problem_difficulty: 5,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/STONE2/',
+      problem_id: 'STONE2',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714253,
+      updated_at: 1594714253,
+      id: 'spoj-STONE2',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Gift from the Setter',
+      problem_type: 'None',
+      problem_difficulty: 4.98,
+      problem_significance: 5.02,
+      source_link: 'http://lightoj.com/volume_showproblem.php?problem=1328',
+      problem_id: '1328',
+      oj_name: 'lightoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714147,
+      updated_at: 1594714147,
+      id: 'lightoj-1328',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 2,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A New Function',
+      problem_type: 'None',
+      problem_difficulty: 7.5,
+      problem_significance: 1,
+      source_link: 'https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=1771',
+      problem_id: '10830',
+      oj_name: 'uva',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714156,
+      updated_at: 1594714156,
+      id: 'uva-10830',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A New Function',
+      problem_type: 'None',
+      problem_difficulty: 5.36,
+      problem_significance: 4.64,
+      source_link: 'http://lightoj.com/volume_showproblem.php?problem=1098',
+      problem_id: '1098',
+      oj_name: 'lightoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714219,
+      updated_at: 1594714219,
+      id: 'lightoj-1098',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 2,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Perfect Murder',
+      problem_type: 'None',
+      problem_difficulty: 5.27,
+      problem_significance: 4.73,
+      source_link: 'http://lightoj.com/volume_showproblem.php?problem=1201',
+      problem_id: '1201',
+      oj_name: 'lightoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714143,
+      updated_at: 1594714143,
+      id: 'lightoj-1201',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 2,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Question of Time',
+      problem_type: 'None',
+      problem_difficulty: 4.39,
+      problem_significance: 5.61,
+      source_link: 'http://lightoj.com/volume_showproblem.php?problem=1430',
+      problem_id: '1430',
+      oj_name: 'lightoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714185,
+      updated_at: 1594714185,
+      id: 'lightoj-1430',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Refining Company',
+      problem_type: 'None',
+      problem_difficulty: 5.37,
+      problem_significance: 4.63,
+      source_link: 'http://lightoj.com/volume_showproblem.php?problem=1036',
+      problem_id: '1036',
+      oj_name: 'lightoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714167,
+      updated_at: 1594714167,
+      id: 'lightoj-1036',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 2,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Toy Company',
+      problem_type: 'None',
+      problem_difficulty: 4.44,
+      problem_significance: 5.56,
+      source_link: 'http://lightoj.com/volume_showproblem.php?problem=1039',
+      problem_id: '1039',
+      oj_name: 'lightoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714223,
+      updated_at: 1594714223,
+      id: 'lightoj-1039',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 2,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A Wedding Party',
+      problem_type: 'None',
+      problem_difficulty: 7.21,
+      problem_significance: 2.79,
+      source_link: 'http://lightoj.com/volume_showproblem.php?problem=1316',
+      problem_id: '1316',
+      oj_name: 'lightoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714198,
+      updated_at: 1594714198,
+      id: 'lightoj-1316',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 2,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'A conjecture of Paul Erdős',
+      problem_type: 'None',
+      problem_difficulty: 4,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/HS08PAUL/',
+      problem_id: 'HS08PAUL',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714162,
+      updated_at: 1594714162,
+      id: 'spoj-HS08PAUL',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'ACIS, A Contagious vIruS',
+      problem_type: 'None',
+      problem_difficulty: 5.5,
+      problem_significance: 2,
+      source_link: 'https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=5028',
+      problem_id: '13117',
+      oj_name: 'uva',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714213,
+      updated_at: 1594714213,
+      id: 'uva-13117',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'AGTC',
+      problem_type: 'None',
+      problem_difficulty: 5,
+      problem_significance: 2,
+      source_link: 'https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3648',
+      problem_id: '1207',
+      oj_name: 'uva',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714236,
+      updated_at: 1594714236,
+      id: 'uva-1207',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'AND-permutations',
+      problem_type: 'None',
+      problem_difficulty: 7,
+      problem_significance: 1,
+      source_link: 'https://codeforces.com/contest/909/problem/F',
+      problem_id: '909/F',
+      oj_name: 'codeforces',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714226,
+      updated_at: 1594714226,
+      id: 'codeforces-909-F',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Aphids',
+      problem_type: 'None',
+      problem_difficulty: 7,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADAAPHID/',
+      problem_id: 'ADAAPHID',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714145,
+      updated_at: 1594714145,
+      id: 'spoj-ADAAPHID',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Cherry',
+      problem_type: 'None',
+      problem_difficulty: 5.5,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADACHERY/',
+      problem_id: 'ADACHERY',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714202,
+      updated_at: 1594714202,
+      id: 'spoj-ADACHERY',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [Array],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Coins',
+      problem_type: 'None',
+      problem_difficulty: 5.5,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADACOINS/',
+      problem_id: 'ADACOINS',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714202,
+      updated_at: 1594714202,
+      id: 'spoj-ADACOINS',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Cucumber',
+      problem_type: 'None',
+      problem_difficulty: 4,
+      problem_significance: 2,
+      source_link: 'https://www.spoj.com/problems/ADAPICK/',
+      problem_id: 'ADAPICK',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714204,
+      updated_at: 1594714204,
+      id: 'spoj-ADAPICK',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Cycle',
+      problem_type: 'classical',
+      problem_difficulty: 3.5,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADACYCLE/',
+      problem_id: 'ADACYCLE',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714175,
+      updated_at: 1594714175,
+      id: 'spoj-ADACYCLE',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Digits 2',
+      problem_type: 'None',
+      problem_difficulty: 6,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADADIGIT/',
+      problem_id: 'ADADIGIT',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714156,
+      updated_at: 1594714156,
+      id: 'spoj-ADADIGIT',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Expenses',
+      problem_type: 'None',
+      problem_difficulty: 4,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADASUM/',
+      problem_id: 'ADASUM',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714249,
+      updated_at: 1594714249,
+      id: 'spoj-ADASUM',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Furrows',
+      problem_type: 'None',
+      problem_difficulty: 5.5,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADAFUROW/',
+      problem_id: 'ADAFUROW',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714202,
+      updated_at: 1594714202,
+      id: 'spoj-ADAFUROW',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Greenflies',
+      problem_type: 'None',
+      problem_difficulty: 6,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADAGF/',
+      problem_id: 'ADAGF',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714186,
+      updated_at: 1594714186,
+      id: 'spoj-ADAGF',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Harvest',
+      problem_type: 'None',
+      problem_difficulty: 6,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADACROP/',
+      problem_id: 'ADACROP',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714145,
+      updated_at: 1594714145,
+      id: 'spoj-ADACROP',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Homework',
+      problem_type: 'None',
+      problem_difficulty: 6.5,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADAHW/',
+      problem_id: 'ADAHW',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714156,
+      updated_at: 1594714156,
+      id: 'spoj-ADAHW',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Indexing',
+      problem_type: 'None',
+      problem_difficulty: 5,
+      problem_significance: 1,
+      source_link: 'spoj.com/problems/ADAINDEX/',
+      problem_id: 'ADAINDEX',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714173,
+      updated_at: 1594714173,
+      id: 'spoj-ADAINDEX',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Island',
+      problem_type: 'None',
+      problem_difficulty: 6,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADASEA/',
+      problem_id: 'ADASEA',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714190,
+      updated_at: 1594714190,
+      id: 'spoj-ADASEA',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Jobs',
+      problem_type: 'classical',
+      problem_difficulty: 6.5,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADAJOBS/',
+      problem_id: 'ADAJOBS',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714149,
+      updated_at: 1594714149,
+      id: 'spoj-ADAJOBS',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Kohlrabi',
+      problem_type: 'None',
+      problem_difficulty: 4,
+      problem_significance: 2,
+      source_link: 'https://www.spoj.com/problems/ADAKOHL/',
+      problem_id: 'ADAKOHL',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714204,
+      updated_at: 1594714204,
+      id: 'spoj-ADAKOHL',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Mold',
+      problem_type: 'None',
+      problem_difficulty: 6,
+      problem_significance: 2,
+      source_link: 'https://www.spoj.com/problems/ADAMOLD/',
+      problem_id: 'ADAMOLD',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714237,
+      updated_at: 1594714237,
+      id: 'spoj-ADAMOLD',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Mulberry',
+      problem_type: 'None',
+      problem_difficulty: 6.5,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADABERRY/',
+      problem_id: 'ADABERRY',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714185,
+      updated_at: 1594714185,
+      id: 'spoj-ADABERRY',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Pet',
+      problem_type: 'None',
+      problem_difficulty: 6,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADAPET/',
+      problem_id: 'ADAPET',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714150,
+      updated_at: 1594714150,
+      id: 'spoj-ADAPET',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Prime',
+      problem_type: 'None',
+      problem_difficulty: 4.5,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADAPRIME/',
+      problem_id: 'ADAPRIME',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714161,
+      updated_at: 1594714161,
+      id: 'spoj-ADAPRIME',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Salesman',
+      problem_type: 'None',
+      problem_difficulty: 5,
+      problem_significance: 2,
+      source_link: 'https://www.spoj.com/problems/ADASALE/',
+      problem_id: 'ADASALE',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714237,
+      updated_at: 1594714237,
+      id: 'spoj-ADASALE',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Subsequence',
+      problem_type: 'None',
+      problem_difficulty: 4.5,
+      problem_significance: 2,
+      source_link: 'https://www.spoj.com/problems/ADASEQEN/',
+      problem_id: 'ADASEQEN',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714237,
+      updated_at: 1594714237,
+      id: 'spoj-ADASEQEN',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Substring',
+      problem_type: 'None',
+      problem_difficulty: 6,
+      problem_significance: 2,
+      source_link: 'https://www.spoj.com/problems/ADASTRNG/',
+      problem_id: 'ADASTRNG',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714228,
+      updated_at: 1594714228,
+      id: 'spoj-ADASTRNG',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Teams',
+      problem_type: 'None',
+      problem_difficulty: 3.5,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADATEAMS/',
+      problem_id: 'ADATEAMS',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714248,
+      updated_at: 1594714248,
+      id: 'spoj-ADATEAMS',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Terramorphing',
+      problem_type: 'None',
+      problem_difficulty: 6,
+      problem_significance: 2,
+      source_link: 'https://www.spoj.com/problems/ADAPHOTO/',
+      problem_id: 'ADAPHOTO',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714228,
+      updated_at: 1594714228,
+      id: 'spoj-ADAPHOTO',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Travelling Salesman',
+      problem_type: 'None',
+      problem_difficulty: 5,
+      problem_significance: 2,
+      source_link: 'https://www.spoj.com/problems/ADASALES/',
+      problem_id: 'ADASALES',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714230,
+      updated_at: 1594714230,
+      id: 'spoj-ADASALES',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    },
+    {
+      problem_name: 'Ada and Trees',
+      problem_type: 'None',
+      problem_difficulty: 6,
+      problem_significance: 1,
+      source_link: 'https://www.spoj.com/problems/ADATREE/',
+      problem_id: 'ADATREE',
+      oj_name: 'spoj',
+      active_status: 'approved',
+      categories: [Array],
+      created_at: 1594714186,
+      updated_at: 1594714186,
+      id: 'spoj-ADATREE',
+      comment_list: [],
+      vote_count: [Object],
+      solve_count: 0,
+      comment_count: 0,
+      resource_list: [],
+      solved: 'no',
+      category_dependency_list: [Array]
+    }
+  ]
+}
+[0mPOST /api/database/problem [32m200[0m 1774.261 ms - -[0m
+[2020-08-07T20:46:40.559Z] getCategoryDetails
+[2020-08-07T20:46:40.559Z] post_url: http://localhost:5056/api/category/trie
+[2020-08-07T20:46:40.593Z] {
+  category_name: 'trie',
+  category_title: 'Trie',
+  category_root: 'data_structure',
+  category_root_title: 'Data Structure',
+  category_difficulty: '4.0',
+  category_importance: '7.0',
+  factor: '2.0',
+  short_name: 'None',
+  score_percentage: '6.0',
+  created_at: 1594674647,
+  updated_at: 1594674647,
+  category_id: 'trie',
+  comment_list: [],
+  vote_count: { like_count: 0, dislike_count: 0 },
+  comment_count: 0,
+  resource_list: [],
+  problem_count: 26
+}
+[2020-08-07T20:46:40.593Z] {
+  category_name: 'trie',
+  category_title: 'Trie',
+  category_root: 'data_structure',
+  category_root_title: 'Data Structure',
+  category_difficulty: '4.0',
+  category_importance: '7.0',
+  factor: '2.0',
+  short_name: 'None',
+  score_percentage: '6.0',
+  created_at: 1594674647,
+  updated_at: 1594674647,
+  category_id: 'trie',
+  comment_list: [],
+  vote_count: { like_count: 0, dislike_count: 0 },
+  comment_count: 0,
+  resource_list: [],
+  problem_count: 26
+}
+[0mGET /category/view/trie/ [32m200[0m 79.487 ms - 18912[0m
+[0mGET /css/simplemde.min.css [36m304[0m 1.003 ms - -[0m
+[0mGET /css/css-font-awesome.css [36m304[0m 0.756 ms - -[0m
+[0mGET /css/open-sans-fontface-open-sans.css [36m304[0m 0.737 ms - -[0m
+[0mGET /css/css-perfect-scrollbar.css [36m304[0m 0.765 ms - -[0m
+[0mGET /css/css-sidebar.css [36m304[0m 0.894 ms - -[0m
+[0mGET /css/layout.css [36m304[0m 0.549 ms - -[0m
+[0mGET /js/bootstrap3-typeahead.js [36m304[0m 1.224 ms - -[0m
+[0mGET /css/main.css [36m304[0m 0.994 ms - -[0m
+[0mGET /js/simplemde.min.js [36m304[0m 0.670 ms - -[0m
+[0mGET /js/config.js [36m304[0m 0.657 ms - -[0m
+[0mGET /js/js-bootstrap.bundle.js [36m304[0m 0.657 ms - -[0m
+[0mGET /js/dist-perfect-scrollbar.js [36m304[0m 0.740 ms - -[0m
+[0mGET /js/nanobar-nanobar.js [36m304[0m 0.287 ms - -[0m
+[0mGET /js/8518-js-sidebar.menu.js [36m304[0m 0.275 ms - -[0m
+[2020-08-07T20:46:42.755Z] viewCategoryList called
+[2020-08-07T20:46:42.755Z] getCategoryList called
+[2020-08-07T20:46:42.755Z] post_url: http://localhost:5056/api/category/search/0
+[2020-08-07T20:46:42.814Z] getCategoryList done
+[2020-08-07T20:46:42.814Z] {
+  category_list: [
+    {
+      category_name: 'base',
+      category_title: 'Base',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '2.4',
+      category_importance: '10.0',
+      factor: '1.0',
+      short_name: 'Base',
+      score_percentage: '10.0',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'base',
+      problem_count: 175,
+      solve_count: 0
+    },
+    {
+      category_name: 'combinatorics',
+      category_title: 'Combinatorics',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '5.0',
+      category_importance: '6.0',
+      factor: '1.0',
+      short_name: 'Combi',
+      score_percentage: '8.0',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'combinatorics',
+      problem_count: 83,
+      solve_count: 0
+    },
+    {
+      category_name: 'data_structure',
+      category_title: 'Data Structure',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '6.0',
+      category_importance: '9.0',
+      factor: '1.0',
+      short_name: 'DS',
+      score_percentage: '12.0',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'data-structure',
+      problem_count: 174,
+      solve_count: 0
+    },
+    {
+      category_name: 'dynamic_programming',
+      category_title: 'Dynamic Programming',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '6.0',
+      category_importance: '8.0',
+      factor: '1.0',
+      short_name: 'DP',
+      score_percentage: '10.0',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'dynamic-programming',
+      problem_count: 262,
+      solve_count: 0
+    },
+    {
+      category_name: 'game_theory',
+      category_title: 'Game Theory',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '3.5',
+      category_importance: '3.0',
+      factor: '1.0',
+      short_name: 'GT',
+      score_percentage: '2.0',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'game-theory',
+      problem_count: 0,
+      solve_count: 0
+    },
+    {
+      category_name: 'geometry',
+      category_title: 'Geometry',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '7.0',
+      category_importance: '5.0',
+      factor: '1.0',
+      short_name: 'Geo',
+      score_percentage: '7.0',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'geometry',
+      problem_count: 145,
+      solve_count: 0
+    },
+    {
+      category_name: 'graph',
+      category_title: 'Graph',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '5.0',
+      category_importance: '8.0',
+      factor: '1.0',
+      short_name: 'Graph',
+      score_percentage: '10.0',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'graph',
+      problem_count: 263,
+      solve_count: 0
+    },
+    {
+      category_name: 'greedy',
+      category_title: 'Greedy',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '3.4',
+      category_importance: '7.0',
+      factor: '1.0',
+      short_name: 'Greedy',
+      score_percentage: '7.0',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'greedy',
+      problem_count: 66,
+      solve_count: 0
+    },
+    {
+      category_name: 'mathematics',
+      category_title: 'Mathematics',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '8.0',
+      category_importance: '4.5',
+      factor: '1.0',
+      short_name: 'Math',
+      score_percentage: '5.0',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'mathematics',
+      problem_count: 138,
+      solve_count: 0
+    },
+    {
+      category_name: 'miscellaneous',
+      category_title: 'Miscellaneous',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '6.0',
+      category_importance: '6.5',
+      factor: '1.0',
+      short_name: 'Misc',
+      score_percentage: '7.0',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'miscellaneous',
+      problem_count: 98,
+      solve_count: 0
+    },
+    {
+      category_name: 'number_theory',
+      category_title: 'Number Theory',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '5.5',
+      category_importance: '8.5',
+      factor: '1.0',
+      short_name: 'NT',
+      score_percentage: '10.0',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'number-theory',
+      problem_count: 169,
+      solve_count: 0
+    },
+    {
+      category_name: 'probability_statistics',
+      category_title: 'Probability Statistics',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '5.0',
+      category_importance: '3.0',
+      factor: '1.0',
+      short_name: 'P&S',
+      score_percentage: '3.5',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'probability-statistics',
+      problem_count: 13,
+      solve_count: 0
+    },
+    {
+      category_name: 'string_processing',
+      category_title: 'String Processing',
+      category_root: 'root',
+      category_root_title: 'Root',
+      category_difficulty: '6.5',
+      category_importance: '6.5',
+      factor: '1.0',
+      short_name: 'String',
+      score_percentage: '8.5',
+      created_at: 1594674645,
+      updated_at: 1594674645,
+      category_id: 'string-processing',
+      problem_count: 53,
+      solve_count: 0
+    }
+  ]
+}
+[0mGET /category/list/ [36m304[0m 75.550 ms - -[0m
+[0mGET /css/simplemde.min.css [36m304[0m 0.271 ms - -[0m
+[0mGET /css/css-font-awesome.css [36m304[0m 0.708 ms - -[0m
+[0mGET /css/open-sans-fontface-open-sans.css [36m304[0m 0.831 ms - -[0m
+[0mGET /css/css-perfect-scrollbar.css [36m304[0m 0.874 ms - -[0m
+[0mGET /css/css-sidebar.css [36m304[0m 0.910 ms - -[0m
+[0mGET /css/layout.css [36m304[0m 0.953 ms - -[0m
+[0mGET /js/bootstrap3-typeahead.js [36m304[0m 0.529 ms - -[0m
+[0mGET /js/simplemde.min.js [36m304[0m 0.518 ms - -[0m
+[0mGET /css/main.css [36m304[0m 0.454 ms - -[0m
+[0mGET /css/view-problem.css [36m304[0m 0.493 ms - -[0m
+[0mGET /js/config.js [36m304[0m 0.506 ms - -[0m
+[0mGET /js/js-bootstrap.bundle.js [36m304[0m 0.252 ms - -[0m
+[0mGET /js/dist-perfect-scrollbar.js [36m304[0m 0.436 ms - -[0m
+[0mGET /js/nanobar-nanobar.js [36m304[0m 0.487 ms - -[0m
+[0mGET /js/8518-js-sidebar.menu.js [36m304[0m 0.736 ms - -[0m
+[2020-08-07T20:46:45.972Z] viewCategoryListByRoot called
+[2020-08-07T20:46:45.972Z] param: 
+[2020-08-07T20:46:45.972Z] { category_root: 'combinatorics' }
+[2020-08-07T20:46:45.972Z] getCategoryList called
+[2020-08-07T20:46:45.972Z] post_url: http://localhost:5056/api/category/search/0
+[2020-08-07T20:46:46.006Z] getCategoryList done
+[2020-08-07T20:46:46.006Z] {
+  category_list: [
+    {
+      category_name: 'basic_permutation_combination',
+      category_title: 'Basic Permutation Combination',
+      category_root: 'combinatorics',
+      category_root_title: 'Combinatorics',
+      category_difficulty: '2.0',
+      category_importance: '10.0',
+      factor: '1.0',
+      short_name: 'None',
+      score_percentage: '40',
+      created_at: 1594674646,
+      updated_at: 1594674646,
+      category_id: 'basic-permutation-combination',
+      problem_count: 83,
+      solve_count: 0
+    },
+    {
+      category_name: 'star_and_bars_theorem',
+      category_title: 'Star And Bars Theorem',
+      category_root: 'combinatorics',
+      category_root_title: 'Combinatorics',
+      category_difficulty: '3.5',
+      category_importance: '6.0',
+      factor: '2.5',
+      short_name: 'None',
+      score_percentage: '12',
+      created_at: 1594674646,
+      updated_at: 1594674646,
+      category_id: 'star-and-bars-theorem',
+      problem_count: 0,
+      solve_count: 0
+    },
+    {
+      category_name: 'catalan_number',
+      category_title: 'Catalan Number',
+      category_root: 'combinatorics',
+      category_root_title: 'Combinatorics',
+      category_difficulty: '3.0',
+      category_importance: '5.0',
+      factor: '1.15',
+      short_name: 'None',
+      score_percentage: '12',
+      created_at: 1594674646,
+      updated_at: 1594674646,
+      category_id: 'catalan-number',
+      problem_count: 0,
+      solve_count: 0
+    },
+    {
+      category_name: 'inclusion_exclusion',
+      category_title: 'Inclusion Exclusion',
+      category_root: 'combinatorics',
+      category_root_title: 'Combinatorics',
+      category_difficulty: '4.5',
+      category_importance: '8.0',
+      factor: '1.15',
+      short_name: 'None',
+      score_percentage: '25',
+      created_at: 1594674646,
+      updated_at: 1594674646,
+      category_id: 'inclusion-exclusion',
+      problem_count: 0,
+      solve_count: 0
+    },
+    {
+      category_name: 'derrangement',
+      category_title: 'Derrangement',
+      category_root: 'combinatorics',
+      category_root_title: 'Combinatorics',
+      category_difficulty: '5.5',
+      category_importance: '4.0',
+      factor: '2.15',
+      short_name: 'None',
+      score_percentage: '6',
+      created_at: 1594674646,
+      updated_at: 1594674646,
+      category_id: 'derrangement',
+      problem_count: 0,
+      solve_count: 0
+    },
+    {
+      category_name: 'sterling_number',
+      category_title: 'Sterling Number',
+      category_root: 'combinatorics',
+      category_root_title: 'Combinatorics',
+      category_difficulty: '7.5',
+      category_importance: '4.0',
+      factor: '2.5',
+      short_name: 'None',
+      score_percentage: '5',
+      created_at: 1594674646,
+      updated_at: 1594674646,
+      category_id: 'sterling-number',
+      problem_count: 0,
+      solve_count: 0
+    }
+  ]
+}
+[0mGET /category/list/root/combinatorics/ [32m200[0m 46.931 ms - 18922[0m
+[0mGET /css/simplemde.min.css [36m304[0m 0.398 ms - -[0m
+[0mGET /css/css-font-awesome.css [36m304[0m 0.809 ms - -[0m
+[0mGET /css/open-sans-fontface-open-sans.css [36m304[0m 0.437 ms - -[0m
+[0mGET /css/css-perfect-scrollbar.css [36m304[0m 0.462 ms - -[0m
+[0mGET /css/css-sidebar.css [36m304[0m 0.818 ms - -[0m
+[0mGET /css/layout.css [36m304[0m 0.644 ms - -[0m
+[0mGET /css/main.css [36m304[0m 0.655 ms - -[0m
+[0mGET /css/view-problem.css [36m304[0m 0.837 ms - -[0m
+[0mGET /js/bootstrap3-typeahead.js [36m304[0m 1.218 ms - -[0m
+[0mGET /js/simplemde.min.js [36m304[0m 0.772 ms - -[0m
+[0mGET /js/config.js [36m304[0m 0.917 ms - -[0m
+[0mGET /js/js-bootstrap.bundle.js [36m304[0m 0.497 ms - -[0m
+[0mGET /js/nanobar-nanobar.js [36m304[0m 0.594 ms - -[0m
+[0mGET /js/dist-perfect-scrollbar.js [36m304[0m 0.600 ms - -[0m
+[0mGET /js/8518-js-sidebar.menu.js [36m304[0m 0.549 ms - -[0m

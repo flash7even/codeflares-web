@@ -2,6 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
+require('log-timestamp');
 
 var team_server = require('./servers/team_services.js');
 var training_server = require('./servers/training_services.js');

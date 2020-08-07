@@ -1,3 +1,4 @@
+require('log-timestamp');
 
 module.exports.add_session_alert = function(req, alert_text){
     var sess = req.session;

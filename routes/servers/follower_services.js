@@ -1,5 +1,8 @@
 var config = require('../../config.js');
 const axios = require('axios');
+require('log-timestamp');
+
+
 var follow_url = config.server_host + 'follower/follow/'
 var unfollow_url = config.server_host + 'follower/unfollow/'
 var follow_status_url = config.server_host + 'follower/status/'

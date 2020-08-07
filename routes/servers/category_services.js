@@ -1,5 +1,6 @@
 var config = require('../../config.js');
 const axios = require('axios');
+require('log-timestamp');
 
 var category_search_url = config.server_host + 'category/search/'
 var category_submit_url = config.server_host + 'category/'

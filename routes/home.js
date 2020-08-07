@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../config.js');
 const axios = require('axios');
+require('log-timestamp');
 
 var logout_url = config.server_host + 'auth/logout/at'
 

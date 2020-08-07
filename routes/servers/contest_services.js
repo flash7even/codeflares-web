@@ -1,5 +1,6 @@
 var config = require('../../config.js');
 const axios = require('axios');
+require('log-timestamp');
 
 var contest_search_url = config.server_host + 'contest/search'
 var contest_search_public_url = config.server_host + 'contest/public/search'
