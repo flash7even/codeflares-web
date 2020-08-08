@@ -102,6 +102,10 @@ module.exports = function(newApp) {
     newApp.get('/category/resource/add/*', categoryController.addCategoryResourceForm);
     newApp.post('/category/resource/add/*', categoryController.addCategoryResourceFormSubmit);
 
+    newApp.get('/resource/update/*', problemController.updateResource);
+    newApp.post('/resource/update/*', problemController.updateResourceSubmit);
+    newApp.get('/resource/delete/*', problemController.deleteResource);
+
 
     newApp.get('/category/add/', categoryController.addCategoryForm);
     newApp.get('/category/view/*', categoryController.viewSingleCategory);

@@ -112,7 +112,7 @@
                     <td>Credit</td>
                     <td>Author</td>
                     <td>Date</td>
-                    <td>Source</td>
+                    <td>Action</td>
                 </tr>
             </thead>
             <tbody>
@@ -389,14 +389,25 @@
 
         function getResourceList(){
             console.log("getResourceList")
+            var logged_in_user = "{{session.user_id}}"
             var dt_list = [];
             {{#each resource_list}}
                 var resource_writer = '<a href = "/profile/{{resource_writer_handle}}/" style="color: {{resource_writer_skill_color}}; font-weight:700;">{{resource_writer_handle}}</a>'
                 var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
                 action_link += "</div>"
-                var resource_link = `<a style="color: #3d87b9;" href="{{resource_link}}"><i class="fas fa-external-link-alt"></i></a>`
+                var resource_link = `<a href="{{resource_link}}" title="View" style="color: #3d87b9; padding-right: 3px;"><i class="fas fa-external-link-alt"></i></a>`
+                var update_link = `<a href="/resource/update/{{id}}/" title="Update" data-toggle="tooltip" style="color: #5bbbd3; padding-right: 3px;"><i class="fas fa-edit"></i></a>`
+                var delete_link = `<a href="/resource/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(180, 88, 1); padding-right: 3px;"><i class="fas fa-trash"></i></a>`
+                action_link += resource_link
+                if(logged_in_user){
+                    action_link += update_link
+                    action_link += delete_link
+                }
+                action_link += "</div>"
+                
                 var resource_body = `<pre ng-show = "textFile.isPresent"><span>{{resource_body}}</span></pre>`
-                var data = ["{{resource_title}}", resource_body, resource_writer, "{{resource_owner}}", "{{updated_at}}", resource_link];
+                var resource_title = `<a href="{{resource_link}}"><b>{{resource_title}}</b></a>`
+                var data = [resource_title, resource_body, resource_writer, "{{resource_owner}}", "{{updated_at}}", action_link];
                 dt_list.push(data)
             {{/each}}
 

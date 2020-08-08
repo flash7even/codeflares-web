@@ -157,4 +157,55 @@ module.exports.updateProblemData = async function(res, req, problem_id, data) {
         res.render('error_page', {});
     }
     return response.data
-  };
+};
+
+module.exports.deleteResourceDetails = async function(res, req, resource_id) {
+    var url = config.server_host + 'resource/' + resource_id
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.delete(url, auth_config)
+    .catch(error => {
+        console.error(error)
+        res.render('error_page', {});
+    })
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+};
+
+module.exports.getResourceDetails = async function(res, req, resource_id) {
+    var url = config.server_host + 'resource/' + resource_id
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.get(url, auth_config)
+    .catch(error => {
+        console.error(error)
+        res.render('error_page', {});
+    })
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+};
+
+module.exports.updateResourceDetails = async function(res, req, data, resource_id) {
+    var url = config.server_host + 'resource/' + resource_id
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.put(url, data, auth_config)
+    .catch(error => {
+        console.error(error)
+        res.render('error_page', {});
+    })
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+};

@@ -1,0 +1,60 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<div class="form-type-1" style="width: 80%;">	
+	<div class="cfs-title-1">
+		<h5 style="text-align: center;"><b>Update Resource Details</b></h5>
+	</div>
+	<br>
+    <form action="/resource/update/{{id}}/" method="post" style="padding: 10px;">
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				    <label><b>Resource Name<span style="color: brown; font-size: 12px;"><sup>*</sup></span></b></label>
+                    <div class="input-group">
+                        <input type="text" id="resource_title" class="form-control" name="resource_title" value="{{resource_title}}">
+                    </div>
+                </div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label><b>Resource Body</b></label>
+				<div class="input-group">
+					<textarea type="text" id="resource_body" class="form-control blog-post-text-box" name="resource_body"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label><b>Resource Type</b></label>
+				<div class="input-group">
+					<input type="text" title="resource_type" id="resource_type" class="form-control" name="resource_type" value="{{resource_type}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label><b>Resource Credit</b></label>
+				<div class="input-group">
+					<input type="text" title="resource_owner" id="resource_owner" class="form-control" name="resource_owner" value="{{resource_owner}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label><b>Resource Link</b></label>
+				<div class="input-group">
+					<input type="text" id="resource_link" class="form-control" name="resource_link" value="{{resource_link}}">
+				</div>
+			</div>
+		</div>
+		<div class="form-group submit-btn-div">
+			<button type="submit" class="btn submit-btn btn-info btn-block btn">Update Resource</button>
+		</div>
+	</form>
+</div>
+
+<script>
+	var resource_body = `{{resource_body}}`
+	$("textarea#resource_body").val(resource_body);
+</script>

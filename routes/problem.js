@@ -288,4 +288,34 @@ router.disapproveProblem = async function(req, res, next) {
   res.redirect('back')
 }
 
+router.deleteResource = async function(req, res, next) {
+  console.log('deleteResource called')
+  var url = req.url
+  var words = url.split("/");
+  var resource_id = words[words.length-2]
+  await problem_server.deleteResourceDetails(res, req, resource_id)
+  jshelper.sleep(1000)
+  res.redirect('back');
+}
+
+router.updateResource = async function(req, res, next) {
+  console.log('updateResource called')
+  var url = req.url
+  var words = url.split("/");
+  var resource_id = words[words.length-2]
+  var resource_details = await problem_server.getResourceDetails(res, req, resource_id)
+  console.log('resource_details:')
+  console.log(resource_details)
+  res.render('update_resource', resource_details);
+}
+
+router.updateResourceSubmit = async function(req, res, next) {
+  console.log('updateResourceSubmit called')
+  var url = req.url
+  var words = url.split("/");
+  var resource_id = words[words.length-2]
+  await problem_server.updateResourceDetails(res, req, req.body, resource_id)
+  res.redirect('back');
+}
+
 module.exports = router;
