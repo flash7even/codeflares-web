@@ -9,6 +9,10 @@ var flash      = require('req-flash'); //
 require('log-timestamp');
 var expressHbs = require('express-handlebars'), Handlebars = require('handlebars');
 const app = require("express")();
+const DeviceDetector = require('node-device-detector');
+const userAgent = 'Mozilla/5.0 (Linux; Android 5.0; NX505J Build/KVT49L) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.78 Mobile Safari/537.36';
+const device_detector = new DeviceDetector;
+var device = require('express-device');
 
 //view engine setup
 app.set("views", path.join(__dirname, "views")); //setting views directory for views.
@@ -59,6 +63,7 @@ app.set("view engine", "hbs"); //setting view engine as handlebars
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(device.capture());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: 'a@b@ab@123',saveUninitialized: true,resave: true}));
@@ -73,6 +78,10 @@ var requestAuthenticate = async function (req, res, next) {
 	var ip_address = req.connection.remoteAddress
 	var url = req.url
 	console.log('REQ_AUTH - ip_address: ' + ip_address + ' hit: ' + url)
+	const device_details = device_detector.detect(userAgent);
+	console.log('REQ_AUTH - device_type: ' + req.device.type)
+	console.log('REQ_AUTH - device_info: ')
+	console.log(device_details)
 	next()
 }
 app.use(requestAuthenticate)
