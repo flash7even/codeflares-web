@@ -80,21 +80,21 @@ var requestAuthenticate = async function (req, res, next) {
 
 	if(url == error_url){
 		next()
+	}else{
+		var device_type = req.device.type
+		console.log('REQ_AUTH - device_type: ' + device_type)
+		if (device_type == "bot") {
+			console.log('REQ_AUTH - Request ignore due to blacklisted device type')
+			res.redirect(error_url)
+		}else{
+			var ip_address = req.connection.remoteAddress
+			console.log('REQ_AUTH - ip_address: ' + ip_address + ' hit: ' + url)
+			const device_details = device_detector.detect(userAgent);
+			console.log('REQ_AUTH - device_info: ')
+			console.log(device_details)
+			next()
+		}
 	}
-
-	var device_type = req.device.type
-	console.log('REQ_AUTH - device_type: ' + device_type)
-	
-	if (device_type == "bot") {
-		console.log('REQ_AUTH - Request ignore due to blacklisted device type')
-		res.redirect(error_url)
-	}
-	var ip_address = req.connection.remoteAddress
-	console.log('REQ_AUTH - ip_address: ' + ip_address + ' hit: ' + url)
-	const device_details = device_detector.detect(userAgent);
-	console.log('REQ_AUTH - device_info: ')
-	console.log(device_details)
-	next()
 }
 app.use(requestAuthenticate)
 
