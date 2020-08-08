@@ -278,7 +278,6 @@ router.updateUserProfileSubmit = async function(req, res, next) {
     res.redirect('/profile/' + sess.username + '/');
 }
 
-
 router.syncUserData = async function(req, res, next) {
     console.log('updateUserProfileSubmit called')
     var url = req.url
@@ -290,7 +289,6 @@ router.syncUserData = async function(req, res, next) {
     res.redirect('back');
 }
 
-
 router.contactUs = async function(req, res, next) {
     console.log('contactUs called')
     var sess = req.session;
@@ -301,17 +299,20 @@ router.contactUs = async function(req, res, next) {
     res.render('contact_us', user_details);
 }
 
-
 router.contactUsSubmit = async function(req, res, next) {
     console.log('contactUsSubmit called')
     await contact_server.postContactUs(res, req, req.body)
     res.redirect('/');
 }
 
-
 router.aboutUs = async function(req, res, next) {
     console.log('aboutUs called')
     res.render('about_us', {});
+}
+
+router.showErrorPage = async function(req, res, next) {
+    console.log('showErrorPage called')
+    res.render('error_page', {});
 }
 
 module.exports = router;

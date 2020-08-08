@@ -27,6 +27,7 @@ module.exports = function(newApp) {
     newApp.post('/login/', homeController.logInSubmit);
     newApp.get('/logout/', homeController.logOutSubmit);
     newApp.get('/signup/', homeController.showSignUp);
+    newApp.get('/request/error/', homeController.showErrorPage);
 
 
 
