@@ -75,13 +75,20 @@ app.use(function (req, res, next) {
 
 // Request authenticate middleware
 var requestAuthenticate = async function (req, res, next) {
+	var url = req.url
+	var error_url = '/request/error/'
+
+	if(url == error_url){
+		next()
+	}
+
+	if (device_type == "bot") {
+		console.log('REQ_AUTH - Request ignore due to blacklisted device type')
+		res.redirect(error_url)
+	}
+	
 	var device_type = req.device.type
 	var ip_address = req.connection.remoteAddress
-	var url = req.url
-	if (device_type == "bot") {
-		console.warn('REQ_AUTH - Request ignore due to blacklisted device type')
-		res.redirect('/request/error/')
-	}
 	console.log('REQ_AUTH - ip_address: ' + ip_address + ' hit: ' + url)
 	console.log('REQ_AUTH - device_type: ' + device_type)
 	const device_details = device_detector.detect(userAgent);
