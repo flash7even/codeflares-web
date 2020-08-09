@@ -14,12 +14,14 @@ var system_server = require('./servers/system_services.js');
 
 router.addTeamForm = async function(req, res, next) {
   console.log('addTeamForm called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   let user_list = await team_server.getUserList(res, req, {});
   res.render('add_team', user_list);
 }
 
 router.updateTeamForm = async function(req, res, next) {
   console.log('updateTeamForm called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var team_id = words[words.length-2]
@@ -31,6 +33,7 @@ router.updateTeamForm = async function(req, res, next) {
 
 router.updateTeamFormSubmit = async function(req, res, next) {
   console.log('updateTeamFormSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var team_id = words[words.length-2]
@@ -72,6 +75,7 @@ function update_team_data(team){
 
 router.addTeamFormSubmit = async function(req, res, next) {
   console.log('addTeamFormSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var team = req.body
   team['team_type'] = 'team';
   team = update_team_data(team)
@@ -119,6 +123,7 @@ router.viewTeam = async function(req, res, next) {
 
 router.confirmTeam = async function(req, res, next) {
   console.log('confirmTeam called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var team_id = words[words.length-2]
@@ -136,6 +141,7 @@ router.confirmTeam = async function(req, res, next) {
 
 router.rejectTeam = async function(req, res, next) {
   console.log('rejectTeam called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var team_id = words[words.length-2]
@@ -153,6 +159,7 @@ router.rejectTeam = async function(req, res, next) {
 
 router.deleteTeam = async function(req, res, next) {
   console.log('deleteTeam called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var team_id = words[words.length-2]

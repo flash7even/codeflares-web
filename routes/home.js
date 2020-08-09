@@ -249,6 +249,7 @@ router.updateUserSettings = async function(req, res, next) {
 
 router.updateUserSettingsSubmit = async function(req, res, next) {
     console.log('updateUserSettingsSubmit called')
+    await system_server.verifyAccessRole(req, res, 'contestant')
     var settings_data = {
         'settings': req.body
     }
@@ -261,6 +262,7 @@ router.updateUserSettingsSubmit = async function(req, res, next) {
 
 router.updateUserProfile = async function(req, res, next) {
     console.log('updateUserProfile called')
+    await system_server.verifyAccessRole(req, res, 'contestant')
     var sess = req.session;
     var user_details = await user_server.getUserDetails(res, req, sess.user_id)
     var university_list = await user_server.universityList(res, req)
@@ -272,6 +274,7 @@ router.updateUserProfile = async function(req, res, next) {
 
 router.updateUserProfileSubmit = async function(req, res, next) {
     console.log('updateUserProfileSubmit called')
+    await system_server.verifyAccessRole(req, res, 'contestant')
     var sess = req.session;
     await user_server.updateUser(res, req, req.body, sess.user_id);
     system_server.add_toast(req, "Your profile has been updated.")

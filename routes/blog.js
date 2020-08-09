@@ -14,6 +14,7 @@ var user_server = require('./servers/user_services.js');
 
 router.addBlogForm = async function(req, res, next) {
   console.log('addBlogForm called');
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var blog_ref_id = words[words.length-2]
@@ -34,6 +35,7 @@ router.addBlogForm = async function(req, res, next) {
 
 router.addBlogFormSubmit = async function(req, res, next) {
   console.log('addBlogFormSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var blog_ref_id = words[words.length-2]
@@ -74,6 +76,7 @@ router.viewBlogList = async function(req, res, next) {
 
 router.viewOwnBlogList = async function(req, res, next) {
   console.log('viewOwnBlogList called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var sess = req.session;
   var param = {
     'blog_writer': sess.user_id
@@ -127,6 +130,7 @@ router.viewBlogPost = async function(req, res, next) {
 
 router.deleteBlogPost = async function(req, res, next) {
   console.log('deleteBlogPost called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
@@ -137,6 +141,7 @@ router.deleteBlogPost = async function(req, res, next) {
 
 router.updateBlogPost = async function(req, res, next) {
   console.log('updateBlogPost called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
@@ -146,6 +151,7 @@ router.updateBlogPost = async function(req, res, next) {
 
 router.updateBlogPostSubmit = async function(req, res, next) {
   console.log('updateBlogPostSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
@@ -158,6 +164,7 @@ router.updateBlogPostSubmit = async function(req, res, next) {
 
 router.markBlogPost = async function(req, res, next) {
   console.log('markBlogPost called')
+  await system_server.verifyAccessRole(req, res, 'admin')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
@@ -171,6 +178,7 @@ router.markBlogPost = async function(req, res, next) {
 
 router.unmarkBlogPost = async function(req, res, next) {
   console.log('unmarkBlogPost called')
+  await system_server.verifyAccessRole(req, res, 'admin')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]

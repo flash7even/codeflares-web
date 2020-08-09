@@ -9,6 +9,7 @@ var training_server = require('./servers/training_services.js');
 var contest_server = require('./servers/contest_services.js');
 var jshelper = require('./servers/jshelper.js');
 var user_server = require('./servers/user_services.js');
+var system_server = require('./servers/system_services.js');
 
 
 router.viewIndividualTraining = async function(req, res, next) {

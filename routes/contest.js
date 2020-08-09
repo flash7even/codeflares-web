@@ -14,6 +14,7 @@ var system_server = require('./servers/system_services.js');
 
 router.addContestForm = async function(req, res, next) {
   console.log('addContestForm called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var sess = req.session;
   var team_data = await team_server.getTeamList(res, req, sess.username, {"team_type": "team"})
   var classroom_data = await classroom_server.getClassroomList(res, req, sess.username, {"team_type": "classroom"})
@@ -85,6 +86,7 @@ function update_confirmed_problem_set(contest_data){
 
 router.addContestFormSubmit = async function(req, res, next) {
   console.log('addContestFormSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var sess = req.session;
   var contest_data = req.body;
   contest_data['setter_id'] = sess.user_id
@@ -97,6 +99,7 @@ router.addContestFormSubmit = async function(req, res, next) {
 
 router.confirmContestFormSubmit = async function(req, res, next) {
   console.log('confirmContestFormSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var contest_id = words[words.length-2]
@@ -171,6 +174,7 @@ router.viewContestAnnouncements = async function(req, res, next) {
 
 router.addContestAnnouncementSubmit = async function(req, res, next) {
   console.log('addContestAnnouncementSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var contest_id = words[words.length-2]

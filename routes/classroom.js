@@ -20,12 +20,14 @@ var system_server = require('./servers/system_services.js');
 
 router.addClassroomForm = async function(req, res, next) {
   console.log('addClassroomForm called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   let user_list = await classroom_server.getUserList(res, req, {});
   res.render('add_classroom', user_list);
 }
 
 router.updateClassroomForm = async function(req, res, next) {
   console.log('updateClassroomForm called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -38,6 +40,7 @@ router.updateClassroomForm = async function(req, res, next) {
 
 router.updateClassroomFormSubmit = async function(req, res, next) {
   console.log('updateClassroomFormSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -79,6 +82,7 @@ function update_classroom_data(classroom){
 
 router.addClassroomFormSubmit = async function(req, res, next) {
   console.log('addClassroomFormSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var classroom = req.body
   classroom['team_type'] = 'classroom';
   classroom = update_classroom_data(classroom)
@@ -89,6 +93,7 @@ router.addClassroomFormSubmit = async function(req, res, next) {
 }
 
 router.viewClassroomList = async function(req, res, next) {
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var sess = req.session;
   let classroom_list = await classroom_server.getClassroomList(res, req, sess.username, {"team_type": "classroom"});
   classroom_list['logged_in_user_id'] = sess.user_id
@@ -98,6 +103,7 @@ router.viewClassroomList = async function(req, res, next) {
 
 router.trainingClassroom = async function(req, res, next) {
   console.log('trainingClassroom called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-3]
@@ -127,6 +133,7 @@ router.trainingClassroom = async function(req, res, next) {
 
 router.confirmClassroom = async function(req, res, next) {
   console.log('confirmClassroom called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -144,6 +151,7 @@ router.confirmClassroom = async function(req, res, next) {
 
 router.rejectClassroom = async function(req, res, next) {
   console.log('rejectClassroom called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -161,6 +169,7 @@ router.rejectClassroom = async function(req, res, next) {
 
 router.deleteClassroom = async function(req, res, next) {
   console.log('deleteClassroom called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -172,6 +181,7 @@ router.deleteClassroom = async function(req, res, next) {
 
 router.deleteClassroomMember = async function(req, res, next) {
   console.log('deleteClassroomMember called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var user_handle = words[words.length-2]
@@ -186,6 +196,7 @@ router.deleteClassroomMember = async function(req, res, next) {
 //---------- Classroom Task Controllers -----------//
 router.addClassroomTaskForm = async function(req, res, next) {
   console.log('addClassroomTaskForm called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -195,6 +206,7 @@ router.addClassroomTaskForm = async function(req, res, next) {
 
 router.addClassroomTaskFormSubmit = async function(req, res, next) {
   console.log('addClassroomTaskFormSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -210,6 +222,7 @@ router.addClassroomTaskFormSubmit = async function(req, res, next) {
 
 router.deleteClassroomTask = async function(req, res, next) {
   console.log('deleteClassroomTask called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_task_id = words[words.length-2]
@@ -227,6 +240,7 @@ router.deleteClassroomTask = async function(req, res, next) {
 
 router.updateClassroomTask = async function(req, res, next) {
   console.log('updateClassroomTask called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var task_id = words[words.length-2]
@@ -236,6 +250,7 @@ router.updateClassroomTask = async function(req, res, next) {
 
 router.updateClassroomTaskSubmit = async function(req, res, next) {
   console.log('updateClassroomTaskSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var task_id = words[words.length-2]
@@ -247,6 +262,7 @@ router.updateClassroomTaskSubmit = async function(req, res, next) {
 
 router.viewClassroomTaskList = async function(req, res, next) {
   console.log('viewClassroomTaskList called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -269,6 +285,7 @@ router.viewClassroomTaskList = async function(req, res, next) {
 //---------- Classroom Class Controllers -----------//
 router.addClassroomClassForm = async function(req, res, next) {
   console.log('addClassroomClassForm called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -278,6 +295,7 @@ router.addClassroomClassForm = async function(req, res, next) {
 
 router.addClassroomClassFormSubmit = async function(req, res, next) {
   console.log('addClassroomClassFormSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -293,6 +311,7 @@ router.addClassroomClassFormSubmit = async function(req, res, next) {
 
 router.deleteClassroomClass = async function(req, res, next) {
   console.log('deleteClassroomClass called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_class_id = words[words.length-2]
@@ -310,6 +329,7 @@ router.deleteClassroomClass = async function(req, res, next) {
 
 router.viewClassroomClassList = async function(req, res, next) {
   console.log('viewClassroomClassList called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var classroom_id = words[words.length-2]
@@ -330,6 +350,7 @@ router.viewClassroomClassList = async function(req, res, next) {
 
 router.updateClassroomClass = async function(req, res, next) {
   console.log('updateClassroomClass called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var class_id = words[words.length-2]
@@ -340,6 +361,7 @@ router.updateClassroomClass = async function(req, res, next) {
 
 router.updateClassroomClassSubmit = async function(req, res, next) {
   console.log('updateClassroomClassSubmit called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var class_id = words[words.length-2]

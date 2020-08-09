@@ -43,3 +43,31 @@ module.exports.toast_update = function(req, data){
     }
     return data
 };
+
+
+module.exports.verifyAccessRole = async function(req, res, required_role){
+    var sess = req.session;
+    if(sess.user_role){
+        var user_role = sess.user_role;
+        var role_levels = ['contestant', 'service', 'moderator', 'manager', 'admin', 'root']
+        var role_order = {
+            'contestant': 1,
+            'service': 2,
+            'moderator': 3,
+            'manager': 4,
+            'admin': 8,
+            'root': 10,
+        }
+        var user_role_order = role_order[user_role]
+        var required_role_order = role_order[required_role]
+        console.log('user_role_order: ' + user_role_order)
+        console.log('required_role_order: ' + required_role_order)
+        if(user_role_order < required_role_order){
+            res.redirect('/request/error/')
+            req.end()
+        }
+    }else{
+        res.redirect('/request/error/')
+        req.end()
+    }
+};

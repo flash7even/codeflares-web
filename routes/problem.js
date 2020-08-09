@@ -8,16 +8,19 @@ require('log-timestamp');
 var problem_server = require('./servers/problem_services.js');
 var category_server = require('./servers/category_services.js');
 var jshelper = require('./servers/jshelper.js');
+var system_server = require('./servers/system_services.js');
 
 
 router.addProblemForm = async function(req, res, next) {
   console.log('addProblemForm called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   let category_list = await category_server.getCategoryList(res, req, {});
   res.render('add_problem', category_list);
 }
 
 router.addProblemResourceForm = async function(req, res, next) {
   console.log('addProblemResourceForm called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -27,6 +30,7 @@ router.addProblemResourceForm = async function(req, res, next) {
 
 router.addProblemResourceFormSubmit = async function(req, res, next) {
   console.log('addProblemResourceFormSubmit called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -71,6 +75,7 @@ function update_problem_data(problem){
 
 router.addProblemFormSubmit = async function(req, res, next) {
   console.log('addProblemFormSubmit called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   var problem = req.body
   problem = update_problem_data(problem)
   problem['active_status'] = 'pending'
@@ -112,6 +117,7 @@ router.viewProblemList = async function(req, res, next) {
 
 router.viewPendingProblemList = async function(req, res, next) {
   console.log('viewPendingProblemList called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   var url = req.url
   var words = url.split("/");
   var category_name = words[words.length-2]
@@ -202,6 +208,7 @@ router.viewProblemListAfterFormSubmit = async function(req, res, next) {
 
 router.setProblemStatusFlag = async function(req, res, next) {
   console.log('setProblemStatusFlag called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -220,6 +227,7 @@ router.setProblemStatusFlag = async function(req, res, next) {
 
 router.setProblemStatusRemove = async function(req, res, next) {
   console.log('setProblemStatusRemove called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -238,6 +246,7 @@ router.setProblemStatusRemove = async function(req, res, next) {
 
 router.setProblemStatusClear = async function(req, res, next) {
   console.log('setProblemStatusClear called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -255,6 +264,7 @@ router.setProblemStatusClear = async function(req, res, next) {
 
 router.showFlaggedProblemList = async function(req, res, next) {
   console.log('showFlaggedProblemList called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var sess = req.session;
   var user_id = sess.user_id
   var param ={
@@ -266,6 +276,7 @@ router.showFlaggedProblemList = async function(req, res, next) {
 
 router.approveProblem = async function(req, res, next) {
   console.log('approveProblem called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -278,6 +289,7 @@ router.approveProblem = async function(req, res, next) {
 
 router.disapproveProblem = async function(req, res, next) {
   console.log('disapproveProblem called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -290,6 +302,7 @@ router.disapproveProblem = async function(req, res, next) {
 
 router.deleteResource = async function(req, res, next) {
   console.log('deleteResource called')
+  await system_server.verifyAccessRole(req, res, 'admin')
   var url = req.url
   var words = url.split("/");
   var resource_id = words[words.length-2]
@@ -300,6 +313,7 @@ router.deleteResource = async function(req, res, next) {
 
 router.updateResource = async function(req, res, next) {
   console.log('updateResource called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   var url = req.url
   var words = url.split("/");
   var resource_id = words[words.length-2]
@@ -311,6 +325,7 @@ router.updateResource = async function(req, res, next) {
 
 router.updateResourceSubmit = async function(req, res, next) {
   console.log('updateResourceSubmit called')
+  await system_server.verifyAccessRole(req, res, 'moderator')
   var url = req.url
   var words = url.split("/");
   var resource_id = words[words.length-2]

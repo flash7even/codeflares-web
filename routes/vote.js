@@ -7,10 +7,12 @@ require('log-timestamp');
 
 var vote_server = require('./servers/vote_services.js');
 var jshelper = require('./servers/jshelper.js');
+var system_server = require('./servers/system_services.js');
 
 
 router.addVote = async function(req, res, next) {
   console.log('addReplyForBlogPost called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var sess = req.session;
   var url = req.url
   var words = url.split("/");

@@ -7,20 +7,24 @@ require('log-timestamp');
 
 var comment_server = require('./servers/comment_services.js');
 var jshelper = require('./servers/jshelper.js');
+var system_server = require('./servers/system_services.js');
 
 
-router.addCommentForm = function(req, res, next) {
+router.addCommentForm = async function(req, res, next) {
   console.log('addCommentForm called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   res.render('add_comment_post', {});
 }
 
-router.viewCommentPost = function(req, res, next) {
+router.viewCommentPost = async function(req, res, next) {
   console.log('viewCommentPost called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   res.render('add_comment_post', {});
 }
 
 router.addCommentForBlogPost = async function(req, res, next) {
   console.log('addCommentForBlogPost called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-2]
@@ -38,6 +42,7 @@ router.addCommentForBlogPost = async function(req, res, next) {
 
 router.addCommentForProblem = async function(req, res, next) {
   console.log('addCommentForProblem called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-2]
@@ -55,6 +60,7 @@ router.addCommentForProblem = async function(req, res, next) {
 
 router.addCommentForCategory = async function(req, res, next) {
   console.log('addCommentForCategory called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var category_id = words[words.length-2]
@@ -72,6 +78,7 @@ router.addCommentForCategory = async function(req, res, next) {
 
 router.addReplyForBlogPost = async function(req, res, next) {
   console.log('addReplyForBlogPost called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var blog_id = words[words.length-3]
@@ -90,6 +97,7 @@ router.addReplyForBlogPost = async function(req, res, next) {
 
 router.addReplyForProblem = async function(req, res, next) {
   console.log('addReplyForProblem called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var problem_id = words[words.length-3]
@@ -108,6 +116,7 @@ router.addReplyForProblem = async function(req, res, next) {
 
 router.addReplyForCategory = async function(req, res, next) {
   console.log('addReplyForCategory called')
+  await system_server.verifyAccessRole(req, res, 'contestant')
   var url = req.url
   var words = url.split("/");
   var category_id = words[words.length-3]

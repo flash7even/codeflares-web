@@ -9,10 +9,12 @@ var follower_server = require('./servers/follower_services.js');
 var user_server = require('./servers/user_services.js');
 var team_server = require('./servers/team_services.js');
 var jshelper = require('./servers/jshelper.js');
+var system_server = require('./servers/system_services.js');
 
 
 router.followUser = async function(req, res, next) {
     console.log('followUser called')
+    await system_server.verifyAccessRole(req, res, 'contestant')
     var url = req.url
     var words = url.split("/");
     var user_id = words[words.length-2]
@@ -23,6 +25,7 @@ router.followUser = async function(req, res, next) {
 
 router.unfollowUser = async function(req, res, next) {
     console.log('unfollowUser called')
+    await system_server.verifyAccessRole(req, res, 'contestant')
     var url = req.url
     var words = url.split("/");
     var user_id = words[words.length-2]

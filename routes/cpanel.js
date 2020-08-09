@@ -17,12 +17,14 @@ var system_server = require('./servers/system_services.js');
 
 router.showUserControl = async function(req, res, next) {
     console.log('showUserControl called')
+    await system_server.verifyAccessRole(req, res, 'moderator')
     var data = system_server.toast_update(req, {})
     res.render('control_user', data);
 }
 
 router.updateUserControl = async function(req, res, next) {
     console.log('updateUserControl called')
+    await system_server.verifyAccessRole(req, res, 'moderator')
     var url = req.url
     var words = url.split("/");
     var user_id = words[words.length-2]
@@ -32,6 +34,7 @@ router.updateUserControl = async function(req, res, next) {
 
 router.updateUserControlSubmit = async function(req, res, next) {
     console.log('updateUserControlSubmit called')
+    await system_server.verifyAccessRole(req, res, 'moderator')
     var url = req.url
     var words = url.split("/");
     var user_id = words[words.length-2]
