@@ -53,11 +53,13 @@ router.showLogIn = async function(req, res, next) {
 
 router.changePassword = async function(req, res, next) {
     console.log('changePassword called')
+    await system_server.verifyAccessRole(req, res, 'contestant')
     res.render('change_password', {});
 }
 
 router.changePasswordSubmit = async function(req, res, next) {
     console.log('changePasswordSubmit called')
+    await system_server.verifyAccessRole(req, res, 'contestant')
     var sess = req.session;
     await user_server.change_password(res, req, sess.user_id, req.body)
     system_server.add_toast(req, "Your password has been updated.")
@@ -238,6 +240,7 @@ router.showUserSubmissionHistory = async function(req, res, next) {
 
 router.updateUserSettings = async function(req, res, next) {
     console.log('updateUserSettings called')
+    await system_server.verifyAccessRole(req, res, 'contestant')
     var sess = req.session;
     var param = {
         "status": "confirmed",
@@ -283,6 +286,7 @@ router.updateUserProfileSubmit = async function(req, res, next) {
 
 router.syncUserData = async function(req, res, next) {
     console.log('updateUserProfileSubmit called')
+    await system_server.verifyAccessRole(req, res, 'contestant')
     var url = req.url
     var words = url.split("/");
     var user_id = words[words.length-2]
