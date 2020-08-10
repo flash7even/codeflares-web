@@ -82,6 +82,8 @@ module.exports = function(newApp) {
 
 
     newApp.get('/problem/add/', problemController.addProblemForm);
+    newApp.get('/problem/update/*', problemController.updateProblemForm);
+    newApp.post('/problem/update/*', problemController.updateProblemFormSubmit);
     newApp.get('/problem/view/*', problemController.viewSingleProblem);
     newApp.post('/problem/add/', problemController.addProblemFormSubmit);
     newApp.get('/problem/list/*', problemController.viewProblemList);

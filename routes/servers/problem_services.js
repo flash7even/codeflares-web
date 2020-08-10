@@ -209,3 +209,16 @@ module.exports.updateResourceDetails = async function(res, req, data, resource_i
     }
     return response.data
 };
+
+module.exports.getOJList = async function(res, req) {
+    var url = config.server_host + 'support/online-judges'
+    let response = await axios.get(url)
+    .catch(error => {
+        console.error(error)
+        res.render('error_page', {});
+    })
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+};

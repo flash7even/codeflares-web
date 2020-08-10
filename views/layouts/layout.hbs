@@ -71,6 +71,17 @@
                                 </li>
                                 {{/if}}
                             </ul>
+                            {{#userAccess session.user_role "moderator"}}
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-cog" aria-hidden="true"></i>Control Panel</a>
+                                    <ul class="list-unstyled list-hidden dropdown">
+                                        <li> <a class="list-link" href="/control/panel/user/">User Control</a> </li>
+                                        <li> <a class="list-link" href="/problem/pending/list/all/">Verify Problems</a> </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            {{/userAccess}}
                             <ul class="list-unstyled">
                                 {{#if session.email}}
                                 <li>
@@ -160,9 +171,6 @@
                                     <a href="#" class="list-link link-arrow"><i style="width: 17px;" class="fa fa-language" aria-hidden="true"></i>Advise</a>
                                     <ul class="list-unstyled list-hidden dropdown">
                                         <li> <a class="list-link" href="/problem/add/">Add Problem</a> </li>
-                                        {{#userAccess session.user_role "moderator"}}
-                                        <li> <a class="list-link" href="/problem/pending/list/all/">Verify Problems</a> </li>
-                                        {{/userAccess}}
                                         {{#userAccess session.user_role "admin"}}
                                         <li> <a class="list-link" href="/category/add/">Add Category</a> </li>
                                         {{/userAccess}}

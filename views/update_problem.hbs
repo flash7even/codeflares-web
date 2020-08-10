@@ -6,17 +6,17 @@
 <div class="form-type-1" style="width: 80%;">	
 	<div class="cfs-title-1">
 		<h5 style="text-align: center;">
-			<b>Add Problem Suggestion</b>
+			<b>Update Problem Information</b>
 			<a title="Guideline" class='btn' data-toggle="modal" data-target="#addProblemGuideline"><i class="fas fa-info-circle"></i></a>
 		</h5>
 	</div>
 	<br>
-    <form action="/problem/add/" method="post" style="padding: 10px;">
+    <form action="/problem/update/{{id}}/" method="post" style="padding: 10px;">
 		<div class="form-row">
 			<div class="form-group col-md-12">
 				<label><b>Problem Name</b></label>
 				<div class="input-group">
-					<input type="text" id="problem_name" class="form-control" name="problem_name" placeholder="Enter the problem name" required>
+					<input type="text" id="problem_name" class="form-control" name="problem_name" value="{{problem_name}}" required>
 				</div>
 			</div>
 		</div>
@@ -24,7 +24,7 @@
 			<div class="form-group col-md-12">
 				<label><b>Problem Link</b></label>
 				<div class="input-group">
-					<input type="text" id="source_link" class="form-control" name="source_link" placeholder="Enter the problem source link" required>
+					<input type="text" id="source_link" class="form-control" name="source_link" value="{{source_link}}" required>
 				</div>
 			</div>
 		</div>
@@ -32,17 +32,13 @@
 			<div class="form-group col-md-6">
 				<label><b>Problem ID</b></label>
 				<div class="input-group">
-					<input type="text" id="problem_id" class="form-control" name="problem_id" placeholder="Enter the problem id or unique identification code" required>
+					<input type="text" id="problem_id" class="form-control" name="problem_id" value="{{problem_id}}" required>
 				</div>
 			</div>
 			<div class="form-group col-md-6">
 				<label><b>Problem Type</b></label>
 				<div class="input-group">
-					<select class="form-control" id="problem_type">
-						<option value="regular">Regular</option>
-						<option value="classical">Classical</option>
-						<option value="rare_knowledge">Rare Knowledge</option>
-					</select>
+					<select class="form-control" id="problem_type" name="problem_type"></select>
 				</div>
 			</div>
 		</div>
@@ -50,17 +46,13 @@
 			<div class="form-group col-md-6">
 				<label><b>Online Judge Name</b></label>
 				<div class="input-group">
-					<select class="form-control" id="oj_name" name="oj_name">
-						{{#each oj_list}}
-						<option value="{{title}}">{{name}}</option>
-						{{/each}}
-					</select>
+					<select class="form-control" id="oj_name" name="oj_name"></select>
 				</div>
 			</div>
 			<div class="form-group col-md-6">
 				<label><b>Problem Remarks</b></label>
 				<div class="input-group">
-					<input type="text" id="problem_description" class="form-control" name="problem_description" placeholder="Enter additional information">
+					<input type="text" id="problem_description" class="form-control" name="problem_description" value="{{problem_description}}">
 				</div>
 			</div>
 		</div>
@@ -68,27 +60,40 @@
 			<div class="form-group col-md-6">
 				<label><b>Problem Difficulty (1 - 10)</b></label>
 				<div class="input-group">
-					<input type="text" id="problem_difficulty" class="form-control" name="problem_difficulty" placeholder="Enter problem difficulty" required>
+					<input type="text" id="problem_difficulty" class="form-control" name="problem_difficulty" value="{{problem_difficulty}}" required>
 				</div>
 			</div>
 			<div class="form-group col-md-6">
 				<label><b>Problem Significance for Categories (1 - 2)</b></label>
 				<div class="input-group">
-					<input type="text" id="problem_significance" class="form-control" name="problem_significance" placeholder="Enter category significance value">
+					<input type="text" id="problem_significance" class="form-control" name="problem_significance" value="{{problem_significance}}">
 				</div>
 			</div>
 		</div>
+		<div class="form-row">
+			<div class="form-group col-md-12">
+				<label><b>Active Status</b></label>
+				<div class="input-group">
+					<select class="form-control" id="active_status" name="active_status"></select>
+				</div>
+			</div>
+		</div>
+
 		<label><b>Category Dependency List</b></label>
+		
 		<div class="category-group">
+		</div>
+		
+		<div class="copy-plus hide" hidden>
 			<div class="form-row control-group">
 				<div class="form-group col-md-6">
 					<div class="input-group">
-						<input type="text" autocomplete="off" id="problem_category@1" class="form-control autocomplete" name="problem_category@1" placeholder="Enter the category name" required>
+						<input type="text" autocomplete="off" id="problem_category_tmp" class="form-control autocomplete" name="problem_category_tmp" placeholder="Enter the category name">
 					</div>
 				</div>
 				<div class="form-group col-md-5">
 					<div class="input-group">
-						<input type="text" id="dependency_factor@1" class="form-control" name="dependency_factor@1" placeholder="Enter the dependent factor (1-10)" required>
+						<input type="text" id="dependency_factor_tmp" class="form-control" name="dependency_factor_tmp" placeholder="Enter the dependent factor (1-10)">
 					</div>
 				</div>
 				<div class="form-group col-sm-1" style="width: 10px !important;">
@@ -96,7 +101,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<div class="copy hide" hidden>
 			<div class="form-row control-group">
@@ -115,6 +119,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="form-group submit-btn-div">
             <button type="submit" class="btn submit-btn btn-light btn-block btn">Submit</button>
         </div>
@@ -197,7 +202,7 @@
 <!-- Modal Section Ends -->
 
 <script type="text/javascript">
-	var cat_item = 1;
+	var cat_item = 0;
 
 	function enableAutoComplete(){
 		$(".autocomplete").typeahead({
@@ -255,6 +260,37 @@
 		});
     });
 
+	function addInitialDependentCategory(){
+		{{#each categories}}
+			cat_item++
+			if(cat_item == 1){
+				var html = $(".copy-plus").html()
+				var problem_category_id = 'problem_category@' + cat_item.toString();
+				html = html.replace('problem_category_tmp', problem_category_id)
+				html = html.replace('problem_category_tmp', problem_category_id)
+				var dependency_factor_id = 'dependency_factor@' + cat_item.toString();
+				html = html.replace('dependency_factor_tmp', dependency_factor_id)
+				html = html.replace('dependency_factor_tmp', dependency_factor_id)
+				$(".category-group").append(html);
+				enableAutoComplete();
+				$(`[id="${problem_category_id}"]`).val("{{category_name}}"); 
+				$(`[id="${dependency_factor_id}"]`).val("{{dependency_factor}}"); 
+			}else{
+				var html = $(".copy").html()
+				var problem_category_id = 'problem_category@' + cat_item.toString();
+				html = html.replace('problem_category_tmp', problem_category_id)
+				html = html.replace('problem_category_tmp', problem_category_id)
+				var dependency_factor_id = 'dependency_factor@' + cat_item.toString();
+				html = html.replace('dependency_factor_tmp', dependency_factor_id)
+				html = html.replace('dependency_factor_tmp', dependency_factor_id)
+				$(".category-group").append(html);
+				enableAutoComplete();
+				$(`[id="${problem_category_id}"]`).val("{{category_name}}"); 
+				$(`[id="${dependency_factor_id}"]`).val("{{dependency_factor}}"); 
+			}
+		{{/each}}
+	}
+
     function getAlgorithmList(){
         var data_list = []
         {{#each category_list}}
@@ -264,11 +300,68 @@
             }
             data_list.push(data)
         {{/each}}
-        console.log('data_list: ')
-        console.log(data_list)
         return data_list
     }
 
+	function viewOnlineJudges() {
+		var html = ''
+		var selected_oj_title = "{{oj_name}}"
+        {{#each oj_list}}
+			var title = "{{title}}"
+			var name = "{{name}}"
+			if(title == selected_oj_title){
+				html += `<option value="${title}" selected>${name}</option>`
+			}else{
+				html += `<option value="${title}">${name}</option>`
+			}
+        {{/each}}
+		var oj_name = document.getElementById('oj_name')
+		oj_name.innerHTML = html
+	}
+
+	function viewProblemType() {
+		var data_name = ['Regular', 'Classical', 'Rare Knowledge']
+		var data_title = ['regular', 'classical', 'rare_knowledge']
+		var html = ''
+		var selected_problem_type_title = "{{problem_type}}"
+		console.log('selected_problem_type_title: ' + selected_problem_type_title)
+		var idx = 0
+        for(idx = 0;idx<data_name.length;idx++){
+			var title = data_title[idx]
+			var name = data_name[idx]
+			if(title == selected_problem_type_title){
+				html += `<option value="${title}" selected>${name}</option>`
+			}else{
+				html += `<option value="${title}">${name}</option>`
+			}
+		}
+		var problem_type = document.getElementById('problem_type')
+		problem_type.innerHTML = html
+	}
+
+	function viewActiveStatus() {
+		var data_name = ['Pending', 'Approved', 'Disapproved']
+		var data_title = ['pending', 'approved', 'disapproved']
+		var html = ''
+		var selected_active_status_title = "{{active_status}}"
+		var idx = 0
+        for(idx = 0;idx<data_name.length;idx++){
+			var title = data_title[idx]
+			var name = data_name[idx]
+			if(title == selected_active_status_title){
+				html += `<option value="${title}" selected>${name}</option>`
+			}else{
+				html += `<option value="${title}">${name}</option>`
+			}
+		}
+		var active_status = document.getElementById('active_status')
+		active_status.innerHTML = html
+	}
+
 	enableAutoComplete();
+	addInitialDependentCategory();
+	viewOnlineJudges();
+	viewProblemType();
+	viewActiveStatus();
 
 </script>

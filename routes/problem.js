@@ -15,7 +15,39 @@ router.addProblemForm = async function(req, res, next) {
   console.log('addProblemForm called')
   await system_server.verifyAccessRole(req, res, 'moderator')
   let category_list = await category_server.getCategoryList(res, req, {});
+  let oj_list = await problem_server.getOJList(res, req);
+  category_list['oj_list'] = oj_list.oj_list
   res.render('add_problem', category_list);
+}
+
+router.updateProblemForm = async function(req, res, next) {
+  console.log('updateProblemForm called')
+  var url = req.url
+  var words = url.split("/");
+  var problem_id = words[words.length-2]
+
+  await system_server.verifyAccessRole(req, res, 'moderator')
+  var problem_details = await problem_server.getProblemDetails(res, req, problem_id)
+  let category_list = await category_server.getCategoryList(res, req, {});
+  problem_details['category_list'] = category_list.category_list
+  let oj_list = await problem_server.getOJList(res, req);
+  problem_details['oj_list'] = oj_list.oj_list
+  res.render('update_problem', problem_details);
+}
+
+router.updateProblemFormSubmit = async function(req, res, next) {
+  console.log('updateProblemFormSubmit called')
+  var url = req.url
+  var words = url.split("/");
+  var problem_id = words[words.length-2]
+
+  await system_server.verifyAccessRole(req, res, 'moderator')
+  var problem_data = update_problem_data(req.body)
+  console.log('problem_data: ')
+  console.log(problem_data)
+  await problem_server.updateProblemData(res, req, problem_id, problem_data)
+  jshelper.sleep(1000);
+  res.redirect('/problem/view/' + problem_id + '/');
 }
 
 router.addProblemResourceForm = async function(req, res, next) {
@@ -85,9 +117,9 @@ router.addProblemFormSubmit = async function(req, res, next) {
   if (problem.problem_description.length == 0){
     problem.problem_description = 'NA'
   }
-  await problem_server.postProblem(res, req, problem)
+  var problem_id = await problem_server.postProblem(res, req, problem)
   jshelper.sleep(1000);
-  res.redirect('/problem/list/')
+  res.redirect('/problem/view/' + problem_id + '/');
 }
 
 router.viewProblemList = async function(req, res, next) {
