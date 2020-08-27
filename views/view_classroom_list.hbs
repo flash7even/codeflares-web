@@ -45,9 +45,13 @@
         {{#each team_list}}
             console.log("{{team_name}}")
             var team_name = "{{team_name}}"
+            var team_status = "{{status}}"
             var mem_count = 0;
             var my_status = "{{status}}"
-            var team_link = '<a href = "/classroom/training/{{id}}/home/" style="color: #056290; font-weight:700;">{{team_name}}</a>'
+            var team_link = "{{team_name}}"
+            if (team_status == "confirmed"){
+                team_link = '<a href = "/classroom/training/{{id}}/home/" style="color: #056290; font-weight:700;">{{team_name}}</a>'
+            }
             var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
 
             if(my_status != "confirmed"){
@@ -64,12 +68,17 @@
                     action_link += '<a href="/classroom/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-minus-circle"></i></a>'
                 }
             }
-
-            var member_skill_link = `<a class="btn btn-sm btn-light" href="/classroom/training/{{id}}/skill/" role="button">Member Skill</a>`
-            var training_link = `<a class="btn btn-sm btn-light" href="/classroom/training/{{id}}/contest/" role="button">Training</a>`
-            var discussion_link = `<a class="btn btn-sm btn-light" href="/classroom/training/{{id}}/discussion/" role="button">Discussion</a>`
-            
             action_link += "</div>"
+
+            var member_skill_link = 'Member Skill'
+            var training_link = 'Training'
+            var discussion_link = 'Discussion'
+
+            if (team_status == "confirmed"){
+                member_skill_link = `<a class="btn btn-sm btn-light" href="/classroom/training/{{id}}/skill/" role="button">Member Skill</a>`
+                training_link = `<a class="btn btn-sm btn-light" href="/classroom/training/{{id}}/contest/" role="button">Training</a>`
+                discussion_link = `<a class="btn btn-sm btn-light" href="/classroom/training/{{id}}/discussion/" role="button">Discussion</a>`
+            }
 
             var team_data = [team_link, "{{team_purpose}}", "{{institution_name}}", member_skill_link, training_link, discussion_link, action_link];
             db_team_list.push(team_data)
