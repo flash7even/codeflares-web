@@ -178,7 +178,7 @@
     {{#if view-teams-page}}
 
     <div class="cfs-title-2" style="margin-top: 30px;">
-        <h5 style="text-align: center;"><b>Your Teamlist</b></h5>
+        <h5 style="text-align: center; font-size: large;"><b>User Team List</b></h5>
     </div>
     <div class="cfs-table-1">
         {{#if team_list}}
@@ -414,6 +414,8 @@
 
     function getTeamList(){
         var current_user = "{{logged_in_user_id}}"
+        var current_username = "{{session.username}}"
+        var username = "{{username}}"
         console.log("current_user")
         console.log(current_user)
 
@@ -425,33 +427,47 @@
             var member_list_items = "";
             var mem_count = 0;
             var my_status = "{{status}}"
+            console.log('my_status: ' + my_status)
             {{#each member_list}}
                 if(mem_count>0) member_list_items += ",  ";
                 member_list_items += '<a href = "/profile/{{user_handle}}/" style="color: {{skill_color}}; font-weight:700;">{{user_handle}} ({{status}})</a>'
                 mem_count += 1
             {{/each}}
-            var team_link = '<a href = "/team/view/{{id}}/" style="color: {{skill_color}}; font-weight:700;">{{team_name}}</a>'
 
-            var action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
-
-            if(my_status != "confirmed"){
-                action_link += '<a href="/team/confirm/{{id}}/" title="Confirm" data-toggle="tooltip" style="color: #5bc0de;"><i class="fas fa-check-circle"></i></a>'
-                action_link += "  "
-                action_link += '<a href="/team/reject/{{id}}/" title="Reject" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-times-circle"></i></a>'
-            }else{
-                var team_lead = "{{team_leader_id}}"
-                console.log("team_lead")
-                console.log(team_lead)
-                if(current_user == team_lead){
-                    action_link += '<a href="/team/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-trash"></i></a>'
-                }else{
-                    action_link += '<a href="/team/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-minus-circle"></i></a>'
-                }
+            var team_link = "{{team_name}}"
+            if (my_status == "confirmed"){
+                team_link = '<a href = "/team/view/{{id}}/" style="color: {{skill_color}}; font-weight:700;">{{team_name}}</a>'
             }
+            var action_link = ""
             
-            action_link += "</div>"
-            var training_link = `<a class="btn btn-sm btn-light" href="/training/team/{{id}}/training-plan/" role="button">Training Plan</a>`
-            var contest_link = `<a class="btn btn-sm btn-light" href="/training/team/{{id}}/contest/" role="button">Training Contests</a>`
+
+            if(username == current_username){
+                action_link = '<div class = "display: flex; align-items: center; justify-content: center;">'
+                if(my_status != "confirmed"){
+                    action_link += '<a href="/team/confirm/{{id}}/" title="Confirm" data-toggle="tooltip" style="color: #5bc0de;"><i class="fas fa-check-circle"></i></a>'
+                    action_link += "  "
+                    action_link += '<a href="/team/reject/{{id}}/" title="Reject" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-times-circle"></i></a>'
+                }else{
+                    var team_lead = "{{team_leader_id}}"
+                    console.log("team_lead")
+                    console.log(team_lead)
+                    if(current_user == team_lead){
+                        action_link += '<a href="/team/delete/{{id}}/" title="Delete" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-trash"></i></a>'
+                    }else{
+                        action_link += '<a href="/team/reject/{{id}}/" title="Remove" data-toggle="tooltip" style="color: rgb(180, 88, 1);"><i class="fas fa-minus-circle"></i></a>'
+                    }
+                }
+                action_link += "</div>"
+            }
+
+
+            var training_link = 'Training'
+            var contest_link = 'Contests'
+
+            if (my_status == "confirmed"){
+                training_link = `<a class="btn btn-sm btn-light" href="/training/team/{{id}}/training-plan/" role="button">Training Plan</a>`
+                contest_link = `<a class="btn btn-sm btn-light" href="/training/team/{{id}}/contest/" role="button">Training Contests</a>`
+            }
 
             var team_data = [team_link, "{{team_purpose}}", "{{institution_name}}", member_list_items, training_link, contest_link, action_link];
             db_team_list.push(team_data)

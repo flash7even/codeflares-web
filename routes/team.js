@@ -136,7 +136,7 @@ router.confirmTeam = async function(req, res, next) {
   await team_server.updtateTeam(res, req, data)
   jshelper.sleep(1000);
   system_server.add_toast(req, 'Confirmed!')
-  res.redirect('/team/list/');
+  res.redirect('back');
 }
 
 router.rejectTeam = async function(req, res, next) {
@@ -154,7 +154,7 @@ router.rejectTeam = async function(req, res, next) {
   await team_server.updtateTeam(res, req, data)
   jshelper.sleep(1000);
   system_server.add_toast(req, 'Rejected!')
-  res.redirect('/team/list/');
+  res.redirect('back');
 }
 
 router.deleteTeam = async function(req, res, next) {
@@ -166,7 +166,7 @@ router.deleteTeam = async function(req, res, next) {
   await team_server.deleteTeam(res, req, team_id)
   jshelper.sleep(1000);
   system_server.add_toast(req, 'Deleted!')
-  res.redirect('/team/list/');
+  res.redirect('back');
 }
 
 router.syncTeamData = async function(req, res, next) {
