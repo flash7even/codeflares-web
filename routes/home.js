@@ -291,8 +291,14 @@ router.syncUserData = async function(req, res, next) {
     var words = url.split("/");
     var user_id = words[words.length-2]
     var response = await user_server.syncUser(res, req, user_id);
+
     var sess = req.session;
-    system_server.add_toast(req, "Your request to sync user data has been sent to the server. We will process the request shortly.")
+
+    if(response.message == "success"){
+        system_server.add_toast(req, "Your request to sync user data has been sent to the server. We will process the request shortly.")
+    }else{
+        system_server.add_toast(req, "Your sync request failed. You already have a pending request or your request limit exceeded.", "warning")
+    }
     res.redirect('back');
 }
 
