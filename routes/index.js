@@ -177,6 +177,7 @@ module.exports = function(newApp) {
 
 
     newApp.get('/control/panel/user/', cpanelController.showUserControl);
+    newApp.get('/control/panel/sync-job/*', cpanelController.showSyncJobs);
     newApp.get('/control/user/update/*', cpanelController.updateUserControl);
     newApp.post('/control/user/update/*', cpanelController.updateUserControlSubmit);
 

@@ -373,3 +373,25 @@ module.exports.countryList = async function(res, req) {
     console.log('countryList done');
     return response.data
 };
+
+module.exports.getJobList = async function(res, req, page) {
+    console.log('getJobList called');
+    var url = config.server_host + 'job/search/' + page
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    var param = {
+        'sort_order': 'desc'
+    }
+    let response = await axios.post(url, param, auth_config)
+    .catch(error => {
+        console.error(error)
+        res.render('error_page', {});
+    })
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    console.log('getJobList done');
+    return response.data
+};

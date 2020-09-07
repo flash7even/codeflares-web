@@ -44,4 +44,19 @@ router.updateUserControlSubmit = async function(req, res, next) {
     res.redirect('/control/panel/user/');
 }
 
+router.showSyncJobs = async function(req, res, next) {
+    console.log('showSyncJobs called')
+    await system_server.verifyAccessRole(req, res, 'moderator')
+    var url = req.url
+    var words = url.split("/");
+    console.log(words)
+    var page = words[words.length-2]
+    console.log(page)
+    var data = await user_server.getJobList(res, req, page);
+    console.log('sync job data: ')
+    console.log(data)
+    console.log('showSyncJobs completed')
+    res.render('control_jobs', data);
+}
+
 module.exports = router;

@@ -1,0 +1,77 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+
+<div class="cfs-table-wrapper-1">
+    <div class="cfs-title-1">
+        <h5 style="text-align: center;"><b>Sync Job List</b></h5>
+    </div>
+    <div class="cfs-table-1">
+        {{#if job_list}}
+        <table id="syncJobTable" class="leaderboard table" style="text-align: center;">
+            <thead>
+                <tr>
+                    <td>Job Type</td>
+                    <td>Job Status</td>
+                    <td>Job Reference</td>
+                    <td>Created Time</td>
+                    <td>Updated Time</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        {{else}}
+            <h6 style="text-align: center; padding: 20px;">No data is available to view right now.</h6>
+        {{/if}}
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function getJobList(){
+        var current_user = "{{logged_in_user_id}}"
+        console.log("current_user")
+        console.log(current_user)
+
+        var data_list = [];
+
+        {{#each job_list}}
+            var action_link = "{{job_ref_id}}"
+            var job_type = "{{job_type}}"
+            if(job_type == "USER_SYNC"){
+                action_link = '<a href = "/profile/{{ref_details.username}}/" style="color: {{ref_details.skill_color}}; font-weight:700;">{{ref_details.username}}</a>'
+            }else{
+                action_link = '<a href = "/team/view/{{job_ref_id}}/" style="color: {{ref_details.skill_color}}; font-weight:700;">{{ref_details.team_name}}</a>'
+            }
+            var data = ["{{job_type}}", "{{status}}", action_link, "{{created_at}}", "{{updated_at}}"];
+            data_list.push(data)
+        {{/each}}
+
+        return data_list;
+    }
+
+    function showJobDTSearchTable(){
+        var dt_list = getJobList();
+        
+        $("#syncJobTable").dataTable({
+            "aaData": dt_list,
+            paging: false,
+            searching: false,
+            ordering: false,
+            info: false,
+            destroy: true,
+            scrollCollapse: true,
+            responsive: true,
+            pageLength: 10,
+            lengthMenu: [[3, 5, 10, -1], [3, 5, 10, 20]]
+        });
+    }
+
+    $(document).ready( function () {
+        showJobDTSearchTable();
+    } );
+
+</script>
