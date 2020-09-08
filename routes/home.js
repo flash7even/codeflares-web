@@ -211,6 +211,7 @@ router.showUserProfile = async function(req, res, next) {
     }
     if(sess.user_id == user_details.id){
         user_details['own_profile'] = true;
+        user_details['show_contact_info'] = true;
     }
     try{
         var show_contact_info = user_details.settings.show_contact_info
