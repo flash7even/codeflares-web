@@ -212,6 +212,15 @@ router.showUserProfile = async function(req, res, next) {
     if(sess.user_id == user_details.id){
         user_details['own_profile'] = true;
     }
+    try{
+        var show_contact_info = user_details.settings.show_contact_info
+        console.log("show_contact_info: " + show_contact_info)
+        if(show_contact_info == "Yes"){
+            user_details['show_contact_info'] = true;
+        }
+    } catch(error) {
+        console.log('show_contact_info is not set for the user')
+    }
     user_details['profile-page'] = true
     user_details = system_server.toast_update(req, user_details)
     res.render('user_profile', user_details);
