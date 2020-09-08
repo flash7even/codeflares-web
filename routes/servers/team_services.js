@@ -192,3 +192,21 @@ module.exports.syncTeam = async function(res, req, team_id) {
     }
     return response.data
 };
+
+module.exports.syncAdminstration = async function(res, req, sync_type, sync_ref) {
+    var url = team_submit_url + 'sync-administration' + '/' + sync_type + '/' + sync_ref
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.put(url, {}, auth_config)
+    .catch(error => {
+        console.error(error)
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+};

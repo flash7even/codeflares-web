@@ -51,6 +51,8 @@ module.exports = function(newApp) {
 
     newApp.get('/user/sync/*', homeController.syncUserData);
     newApp.get('/team/sync/*', teamController.syncTeamData);
+    newApp.get('/admin/sync/', homeController.showSyncAdminstration);
+    newApp.get('/sync/adminstration/*', homeController.adminstrationSync);
 
     newApp.get('/follow/*', followerController.followUser);
     newApp.get('/unfollow/*', followerController.unfollowUser);

@@ -36,12 +36,15 @@
         console.log("current_user")
         console.log(current_user)
 
+        var user_sync_ref_types = ['USER_SYNC', 'USER_SYNC_RESTORE', 'SYNC_ALL_USERS', 'RESTORE_ALL_USERS', 'SYNC_ALL_TEAMS',
+                            'RESTORE_ALL_TEAMS']
+        var team_sync_ref_types = ['TEAM_SYNC', 'TEAM_SYNC_RESTORE']
         var data_list = [];
 
         {{#each job_list}}
             var action_link = "{{job_ref_id}}"
             var job_type = "{{job_type}}"
-            if(job_type == "USER_SYNC"){
+            if(user_sync_ref_types.includes(job_type)){
                 action_link = '<a href = "/profile/{{ref_details.username}}/" style="color: {{ref_details.skill_color}}; font-weight:700;">{{ref_details.username}}</a>'
             }else{
                 action_link = '<a href = "/team/view/{{job_ref_id}}/" style="color: {{ref_details.skill_color}}; font-weight:700;">{{ref_details.team_name}}</a>'
@@ -60,6 +63,7 @@
             "aaData": dt_list,
             paging: false,
             info: false,
+            ordering: false,
             destroy: true,
             scrollCollapse: true,
             responsive: true,

@@ -10,6 +10,7 @@ var logout_url = config.server_host + 'auth/logout/at'
 
 var blog_server = require('./servers/blog_services.js');
 var user_server = require('./servers/user_services.js');
+var team_server = require('./servers/team_services.js');
 var follower_server = require('./servers/follower_services.js');
 var contact_server = require('./servers/contact_us_services.js');
 var jshelper = require('./servers/jshelper.js');
@@ -336,6 +337,30 @@ router.aboutUs = async function(req, res, next) {
 router.showErrorPage = async function(req, res, next) {
     console.log('showErrorPage called')
     res.render('error_page', {});
+}
+
+router.showSyncAdminstration = async function(req, res, next) {
+    console.log('showSyncAdminstration called')
+    await system_server.verifyAccessRole(req, res, 'admin')
+    res.render('control_adminstration', {});
+}
+
+router.adminstrationSync = async function(req, res, next) {
+    console.log('adminstrationSync called')
+    await system_server.verifyAccessRole(req, res, 'admin')
+    var url = req.url
+    var words = url.split("/");
+    var sync_target = words[words.length-4]
+    var sync_type = words[words.length-3]
+    var sync_ref = words[words.length-2]
+
+    if(sync_target == 'user'){
+        var response = await user_server.syncAdminstration(res, req, sync_type, sync_ref);
+    }else{
+        var response = await team_server.syncAdminstration(res, req, sync_type, sync_ref);
+    }
+
+    res.redirect('back');
 }
 
 module.exports = router;

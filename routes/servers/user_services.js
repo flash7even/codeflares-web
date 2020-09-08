@@ -255,6 +255,24 @@ module.exports.syncUser = async function(res, req, user_id) {
     return response.data
 };
 
+module.exports.syncAdminstration = async function(res, req, sync_type, sync_ref) {
+    var url = user_submit_url + 'sync-administration' + '/' + sync_type + '/' + sync_ref
+    var sess = req.session;
+    const auth_config = {
+        headers: { Authorization: `Bearer ${sess.access_token}` }
+    };
+    let response = await axios.put(url, {}, auth_config)
+    .catch(error => {
+        console.error(error)
+        res.render('error_page', {});
+    })
+
+    if(response.status != 200 && response.status != 201){
+        res.render('error_page', {});
+    }
+    return response.data
+};
+
 module.exports.activate_user_account = async function(res, req, token) {
     var url = user_activate_url + token
     let response = await axios.post(url, {})
