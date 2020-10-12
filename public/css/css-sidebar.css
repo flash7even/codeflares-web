@@ -323,6 +323,7 @@
   bottom: 0;
   display: flex;
   padding: 5px;
+  height: 49px;
   background-color: #081727;
 }
 
